@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Gustavo Prado Serviços Estatísticos">
+  <defs>
+    <linearGradient id="r" x1="0" x2="1"><stop offset="0" stop-color="#EA5C70"/><stop offset=".5" stop-color="#E24B61"/><stop offset=".5" stop-color="#D93A53"/><stop offset="1" stop-color="#DA3C55"/></linearGradient>
+    <linearGradient id="o" x1="0" x2="1"><stop offset="0" stop-color="#E08A33"/><stop offset=".5" stop-color="#DA8230"/><stop offset=".5" stop-color="#D47A2B"/><stop offset="1" stop-color="#E28E36"/></linearGradient>
+    <linearGradient id="b" x1="0" x2="1"><stop offset="0" stop-color="#5DC9EF"/><stop offset=".5" stop-color="#4FB9E6"/><stop offset=".5" stop-color="#3E9FD6"/><stop offset="1" stop-color="#4AAEE0"/></linearGradient>
+  </defs>
+  <rect x="3" y="3" width="94" height="94" fill="#fff" stroke="#000" stroke-width="0.9"/>
+  <g fill="#000">
+    <rect x="7.1" y="7" width="15.8" height="47.6"/>
+    <rect x="24.6" y="7" width="15.8" height="36.4"/>
+    <rect x="42.1" y="7" width="15.8" height="20.1"/>
+    <rect x="59.6" y="7" width="15.8" height="36.6"/>
+    <rect x="77.1" y="7" width="15.8" height="22.8"/>
+  </g>
+  <rect x="7.1" y="56.6" width="15.8" height="36.4" fill="url(#r)"/>
+  <rect x="24.6" y="45.4" width="15.8" height="47.6" fill="url(#o)"/>
+  <rect x="42.1" y="29.1" width="15.8" height="63.9" fill="url(#b)"/>
+  <rect x="59.6" y="45.6" width="15.8" height="47.4" fill="url(#r)"/>
+  <rect x="77.1" y="31.8" width="15.8" height="61.2" fill="url(#o)"/>
+  <polyline points="15,45.6 32.5,32.1 50,17.1 67.5,34.6 85,18.1" fill="none" stroke="#fff" stroke-width="1.1"/>
+  <g fill="#fff">
+    <circle cx="15" cy="45.6" r="4.4"/><circle cx="32.5" cy="32.1" r="4.4"/><circle cx="50" cy="17.1" r="4.4"/><circle cx="67.5" cy="34.6" r="4.4"/><circle cx="85" cy="18.1" r="4.4"/>
+  </g>
+  <circle cx="15" cy="45.6" r="2.6" fill="#E24B61"/>
+  <circle cx="32.5" cy="32.1" r="2.6" fill="#DD8530"/>
+  <circle cx="50" cy="17.1" r="2.6" fill="#3E9FD6"/>
+  <circle cx="67.5" cy="34.6" r="2.6" fill="#E24B61"/>
+  <circle cx="85" cy="18.1" r="2.6" fill="#DD8530"/>
+</svg>

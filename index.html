@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gustavo Prado Serviços Estatísticos</title>
+<!--SEO-->
+<meta name="description" content="Consultoria, mentoria e capacitação em estatística aplicada para pesquisadores: planejamento do estudo, cálculo de amostra, análise de dados em R e relatório em redação científica. Orçamento sem custo.">
+<meta name="author" content="Gustavo Prado">
+<link rel="canonical" href="https://pradogps.github.io/">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1318" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Gustavo Prado Serviços Estatísticos">
+<meta property="og:title" content="Gustavo Prado | Serviços Estatísticos">
+<meta property="og:description" content="Consultoria, mentoria e capacitação em estatística aplicada para pesquisadores. Orçamento sem custo pelo WhatsApp.">
+<meta property="og:url" content="https://pradogps.github.io/">
+<meta property="og:image" content="https://pradogps.github.io/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Gustavo Prado, estatístico, e o logotipo de Serviços Estatísticos">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Gustavo Prado Serviços Estatísticos",
+  "description": "Consultoria, mentoria e capacitação em estatística aplicada para pesquisadores e profissionais.",
+  "url": "https://pradogps.github.io/",
+  "image": "https://pradogps.github.io/assets/og-image.png",
+  "logo": "https://pradogps.github.io/assets/logo.svg",
+  "telephone": "+55 11 99264-5544",
+  "founder": {
+    "@type": "Person",
+    "name": "Gustavo Prado",
+    "jobTitle": "Estatístico",
+    "sameAs": ["https://www.linkedin.com/in/pradogps/"]
+  },
+  "sameAs": ["https://www.linkedin.com/in/pradogps/"]
+}
+</script>
+<!--/SEO-->
+<style>
+/*FONTFACE*/
+@font-face{font-family:"Archivo";font-style:normal;font-display:swap;font-weight:100 900;font-stretch:62% 125%;src:url("assets/fonts/archivo.woff2") format("woff2-variations"),url("assets/fonts/archivo.woff2") format("woff2")}
+@font-face{font-family:"Source Serif 4";font-style:normal;font-display:swap;font-weight:200 900;src:url("assets/fonts/source-serif-4.woff2") format("woff2-variations"),url("assets/fonts/source-serif-4.woff2") format("woff2")}
+/*/FONTFACE*/
+
+/* Layout: relatório científico em página única — texto alinhado à esquerda numa coluna de leitura, figuras e quadros em faixas de largura total. */
+:root{
+  --bg:#ffffff;
+  --surface:#f2f4f7;
+  --ink:#151a21;
+  --muted:#545e6c;
+  --rule:#d9dee6;
+  --red:#c7344c;
+  --orange:#c96c17;
+  --blue:#2a83bd;
+  --blue-soft:#4fb3e3;
+  --orange-soft:#e5913a;
+  --cta:#c7344c;
+  --cta-hover:#ad2a40;
+  --on-cta:#ffffff;
+  --band:#151a21;
+  --on-band:#eef1f5;
+  --on-band-muted:#a9b2bf;
+  --focus:#2a83bd;
+
+  --font-ui:"Archivo","Helvetica Neue",Arial,system-ui,sans-serif;
+  --font-text:"Source Serif 4","Iowan Old Style","Georgia",serif;
+
+  --fs-xs:.8125rem;
+  --fs-sm:.9375rem;
+  --fs-md:1.0625rem;
+  --fs-lg:1.25rem;
+  --fs-xl:clamp(1.45rem,1.2rem + 1vw,1.85rem);
+  --fs-2xl:clamp(1.75rem,1.3rem + 1.9vw,2.5rem);
+  --fs-hero:clamp(2.05rem,1.25rem + 3.4vw,3.55rem);
+
+  --gutter:max(20px,env(safe-area-inset-left,0px));
+  --gutter-r:max(20px,env(safe-area-inset-right,0px));
+  --maxw:72rem;
+  --radius:10px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1318; --surface:#171c23; --ink:#e9edf2; --muted:#a3acb9; --rule:#2a313b;
+    --red:#ef6a80; --orange:#f0a253; --blue:#6cc2ee; --blue-soft:#58b9e6; --orange-soft:#eb9a46;
+    --cta:#c7344c; --cta-hover:#d9475f; --on-cta:#ffffff;
+    --band:#1a2029; --on-band:#eef1f5; --on-band-muted:#a9b2bf; --focus:#6cc2ee;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1318; --surface:#171c23; --ink:#e9edf2; --muted:#a3acb9; --rule:#2a313b;
+  --red:#ef6a80; --orange:#f0a253; --blue:#6cc2ee; --blue-soft:#58b9e6; --orange-soft:#eb9a46;
+  --cta:#c7344c; --cta-hover:#d9475f; --on-cta:#ffffff;
+  --band:#1a2029; --on-band:#eef1f5; --on-band-muted:#a9b2bf; --focus:#6cc2ee;
+  color-scheme:dark;
+}
+
+/*RESET*/
+*,*::before,*::after{box-sizing:border-box}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+img{max-width:100%}
+[hidden]{display:none!important}
+/*/RESET*/
+
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-text);font-size:1.125rem;line-height:1.62;font-optical-sizing:auto;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+h1,h2,h3,h4{font-family:var(--font-ui);color:var(--ink);text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.section{padding-block:clamp(3.5rem,2.5rem + 5vw,6.5rem)}
+.section + .section{border-top:1px solid var(--rule)}
+.section--surface{background:var(--surface);border-top:0!important}
+.section--surface + .section{border-top:0}
+
+/* Cabeçalho */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--rule)}
+.site-header .wrap{display:flex;align-items:center;gap:1.5rem;min-height:4.25rem}
+.brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink);min-width:0}
+.brand img{width:2.35rem;height:2.35rem;flex:none;display:block}
+.brand-text{display:flex;flex-direction:column;line-height:1.05;font-family:var(--font-ui);min-width:0}
+.brand-name{font-weight:720;font-stretch:118%;letter-spacing:.14em;font-size:.98rem;white-space:nowrap}
+.brand-sub{font-weight:600;font-stretch:110%;letter-spacing:.2em;font-size:.6rem;color:var(--red);margin-top:.28rem;white-space:nowrap}
+.nav{margin-left:auto;display:flex;align-items:center;gap:1.6rem;font-family:var(--font-ui);font-size:var(--fs-sm)}
+.nav a{text-decoration:none;color:var(--muted);font-weight:500}
+.nav a:hover{color:var(--ink)}
+.nav .btn{color:var(--on-cta)}
+@media (max-width: 920px){.nav a:not(.btn){display:none}}
+@media (max-width: 620px){.plans{grid-template-columns:minmax(0,1fr)}}
+@media (max-width: 480px){
+  .site-header .wrap{gap:.75rem}
+  .brand{gap:.55rem}
+  .brand img{width:2.1rem;height:2.1rem}
+  .brand-name{font-size:.8rem;letter-spacing:.09em;font-stretch:110%}
+  .brand-sub{font-size:.52rem;letter-spacing:.13em}
+  .nav .btn{padding:.5rem .8rem}
+}
+
+/* Botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;font-family:var(--font-ui);font-weight:640;font-size:var(--fs-md);line-height:1.2;text-decoration:none;border-radius:999px;padding:.85rem 1.35rem;background:var(--cta);color:var(--on-cta);border:1.5px solid var(--cta);transition:background-color .15s ease,border-color .15s ease}
+.btn:hover{background:var(--cta-hover);border-color:var(--cta-hover)}
+.btn svg{width:1.15em;height:1.15em;flex:none}
+.btn--sm{font-size:var(--fs-sm);padding:.55rem 1rem}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--rule)}
+.btn--ghost:hover{background:var(--surface);border-color:var(--muted)}
+.icon{width:1.5rem;height:1.5rem;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+
+/* Abertura */
+.hero{padding-block:clamp(2.75rem,1.5rem + 5vw,5.5rem) clamp(3rem,2rem + 4vw,5rem)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:clamp(2rem,1rem + 4vw,4.5rem);align-items:center}
+.hero h1{font-size:var(--fs-hero);line-height:1.06;font-weight:690;font-stretch:94%;letter-spacing:-.012em;max-width:19ch}
+.hero .lead{margin-top:1.4rem;font-size:clamp(1.12rem,1rem + .35vw,1.3rem);line-height:1.55;color:var(--ink);max-width:36rem}
+.hero .lead + .lead{margin-top:.8rem;color:var(--muted);font-size:1.075rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.hero-note{margin-top:1rem;font-family:var(--font-ui);font-size:var(--fs-sm);color:var(--muted)}
+.portrait{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.1rem}
+.portrait-frame{position:relative;width:min(17.5rem,72vw);aspect-ratio:1;max-width:100%}
+.portrait-frame img{width:100%;height:100%;display:block;border-radius:50%;background:#d7d7d7}
+.portrait-bars{position:absolute;right:-.4rem;bottom:.6rem;display:flex;align-items:flex-end;gap:3px;padding:6px;background:var(--bg);border-radius:8px;box-shadow:0 0 0 1px var(--rule)}
+.portrait-bars span{width:7px;border-radius:1.5px}
+.portrait-name{font-family:var(--font-ui);font-weight:680;font-size:var(--fs-lg)}
+.portrait-role{font-family:var(--font-ui);font-size:var(--fs-sm);color:var(--muted);line-height:1.45;margin-top:.2rem}
+.portrait a{font-family:var(--font-ui);font-size:var(--fs-sm);font-weight:600;color:var(--blue);text-underline-offset:3px}
+
+/* Títulos de seção */
+.kicker{font-family:var(--font-ui);font-size:var(--fs-sm);font-weight:600;color:var(--red);margin-bottom:.6rem}
+.section h2{font-size:var(--fs-2xl);line-height:1.12;font-weight:680;font-stretch:96%;letter-spacing:-.008em;max-width:28ch}
+.section-intro{margin-top:1rem;color:var(--muted);max-width:40rem}
+
+/* Sobre */
+.about{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(2rem,1rem + 4vw,4.5rem);align-items:start}
+.prose{display:flex;flex-direction:column;gap:1.05rem;max-width:40rem}
+.prose p{color:var(--ink)}
+.facts{margin:0;display:grid;gap:0;border-top:2px solid var(--ink)}
+.facts div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--rule)}
+.facts dt{font-family:var(--font-ui);font-size:var(--fs-sm);color:var(--muted);font-weight:500}
+.facts dd{margin:0;font-family:var(--font-ui);font-size:var(--fs-md);font-weight:560;line-height:1.4}
+.facts dd small{display:block;font-weight:400;color:var(--muted);font-size:var(--fs-sm);margin-top:.15rem}
+
+/* Por que */
+.why{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(2rem,1rem + 4vw,4.5rem);align-items:start}
+.why .prose{margin-top:1.4rem}
+.figure{margin:0;background:var(--bg);border:1px solid var(--rule);border-radius:var(--radius);padding:clamp(1.1rem,.8rem + 1.5vw,1.9rem);font-family:var(--font-ui);min-width:0}
+.fig-title{font-size:var(--fs-sm);font-weight:650;line-height:1.35;margin:0 0 1rem}
+.fig-panel + .fig-panel{margin-top:1.9rem;padding-top:1.5rem;border-top:1px dashed var(--rule)}
+.fig-row{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"label val" "track track";gap:.4rem 1rem;align-items:end;padding:.55rem 0}
+.fig-row .fig-label{grid-area:label}
+.fig-row .fig-val{grid-area:val}
+.fig-row .track{grid-area:track}
+.fig-label{font-size:var(--fs-sm);line-height:1.3}
+.fig-label span{display:block;color:var(--muted);font-size:var(--fs-xs)}
+.fig-val{font-size:var(--fs-sm);font-weight:640;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.fig-val span{display:block;font-weight:400;color:var(--muted);font-size:var(--fs-xs)}
+.track{position:relative;height:1.5rem;border-left:1px solid var(--rule);background-image:linear-gradient(to right,var(--rule) 1px,transparent 1px);background-size:25% 100%;background-repeat:repeat-x;border-right:1px solid var(--rule)}
+.ci{position:absolute;top:50%;height:2px;transform:translateY(-50%);background:currentColor}
+.ci::before,.ci::after{content:"";position:absolute;top:-6px;width:2px;height:14px;background:currentColor}
+.ci::before{left:0}
+.ci::after{right:0}
+.pt{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;background:currentColor;transform:translate(-50%,-50%);box-shadow:0 0 0 3px var(--bg)}
+.bar{position:absolute;left:0;top:22%;bottom:22%;background:currentColor;border-radius:0 3px 3px 0}
+.c-res{color:var(--blue)}
+.c-doc{color:var(--orange)}
+.axis-ticks{position:relative;height:1.1rem;margin-top:.3rem;font-size:var(--fs-xs);color:var(--muted);font-variant-numeric:tabular-nums}
+.axis-ticks span{position:absolute;top:0;transform:translateX(-50%)}
+.axis-ticks span:first-child{transform:none}
+.axis-ticks span:last-child{transform:translateX(-100%)}
+.fig-caption{margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:var(--fs-xs);line-height:1.5;color:var(--muted)}
+.fig-caption b{color:var(--ink);font-weight:650}
+.fig-caption a{color:var(--blue);text-underline-offset:2px;word-break:break-word}
+
+/* Serviços */
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.5rem,1rem + 2vw,2.75rem);margin-top:2.75rem}
+.service{display:flex;flex-direction:column;gap:.85rem;padding-top:1.4rem;border-top:3px solid var(--ink)}
+.service:nth-child(1){border-top-color:var(--red)}
+.service:nth-child(2){border-top-color:var(--orange-soft)}
+.service:nth-child(3){border-top-color:var(--blue-soft)}
+.service .icon{width:2rem;height:2rem;color:var(--ink)}
+.service h3{font-size:var(--fs-xl);font-weight:680;line-height:1.15}
+.service p{color:var(--ink);font-size:1.0625rem}
+.who{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--rule);font-family:var(--font-ui);font-size:var(--fs-sm);color:var(--muted)}
+.who strong{display:block;color:var(--ink);font-weight:620;font-size:var(--fs-md)}
+
+/* Como funciona */
+.process{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(2rem,1rem + 4vw,4.5rem);margin-top:2.5rem;align-items:start}
+.steps{list-style:none;margin:0;padding:0;counter-reset:passo;display:grid;gap:0}
+.steps li{counter-increment:passo;display:grid;grid-template-columns:2.6rem minmax(0,1fr);gap:1rem;padding-bottom:1.6rem;position:relative}
+.steps li::before{content:counter(passo);font-family:var(--font-ui);font-weight:680;font-size:var(--fs-sm);width:2.3rem;height:2.3rem;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:1.5px solid var(--ink);color:var(--ink);position:relative;z-index:1}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:calc(1.15rem - .75px);top:2.3rem;bottom:0;width:1.5px;background:var(--rule)}
+.steps h3{font-size:var(--fs-lg);font-weight:660;line-height:1.25;margin-top:.35rem}
+.steps p{margin-top:.35rem;color:var(--ink);font-size:1.0625rem}
+.aside{display:flex;flex-direction:column;gap:1.75rem}
+.secure{background:var(--surface);border-radius:var(--radius);padding:clamp(1.25rem,1rem + 1vw,1.75rem)}
+.secure-head{display:flex;align-items:center;gap:.7rem}
+.secure h3{font-size:var(--fs-lg);font-weight:660}
+.secure p{margin-top:.75rem;font-size:1rem;color:var(--ink)}
+.values{list-style:none;margin:0;padding:0;display:grid;gap:1.1rem}
+.values li{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:.85rem;align-items:start}
+.values .icon{color:var(--ink);margin-top:.15rem}
+.values h4{font-size:var(--fs-md);font-weight:650}
+.values p{font-size:1rem;color:var(--muted);margin-top:.1rem}
+
+/* Investimento */
+.plans{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1.25rem;margin-top:2.5rem;align-items:start}
+.plans-col{display:grid;gap:1.25rem}
+.plan{display:flex;flex-direction:column;gap:.75rem;padding:clamp(1.3rem,1rem + 1vw,1.85rem);border:1px solid var(--rule);border-radius:var(--radius);background:var(--bg)}
+.plan-tag{font-family:var(--font-ui);font-size:var(--fs-sm);font-weight:600;color:var(--muted)}
+.plan h3{font-size:var(--fs-xl);font-weight:680;line-height:1.15}
+.plan p{font-size:1rem;color:var(--ink)}
+.plan--main{border:2px solid var(--ink)}
+.plan--main .plan-tag{color:var(--red)}
+.plan ul{list-style:none;margin:.25rem 0 0;padding:0;display:grid;gap:.5rem;font-family:var(--font-ui);font-size:var(--fs-sm)}
+.plan li{display:grid;grid-template-columns:1.1rem minmax(0,1fr);gap:.55rem;line-height:1.4}
+.plan li svg{width:1.1rem;height:1.1rem;margin-top:.05rem;color:var(--red)}
+.plan .btn{margin-top:.75rem;align-self:flex-start}
+
+/* Dúvidas */
+.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(2rem,1rem + 4vw,4.5rem);align-items:start}
+.faq-list{border-top:2px solid var(--ink)}
+.faq-list details{border-bottom:1px solid var(--rule)}
+.faq-list summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) 1.4rem;gap:1rem;align-items:center;padding:1.05rem 0;font-family:var(--font-ui);font-weight:620;font-size:var(--fs-md);line-height:1.35}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary svg{width:1.25rem;height:1.25rem;color:var(--muted);transition:transform .2s ease}
+.faq-list details[open] summary svg{transform:rotate(45deg)}
+.faq-list details p{padding:0 2.4rem 1.25rem 0;color:var(--ink);font-size:1.0625rem}
+@media (prefers-reduced-motion: reduce){.faq-list summary svg{transition:none}}
+
+/* Chamada final */
+.cta-band{background:var(--band);color:var(--on-band)}
+.cta-band .wrap{padding-block:clamp(3.5rem,2.5rem + 4vw,5.5rem);display:grid;grid-template-columns:minmax(0,1.4fr) auto;gap:2rem;align-items:center}
+.cta-band h2{color:var(--on-band);font-size:var(--fs-2xl);font-weight:680;line-height:1.12}
+.cta-band p{margin-top:.9rem;color:var(--on-band-muted);max-width:36rem}
+.cta-band .btn{font-size:var(--fs-lg);padding:1rem 1.6rem}
+
+/* Rodapé */
+.stripe{display:flex;height:6px}
+.stripe span{flex:1}
+.site-footer{padding-block:2.25rem;font-family:var(--font-ui);font-size:var(--fs-sm);color:var(--muted)}
+.site-footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between}
+.site-footer nav{display:flex;flex-wrap:wrap;gap:1.25rem}
+.site-footer a{color:var(--ink);text-underline-offset:3px}
+
+/* Botão flutuante (celular) */
+.fab{position:fixed;z-index:25;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));box-shadow:0 6px 18px rgb(0 0 0 / .22);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s ease,transform .2s ease}
+.fab.is-visible{opacity:1;transform:none;pointer-events:auto}
+@media (min-width: 921px){.fab{display:none}}
+@media (prefers-reduced-motion: reduce){.fab{transition:none}}
+
+@media (max-width: 920px){
+  .hero .wrap,.about,.why,.process,.faq,.cta-band .wrap{grid-template-columns:minmax(0,1fr)}
+  .portrait{order:-1;flex-direction:row;text-align:left;justify-content:flex-start}
+  .portrait-frame{width:6.5rem;flex:none}
+  .portrait-bars{display:none}
+  .services{grid-template-columns:minmax(0,1fr)}
+  .services{gap:2.25rem}
+}
+@media (min-width: 621px) and (max-width: 920px){
+  .plans{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Gustavo Prado Serviços Estatísticos, início">
+      <img src="assets/logo.svg" alt="" width="38" height="38">
+      <span class="brand-text"><span class="brand-name">GUSTAVO PRADO</span><span class="brand-sub">SERVIÇOS ESTATÍSTICOS</span></span>
+    </a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#investimento">Investimento</a>
+      <a href="#duvidas">Dúvidas</a>
+      <a class="btn btn--sm" href="https://wa.me/5511992645544?text=Ol%C3%A1%2C%20Gustavo%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20os%20servi%C3%A7os%20de%20estat%C3%ADstica." target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/></svg>WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+
+<section class="hero" aria-labelledby="titulo">
+  <div class="wrap">
+    <div>
+      <h1 id="titulo">Resultados e métodos estatísticos são a alma de qualquer trabalho científico</h1>
+      <p class="lead">Consultoria, mentoria e capacitação em estatística aplicada para pesquisadores de diferentes níveis: doutorado, residência médica, mestrado, trabalho de conclusão de curso, iniciação científica e artigos científicos em geral.</p>
+      <p class="lead">O objetivo é poupar o seu tempo, reduzir o estresse da etapa de análise e garantir resultados confiáveis.</p>
+      <div class="hero-actions">
+        <a class="btn" href="https://wa.me/5511992645544?text=Ol%C3%A1%2C%20Gustavo%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20a%20an%C3%A1lise%20de%20dados%20da%20minha%20pesquisa." target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/></svg>Pedir orçamento pelo WhatsApp</a>
+        <a class="btn btn--ghost" href="#servicos">Conhecer os serviços</a>
+      </div>
+      <p class="hero-note">O primeiro contato é gratuito e sem compromisso.</p>
+    </div>
+    <div class="portrait">
+      <div class="portrait-frame">
+        <img src="assets/gustavo-prado.webp" alt="Foto de Gustavo Prado" width="480" height="480">
+        <span class="portrait-bars" aria-hidden="true"><span style="height:10px;background:#d93a53"></span><span style="height:15px;background:#dd8530"></span><span style="height:22px;background:#3e9fd6"></span><span style="height:15px;background:#d93a53"></span><span style="height:20px;background:#dd8530"></span></span>
+      </div>
+      <div>
+        <p class="portrait-name">Gustavo Prado</p>
+        <p class="portrait-role">Estatístico<br>Mestrando em Epidemiologia, FSP-USP</p>
+        <a href="https://www.linkedin.com/in/pradogps/" target="_blank" rel="noopener">Perfil no LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface" id="sobre" aria-labelledby="t-sobre">
+  <div class="wrap about">
+    <div>
+      <p class="kicker">Sobre</p>
+      <h2 id="t-sobre">Oi! Eu sou o Gustavo</h2>
+      <div class="prose" style="margin-top:1.4rem">
+        <p>Sou bacharel em Estatística e Ciência de Dados pelo Instituto de Ciências Matemáticas e de Computação da Universidade de São Paulo (ICMC-USP) e mestrando na Faculdade de Saúde Pública da Universidade de São Paulo (FSP-USP), no Departamento de Epidemiologia.</p>
+        <p>Trabalho com análise de dados há mais de cinco anos, oferecendo consultoria, mentoria e capacitação em estatística aplicada para pesquisadores e profissionais que precisam aprimorar seus conhecimentos na área. Atualmente, também trabalho como estatístico na Academic Research Organization do Centro de Ensino e Pesquisa do Hospital Albert Einstein.</p>
+        <p>Ao longo da minha trajetória, colaborei com diversos pesquisadores na construção, na compreensão e na interpretação crítica de resultados estatísticos.</p>
+      </div>
+    </div>
+    <dl class="facts">
+      <div><dt>Formação</dt><dd>Estatística e Ciência de Dados<small>ICMC-USP</small></dd></div>
+      <div><dt>Pós-graduação</dt><dd>Mestrado em Epidemiologia<small>FSP-USP, em andamento</small></dd></div>
+      <div><dt>Atuação</dt><dd>Estatístico na Academic Research Organization<small>Centro de Ensino e Pesquisa, Hospital Albert Einstein</small></dd></div>
+      <div><dt>Experiência</dt><dd>Mais de cinco anos em análise de dados</dd></div>
+      <div><dt>Ferramenta</dt><dd>Linguagem R<small>em todas as análises da consultoria</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section" id="por-que" aria-labelledby="t-porque">
+  <div class="wrap why">
+    <div>
+      <p class="kicker">Por que buscar apoio</p>
+      <h2 id="t-porque">Por que é necessário ter ajuda nesse processo?</h2>
+      <div class="prose">
+        <p>Um estudo publicado no <i>JAMA</i> avaliou 277 residentes de clínica médica de 11 programas de residência. A maioria não tinha o conhecimento em bioestatística necessário para interpretar muitos dos resultados da pesquisa clínica publicada, e três em cada quatro relataram não compreender todas as estatísticas que encontravam nos artigos.</p>
+        <p>A formação em estatística e análise de dados ainda é insuficiente em muitos programas, o que torna o apoio especializado importante para conduzir e interpretar pesquisas confiáveis. Essa lacuna não se restringe à área da saúde e aparece em diversos campos do conhecimento que, em algum momento, precisam analisar dados. É essa realidade que me motiva a oferecer os serviços descritos a seguir.</p>
+      </div>
+    </div>
+
+    <figure class="figure" aria-labelledby="fig1-cap">
+      <div class="fig-panel">
+        <p class="fig-title">A. Percentual médio de acertos em um teste de bioestatística e interpretação de resultados</p>
+        <div class="fig-row c-res">
+          <div class="fig-label" style="color:var(--ink)">Residentes de clínica médica<span>n = 277</span></div>
+          <div class="track"><span class="ci" style="left:39.7%;width:3.6%"></span><span class="pt" style="left:41.4%"></span></div>
+          <div class="fig-val" style="color:var(--ink)">41,4%<span>IC 95%: 39,7–43,3</span></div>
+        </div>
+        <div class="fig-row c-doc">
+          <div class="fig-label" style="color:var(--ink)">Fellows e docentes com formação em pesquisa</div>
+          <div class="track"><span class="ci" style="left:57.5%;width:28%"></span><span class="pt" style="left:71.5%"></span></div>
+          <div class="fig-val" style="color:var(--ink)">71,5%<span>IC 95%: 57,5–85,5</span></div>
+        </div>
+        <div class="axis-ticks" aria-hidden="true"><span style="left:0">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100%</span></div>
+      </div>
+      <div class="fig-panel">
+        <p class="fig-title">B. Residentes que interpretaram corretamente cada resultado</p>
+        <div class="fig-row c-res">
+          <div class="fig-label" style="color:var(--ink)">Risco relativo</div>
+          <div class="track"><span class="bar" style="width:81.6%"></span></div>
+          <div class="fig-val" style="color:var(--ink)">81,6%</div>
+        </div>
+        <div class="fig-row c-res">
+          <div class="fig-label" style="color:var(--ink)">Odds ratio ajustado de regressão multivariável</div>
+          <div class="track"><span class="bar" style="width:37.4%"></span></div>
+          <div class="fig-val" style="color:var(--ink)">37,4%</div>
+        </div>
+        <div class="fig-row c-res">
+          <div class="fig-label" style="color:var(--ink)">Análise de Kaplan-Meier</div>
+          <div class="track"><span class="bar" style="width:10.5%"></span></div>
+          <div class="fig-val" style="color:var(--ink)">10,5%</div>
+        </div>
+        <div class="axis-ticks" aria-hidden="true"><span style="left:0">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100%</span></div>
+      </div>
+      <figcaption class="fig-caption" id="fig1-cap"><b>Figura 1.</b> Em A, os pontos indicam a média e as linhas, o intervalo de confiança de 95%. Fonte: Windish DM, Huot SJ, Green ML. Medicine residents' understanding of the biostatistics and results in the medical literature. JAMA. 2007;298(9):1010-22. <a href="https://doi.org/10.1001/jama.298.9.1010" target="_blank" rel="noopener">doi:10.1001/jama.298.9.1010</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="section section--surface" id="servicos" aria-labelledby="t-servicos">
+  <div class="wrap">
+    <p class="kicker">Serviços oferecidos</p>
+    <h2 id="t-servicos">Três formas de apoio, conforme a etapa da sua pesquisa</h2>
+    <div class="services">
+      <article class="service">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/><path d="M7 12.5l3-3 2 2 4.5-4.5"/></svg>
+        <h3>Capacitação</h3>
+        <p>Para quem deseja se antecipar ao planejamento da análise de dados, em projetos já existentes ou futuros, e busca entender melhor o universo da estatística.</p>
+        <p class="who"><strong>Você faz as análises</strong>com autonomia, a partir do que aprendeu</p>
+      </article>
+      <article class="service">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 17.5v-3M12 17.5v-6M15 17.5v-4"/></svg>
+        <h3>Consultoria</h3>
+        <p>Para quem vai precisar analisar os dados e prefere terceirizar essa etapa. Fazemos uma reunião inicial, em que passo orientações sobre a estruturação e a preparação do banco de dados. Após o acordo, eu planejo e executo a análise.</p>
+        <p class="who"><strong>Eu faço as análises</strong>e entrego o relatório completo</p>
+      </article>
+      <article class="service">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5h10.5a1 1 0 0 1 1 1V12a1 1 0 0 1-1 1H9l-4 3v-3H4a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1z"/><path d="M18.5 8.5H20a1 1 0 0 1 1 1V16a1 1 0 0 1-1 1h-1v3l-4-3h-3.5a1 1 0 0 1-1-1v-1"/></svg>
+        <h3>Mentoria</h3>
+        <p>Para quem já está analisando os dados, mas travou em algum conceito ou se sente inseguro quanto à metodologia. São reuniões online para discutir o projeto e as análises adequadas, de forma mais pontual do que a capacitação.</p>
+        <p class="who"><strong>Você faz as análises</strong>com o meu acompanhamento</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="como-funciona" aria-labelledby="t-como">
+  <div class="wrap">
+    <p class="kicker">Detalhando a consultoria</p>
+    <h2 id="t-como">Foco nos métodos e nos resultados</h2>
+    <p class="section-intro">Se você ainda está planejando a pesquisa, este é o momento ideal para discutir o delineamento do estudo, o cálculo do tamanho da amostra e a estratégia de coleta de dados. Se os dados já foram coletados, o foco passa a ser a escolha dos métodos analíticos mais apropriados e a forma de apresentar os resultados com clareza.</p>
+    <div class="process">
+      <ol class="steps">
+        <li><div><h3>Conversa inicial</h3><p>Ouço as suas necessidades e entendo os objetivos da pesquisa. Esse primeiro contato não tem custo.</p></div></li>
+        <li><div><h3>Proposta personalizada</h3><p>Para elaborar um orçamento adequado, preciso de uma descrição do estudo: a pergunta de pesquisa, os dados coletados e o formato do banco de dados.</p></div></li>
+        <li><div><h3>Análise dos dados</h3><p>Com o banco de dados em mãos, avalio a abordagem estatística mais adequada à sua hipótese de pesquisa e realizo as análises.</p></div></li>
+        <li><div><h3>Relatório em redação científica</h3><p>Você recebe um relatório completo e detalhado, com métodos, tabelas, gráficos, interpretação dos resultados e referências bibliográficas.</p></div></li>
+        <li><div><h3>Reunião e suporte pós-entrega</h3><p>Discutimos o relatório em uma reunião dedicada, e sigo disponível para tirar as dúvidas que surgirem depois.</p></div></li>
+      </ol>
+      <div class="aside">
+        <div class="secure">
+          <div class="secure-head">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><path d="M12 15v2.2"/></svg>
+            <h3>Seus dados estarão seguros</h3>
+          </div>
+          <p>Todas as informações compartilhadas são tratadas com sigilo e responsabilidade, seguindo princípios éticos reconhecidos na área. O banco de dados é usado apenas para a análise, com acesso restrito e armazenamento seguro em todas as etapas do projeto.</p>
+        </div>
+        <ul class="values">
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><path d="M15.5 5.2a3 3 0 0 1 0 5.6M17.2 14a5.5 5.5 0 0 1 3.3 5.5"/></svg><div><h4>Parceria</h4><p>Acompanhamento próximo e diálogo constante em todas as etapas do projeto.</p></div></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg><div><h4>Excelência</h4><p>Rigor metodológico e compromisso com a qualidade em cada análise.</p></div></li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><div><h4>Prazo</h4><p>Entrega e atendimento ágeis, adequados à sua necessidade.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--surface" id="investimento" aria-labelledby="t-invest">
+  <div class="wrap">
+    <p class="kicker">Investimento na sua pesquisa</p>
+    <h2 id="t-invest">Cada projeto tem um orçamento próprio</h2>
+    <p class="section-intro">Como cada pesquisa tem as suas particularidades, não existe um valor fixo para todos os serviços. O valor é definido no orçamento, de forma adequada e acessível.</p>
+    <div class="plans">
+      <div class="plans-col">
+      <article class="plan">
+        <p class="plan-tag">Orçamento</p>
+        <h3>Sem custo</h3>
+        <p>Solicite um orçamento sem compromisso e descubra o melhor caminho para a sua análise de dados. O primeiro contato é gratuito para avaliarmos juntos as suas necessidades.</p>
+      </article>
+      <article class="plan">
+        <p class="plan-tag">Apenas os resultados</p>
+        <h3>Resultados essenciais</h3>
+        <p>As análises, com a mesma precisão estatística do serviço completo, mas sem o relatório descritivo e a interpretação detalhada. Indicado para quem já domina a interpretação estatística.</p>
+      </article>
+      </div>
+      <article class="plan plan--main">
+        <p class="plan-tag">Relatório estatístico</p>
+        <h3>Resultados completos</h3>
+        <p>Um relatório completo, elaborado por especialista, com resultados detalhados, interpretação crítica e reunião para esclarecimento de dúvidas.</p>
+        <ul>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Análises personalizadas</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Relatório com tabelas, gráficos, métodos e interpretação</li>
+          <li><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Suporte para dúvidas e discussão dos resultados</li>
+        </ul>
+        <a class="btn" href="https://wa.me/5511992645544?text=Ol%C3%A1%2C%20Gustavo%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20para%20a%20an%C3%A1lise%20de%20dados%20da%20minha%20pesquisa." target="_blank" rel="noopener">Solicitar orçamento</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="duvidas" aria-labelledby="t-faq">
+  <div class="wrap faq">
+    <div>
+      <p class="kicker">Perguntas frequentes</p>
+      <h2 id="t-faq">Principais dúvidas sobre os serviços</h2>
+      <p class="section-intro">Se a sua pergunta não estiver aqui, é só me chamar no WhatsApp.</p>
+    </div>
+    <div class="faq-list">
+      <details id="faq-1"><summary>Para quem são os serviços?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Para pesquisadores, estudantes, profissionais e pequenas empresas que precisam analisar dados. A maior parte das análises é de bioestatística, mas o trabalho não se limita a esse campo.</p></details>
+      <details id="faq-2"><summary>Eu vou entender os métodos e os resultados?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. Além dos números e das estatísticas, você recebe a interpretação dos achados e o seu sentido teórico. O foco também é que você compreenda os métodos e os resultados para se sentir mais seguro ao apresentá-los.</p></details>
+      <details id="faq-3"><summary>Quais softwares são utilizados?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Na consultoria, todas as análises são executadas na linguagem de programação R. Nos demais serviços, definimos juntos quais softwares são necessários.</p></details>
+      <details id="faq-4"><summary>Qual é o prazo de entrega na consultoria?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>O orçamento que envio após a conversa inicial traz uma sugestão de prazo final, que pode ser ajustada às suas necessidades e à minha disponibilidade.</p></details>
+      <details id="faq-5"><summary>Qual é o valor do investimento?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Cada projeto tem as suas particularidades, por isso não existe um valor fixo para todos os serviços. O valor é definido no orçamento e é adequado e acessível.</p></details>
+      <details id="faq-6"><summary>Quem faz a análise dos dados?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Na consultoria, todas as etapas são feitas por mim, Gustavo. Na capacitação e na mentoria, as análises são feitas por você.</p></details>
+      <details id="faq-7"><summary>Ainda me senti perdido(a) após a entrega do relatório. Há algum suporte?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. Se, após a reunião final e a entrega do relatório, os métodos e os resultados ainda não estiverem totalmente claros, há suporte após a entrega.</p></details>
+      <details id="faq-8"><summary>Como são feitas as reuniões?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>As reuniões são agendadas pelo Google Meet, e você recebe o link por e-mail, por meio do Google Agenda.</p></details>
+      <details id="faq-9"><summary>É possível fazer adaptações após a entrega?<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. É possível adaptar tabelas, figuras e texto para outro idioma, além de ajustar as cores e o formato de arquivo dos gráficos.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" aria-labelledby="t-cta">
+  <div class="wrap">
+    <div>
+      <h2 id="t-cta">Ficou com alguma dúvida?</h2>
+      <p>Se quiser esclarecer algum ponto ou verificar a disponibilidade para o seu projeto, fique à vontade para me chamar.</p>
+    </div>
+    <a class="btn" href="https://wa.me/5511992645544?text=Ol%C3%A1%2C%20Gustavo%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20conversa." target="_blank" rel="noopener">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/></svg>Agendar uma conversa</a>
+  </div>
+</section>
+
+</main>
+
+<div class="stripe" aria-hidden="true"><span style="background:#d93a53"></span><span style="background:#dd8530"></span><span style="background:#3e9fd6"></span><span style="background:#d93a53"></span><span style="background:#dd8530"></span></div>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 Gustavo Prado Serviços Estatísticos</p>
+    <nav aria-label="Contato">
+      <a href="https://wa.me/5511992645544?text=Ol%C3%A1%2C%20Gustavo%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20os%20servi%C3%A7os%20de%20estat%C3%ADstica." target="_blank" rel="noopener">WhatsApp: (11) 99264-5544</a>
+      <a href="https://www.linkedin.com/in/pradogps/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="btn fab" id="fab" href="https://wa.me/5511992645544?text=Ol%C3%A1%2C%20Gustavo%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20os%20servi%C3%A7os%20de%20estat%C3%ADstica." target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp">
+  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/></svg>WhatsApp</a>
+
+<script>
+(function(){
+  var fab=document.getElementById('fab');
+  var hero=document.querySelector('.hero');
+  if(!fab||!hero||!('IntersectionObserver' in window))return;
+  new IntersectionObserver(function(entries){
+    var e=entries[0];
+    fab.classList.toggle('is-visible',!e.isIntersecting);
+  },{threshold:0}).observe(hero);
+})();
+</script>
+</body>
+</html>
