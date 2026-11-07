@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://pradogps.github.io/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Gustavo Prado, estatístico, e o logotipo de Serviços Estatísticos">
+<meta property="og:image:alt" content="Gustavo Prado, bioestatístico e cientista de dados, e o logotipo de Serviços Estatísticos">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -35,11 +35,10 @@
   "url": "https://pradogps.github.io/",
   "image": "https://pradogps.github.io/assets/og-image.png",
   "logo": "https://pradogps.github.io/assets/logo.svg",
-  "telephone": "+55 11 99264-5544",
   "founder": {
     "@type": "Person",
     "name": "Gustavo Prado",
-    "jobTitle": "Estatístico",
+    "jobTitle": "Bioestatístico e cientista de dados",
     "sameAs": ["https://www.linkedin.com/in/pradogps/"]
   },
   "sameAs": ["https://www.linkedin.com/in/pradogps/"]
@@ -167,12 +166,9 @@ a{color:inherit}
 .hero .lead{margin-top:1.4rem;font-size:clamp(1.12rem,1rem + .35vw,1.3rem);line-height:1.55;color:var(--ink);max-width:36rem}
 .hero .lead + .lead{margin-top:.8rem;color:var(--muted);font-size:1.075rem}
 .hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
-.hero-note{margin-top:1rem;font-family:var(--font-ui);font-size:var(--fs-sm);color:var(--muted)}
 .portrait{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.1rem}
 .portrait-frame{position:relative;width:min(17.5rem,72vw);aspect-ratio:1;max-width:100%}
 .portrait-frame img{width:100%;height:100%;display:block;border-radius:50%;background:#d7d7d7}
-.portrait-bars{position:absolute;right:-.4rem;bottom:.6rem;display:flex;align-items:flex-end;gap:3px;padding:6px;background:var(--bg);border-radius:8px;box-shadow:0 0 0 1px var(--rule)}
-.portrait-bars span{width:7px;border-radius:1.5px}
 .portrait-name{font-family:var(--font-ui);font-weight:680;font-size:var(--fs-lg)}
 .portrait-role{font-family:var(--font-ui);font-size:var(--fs-sm);color:var(--muted);line-height:1.45;margin-top:.2rem}
 .portrait a{font-family:var(--font-ui);font-size:var(--fs-sm);font-weight:600;color:var(--blue);text-underline-offset:3px}
@@ -183,45 +179,20 @@ a{color:inherit}
 .section-intro{margin-top:1rem;color:var(--muted);max-width:40rem}
 
 /* Sobre */
-.about{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(2rem,1rem + 4vw,4.5rem);align-items:start}
+.about{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(1.5rem,1rem + 4vw,4.5rem);align-items:start}
 .prose{display:flex;flex-direction:column;gap:1.05rem;max-width:40rem}
 .prose p{color:var(--ink)}
-.facts{margin:0;display:grid;gap:0;border-top:2px solid var(--ink)}
-.facts div{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--rule)}
-.facts dt{font-family:var(--font-ui);font-size:var(--fs-sm);color:var(--muted);font-weight:500}
-.facts dd{margin:0;font-family:var(--font-ui);font-size:var(--fs-md);font-weight:560;line-height:1.4}
-.facts dd small{display:block;font-weight:400;color:var(--muted);font-size:var(--fs-sm);margin-top:.15rem}
 
 /* Por que */
-.why{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(2rem,1rem + 4vw,4.5rem);align-items:start}
-.why .prose{margin-top:1.4rem}
-.figure{margin:0;background:var(--bg);border:1px solid var(--rule);border-radius:var(--radius);padding:clamp(1.1rem,.8rem + 1.5vw,1.9rem);font-family:var(--font-ui);min-width:0}
-.fig-title{font-size:var(--fs-sm);font-weight:650;line-height:1.35;margin:0 0 1rem}
-.fig-panel + .fig-panel{margin-top:1.9rem;padding-top:1.5rem;border-top:1px dashed var(--rule)}
-.fig-row{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"label val" "track track";gap:.4rem 1rem;align-items:end;padding:.55rem 0}
-.fig-row .fig-label{grid-area:label}
-.fig-row .fig-val{grid-area:val}
-.fig-row .track{grid-area:track}
-.fig-label{font-size:var(--fs-sm);line-height:1.3}
-.fig-label span{display:block;color:var(--muted);font-size:var(--fs-xs)}
-.fig-val{font-size:var(--fs-sm);font-weight:640;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
-.fig-val span{display:block;font-weight:400;color:var(--muted);font-size:var(--fs-xs)}
-.track{position:relative;height:1.5rem;border-left:1px solid var(--rule);background-image:linear-gradient(to right,var(--rule) 1px,transparent 1px);background-size:25% 100%;background-repeat:repeat-x;border-right:1px solid var(--rule)}
-.ci{position:absolute;top:50%;height:2px;transform:translateY(-50%);background:currentColor}
-.ci::before,.ci::after{content:"";position:absolute;top:-6px;width:2px;height:14px;background:currentColor}
-.ci::before{left:0}
-.ci::after{right:0}
-.pt{position:absolute;top:50%;width:11px;height:11px;border-radius:50%;background:currentColor;transform:translate(-50%,-50%);box-shadow:0 0 0 3px var(--bg)}
-.bar{position:absolute;left:0;top:22%;bottom:22%;background:currentColor;border-radius:0 3px 3px 0}
-.c-res{color:var(--blue)}
-.c-doc{color:var(--orange)}
-.axis-ticks{position:relative;height:1.1rem;margin-top:.3rem;font-size:var(--fs-xs);color:var(--muted);font-variant-numeric:tabular-nums}
-.axis-ticks span{position:absolute;top:0;transform:translateX(-50%)}
-.axis-ticks span:first-child{transform:none}
-.axis-ticks span:last-child{transform:translateX(-100%)}
-.fig-caption{margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:var(--fs-xs);line-height:1.5;color:var(--muted)}
-.fig-caption b{color:var(--ink);font-weight:650}
-.fig-caption a{color:var(--blue);text-underline-offset:2px;word-break:break-word}
+.why{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-areas:"head prints" "text prints";gap:1.4rem clamp(2rem,1rem + 4vw,4.5rem);align-items:start}
+.why-head{grid-area:head}
+.why-text{grid-area:text}
+.prints{grid-area:prints;align-self:center;margin:0;display:flex;flex-direction:column;gap:.9rem;min-width:0}
+.prints img{display:block;width:100%;height:auto;background:#fff;border:1px solid var(--rule);border-radius:6px;box-shadow:0 1px 2px rgb(0 0 0 / .06),0 8px 24px rgb(0 0 0 / .06)}
+.prints .print-title{max-width:544px}
+.prints .print-concl{max-width:579px}
+.prints figcaption{font-family:var(--font-ui);font-size:var(--fs-xs);line-height:1.5;color:var(--muted)}
+.prints figcaption a{color:var(--blue);text-underline-offset:2px;word-break:break-word}
 
 /* Serviços */
 .services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.5rem,1rem + 2vw,2.75rem);margin-top:2.75rem}
@@ -302,9 +273,9 @@ a{color:inherit}
 
 @media (max-width: 920px){
   .hero .wrap,.about,.why,.process,.faq,.cta-band .wrap{grid-template-columns:minmax(0,1fr)}
+  .why{grid-template-areas:"head" "prints" "text"}
   .portrait{order:-1;flex-direction:row;text-align:left;justify-content:flex-start}
   .portrait-frame{width:6.5rem;flex:none}
-  .portrait-bars{display:none}
   .services{grid-template-columns:minmax(0,1fr)}
   .services{gap:2.25rem}
 }
@@ -345,16 +316,14 @@ a{color:inherit}
           <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.2A8 8 0 1 1 20 11.5z"/></svg>Pedir orçamento pelo WhatsApp</a>
         <a class="btn btn--ghost" href="#servicos">Conhecer os serviços</a>
       </div>
-      <p class="hero-note">O primeiro contato é gratuito e sem compromisso.</p>
     </div>
     <div class="portrait">
       <div class="portrait-frame">
-        <img src="assets/gustavo-prado.webp" alt="Foto de Gustavo Prado" width="480" height="480">
-        <span class="portrait-bars" aria-hidden="true"><span style="height:10px;background:#d93a53"></span><span style="height:15px;background:#dd8530"></span><span style="height:22px;background:#3e9fd6"></span><span style="height:15px;background:#d93a53"></span><span style="height:20px;background:#dd8530"></span></span>
+        <img src="assets/gustavo-prado.webp" alt="Foto de Gustavo Prado" width="560" height="560">
       </div>
       <div>
         <p class="portrait-name">Gustavo Prado</p>
-        <p class="portrait-role">Estatístico<br>Mestrando em Epidemiologia, FSP-USP</p>
+        <p class="portrait-role">Bioestatístico e cientista de dados<br>Especialista em métodos quantitativos<br>Mestrando em Epidemiologia</p>
         <a href="https://www.linkedin.com/in/pradogps/" target="_blank" rel="noopener">Perfil no LinkedIn</a>
       </div>
     </div>
@@ -366,69 +335,30 @@ a{color:inherit}
     <div>
       <p class="kicker">Sobre</p>
       <h2 id="t-sobre">Oi! Eu sou o Gustavo</h2>
-      <div class="prose" style="margin-top:1.4rem">
-        <p>Sou bacharel em Estatística e Ciência de Dados pelo Instituto de Ciências Matemáticas e de Computação da Universidade de São Paulo (ICMC-USP) e mestrando na Faculdade de Saúde Pública da Universidade de São Paulo (FSP-USP), no Departamento de Epidemiologia.</p>
-        <p>Trabalho com análise de dados há mais de cinco anos, oferecendo consultoria, mentoria e capacitação em estatística aplicada para pesquisadores e profissionais que precisam aprimorar seus conhecimentos na área. Atualmente, também trabalho como estatístico na Academic Research Organization do Centro de Ensino e Pesquisa do Hospital Albert Einstein.</p>
-        <p>Ao longo da minha trajetória, colaborei com diversos pesquisadores na construção, na compreensão e na interpretação crítica de resultados estatísticos.</p>
-      </div>
     </div>
-    <dl class="facts">
-      <div><dt>Formação</dt><dd>Estatística e Ciência de Dados<small>ICMC-USP</small></dd></div>
-      <div><dt>Pós-graduação</dt><dd>Mestrado em Epidemiologia<small>FSP-USP, em andamento</small></dd></div>
-      <div><dt>Atuação</dt><dd>Estatístico na Academic Research Organization<small>Centro de Ensino e Pesquisa, Hospital Albert Einstein</small></dd></div>
-      <div><dt>Experiência</dt><dd>Mais de cinco anos em análise de dados</dd></div>
-      <div><dt>Ferramenta</dt><dd>Linguagem R<small>em todas as análises da consultoria</small></dd></div>
-    </dl>
+    <div class="prose">
+      <p>Sou bacharel em Estatística e Ciência de Dados pelo Instituto de Ciências Matemáticas e de Computação da Universidade de São Paulo (ICMC-USP), especialista em Métodos Quantitativos pela Universidade Estadual de Londrina (UEL) e mestrando na Faculdade de Saúde Pública da Universidade de São Paulo (FSP-USP), no Departamento de Epidemiologia.</p>
+      <p>Trabalho com análise de dados há mais de cinco anos, oferecendo consultoria, mentoria e capacitação em estatística aplicada para pesquisadores e profissionais que precisam aprimorar seus conhecimentos na área. Atualmente, sou cientista de dados no Hospital Sírio-Libanês e, anteriormente, atuei como estatístico na Academic Research Organization do Centro de Ensino e Pesquisa do Hospital Albert Einstein.</p>
+      <p>Ao longo da minha trajetória, colaborei com diversos pesquisadores na construção, na compreensão e na interpretação crítica de resultados estatísticos.</p>
+    </div>
   </div>
 </section>
 
 <section class="section" id="por-que" aria-labelledby="t-porque">
   <div class="wrap why">
-    <div>
+    <div class="why-head">
       <p class="kicker">Por que buscar apoio</p>
       <h2 id="t-porque">Por que é necessário ter ajuda nesse processo?</h2>
-      <div class="prose">
-        <p>Um estudo publicado no <i>JAMA</i> avaliou 277 residentes de clínica médica de 11 programas de residência. A maioria não tinha o conhecimento em bioestatística necessário para interpretar muitos dos resultados da pesquisa clínica publicada, e três em cada quatro relataram não compreender todas as estatísticas que encontravam nos artigos.</p>
-        <p>A formação em estatística e análise de dados ainda é insuficiente em muitos programas, o que torna o apoio especializado importante para conduzir e interpretar pesquisas confiáveis. Essa lacuna não se restringe à área da saúde e aparece em diversos campos do conhecimento que, em algum momento, precisam analisar dados. É essa realidade que me motiva a oferecer os serviços descritos a seguir.</p>
-      </div>
     </div>
-
-    <figure class="figure" aria-labelledby="fig1-cap">
-      <div class="fig-panel">
-        <p class="fig-title">A. Percentual médio de acertos em um teste de bioestatística e interpretação de resultados</p>
-        <div class="fig-row c-res">
-          <div class="fig-label" style="color:var(--ink)">Residentes de clínica médica<span>n = 277</span></div>
-          <div class="track"><span class="ci" style="left:39.7%;width:3.6%"></span><span class="pt" style="left:41.4%"></span></div>
-          <div class="fig-val" style="color:var(--ink)">41,4%<span>IC 95%: 39,7–43,3</span></div>
-        </div>
-        <div class="fig-row c-doc">
-          <div class="fig-label" style="color:var(--ink)">Fellows e docentes com formação em pesquisa</div>
-          <div class="track"><span class="ci" style="left:57.5%;width:28%"></span><span class="pt" style="left:71.5%"></span></div>
-          <div class="fig-val" style="color:var(--ink)">71,5%<span>IC 95%: 57,5–85,5</span></div>
-        </div>
-        <div class="axis-ticks" aria-hidden="true"><span style="left:0">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100%</span></div>
-      </div>
-      <div class="fig-panel">
-        <p class="fig-title">B. Residentes que interpretaram corretamente cada resultado</p>
-        <div class="fig-row c-res">
-          <div class="fig-label" style="color:var(--ink)">Risco relativo</div>
-          <div class="track"><span class="bar" style="width:81.6%"></span></div>
-          <div class="fig-val" style="color:var(--ink)">81,6%</div>
-        </div>
-        <div class="fig-row c-res">
-          <div class="fig-label" style="color:var(--ink)">Odds ratio ajustado de regressão multivariável</div>
-          <div class="track"><span class="bar" style="width:37.4%"></span></div>
-          <div class="fig-val" style="color:var(--ink)">37,4%</div>
-        </div>
-        <div class="fig-row c-res">
-          <div class="fig-label" style="color:var(--ink)">Análise de Kaplan-Meier</div>
-          <div class="track"><span class="bar" style="width:10.5%"></span></div>
-          <div class="fig-val" style="color:var(--ink)">10,5%</div>
-        </div>
-        <div class="axis-ticks" aria-hidden="true"><span style="left:0">0</span><span style="left:25%">25</span><span style="left:50%">50</span><span style="left:75%">75</span><span style="left:100%">100%</span></div>
-      </div>
-      <figcaption class="fig-caption" id="fig1-cap"><b>Figura 1.</b> Em A, os pontos indicam a média e as linhas, o intervalo de confiança de 95%. Fonte: Windish DM, Huot SJ, Green ML. Medicine residents' understanding of the biostatistics and results in the medical literature. JAMA. 2007;298(9):1010-22. <a href="https://doi.org/10.1001/jama.298.9.1010" target="_blank" rel="noopener">doi:10.1001/jama.298.9.1010</a></figcaption>
+    <figure class="prints">
+      <img class="print-title" src="assets/artigo-jama-titulo.png" width="544" height="94" alt="Recorte da página do artigo publicado no JAMA em 5 de setembro de 2007, volume 298, número 9, páginas 1010 a 1022, com o título Medicine residents' understanding of the biostatistics and results in the medical literature.">
+      <img class="print-concl" src="assets/artigo-jama-conclusao.png" width="579" height="81" alt="Recorte das conclusões do artigo: a maioria dos residentes do estudo não tinha o conhecimento em bioestatística necessário para interpretar muitos dos resultados da pesquisa clínica publicada, e os programas de residência deveriam incluir um ensino de bioestatística mais efetivo.">
+      <figcaption>Windish DM, Huot SJ, Green ML. Medicine residents' understanding of the biostatistics and results in the medical literature. JAMA. 2007;298(9):1010-22. <a href="https://doi.org/10.1001/jama.298.9.1010" target="_blank" rel="noopener">doi:10.1001/jama.298.9.1010</a></figcaption>
     </figure>
+    <div class="prose why-text">
+      <p>Esse estudo, que avaliou 277 residentes de clínica médica de 11 programas de residência, indica que a formação em estatística e análise de dados ainda é insuficiente em muitos cursos, o que torna o apoio especializado importante para conduzir e interpretar pesquisas confiáveis.</p>
+      <p>Essa lacuna não se restringe à área da saúde e aparece em diversos campos do conhecimento que, em algum momento, precisam analisar dados. Por isso, contar com orientação especializada faz diferença nas várias etapas do desenvolvimento de uma pesquisa. É essa realidade que me motiva a oferecer os serviços descritos a seguir.</p>
+    </div>
   </div>
 </section>
 
@@ -562,7 +492,7 @@ a{color:inherit}
   <div class="wrap">
     <p>© 2026 Gustavo Prado Serviços Estatísticos</p>
     <nav aria-label="Contato">
-      <a href="https://wa.me/5511992645544?text=Ol%C3%A1%2C%20Gustavo%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20os%20servi%C3%A7os%20de%20estat%C3%ADstica." target="_blank" rel="noopener">WhatsApp: (11) 99264-5544</a>
+      <a href="https://wa.me/5511992645544?text=Ol%C3%A1%2C%20Gustavo%21%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20conversar%20sobre%20os%20servi%C3%A7os%20de%20estat%C3%ADstica." target="_blank" rel="noopener">WhatsApp</a>
       <a href="https://www.linkedin.com/in/pradogps/" target="_blank" rel="noopener">LinkedIn</a>
     </nav>
   </div>
