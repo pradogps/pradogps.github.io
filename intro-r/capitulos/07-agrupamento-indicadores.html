@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Agrupamento, sumarização e indicadores de saúde – Introdução ao Software R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../capitulos/08-tidy-joins.html" rel="next">
+<link href="../capitulos/06-transformacao.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6c895c654bb7a4f4ea5535b37aed820d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../partes/parte-2-preparacao-dados.html">Preparação de dados em saúde</a></li><li class="breadcrumb-item"><a href="../capitulos/07-agrupamento-indicadores.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Agrupamento, sumarização e indicadores de saúde</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introdução ao Software R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-1-primeiros-passos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Primeiros passos com R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/01-r-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R, RStudio e a organização do trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/02-objetos-funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objetos, funções e operadores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/03-estruturas-dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vetores, tipos de dados e <em>data frames</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/04-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Documentos reprodutíveis com Quarto</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-2-preparacao-dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preparação de dados em saúde</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/05-importacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importação e exportação de dados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/06-transformacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformação de dados com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/07-agrupamento-indicadores.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Agrupamento, sumarização e indicadores de saúde</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/08-tidy-joins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dados organizados e combinação de tabelas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/09-textos-fatores-datas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textos, categorias, datas e valores ausentes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-3-visualizacao-exploracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualização e análise exploratória</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/10-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/11-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estatística descritiva e tabelas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/12-aed-protocolo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Análise exploratória de dados: um protocolo</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-4-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introdução à inferência estatística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/13-comparacao-medias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Comparação de médias: testes t e análise de variância</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/14-correlacao-regressao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Correlação e regressão linear simples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/15-contingencia-associacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tabelas de contingência e medidas de associação</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-5-autonomia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rumo à autonomia</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/16-programacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Noções de programação: funções, condicionais e iteração</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/17-estudo-integrador.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Estudo integrador: da pergunta ao relatório</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/a-instalacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalação e configuração do ambiente</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/b-sistemas-informacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Sistemas de informação em saúde e acesso aos dados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/c-bases-do-livro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Bases de dados utilizadas no livro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/d-erros-ajuda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Erros frequentes e como pedir ajuda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/e-glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Glossário</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#sec-summarise" id="toc-sec-summarise" class="nav-link active" data-scroll-target="#sec-summarise"><span class="header-section-number">7.1</span> Sumarizando dados</a></li>
+  <li><a href="#sec-group-by" id="toc-sec-group-by" class="nav-link" data-scroll-target="#sec-group-by"><span class="header-section-number">7.2</span> Operações por grupos</a></li>
+  <li><a href="#sec-contagens" id="toc-sec-contagens" class="nav-link" data-scroll-target="#sec-contagens"><span class="header-section-number">7.3</span> Contagens e proporções</a></li>
+  <li><a href="#sec-across" id="toc-sec-across" class="nav-link" data-scroll-target="#sec-across"><span class="header-section-number">7.4</span> Aplicando funções a várias colunas</a></li>
+  <li><a href="#sec-indicadores" id="toc-sec-indicadores" class="nav-link" data-scroll-target="#sec-indicadores"><span class="header-section-number">7.5</span> Indicadores de saúde: proporções, razões e coeficientes</a></li>
+  <li><a href="#sec-pequenos-numeros" id="toc-sec-pequenos-numeros" class="nav-link" data-scroll-target="#sec-pequenos-numeros"><span class="header-section-number">7.6</span> Pequenos números e estabilidade dos indicadores</a></li>
+  <li><a href="#sec-caso-07" id="toc-sec-caso-07" class="nav-link" data-scroll-target="#sec-caso-07"><span class="header-section-number">7.7</span> Estudo de caso: indicadores de nascidos vivos por município</a></li>
+  <li><a href="#sec-ex-07" id="toc-sec-ex-07" class="nav-link" data-scroll-target="#sec-ex-07"><span class="header-section-number">7.8</span> Exercícios</a></li>
+  <li><a href="#sec-sintese-07" id="toc-sec-sintese-07" class="nav-link" data-scroll-target="#sec-sintese-07"><span class="header-section-number">7.9</span> Síntese</a></li>
+  <li><a href="#sec-mais-07" id="toc-sec-mais-07" class="nav-link" data-scroll-target="#sec-mais-07"><span class="header-section-number">7.10</span> Para saber mais</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../partes/parte-2-preparacao-dados.html">Preparação de dados em saúde</a></li><li class="breadcrumb-item"><a href="../capitulos/07-agrupamento-indicadores.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Agrupamento, sumarização e indicadores de saúde</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-agrupamento" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Agrupamento, sumarização e indicadores de saúde</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Em elaboração
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
+</div>
+</div>
+<div class="ficha-capitulo">
+<p><strong>Encontro previsto:</strong> 4 · <strong>Pré-requisitos:</strong> <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a> · <strong>Pacotes:</strong> <code>dplyr</code></p>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objetivos de aprendizagem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de resumir uma tabela em medidas de interesse com <code>summarise()</code>; realizar operações por grupos; contar registros e calcular proporções dentro de grupos; aplicar a mesma operação a várias colunas; construir indicadores de saúde com numerador, denominador e constante multiplicativa explícitos; distinguir proporção, razão e coeficiente; e reconhecer a instabilidade de indicadores calculados com pequenos números.</p>
+</div>
+</div>
+<section id="sec-summarise" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="sec-summarise"><span class="header-section-number">7.1</span> Sumarizando dados</h2>
+<p>Apresenta <code>summarise()</code> com funções resumo já conhecidas (<code>mean()</code>, <code>median()</code>, <code>sd()</code>, <code>n()</code>) e o tratamento de valores ausentes com <code>na.rm = TRUE</code>.</p>
+</section>
+<section id="sec-group-by" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="sec-group-by"><span class="header-section-number">7.2</span> Operações por grupos</h2>
+<p>Apresenta <code>group_by()</code> combinado com <code>summarise()</code>, o argumento <code>.by</code> como alternativa sem agrupamento persistente, o uso de <code>mutate()</code> em dados agrupados para calcular valores relativos ao grupo e a necessidade de <code>ungroup()</code> ao final.</p>
+</section>
+<section id="sec-contagens" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec-contagens"><span class="header-section-number">7.3</span> Contagens e proporções</h2>
+<p>Apresenta <code>count()</code>, <code>add_count()</code> e <code>n_distinct()</code> e o cálculo de proporções e percentuais dentro de grupos, discutindo a escolha do denominador (total geral ou total do grupo) e sua influência na interpretação.</p>
+</section>
+<section id="sec-across" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sec-across"><span class="header-section-number">7.4</span> Aplicando funções a várias colunas</h2>
+<p>Apresenta <code>across()</code> com seleções de colunas (<code>where(is.numeric)</code>) e com uma ou várias funções, evitando a repetição de código.</p>
+</section>
+<section id="sec-indicadores" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="sec-indicadores"><span class="header-section-number">7.5</span> Indicadores de saúde: proporções, razões e coeficientes</h2>
+<p>Apresenta a estrutura de um indicador (numerador, denominador, local, período e constante multiplicativa) com base nas definições da Ripsa <span class="citation" data-cites="opas2008indicadores">(<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE, 2008</a>)</span> e calcula, a partir de microdados, a proporção de nascidos vivos com baixo peso, a proporção de nascidos vivos de mães com sete ou mais consultas de pré-natal e a proporção de partos cesáreos. A taxa de mortalidade infantil, que exige combinar SIM e SINASC, é calculada no <a href="08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a>.</p>
+</section>
+<section id="sec-pequenos-numeros" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="sec-pequenos-numeros"><span class="header-section-number">7.6</span> Pequenos números e estabilidade dos indicadores</h2>
+<p>Discute, com exemplos de municípios de pequeno porte, a variabilidade de indicadores calculados com poucos eventos e estratégias simples para lidar com ela, como a agregação de vários anos. Métodos de suavização e de padronização ficam fora do escopo, com indicação de leitura.</p>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Para aprofundar">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Para aprofundar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A padronização de taxas por idade é tratada no capítulo 21 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span>.</p>
+</div>
+</div>
+</section>
+<section id="sec-caso-07" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="sec-caso-07"><span class="header-section-number">7.7</span> Estudo de caso: indicadores de nascidos vivos por município</h2>
+<p>O estudante calcula, para os municípios da área de estudo, o número de nascidos vivos, a proporção de baixo peso, a proporção de prematuridade e a proporção de pré-natal com sete ou mais consultas, ordena os municípios segundo cada indicador e identifica aqueles em que o número de nascidos vivos é pequeno demais para uma comparação estável.</p>
+</section>
+<section id="sec-ex-07" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="sec-ex-07"><span class="header-section-number">7.8</span> Exercícios</h2>
+<p>Os exercícios de fixação pedem resumos simples e por grupos. Os de aplicação envolvem o cálculo de indicadores segundo características maternas (faixa etária e escolaridade). O desafio propõe calcular, com <code>across()</code>, a proporção de registros com informação ignorada em todas as variáveis da base, antecipando a discussão sobre completude do <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>.</p>
+</section>
+<section id="sec-sintese-07" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="sec-sintese-07"><span class="header-section-number">7.9</span> Síntese</h2>
+<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Função</th>
+<th style="text-align: left;">Pacote</th>
+<th style="text-align: left;">Finalidade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>summarise()</code></td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Resumir uma tabela</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>group_by()</code>, <code>ungroup()</code>, <code>.by</code></td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Operações por grupos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>n()</code>, <code>n_distinct()</code></td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Contar linhas e valores distintos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>count()</code>, <code>add_count()</code></td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Contagens por categoria</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>across()</code></td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Aplicar funções a várias colunas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>mean()</code>, <code>median()</code>, <code>sd()</code>, <code>quantile()</code></td>
+<td style="text-align: left;">base, stats</td>
+<td style="text-align: left;">Medidas resumo</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-mais-07" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="sec-mais-07"><span class="header-section-number">7.10</span> Para saber mais</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Obra</th>
+<th style="text-align: left;">Capítulo</th>
+<th style="text-align: left;">Seções de interesse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
+<td style="text-align: left;">3. Transformação de dados; 13. Números</td>
+<td style="text-align: left;">Grupos; Estudo de caso: agregados e tamanho de amostra; Contagens; Sumarização numérica</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
+<td style="text-align: left;">13. Agrupando dados; 21. Normalização de taxas</td>
+<td style="text-align: left;">Agrupando os dados; Resumir os dados; Contagens; Agrupando por data</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
+<td style="text-align: left;">5. Transformando dados com <code>dplyr</code></td>
+<td style="text-align: left;">Agrupando dados com <code>group_by()</code> e gerando estatísticas sumárias com <code>summarise()</code>; Distribuindo cálculos com a função <code>across()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
+<td style="text-align: left;">15. Descriptive Statistics</td>
+<td style="text-align: left;">Summary Statistics by Group</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indicadores básicos para a saúde no Brasil <span class="citation" data-cites="opas2008indicadores">(<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE, 2008</a>)</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Conceitos e fichas de qualificação dos indicadores</td>
+</tr>
+</tbody>
+</table>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-batra2021epirhandbook" class="csl-entry" role="listitem">
+BATRA, N. et al. <strong><a href="https://doi.org/10.5281/zenodo.4752646">Manual de R para Epidemiologistas</a></strong>. [s.l.] Applied Epi, 2021.
+</div>
+<div id="ref-bougioukas2025medstats" class="csl-entry" role="listitem">
+BOUGIOUKAS, K. I. <strong><a href="https://practical-stats-med-r.netlify.app/">Practical Statistics in Medicine with R: understanding fundamental concepts through examples</a></strong>. [s.l: s.n.].
+</div>
+<div id="ref-faria2024intror" class="csl-entry" role="listitem">
+FARIA, P. D. <strong><a href="https://pedropark99.github.io/Introducao_R/">Introdução à Linguagem R: seus fundamentos e sua prática</a></strong>. 5. ed. Belo Horizonte: [s.n.], 2024.
+</div>
+<div id="ref-opas2008indicadores" class="csl-entry" role="listitem">
+ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE. <strong>Indicadores básicos para a saúde no Brasil: conceitos e aplicações</strong>. 2. ed. Brasília: Organização Pan-Americana da Saúde, 2008.
+</div>
+<div id="ref-wickham2023r4ds" class="csl-entry" role="listitem">
+WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4ds.hadley.nz/">R para Ciência de Dados</a></strong>. 2. ed. [s.l: s.n.].
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pradogps\.github\.io\/intro-r\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../capitulos/06-transformacao.html" class="pagination-link" aria-label="Transformação de dados com `dplyr`">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformação de dados com <code>dplyr</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../capitulos/08-tidy-joins.html" class="pagination-link" aria-label="Dados organizados e combinação de tabelas">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dados organizados e combinação de tabelas</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Gustavo Prado · Material didático da disciplina HEP0185 — Introdução ao R (FSP/USP).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Construído com <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

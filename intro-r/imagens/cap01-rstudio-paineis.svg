@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Esquema dos quatro painéis do RStudio</title>
+  <desc id="desc">Janela do RStudio dividida em quatro painéis: editor de código no canto superior esquerdo, console no canto inferior esquerdo, ambiente e histórico no canto superior direito, e arquivos, gráficos, pacotes, ajuda e visualizador no canto inferior direito.</desc>
+
+  <!-- Moldura da janela -->
+  <rect x="10" y="10" width="940" height="580" rx="10" fill="#ffffff" stroke="#9ca3af" stroke-width="2"/>
+  <rect x="10" y="10" width="940" height="40" rx="10" fill="#e5e7eb"/>
+  <rect x="10" y="40" width="940" height="10" fill="#e5e7eb"/>
+  <circle cx="34" cy="30" r="7" fill="#f87171"/>
+  <circle cx="56" cy="30" r="7" fill="#fbbf24"/>
+  <circle cx="78" cy="30" r="7" fill="#34d399"/>
+  <text x="480" y="35" font-size="16" fill="#374151" text-anchor="middle">RStudio — projeto-sinasc</text>
+  <rect x="10" y="50" width="940" height="28" fill="#f3f4f6"/>
+  <text x="26" y="69" font-size="13" fill="#4b5563">File   Edit   Code   View   Plots   Session   Build   Debug   Profile   Tools   Help</text>
+
+  <!-- Painel 1: editor -->
+  <rect x="22" y="88" width="452" height="250" rx="6" fill="#fff6ec" stroke="#ff6347" stroke-width="2"/>
+  <rect x="22" y="88" width="452" height="28" rx="6" fill="#ffe4cc"/>
+  <text x="34" y="107" font-size="13" fill="#7c2d12">01-importacao.R ×</text>
+  <circle cx="440" cy="102" r="14" fill="#b5401f"/>
+  <text x="440" y="107" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="700">1</text>
+  <text x="40" y="150" font-size="14" fill="#6b7280" font-family="'Fira Code', Menlo, Consolas, monospace"># Importa o extrato do SINASC</text>
+  <text x="40" y="175" font-size="14" fill="#1f2937" font-family="'Fira Code', Menlo, Consolas, monospace">library(here)</text>
+  <text x="40" y="200" font-size="14" fill="#1f2937" font-family="'Fira Code', Menlo, Consolas, monospace">caminho &lt;- here("dados", "brutos")</text>
+  <text x="248" y="300" font-size="18" fill="#7c2d12" text-anchor="middle" font-weight="700">Editor de código (Source)</text>
+  <text x="248" y="322" font-size="14" fill="#7c2d12" text-anchor="middle">scripts e documentos Quarto</text>
+
+  <!-- Painel 2: console -->
+  <rect x="22" y="348" width="452" height="230" rx="6" fill="#f9fafb" stroke="#6b7280" stroke-width="2"/>
+  <rect x="22" y="348" width="452" height="28" rx="6" fill="#e5e7eb"/>
+  <text x="34" y="367" font-size="13" fill="#374151">Console   Terminal   Background Jobs</text>
+  <circle cx="440" cy="362" r="14" fill="#374151"/>
+  <text x="440" y="367" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="700">2</text>
+  <text x="40" y="408" font-size="14" fill="#1f2937" font-family="'Fira Code', Menlo, Consolas, monospace">&gt; 2 + 2</text>
+  <text x="40" y="432" font-size="14" fill="#1f2937" font-family="'Fira Code', Menlo, Consolas, monospace">[1] 4</text>
+  <text x="40" y="456" font-size="14" fill="#1f2937" font-family="'Fira Code', Menlo, Consolas, monospace">&gt; |</text>
+  <text x="248" y="535" font-size="18" fill="#1f2937" text-anchor="middle" font-weight="700">Console</text>
+  <text x="248" y="557" font-size="14" fill="#374151" text-anchor="middle">onde os comandos são executados</text>
+
+  <!-- Painel 3: ambiente -->
+  <rect x="486" y="88" width="452" height="250" rx="6" fill="#f0f7ff" stroke="#2563eb" stroke-width="2"/>
+  <rect x="486" y="88" width="452" height="28" rx="6" fill="#dbeafe"/>
+  <text x="498" y="107" font-size="13" fill="#1e3a8a">Environment   History   Connections   Git</text>
+  <circle cx="904" cy="102" r="14" fill="#1e40af"/>
+  <text x="904" y="107" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="700">3</text>
+  <text x="504" y="150" font-size="14" fill="#1f2937" font-family="'Fira Code', Menlo, Consolas, monospace">caminho   "/…/dados/brutos"</text>
+  <text x="712" y="300" font-size="18" fill="#1e3a8a" text-anchor="middle" font-weight="700">Ambiente e histórico</text>
+  <text x="712" y="322" font-size="14" fill="#1e3a8a" text-anchor="middle">objetos criados na sessão</text>
+
+  <!-- Painel 4: arquivos/gráficos/pacotes/ajuda -->
+  <rect x="486" y="348" width="452" height="230" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+  <rect x="486" y="348" width="452" height="28" rx="6" fill="#dcfce7"/>
+  <text x="498" y="367" font-size="13" fill="#14532d">Files   Plots   Packages   Help   Viewer</text>
+  <circle cx="904" cy="362" r="14" fill="#166534"/>
+  <text x="904" y="367" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="700">4</text>
+  <text x="504" y="408" font-size="14" fill="#1f2937">dados/</text>
+  <text x="504" y="432" font-size="14" fill="#1f2937">scripts/</text>
+  <text x="504" y="456" font-size="14" fill="#1f2937">projeto-sinasc.Rproj</text>
+  <text x="712" y="535" font-size="18" fill="#14532d" text-anchor="middle" font-weight="700">Arquivos, gráficos, pacotes e ajuda</text>
+  <text x="712" y="557" font-size="14" fill="#14532d" text-anchor="middle">navegação e resultados</text>
+</svg>

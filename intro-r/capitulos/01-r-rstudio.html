@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR" xml:lang="pt-BR"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; R, RStudio e a organização do trabalho – Introdução ao Software R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../capitulos/02-objetos-funcoes.html" rel="next">
+<link href="../partes/parte-1-primeiros-passos.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-6c895c654bb7a4f4ea5535b37aed820d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nenhum resultado",
+    "search-matching-documents-text": "documentos correspondentes",
+    "search-copy-link-title": "Copiar link para a busca",
+    "search-hide-matches-text": "Esconder correspondências adicionais",
+    "search-more-match-text": "mais correspondência neste documento",
+    "search-more-matches-text": "mais correspondências neste documento",
+    "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Procurar"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../partes/parte-1-primeiros-passos.html">Primeiros passos com R</a></li><li class="breadcrumb-item"><a href="../capitulos/01-r-rstudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R, RStudio e a organização do trabalho</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Introdução ao Software R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apresentação</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-1-primeiros-passos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Primeiros passos com R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/01-r-rstudio.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R, RStudio e a organização do trabalho</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/02-objetos-funcoes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objetos, funções e operadores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/03-estruturas-dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vetores, tipos de dados e <em>data frames</em></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/04-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Documentos reprodutíveis com Quarto</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-2-preparacao-dados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preparação de dados em saúde</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/05-importacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Importação e exportação de dados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/06-transformacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Transformação de dados com <code>dplyr</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/07-agrupamento-indicadores.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Agrupamento, sumarização e indicadores de saúde</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/08-tidy-joins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dados organizados e combinação de tabelas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/09-textos-fatores-datas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Textos, categorias, datas e valores ausentes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-3-visualizacao-exploracao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Visualização e análise exploratória</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/10-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Visualização de dados com <code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/11-descritiva.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Estatística descritiva e tabelas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/12-aed-protocolo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Análise exploratória de dados: um protocolo</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-4-inferencia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introdução à inferência estatística</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/13-comparacao-medias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Comparação de médias: testes t e análise de variância</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/14-correlacao-regressao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Correlação e regressão linear simples</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/15-contingencia-associacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Tabelas de contingência e medidas de associação</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../partes/parte-5-autonomia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rumo à autonomia</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/16-programacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Noções de programação: funções, condicionais e iteração</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../capitulos/17-estudo-integrador.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Estudo integrador: da pergunta ao relatório</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referências</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apêndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/a-instalacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Instalação e configuração do ambiente</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/b-sistemas-informacao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Sistemas de informação em saúde e acesso aos dados</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/c-bases-do-livro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Bases de dados utilizadas no livro</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/d-erros-ajuda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Erros frequentes e como pedir ajuda</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../apendices/e-glossario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Glossário</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#sec-o-que-e-r" id="toc-sec-o-que-e-r" class="nav-link active" data-scroll-target="#sec-o-que-e-r"><span class="header-section-number">1.1</span> O que é o R e por que utilizá-lo em Saúde Pública</a></li>
+  <li><a href="#sec-instalacao-config" id="toc-sec-instalacao-config" class="nav-link" data-scroll-target="#sec-instalacao-config"><span class="header-section-number">1.2</span> Instalação e primeira configuração</a>
+  <ul class="collapse">
+  <li><a href="#sec-r-vs-rstudio" id="toc-sec-r-vs-rstudio" class="nav-link" data-scroll-target="#sec-r-vs-rstudio">R e RStudio: dois programas diferentes</a></li>
+  <li><a href="#sec-configuracao-rstudio" id="toc-sec-configuracao-rstudio" class="nav-link" data-scroll-target="#sec-configuracao-rstudio">Configuração recomendada</a></li>
+  </ul></li>
+  <li><a href="#sec-paineis" id="toc-sec-paineis" class="nav-link" data-scroll-target="#sec-paineis"><span class="header-section-number">1.3</span> Conhecendo o RStudio</a></li>
+  <li><a href="#sec-console-scripts" id="toc-sec-console-scripts" class="nav-link" data-scroll-target="#sec-console-scripts"><span class="header-section-number">1.4</span> Console e scripts</a>
+  <ul class="collapse">
+  <li><a href="#sec-console" id="toc-sec-console" class="nav-link" data-scroll-target="#sec-console">Executando comandos no console</a></li>
+  <li><a href="#sec-scripts" id="toc-sec-scripts" class="nav-link" data-scroll-target="#sec-scripts">Escrevendo e executando scripts</a></li>
+  </ul></li>
+  <li><a href="#sec-projetos" id="toc-sec-projetos" class="nav-link" data-scroll-target="#sec-projetos"><span class="header-section-number">1.5</span> Projetos do RStudio e organização de pastas</a>
+  <ul class="collapse">
+  <li><a href="#sec-diretorio-trabalho" id="toc-sec-diretorio-trabalho" class="nav-link" data-scroll-target="#sec-diretorio-trabalho">Diretório de trabalho e caminhos</a></li>
+  <li><a href="#sec-rproj" id="toc-sec-rproj" class="nav-link" data-scroll-target="#sec-rproj">Projetos do RStudio</a></li>
+  <li><a href="#sec-estrutura-pastas" id="toc-sec-estrutura-pastas" class="nav-link" data-scroll-target="#sec-estrutura-pastas">Uma estrutura de pastas para análises de dados</a></li>
+  <li><a href="#sec-here" id="toc-sec-here" class="nav-link" data-scroll-target="#sec-here">Caminhos robustos com o pacote <code>here</code></a></li>
+  </ul></li>
+  <li><a href="#sec-pacotes" id="toc-sec-pacotes" class="nav-link" data-scroll-target="#sec-pacotes"><span class="header-section-number">1.6</span> Pacotes e bibliotecas</a>
+  <ul class="collapse">
+  <li><a href="#sec-o-que-sao-pacotes" id="toc-sec-o-que-sao-pacotes" class="nav-link" data-scroll-target="#sec-o-que-sao-pacotes">O que são pacotes</a></li>
+  <li><a href="#sec-instalacao-carregamento" id="toc-sec-instalacao-carregamento" class="nav-link" data-scroll-target="#sec-instalacao-carregamento">Instalação e carregamento</a></li>
+  <li><a href="#sec-bibliotecas" id="toc-sec-bibliotecas" class="nav-link" data-scroll-target="#sec-bibliotecas">Bibliotecas</a></li>
+  <li><a href="#sec-dois-pontos" id="toc-sec-dois-pontos" class="nav-link" data-scroll-target="#sec-dois-pontos">Chamando funções sem carregar o pacote</a></li>
+  <li><a href="#sec-conflitos" id="toc-sec-conflitos" class="nav-link" data-scroll-target="#sec-conflitos">Conflitos entre funções</a></li>
+  </ul></li>
+  <li><a href="#sec-ajuda" id="toc-sec-ajuda" class="nav-link" data-scroll-target="#sec-ajuda"><span class="header-section-number">1.7</span> Como obter ajuda</a>
+  <ul class="collapse">
+  <li><a href="#sec-documentacao" id="toc-sec-documentacao" class="nav-link" data-scroll-target="#sec-documentacao">A documentação das funções</a></li>
+  <li><a href="#sec-mensagens-erro" id="toc-sec-mensagens-erro" class="nav-link" data-scroll-target="#sec-mensagens-erro">Lendo mensagens de erro</a></li>
+  </ul></li>
+  <li><a href="#sec-caso-01" id="toc-sec-caso-01" class="nav-link" data-scroll-target="#sec-caso-01"><span class="header-section-number">1.8</span> Estudo de caso: organizando um projeto de análise de nascidos vivos</a></li>
+  <li><a href="#sec-ex-01" id="toc-sec-ex-01" class="nav-link" data-scroll-target="#sec-ex-01"><span class="header-section-number">1.9</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
+  <li><a href="#sec-sintese-01" id="toc-sec-sintese-01" class="nav-link" data-scroll-target="#sec-sintese-01"><span class="header-section-number">1.10</span> Síntese</a></li>
+  <li><a href="#sec-mais-01" id="toc-sec-mais-01" class="nav-link" data-scroll-target="#sec-mais-01"><span class="header-section-number">1.11</span> Para saber mais</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../partes/parte-1-primeiros-passos.html">Primeiros passos com R</a></li><li class="breadcrumb-item"><a href="../capitulos/01-r-rstudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R, RStudio e a organização do trabalho</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-r-rstudio" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R, RStudio e a organização do trabalho</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="ficha-capitulo">
+<p><strong>Encontro previsto:</strong> 1 · <strong>Pré-requisitos:</strong> nenhum · <strong>Pacotes:</strong> R base, <code>here</code> e <code>tidyverse</code> (apenas para ilustrar o carregamento de pacotes)</p>
+</div>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objetivos de aprendizagem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de distinguir o R, linguagem de programação e ambiente de computação estatística, do RStudio, ambiente integrado de desenvolvimento; reconhecer os painéis do RStudio e a função de cada um; executar comandos tanto no console quanto a partir de um script salvo; criar um projeto do RStudio com uma estrutura de pastas adequada a uma análise de dados; compreender o que são o diretório de trabalho e os caminhos relativos; instalar e carregar pacotes, distinguindo pacote de biblioteca; e consultar a documentação das funções.</p>
+</div>
+</div>
+<p>Antes de importar uma base de dados, calcular um indicador ou construir um gráfico, é preciso conhecer o ambiente em que esse trabalho será feito e adotar alguns hábitos que, embora pareçam secundários no início, determinam se uma análise poderá ser compreendida, repetida e corrigida no futuro. Este capítulo trata desses dois aspectos. A primeira metade apresenta o R, o RStudio e a forma de executar comandos; a segunda trata da organização do trabalho em projetos, da instalação de pacotes e da busca de ajuda.</p>
+<p>Nenhum conhecimento prévio de programação é necessário. Alguns termos, como objeto e função, aparecem aqui de passagem e serão definidos com cuidado no <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a>.</p>
+<section id="sec-o-que-e-r" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-o-que-e-r"><span class="header-section-number">1.1</span> O que é o R e por que utilizá-lo em Saúde Pública</h2>
+<p>O R é, ao mesmo tempo, uma linguagem de programação e um ambiente de computação voltado à análise estatística e à produção de gráficos. Foi criado no início da década de 1990 por Ross Ihaka e Robert Gentleman, no Departamento de Estatística da Universidade de Auckland, na Nova Zelândia, tomando como modelo a linguagem S, desenvolvida nos laboratórios Bell <span class="citation" data-cites="ihaka1996r">(<a href="../references.html#ref-ihaka1996r" role="doc-biblioref">IHAKA; GENTLEMAN, 1996</a>)</span>. Desde então, seu desenvolvimento é conduzido por um grupo internacional de colaboradores, e o programa é distribuído gratuitamente sob a Licença Pública Geral GNU, o que significa que qualquer pessoa pode usá-lo, estudar seu código e redistribuí-lo. O R funciona nos sistemas operacionais Windows, macOS e Linux.</p>
+<p>Uma diferença importante entre o R e programas estatísticos baseados em menus é que, no R, as operações são descritas por comandos escritos. À primeira vista, isso parece apenas uma dificuldade adicional, e de fato exige algum tempo de aprendizagem. A contrapartida é que o conjunto de comandos de uma análise, salvo em um arquivo, constitui um registro completo e exato do que foi feito: quais dados foram lidos, quais registros foram excluídos, como cada variável foi construída e quais procedimentos foram aplicados. Esse registro pode ser lido por outra pessoa, revisado, corrigido e executado novamente. Em pesquisa, essa propriedade é a base da reprodutibilidade; em serviços de saúde, permite que uma análise feita uma vez seja repetida a cada nova atualização dos dados, sem refazer manualmente cada etapa.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Saúde Pública em foco
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Considere a equipe de vigilância de um município que publica semanalmente um boletim sobre dengue, com o número de casos notificados por semana epidemiológica, a incidência por bairro e a distribuição dos casos por faixa etária. Se as tabelas e os gráficos forem produzidos manualmente em uma planilha, cada edição exige repetir dezenas de operações, com risco de erro a cada repetição. Se o mesmo boletim for produzido por um script, basta substituir o arquivo de dados e executar os comandos novamente. O script também documenta as definições usadas (por exemplo, quais classificações finais foram consideradas como casos), o que facilita a comparação entre edições e a passagem do trabalho para outros profissionais.</p>
+</div>
+</div>
+<p>Outra característica do R é a extensibilidade. Além das funções que acompanham a instalação básica, a comunidade de usuários publica pacotes que acrescentam novas funcionalidades. O principal repositório desses pacotes, o CRAN (<em>Comprehensive R Archive Network</em>), reunia mais de 25 mil pacotes em novembro de 2026, cobrindo desde a manipulação de dados até métodos estatísticos especializados. Para a epidemiologia, o próprio CRAN mantém uma página temática que organiza os pacotes da área (<a href="https://cran.r-project.org/web/views/Epidemiology.html" class="uri">https://cran.r-project.org/web/views/Epidemiology.html</a>). Há também pacotes desenvolvidos para dados brasileiros, como o <code>microdatasus</code>, que baixa e pré-processa os microdados dos sistemas de informação do DATASUS <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span> e que será usado nos capítulos sobre importação de dados.</p>
+<p>Convém, desde já, uma ponderação. O R é uma ferramenta, e o domínio da ferramenta não substitui o conhecimento sobre os dados e os métodos. Um comando executado sem erro pode produzir um resultado sem sentido se a variável foi mal definida ou se o procedimento estatístico não é adequado à pergunta. Por isso, ao longo do livro, cada técnica computacional é acompanhada de uma discussão sobre o que ela significa no contexto da análise de dados em saúde.</p>
+</section>
+<section id="sec-instalacao-config" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="sec-instalacao-config"><span class="header-section-number">1.2</span> Instalação e primeira configuração</h2>
+<section id="sec-r-vs-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="sec-r-vs-rstudio">R e RStudio: dois programas diferentes</h3>
+<p>Quem começa a usar o R costuma instalar dois programas, e é útil entender desde o início a diferença entre eles. O R é o programa que efetivamente interpreta e executa os comandos. O RStudio é um ambiente integrado de desenvolvimento, isto é, um programa que oferece uma interface mais confortável para trabalhar com o R: um editor de textos que destaca a sintaxe do código, uma área para visualizar gráficos, um navegador de arquivos, acesso à documentação e diversas outras facilidades. O RStudio não funciona sem o R, mas o R funciona sem o RStudio. Uma analogia frequente compara o R ao motor de um carro e o RStudio ao painel e aos comandos que permitem conduzi-lo.</p>
+<p>O RStudio é desenvolvido pela empresa Posit (que, até 2022, se chamava RStudio) e tem uma versão gratuita para uso em computadores pessoais, que é a utilizada neste livro. Existem outros ambientes de desenvolvimento capazes de trabalhar com o R, mas o RStudio é o mais difundido no ensino e é o adotado pelas obras de referência deste livro.</p>
+<p>A instalação deve seguir esta ordem: primeiro o R, obtido no CRAN (<a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>), e depois o RStudio, obtido no sítio da Posit (<a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>). As instruções detalhadas para cada sistema operacional estão no <a href="../apendices/a-instalacao.html" class="quarto-xref"><span>Apêndice A</span></a>. Os exemplos deste livro exigem a versão 4.1 do R ou superior.</p>
+</section>
+<section id="sec-configuracao-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="sec-configuracao-rstudio">Configuração recomendada</h3>
+<p>Antes de começar a trabalhar, vale ajustar três opções do RStudio, acessíveis pelo menu <em>Tools &gt; Global Options</em>. Elas estão resumidas no <a href="#tbl-config-rstudio" class="quarto-xref">Tabela&nbsp;<span>1.1</span></a>.</p>
+<div id="tbl-config-rstudio" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-config-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.1: Configurações recomendadas do RStudio.
+</figcaption>
+<div aria-describedby="tbl-config-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Opção</th>
+<th style="text-align: left;">Onde encontrar</th>
+<th style="text-align: left;">Valor recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>Restore .RData into workspace at startup</em></td>
+<td style="text-align: left;"><em>General &gt; Basic</em></td>
+<td style="text-align: left;">Desmarcada</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Save workspace to .RData on exit</em></td>
+<td style="text-align: left;"><em>General &gt; Basic</em></td>
+<td style="text-align: left;"><em>Never</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>Use native pipe operator, |&gt; (requires R 4.1+)</em></td>
+<td style="text-align: left;"><em>Code &gt; Editing</em></td>
+<td style="text-align: left;">Marcada</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><em>Default text encoding</em></td>
+<td style="text-align: left;"><em>Code &gt; Saving</em></td>
+<td style="text-align: left;">UTF-8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>As duas primeiras opções merecem uma explicação. Durante uma sessão de trabalho, o R mantém na memória os objetos criados (bases de dados, resultados intermediários, modelos). Por padrão, ao fechar o programa, o RStudio oferece salvar todo esse conteúdo em um arquivo chamado <code>.RData</code> e o recarrega automaticamente na sessão seguinte. Parece conveniente, mas tem um efeito indesejado: com o tempo, a sessão passa a conter objetos cuja origem já não se conhece, e a análise passa a depender deles sem que isso esteja registrado em nenhum script. Ao desativar esse comportamento, cada sessão começa vazia, e tudo o que for necessário precisa ser recriado pelos scripts. Essa é a forma mais simples de garantir que os scripts contenham, de fato, toda a análise.</p>
+<p>A terceira opção define o operador que o RStudio insere pelo atalho de teclado do <em>pipe</em>, que será apresentado no <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>. A quarta garante que os arquivos sejam salvos com a codificação UTF-8, o que evita problemas com acentos e cedilhas ao abrir os arquivos em outros computadores.</p>
+</section>
+</section>
+<section id="sec-paineis" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="sec-paineis"><span class="header-section-number">1.3</span> Conhecendo o RStudio</h2>
+<p>Ao abrir o RStudio, a janela aparece dividida em painéis, como mostra a <a href="#fig-paineis-rstudio" class="quarto-xref">Figura&nbsp;<span>1.1</span></a>. Na configuração padrão são quatro, e cada um reúne algumas abas.</p>
+<div id="fig-paineis-rstudio" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Esquema de uma janela do RStudio dividida em quatro painéis. No canto superior esquerdo, o editor de código, com um script aberto. No canto inferior esquerdo, o console, mostrando o comando 2 + 2 e o resultado 4. No canto superior direito, o painel de ambiente e histórico, com um objeto listado. No canto inferior direito, o painel de arquivos, gráficos, pacotes e ajuda, com as pastas do projeto.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-paineis-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../imagens/cap01-rstudio-paineis.svg" class="img-fluid figure-img" alt="Esquema de uma janela do RStudio dividida em quatro painéis. No canto superior esquerdo, o editor de código, com um script aberto. No canto inferior esquerdo, o console, mostrando o comando 2 + 2 e o resultado 4. No canto superior direito, o painel de ambiente e histórico, com um objeto listado. No canto inferior direito, o painel de arquivos, gráficos, pacotes e ajuda, com as pastas do projeto.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-paineis-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1.1: Disposição padrão dos painéis do RStudio (representação esquemática). Os números indicam a ordem em que os painéis são descritos no texto.
+</figcaption>
+</figure>
+</div>
+<p>O painel 1, no canto superior esquerdo, é o editor de código (<em>Source</em>). É nele que se escrevem e se editam os scripts e os documentos Quarto. Quando nenhum arquivo está aberto, esse painel fica oculto, e o console ocupa toda a coluna da esquerda.</p>
+<p>O painel 2, abaixo do editor, é o console. É o lugar em que o R recebe os comandos e devolve os resultados. Ao lado dele há abas para o terminal do sistema operacional e para tarefas executadas em segundo plano, que não serão usadas neste livro.</p>
+<p>O painel 3, no canto superior direito, tem como aba principal o ambiente (<em>Environment</em>), que lista os objetos existentes na sessão, como as bases de dados carregadas, com informações resumidas sobre cada um. A aba <em>History</em> guarda os comandos executados no console.</p>
+<p>O painel 4, no canto inferior direito, reúne o navegador de arquivos (<em>Files</em>), a área em que os gráficos são exibidos (<em>Plots</em>), a lista de pacotes instalados (<em>Packages</em>), a documentação (<em>Help</em>) e um visualizador para conteúdos em formato de página da internet (<em>Viewer</em>).</p>
+<p>A posição dos painéis pode ser alterada em <em>Tools &gt; Global Options &gt; Pane Layout</em>. Neste livro, as referências aos painéis supõem a disposição padrão.</p>
+</section>
+<section id="sec-console-scripts" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="sec-console-scripts"><span class="header-section-number">1.4</span> Console e scripts</h2>
+<section id="sec-console" class="level3">
+<h3 class="anchored" data-anchor-id="sec-console">Executando comandos no console</h3>
+<p>A forma mais direta de usar o R é digitar um comando no console e pressionar <em>Enter</em>. O símbolo <code>&gt;</code> no início da linha, chamado <em>prompt</em>, indica que o R está pronto para receber um comando. O exemplo a seguir usa o R como calculadora.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O resultado aparece precedido de <code>[1]</code>. Esse número entre colchetes indica a posição do primeiro valor exibido naquela linha; como o resultado tem um único valor, a indicação é sempre <code>[1]</code>. Quando um resultado contém muitos valores e ocupa várias linhas, cada linha começa com a posição do seu primeiro elemento, o que ajuda a localizar valores em resultados longos. Neste livro, os resultados aparecem logo abaixo do código, precedidos de <code>#&gt;</code>, para que não sejam confundidos com os comandos.</p>
+<p>Alguns comandos não fazem cálculos, mas consultam informações. O comando abaixo mostra a versão do R em uso.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "R version 4.5.3 (2026-03-11)"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se um comando for enviado incompleto, por exemplo com um parêntese aberto e não fechado, o R não o executa e exibe o símbolo <code>+</code> no início da linha seguinte, indicando que espera a continuação. Basta completar o comando, ou pressionar <em>Esc</em> para cancelá-lo e voltar ao <em>prompt</em>. A tecla <em>Esc</em> também interrompe um comando que esteja demorando mais do que o esperado.</p>
+</section>
+<section id="sec-scripts" class="level3">
+<h3 class="anchored" data-anchor-id="sec-scripts">Escrevendo e executando scripts</h3>
+<p>O console é adequado para experimentos rápidos, mas os comandos digitados nele não ficam registrados de forma organizada. Para qualquer trabalho que se pretenda guardar, os comandos devem ser escritos em um script: um arquivo de texto simples, com extensão <code>.R</code>, que contém a sequência de comandos da análise. Um novo script é criado pelo menu <em>File &gt; New File &gt; R Script</em> e aparece no editor de código.</p>
+<p>No script, os comandos podem ser executados um a um, posicionando o cursor na linha desejada e usando o atalho <em>Ctrl + Enter</em> (no macOS, <em>Cmd + Return</em>). O comando é enviado ao console, executado, e o cursor avança para o comando seguinte. Também é possível selecionar várias linhas e executá-las de uma vez com o mesmo atalho, ou executar o script inteiro. O <a href="#tbl-atalhos" class="quarto-xref">Tabela&nbsp;<span>1.2</span></a> reúne os atalhos de uso mais frequente.</p>
+<div id="tbl-atalhos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-atalhos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.2: Atalhos de teclado do RStudio usados com frequência.
+</figcaption>
+<div aria-describedby="tbl-atalhos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Ação</th>
+<th style="text-align: left;">Windows e Linux</th>
+<th style="text-align: left;">macOS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Novo script</td>
+<td style="text-align: left;"><em>Ctrl + Shift + N</em></td>
+<td style="text-align: left;"><em>Cmd + Shift + N</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Salvar o arquivo</td>
+<td style="text-align: left;"><em>Ctrl + S</em></td>
+<td style="text-align: left;"><em>Cmd + S</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Executar a linha atual ou a seleção</td>
+<td style="text-align: left;"><em>Ctrl + Enter</em></td>
+<td style="text-align: left;"><em>Cmd + Return</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Executar o script inteiro</td>
+<td style="text-align: left;"><em>Ctrl + Shift + Enter</em></td>
+<td style="text-align: left;"><em>Cmd + Shift + Return</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Comentar ou descomentar linhas</td>
+<td style="text-align: left;"><em>Ctrl + Shift + C</em></td>
+<td style="text-align: left;"><em>Cmd + Shift + C</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Inserir o operador de atribuição <code>&lt;-</code></td>
+<td style="text-align: left;"><em>Alt + -</em></td>
+<td style="text-align: left;"><em>Option + -</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reiniciar a sessão do R</td>
+<td style="text-align: left;"><em>Ctrl + Shift + F10</em></td>
+<td style="text-align: left;"><em>Cmd + Shift + 0</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interromper a execução</td>
+<td style="text-align: left;"><em>Esc</em></td>
+<td style="text-align: left;"><em>Esc</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Tudo o que vem depois do símbolo <code>#</code> em uma linha é um comentário, ignorado pelo R. Comentários servem para explicar o propósito de um trecho do código, registrar decisões e dividir o script em seções. Um bom comentário diz por que algo foi feito, e não apenas o que foi feito, já que o próprio código mostra o que está sendo feito.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de nascidos vivos e de óbitos infantis em um município hipotético</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (valores fictícios, apenas para ilustração)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1250</span> <span class="sc">+</span> <span class="dv">1310</span> <span class="sc">+</span> <span class="dv">1198</span>   <span class="co"># nascidos vivos em três anos consecutivos</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os nomes dos arquivos também merecem atenção. Recomenda-se usar apenas letras minúsculas sem acentos, números, hífens e sublinhados, evitando espaços, e numerar os scripts na ordem em que devem ser executados, como em <code>01-importacao.R</code>, <code>02-limpeza.R</code> e <code>03-analise.R</code>. Essa convenção facilita a leitura do projeto por outras pessoas e evita problemas de compatibilidade entre sistemas operacionais.</p>
+<div class="callout callout-style-simple callout-warning callout-titled" title="O script é o produto do trabalho">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O script é o produto do trabalho
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Um hábito útil é reiniciar periodicamente a sessão do R (<em>Session &gt; Restart R</em>) e executar o script desde o início. Se o script não produzir os mesmos resultados, há alguma etapa da análise que foi feita apenas no console e não foi registrada. Combinado com a configuração recomendada na <a href="#sec-configuracao-rstudio" class="quarto-xref"><span>Seção 1.2.2</span></a>, esse hábito garante que o script contenha a análise completa.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-projetos" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="sec-projetos"><span class="header-section-number">1.5</span> Projetos do RStudio e organização de pastas</h2>
+<section id="sec-diretorio-trabalho" class="level3">
+<h3 class="anchored" data-anchor-id="sec-diretorio-trabalho">Diretório de trabalho e caminhos</h3>
+<p>Sempre que o R lê ou grava um arquivo, precisa saber onde ele está. O endereço de um arquivo no computador é chamado de caminho. Há duas formas de escrevê-lo. Um caminho absoluto descreve a localização completa do arquivo a partir da raiz do sistema, como <code>C:/Users/ana/Documents/projeto-sinasc/dados/brutos/sinasc.csv</code> no Windows ou <code>/Users/ana/Documents/projeto-sinasc/dados/brutos/sinasc.csv</code> no macOS. Um caminho relativo descreve a localização a partir de uma pasta de referência, como <code>dados/brutos/sinasc.csv</code>.</p>
+<p>A pasta de referência usada pelo R para interpretar caminhos relativos é o diretório de trabalho. A função <code>getwd()</code> (de <em>get working directory</em>) informa qual é ele.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Users/ana/Documents/projeto-sinasc"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O problema dos caminhos absolutos é que eles só funcionam no computador em que foram escritos. Se o script for enviado a um colega, ou se a pasta for movida para outro lugar, todos os caminhos deixam de funcionar. Por essa razão, scripts que contêm o comando <code>setwd()</code>, usado para mudar o diretório de trabalho para um endereço absoluto, devem ser evitados em qualquer trabalho que se pretenda compartilhar. A solução recomendada é organizar cada análise em um projeto e usar caminhos relativos à pasta do projeto.</p>
+<div class="callout callout-style-simple callout-warning callout-titled" title="Barras nos caminhos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Barras nos caminhos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>No Windows, os caminhos costumam ser exibidos com barras invertidas (<code>\</code>). No R, a barra invertida tem um significado especial dentro de textos e não pode ser usada diretamente. Use sempre a barra comum (<code>/</code>), que funciona em todos os sistemas operacionais.</p>
+</div>
+</div>
+</section>
+<section id="sec-rproj" class="level3">
+<h3 class="anchored" data-anchor-id="sec-rproj">Projetos do RStudio</h3>
+<p>Um projeto do RStudio é uma pasta que contém um arquivo com extensão <code>.Rproj</code>. Quando o projeto é aberto, seja pelo menu <em>File &gt; Open Project</em>, seja com um duplo clique no arquivo <code>.Rproj</code>, o RStudio inicia uma nova sessão do R e define automaticamente a pasta do projeto como diretório de trabalho. Assim, todos os caminhos relativos passam a ser interpretados a partir dela, independentemente do computador ou do lugar em que a pasta esteja.</p>
+<p>Para criar um projeto, usa-se o menu <em>File &gt; New Project &gt; New Directory &gt; New Project</em>, escolhendo o nome da pasta e o local em que ela será criada. Se a pasta já existir, a opção <em>Existing Directory</em> transforma-a em projeto. O RStudio cria o arquivo <code>.Rproj</code> e uma pasta oculta, <code>.Rproj.user</code>, na qual guarda informações sobre a interface, como os arquivos que estavam abertos. Essa pasta não precisa ser editada nem compartilhada.</p>
+<p>Cada análise, ou cada conjunto de análises relacionadas, deve ter seu próprio projeto. No contexto deste livro, um bom ponto de partida é um projeto para a disciplina, no qual os exercícios de cada capítulo sejam guardados, e projetos separados para trabalhos maiores, como o trabalho final.</p>
+</section>
+<section id="sec-estrutura-pastas" class="level3">
+<h3 class="anchored" data-anchor-id="sec-estrutura-pastas">Uma estrutura de pastas para análises de dados</h3>
+<p>Não existe uma única forma correta de organizar as pastas de um projeto, mas convém adotar uma estrutura padronizada e mantê-la em todos os projetos. A estrutura a seguir, usada ao longo do livro, separa os dados conforme sua origem, os scripts, os resultados e os relatórios.</p>
+<pre><code>projeto-sinasc/
+├── projeto-sinasc.Rproj
+├── README.md
+├── dados/
+│   ├── brutos/
+│   └── processados/
+├── scripts/
+├── resultados/
+│   ├── figuras/
+│   └── tabelas/
+└── relatorios/</code></pre>
+<p>A pasta <code>dados/brutos/</code> guarda os arquivos tal como foram obtidos da fonte e nunca é editada manualmente. Toda correção, recodificação ou exclusão de registros é feita por scripts, e os resultados dessas operações são gravados em <code>dados/processados/</code>. Dessa forma, é sempre possível refazer a preparação dos dados a partir dos arquivos originais e verificar cada decisão tomada. As pastas <code>resultados/figuras/</code> e <code>resultados/tabelas/</code> recebem os produtos da análise, e a pasta <code>relatorios/</code> guarda os documentos Quarto que reúnem texto e resultados, assunto do <a href="04-quarto.html" class="quarto-xref"><span>Capítulo 4</span></a>. O arquivo <code>README.md</code> é um texto simples que descreve o objetivo do projeto, a origem dos dados e a ordem de execução dos scripts.</p>
+</section>
+<section id="sec-here" class="level3">
+<h3 class="anchored" data-anchor-id="sec-here">Caminhos robustos com o pacote <code>here</code></h3>
+<p>Dentro de um projeto, caminhos relativos como <code>dados/brutos/sinasc.csv</code> funcionam bem quando o diretório de trabalho é a pasta do projeto. Há situações, porém, em que o diretório de trabalho muda: um documento Quarto, por exemplo, é executado a partir da pasta em que está salvo, e não da pasta do projeto. Para evitar que os caminhos funcionem em um lugar e falhem em outro, recomenda-se o pacote <code>here</code>, cuja função <code>here()</code> constrói caminhos a partir da raiz do projeto, identificada pela presença do arquivo <code>.Rproj</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"brutos"</span>, <span class="st">"sinasc.csv"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Users/ana/Documents/projeto-sinasc/dados/brutos/sinasc.csv"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cada argumento da função corresponde a um nível do caminho, e o resultado é o caminho completo, montado com o separador adequado ao sistema operacional. O mesmo código, executado no computador de outra pessoa, produz o caminho correto naquele computador. A forma de usar esse caminho para ler um arquivo de dados será vista no <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>. O comando <code>library(here)</code>, que torna as funções do pacote disponíveis, é o assunto da próxima seção.</p>
+</section>
+</section>
+<section id="sec-pacotes" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="sec-pacotes"><span class="header-section-number">1.6</span> Pacotes e bibliotecas</h2>
+<section id="sec-o-que-sao-pacotes" class="level3">
+<h3 class="anchored" data-anchor-id="sec-o-que-sao-pacotes">O que são pacotes</h3>
+<p>Um pacote é um conjunto organizado de funções, dados de exemplo e documentação, distribuído de forma que possa ser instalado e usado por qualquer pessoa. A instalação básica do R já inclui alguns pacotes, como <code>base</code>, <code>stats</code>, <code>utils</code> e <code>graphics</code>, que são carregados automaticamente e fornecem as funções elementares da linguagem, procedimentos estatísticos e gráficos. Os demais precisam ser instalados.</p>
+<p>Ao longo do livro serão usados principalmente os pacotes do tidyverse, uma coleção de pacotes que compartilham princípios de organização dos dados e de sintaxe <span class="citation" data-cites="wickham2019tidyverse">(<a href="../references.html#ref-wickham2019tidyverse" role="doc-biblioref">WICKHAM et al., 2019</a>)</span>, além de pacotes específicos para tarefas como importação de planilhas, produção de tabelas e cálculo de medidas epidemiológicas. A lista completa está no <a href="../apendices/a-instalacao.html" class="quarto-xref"><span>Apêndice A</span></a>.</p>
+</section>
+<section id="sec-instalacao-carregamento" class="level3">
+<h3 class="anchored" data-anchor-id="sec-instalacao-carregamento">Instalação e carregamento</h3>
+<p>Usar um pacote envolve duas etapas distintas, que costumam confundir quem está começando. A primeira é a instalação, que copia os arquivos do pacote do repositório para o computador. Ela é feita com a função <code>install.packages()</code>, recebendo o nome do pacote entre aspas, e precisa ser realizada apenas uma vez em cada computador (e repetida quando se deseja atualizar o pacote).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se o pacote depender de outros, eles são instalados automaticamente. A instalação também pode ser feita pela aba <em>Packages</em> do painel 4, no botão <em>Install</em>.</p>
+<p>A segunda etapa é o carregamento, que torna as funções do pacote disponíveis na sessão atual. Ela é feita com a função <code>library()</code>, com o nome do pacote sem aspas, e precisa ser repetida a cada nova sessão do R. Por isso, os comandos <code>library()</code> costumam ficar no início dos scripts, e os comandos <code>install.packages()</code> não costumam ficar neles: não faz sentido reinstalar os pacotes cada vez que o script é executado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Uma analogia comum compara a instalação à compra de um livro, que fica guardado na estante, e o carregamento ao ato de retirá-lo da estante e abri-lo sobre a mesa para consulta. O <a href="#tbl-instalar-carregar" class="quarto-xref">Tabela&nbsp;<span>1.3</span></a> resume as diferenças.</p>
+<div id="tbl-instalar-carregar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-instalar-carregar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.3: Diferenças entre instalar e carregar um pacote.
+</figcaption>
+<div aria-describedby="tbl-instalar-carregar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Instalação</th>
+<th style="text-align: left;">Carregamento</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Função</td>
+<td style="text-align: left;"><code>install.packages("pacote")</code></td>
+<td style="text-align: left;"><code>library(pacote)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nome do pacote</td>
+<td style="text-align: left;">Entre aspas</td>
+<td style="text-align: left;">Sem aspas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Frequência</td>
+<td style="text-align: left;">Uma vez por computador (e nas atualizações)</td>
+<td style="text-align: left;">Uma vez por sessão do R</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Onde fica</td>
+<td style="text-align: left;">No console, ou comentado no script</td>
+<td style="text-align: left;">No início do script</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="sec-bibliotecas" class="level3">
+<h3 class="anchored" data-anchor-id="sec-bibliotecas">Bibliotecas</h3>
+<p>Na terminologia do R, pacote e biblioteca não são sinônimos, embora sejam frequentemente usados como tal. A biblioteca é o diretório do computador em que os pacotes ficam instalados. A função <code>.libPaths()</code> mostra quais são as bibliotecas em uso.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.libPaths</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O nome da função <code>library()</code> remete a esse diretório: ela procura o pacote na biblioteca e o carrega. Em geral, não é preciso se preocupar com a localização das bibliotecas, mas convém saber que cada versão principal do R (por exemplo, 4.4 e 4.5) costuma manter sua própria biblioteca, de modo que, após atualizar o R, pode ser necessário reinstalar os pacotes.</p>
+</section>
+<section id="sec-dois-pontos" class="level3">
+<h3 class="anchored" data-anchor-id="sec-dois-pontos">Chamando funções sem carregar o pacote</h3>
+<p>Também é possível usar uma função de um pacote instalado sem carregá-lo, escrevendo o nome do pacote, dois sinais de dois-pontos e o nome da função, como em <code>here::here()</code>. Essa notação tem duas utilidades. Primeiro, deixa explícito de qual pacote vem cada função, o que ajuda quem lê o código. Segundo, resolve ambiguidades quando dois pacotes carregados têm funções com o mesmo nome. Neste livro, a notação será usada sempre que for importante indicar a origem de uma função.</p>
+</section>
+<section id="sec-conflitos" class="level3">
+<h3 class="anchored" data-anchor-id="sec-conflitos">Conflitos entre funções</h3>
+<p>Quando dois pacotes carregados têm funções com o mesmo nome, prevalece a do pacote carregado por último, e o R avisa que a função anterior foi mascarada. O carregamento do tidyverse ilustra a situação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ dplyr     1.2.1     ✔ readr     2.2.0</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ forcats   1.0.1     ✔ stringr   1.6.0</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ ggplot2   4.0.3     ✔ tibble    3.3.1</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ lubridate 1.9.5     ✔ tidyr     1.3.2</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✔ purrr     1.2.2     </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::filter() masks stats::filter()</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ✖ dplyr::lag()    masks stats::lag()</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A mensagem tem duas partes. A primeira lista os pacotes do tidyverse que foram carregados e suas versões. A segunda, sob o título <em>Conflicts</em>, informa que as funções <code>filter()</code> e <code>lag()</code> do pacote <code>dplyr</code> mascaram funções de mesmo nome do pacote <code>stats</code>, que faz parte da instalação básica. A partir desse momento, ao escrever <code>filter()</code>, será usada a versão do <code>dplyr</code>; para usar a do <code>stats</code>, é preciso escrever <code>stats::filter()</code>. Mensagens desse tipo não indicam erro, mas convém lê-las, pois explicam comportamentos que, de outro modo, pareceriam inesperados.</p>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Para aprofundar">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Para aprofundar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pacotes que ainda não estão no CRAN, ou versões em desenvolvimento de pacotes que estão, podem ser instalados a partir de repositórios como o GitHub, com funções dos pacotes <code>remotes</code> ou <code>pak</code>. Para iniciantes, recomenda-se dar preferência às versões publicadas no CRAN, que passam por verificações automáticas antes de serem disponibilizadas.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-ajuda" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="sec-ajuda"><span class="header-section-number">1.7</span> Como obter ajuda</h2>
+<section id="sec-documentacao" class="level3">
+<h3 class="anchored" data-anchor-id="sec-documentacao">A documentação das funções</h3>
+<p>Toda função de um pacote publicado no CRAN tem uma página de documentação, que pode ser aberta digitando o nome da função precedido de um ponto de interrogação, ou com a função <code>help()</code>. A página aparece na aba <em>Help</em> do painel 4.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>?mean</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(<span class="st">"mean"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As páginas de ajuda seguem uma estrutura padronizada. A seção <em>Description</em> descreve brevemente o que a função faz. A seção <em>Usage</em> mostra como a função é chamada e quais são seus argumentos, com os respectivos valores padrão. A seção <em>Arguments</em> explica cada argumento. A seção <em>Value</em> descreve o resultado devolvido pela função, e a seção <em>Examples</em> traz exemplos que podem ser copiados e executados, ou executados diretamente com a função <code>example()</code>. Na maior parte das vezes, essas cinco seções são suficientes para entender como usar uma função. A documentação costuma estar em inglês, e a leitura de páginas de ajuda é uma habilidade que se desenvolve com a prática.</p>
+<p>Quando não se sabe o nome da função, é possível buscar um termo em toda a documentação instalada com dois pontos de interrogação, como em <code>??"standard deviation"</code>. Muitos pacotes oferecem, além das páginas de cada função, textos mais longos chamados vinhetas (<em>vignettes</em>), que apresentam o pacote por meio de exemplos completos. A função <code>vignette()</code> lista e abre essas vinhetas; por exemplo, <code>vignette(package = "dplyr")</code> mostra as vinhetas do pacote <code>dplyr</code>.</p>
+</section>
+<section id="sec-mensagens-erro" class="level3">
+<h3 class="anchored" data-anchor-id="sec-mensagens-erro">Lendo mensagens de erro</h3>
+<p>Mensagens de erro são a forma pela qual o R comunica que não conseguiu executar um comando, e a primeira atitude diante de uma delas deve ser lê-la com atenção. O exemplo a seguir tenta carregar um pacote cujo nome foi digitado incorretamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(heree)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `library()`:</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! there is no package called 'heree'</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A mensagem informa em qual função o erro ocorreu (<code>library()</code>) e qual foi o problema: não há nenhum pacote com o nome <code>heree</code>. As causas mais prováveis são um erro de digitação ou um pacote que ainda não foi instalado. Dependendo da configuração de idioma do computador e da versão do R, a mensagem pode aparecer em português ou em inglês e com formatação um pouco diferente; o conteúdo é o mesmo.</p>
+<p>Quando a mensagem não é suficiente para resolver o problema, uma busca na internet com o texto da mensagem costuma levar a discussões sobre a mesma dificuldade em fóruns da comunidade, como o <em>Posit Community</em> e o <em>Stack Overflow</em>, que tem uma versão em português. Assistentes baseados em inteligência artificial também podem ajudar a interpretar mensagens e a sugerir soluções, mas suas respostas precisam ser conferidas, pois podem mencionar funções ou argumentos que não existem. O <a href="../apendices/d-erros-ajuda.html" class="quarto-xref"><span>Apêndice D</span></a> reúne os erros mais frequentes e mostra como preparar um exemplo mínimo e reprodutível, que é a forma mais eficiente de pedir ajuda a outras pessoas.</p>
+</section>
+</section>
+<section id="sec-caso-01" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="sec-caso-01"><span class="header-section-number">1.8</span> Estudo de caso: organizando um projeto de análise de nascidos vivos</h2>
+<p>Para consolidar os conteúdos do capítulo, considere a seguinte situação. Uma pesquisadora pretende descrever as características dos nascidos vivos de mães residentes em uma região de saúde do estado de São Paulo, a partir dos dados do SINASC, e examinar a proporção de nascidos vivos com baixo peso ao nascer segundo características maternas. A análise será desenvolvida ao longo de várias semanas e, ao final, será apresentada em um relatório. Antes de obter os dados, ela organiza o projeto.</p>
+<p>O primeiro passo é criar o projeto no RStudio, pelo menu <em>File &gt; New Project &gt; New Directory &gt; New Project</em>, com o nome <code>projeto-sinasc</code>. Em seguida, as pastas da estrutura apresentada na <a href="#sec-estrutura-pastas" class="quarto-xref"><span>Seção 1.5.3</span></a> podem ser criadas pelo navegador de arquivos do painel 4, no botão <em>New Folder</em>, ou com comandos do R. A função <code>dir.create()</code> cria uma pasta, e o argumento <code>recursive = TRUE</code> permite criar, de uma só vez, uma pasta e as pastas que a contêm.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"brutos"</span>), <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"processados"</span>), <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">here</span>(<span class="st">"resultados"</span>, <span class="st">"figuras"</span>), <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">here</span>(<span class="st">"resultados"</span>, <span class="st">"tabelas"</span>), <span class="at">recursive =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">here</span>(<span class="st">"relatorios"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O passo seguinte é escrever o primeiro script, que será salvo como <code>scripts/00-configuracao.R</code>. Ele não analisa dados ainda; sua função é registrar o objetivo do projeto, a fonte dos dados e os pacotes necessários.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Projeto:  Características dos nascidos vivos e baixo peso ao nascer</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Script:   00-configuracao.R</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Objetivo: registrar o objetivo do projeto, a fonte dos dados e os pacotes</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Pergunta de interesse ------------------------------------------------------</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Qual a proporção de nascidos vivos com baixo peso ao nascer (&lt; 2.500 g)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># segundo características maternas, entre mães residentes na região de estudo?</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonte dos dados ------------------------------------------------------------</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Sistema de Informações sobre Nascidos Vivos (SINASC), Ministério da Saúde.</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Microdados obtidos com o pacote microdatasus (ver 01-importacao.R).</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Pacotes --------------------------------------------------------------------</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalação (executar apenas uma vez, no console):</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("here", "tidyverse"))</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Registro do ambiente computacional ------------------------------------------</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Alguns detalhes desse script merecem comentário. O cabeçalho identifica o projeto e o propósito do arquivo, o que é útil quando o projeto acumula muitos scripts. As linhas de comentário terminadas em quatro ou mais hífens criam seções que o RStudio reconhece e exibe no menu de navegação do editor, facilitando a localização de trechos em scripts longos. O comando de instalação aparece comentado, como registro dos pacotes necessários, sem ser executado a cada vez. Por fim, a função <code>sessionInfo()</code> exibe a versão do R, o sistema operacional e as versões dos pacotes carregados. Guardar essa informação permite, no futuro, saber em que ambiente os resultados foram produzidos, o que pode explicar diferenças caso a análise seja refeita com versões mais novas dos pacotes.</p>
+<p>Para completar a organização, a pesquisadora cria o arquivo <code>README.md</code> na pasta principal (<em>File &gt; New File &gt; Markdown File</em>) com uma breve descrição do projeto, a origem dos dados e a ordem de execução dos scripts. Por fim, reinicia a sessão do R e executa o script do início ao fim, verificando que tudo funciona a partir de uma sessão vazia. O projeto está pronto para receber os dados, o que será feito no <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>.</p>
+</section>
+<section id="sec-ex-01" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="sec-ex-01"><span class="header-section-number">1.9</span> Exercícios</h2>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Abra o RStudio e identifique os quatro painéis descritos na <a href="#sec-paineis" class="quarto-xref"><span>Seção 1.3</span></a>. Em qual painel aparece a lista de pacotes instalados? E o histórico de comandos executados no console?</p></li>
+<li><p>Aplique as configurações do <a href="#tbl-config-rstudio" class="quarto-xref">Tabela&nbsp;<span>1.1</span></a>. Em seguida, explique com suas palavras por que não é recomendável salvar o espaço de trabalho em um arquivo <code>.RData</code> ao fechar o RStudio.</p></li>
+<li><p>Crie um projeto chamado <code>introducao-r</code> para os exercícios da disciplina. Com o projeto aberto, execute <code>getwd()</code> no console e verifique se o resultado corresponde à pasta do projeto.</p></li>
+<li><p>Instale o pacote <code>janitor</code> e carregue-o em seguida. Depois, explique por que o nome do pacote precisa estar entre aspas em <code>install.packages()</code>, mas não em <code>library()</code>.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="5" type="1">
+<li><p>A equipe de vigilância epidemiológica de um município vai produzir um boletim semanal sobre dengue a partir das notificações do SINAN. Proponha uma estrutura de pastas para o projeto, adaptando a apresentada na <a href="#sec-estrutura-pastas" class="quarto-xref"><span>Seção 1.5.3</span></a>, e escreva o conteúdo de um arquivo <code>README.md</code> que descreva o objetivo do projeto, a fonte dos dados e a ordem de execução dos scripts previstos.</p></li>
+<li><p>Abra a página de ajuda da função <code>round()</code>. Com base nas seções <em>Usage</em> e <em>Arguments</em>, responda: quais são os argumentos da função? Qual é o valor padrão do argumento <code>digits</code>? Execute os exemplos da página com <code>example(round)</code> e descreva o que eles mostram.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="7" type="1">
+<li><p>Crie um script que leia um arquivo qualquer usando um caminho absoluto e outro que faça o mesmo usando <code>here()</code>. Mova a pasta do projeto para outro local do computador (ou copie-a para o computador de um colega), abra o projeto e execute os dois scripts. Descreva o que acontece em cada caso e discuta as consequências dessa diferença para o trabalho em equipe e para a reprodutibilidade de uma pesquisa.</p></li>
+<li><p>Execute <code>library(tidyverse)</code> e, em seguida, <code>search()</code>, função que lista os pacotes carregados na ordem em que o R procura as funções. Relacione o resultado à mensagem de conflitos discutida na <a href="#sec-conflitos" class="quarto-xref"><span>Seção 1.6.5</span></a> e explique por que <code>filter()</code> passa a se referir à função do <code>dplyr</code>.</p></li>
+</ol>
+</section>
+</section>
+<section id="sec-sintese-01" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="sec-sintese-01"><span class="header-section-number">1.10</span> Síntese</h2>
+<p>Este capítulo apresentou o ambiente de trabalho usado ao longo do livro. O R é a linguagem e o programa que executam os comandos; o RStudio é o ambiente que facilita esse trabalho, organizando editor, console, ambiente e demais recursos em painéis. Os comandos podem ser executados diretamente no console, mas toda análise que se pretenda guardar deve ser registrada em scripts, que constituem o produto do trabalho e permitem refazê-lo. Os projetos do RStudio, combinados com caminhos relativos e com o pacote <code>here</code>, tornam esses scripts independentes do computador em que foram escritos, e uma estrutura de pastas padronizada separa dados brutos, dados processados, scripts e resultados. Os pacotes ampliam as funcionalidades do R; são instalados uma vez com <code>install.packages()</code> e carregados a cada sessão com <code>library()</code>. Por fim, a documentação das funções e a leitura atenta das mensagens de erro são os primeiros recursos diante de qualquer dificuldade. O <a href="#tbl-sintese-01" class="quarto-xref">Tabela&nbsp;<span>1.4</span></a> reúne as funções apresentadas.</p>
+<div id="tbl-sintese-01" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;1.4: Funções e recursos apresentados no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-01-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Função ou recurso</th>
+<th style="text-align: left;">Pacote</th>
+<th style="text-align: left;">Finalidade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>R.version.string</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Mostrar a versão do R</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>getwd()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Mostrar o diretório de trabalho</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>here()</code></td>
+<td style="text-align: left;">here</td>
+<td style="text-align: left;">Construir caminhos a partir da raiz do projeto</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>dir.create()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Criar pastas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>install.packages()</code></td>
+<td style="text-align: left;">utils</td>
+<td style="text-align: left;">Instalar pacotes a partir do CRAN</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>library()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Carregar um pacote na sessão</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>pacote::funcao()</code></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Chamar uma função indicando o pacote de origem</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>.libPaths()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Mostrar as bibliotecas de pacotes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>search()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Listar os pacotes carregados</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>?</code>, <code>help()</code>, <code>??</code></td>
+<td style="text-align: left;">utils</td>
+<td style="text-align: left;">Consultar a documentação</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>example()</code></td>
+<td style="text-align: left;">utils</td>
+<td style="text-align: left;">Executar os exemplos da documentação</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>vignette()</code></td>
+<td style="text-align: left;">utils</td>
+<td style="text-align: left;">Listar e abrir as vinhetas dos pacotes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>sessionInfo()</code></td>
+<td style="text-align: left;">utils</td>
+<td style="text-align: left;">Registrar as versões do R e dos pacotes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="sec-mais-01" class="level2" data-number="1.11">
+<h2 data-number="1.11" class="anchored" data-anchor-id="sec-mais-01"><span class="header-section-number">1.11</span> Para saber mais</h2>
+<p>O capítulo 6 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> discute scripts e projetos e é a referência mais próxima da abordagem adotada aqui; o capítulo 8 da mesma obra trata da busca de ajuda. O <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> apresenta, no capítulo 3, uma introdução ao R com orientações sobre instalação, RStudio, pacotes e diretório de trabalho, e dedica o capítulo 6 aos projetos. O primeiro capítulo de Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> oferece, em português, uma introdução detalhada ao R e ao RStudio, incluindo scripts, pacotes e erros. Bougioukas <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span> trata dos mesmos temas nos capítulos 1, 2 e 5. A origem e as ideias de projeto do R estão descritas no artigo de seus criadores <span class="citation" data-cites="ihaka1996r">(<a href="../references.html#ref-ihaka1996r" role="doc-biblioref">IHAKA; GENTLEMAN, 1996</a>)</span>, e o guia do usuário do RStudio, mantido pela Posit, está disponível em <a href="https://docs.posit.co/ide/user/" class="uri">https://docs.posit.co/ide/user/</a>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Obra</th>
+<th style="text-align: left;">Capítulo</th>
+<th style="text-align: left;">Seções de interesse</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
+<td style="text-align: left;">6. Fluxo de trabalho: scripts e projetos; 8. Fluxo de trabalho: obtendo ajuda</td>
+<td style="text-align: left;">Scripts; Projetos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
+<td style="text-align: left;">3. Introdução ao R; 5. Pacotes sugeridos; 6. R projects</td>
+<td style="text-align: left;">Instalação; RStudio; Pacotes; Scripts; Diretório de trabalho</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
+<td style="text-align: left;">1. Noções básicas do R</td>
+<td style="text-align: left;">Introdução ao R e RStudio; Erros e ajuda; Scripts; Pacotes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
+<td style="text-align: left;">1. R via RStudio; 2. RStudio Projects; 5. R packages</td>
+<td style="text-align: left;">—</td>
+</tr>
+</tbody>
+</table>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-batra2021epirhandbook" class="csl-entry" role="listitem">
+BATRA, N. et al. <strong><a href="https://doi.org/10.5281/zenodo.4752646">Manual de R para Epidemiologistas</a></strong>. [s.l.] Applied Epi, 2021.
+</div>
+<div id="ref-bougioukas2025medstats" class="csl-entry" role="listitem">
+BOUGIOUKAS, K. I. <strong><a href="https://practical-stats-med-r.netlify.app/">Practical Statistics in Medicine with R: understanding fundamental concepts through examples</a></strong>. [s.l: s.n.].
+</div>
+<div id="ref-faria2024intror" class="csl-entry" role="listitem">
+FARIA, P. D. <strong><a href="https://pedropark99.github.io/Introducao_R/">Introdução à Linguagem R: seus fundamentos e sua prática</a></strong>. 5. ed. Belo Horizonte: [s.n.], 2024.
+</div>
+<div id="ref-ihaka1996r" class="csl-entry" role="listitem">
+IHAKA, R.; GENTLEMAN, R. <a href="https://doi.org/10.1080/10618600.1996.10474713">R: a language for data analysis and graphics</a>. <strong>Journal of Computational and Graphical Statistics</strong>, v. 5, n. 3, p. 299–314, 1996.
+</div>
+<div id="ref-saldanha2019microdatasus" class="csl-entry" role="listitem">
+SALDANHA, R. DE F.; BASTOS, R. R.; BARCELLOS, C. <a href="https://doi.org/10.1590/0102-311X00032419">Microdatasus: pacote para download e pré-processamento de microdados do Departamento de Informática do SUS (DATASUS)</a>. <strong>Cadernos de Saúde Pública</strong>, v. 35, n. 9, p. e00032419, 2019.
+</div>
+<div id="ref-wickham2019tidyverse" class="csl-entry" role="listitem">
+WICKHAM, H. et al. <a href="https://doi.org/10.21105/joss.01686">Welcome to the tidyverse</a>. <strong>Journal of Open Source Software</strong>, v. 4, n. 43, p. 1686, 2019.
+</div>
+<div id="ref-wickham2023r4ds" class="csl-entry" role="listitem">
+WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4ds.hadley.nz/">R para Ciência de Dados</a></strong>. 2. ed. [s.l: s.n.].
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiada");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiada");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pradogps\.github\.io\/intro-r\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../partes/parte-1-primeiros-passos.html" class="pagination-link" aria-label="Primeiros passos com R">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Primeiros passos com R</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../capitulos/02-objetos-funcoes.html" class="pagination-link" aria-label="Objetos, funções e operadores">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Objetos, funções e operadores</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Gustavo Prado · Material didático da disciplina HEP0185 — Introdução ao R (FSP/USP).</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Construído com <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

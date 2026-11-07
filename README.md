@@ -8,12 +8,17 @@ Site publicado em **https://pradogps.github.io**, hospedado gratuitamente pelo G
 2. Use `Ctrl+F` (ou `Cmd+F`) para encontrar o trecho que deseja mudar e altere apenas o texto entre as marcações.
 3. Clique em **Commit changes**. Em um ou dois minutos o site é atualizado.
 
+## Livro *Introdução ao Software R*
+
+A pasta `intro-r/` contém a versão publicada do livro *Introdução ao Software R: guia básico para aplicações em Saúde Pública*, disponível em **https://pradogps.github.io/intro-r/**. Esses arquivos são gerados automaticamente pelo Quarto a partir do projeto `IntroR` (pasta `_book/`) e não devem ser editados à mão: as alterações são feitas nos arquivos `.qmd` do projeto, e a pasta é substituída a cada nova publicação.
+
 ## Arquivos
 
 - `index.html`: página principal (textos, estilos e links do WhatsApp).
 - `assets/`: foto, logotipo, ícones, imagem de compartilhamento e fontes.
 - `404.html`: página exibida quando um endereço não existe.
 - `robots.txt` e `sitemap.xml`: ajudam os buscadores a encontrar o site.
+- `intro-r/`: livro publicado (gerado pelo Quarto; não editar à mão).
 
 As fontes Archivo e Source Serif 4 são distribuídas sob a SIL Open Font License (licenças em `assets/fonts/`).
 

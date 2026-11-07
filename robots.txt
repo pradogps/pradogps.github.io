@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://pradogps.github.io/sitemap.xml
+Sitemap: https://pradogps.github.io/intro-r/sitemap.xml
