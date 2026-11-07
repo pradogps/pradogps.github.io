@@ -17,6 +17,3 @@ Site publicado em **https://pradogps.github.io**, hospedado gratuitamente pelo G
 
 As fontes Archivo e Source Serif 4 são distribuídas sob a SIL Open Font License (licenças em `assets/fonts/`).
 
-## Domínio próprio (opcional)
-
-Para usar um domínio como `gustavoprado.com.br`, registre-o no Registro.br, crie um arquivo `CNAME` na raiz deste repositório contendo apenas o domínio e configure o DNS conforme a documentação do GitHub Pages (*Managing a custom domain for your GitHub Pages site*).
