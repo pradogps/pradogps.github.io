@@ -1,0 +1,1 @@
+Figuras reproduzidas de: Lourenço J, Maia de Lima M, Faria NR, et al. Epidemiological and ecological determinants of Zika virus transmission in an urban setting. eLife. 2017;6:e29820. doi:10.7554/eLife.29820. Artigo distribuído sob licença Creative Commons Attribution (CC BY).
