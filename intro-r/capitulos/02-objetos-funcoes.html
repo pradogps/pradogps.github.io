@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -348,13 +383,24 @@ div.csl-indent {
    
   <ul>
   <li><a href="#sec-calculadora" id="toc-sec-calculadora" class="nav-link active" data-scroll-target="#sec-calculadora"><span class="header-section-number">2.1</span> O R como calculadora</a></li>
-  <li><a href="#sec-objetos" id="toc-sec-objetos" class="nav-link" data-scroll-target="#sec-objetos"><span class="header-section-number">2.2</span> Objetos e atribuição</a></li>
+  <li><a href="#sec-objetos" id="toc-sec-objetos" class="nav-link" data-scroll-target="#sec-objetos"><span class="header-section-number">2.2</span> Objetos e atribuição</a>
+  <ul class="collapse">
+  <li><a href="#sec-nomes" id="toc-sec-nomes" class="nav-link" data-scroll-target="#sec-nomes">Como dar nomes aos objetos</a></li>
+  </ul></li>
   <li><a href="#sec-funcoes-argumentos" id="toc-sec-funcoes-argumentos" class="nav-link" data-scroll-target="#sec-funcoes-argumentos"><span class="header-section-number">2.3</span> Funções e argumentos</a></li>
   <li><a href="#sec-operadores-logicos" id="toc-sec-operadores-logicos" class="nav-link" data-scroll-target="#sec-operadores-logicos"><span class="header-section-number">2.4</span> Operadores relacionais e lógicos</a></li>
   <li><a href="#sec-funcoes-estatisticas" id="toc-sec-funcoes-estatisticas" class="nav-link" data-scroll-target="#sec-funcoes-estatisticas"><span class="header-section-number">2.5</span> Funções estatísticas básicas</a></li>
-  <li><a href="#sec-erros-estilo" id="toc-sec-erros-estilo" class="nav-link" data-scroll-target="#sec-erros-estilo"><span class="header-section-number">2.6</span> Erros, avisos e estilo de código</a></li>
+  <li><a href="#sec-erros-estilo" id="toc-sec-erros-estilo" class="nav-link" data-scroll-target="#sec-erros-estilo"><span class="header-section-number">2.6</span> Erros, avisos e estilo de código</a>
+  <ul class="collapse">
+  <li><a href="#sec-estilo" id="toc-sec-estilo" class="nav-link" data-scroll-target="#sec-estilo">Escrevendo código que outras pessoas consigam ler</a></li>
+  </ul></li>
   <li><a href="#sec-caso-02" id="toc-sec-caso-02" class="nav-link" data-scroll-target="#sec-caso-02"><span class="header-section-number">2.7</span> Estudo de caso: calculando indicadores a partir de contagens</a></li>
-  <li><a href="#sec-ex-02" id="toc-sec-ex-02" class="nav-link" data-scroll-target="#sec-ex-02"><span class="header-section-number">2.8</span> Exercícios</a></li>
+  <li><a href="#sec-ex-02" id="toc-sec-ex-02" class="nav-link" data-scroll-target="#sec-ex-02"><span class="header-section-number">2.8</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-02" id="toc-sec-sintese-02" class="nav-link" data-scroll-target="#sec-sintese-02"><span class="header-section-number">2.9</span> Síntese</a></li>
   <li><a href="#sec-mais-02" id="toc-sec-mais-02" class="nav-link" data-scroll-target="#sec-mais-02"><span class="header-section-number">2.10</span> Para saber mais</a></li>
   </ul>
@@ -382,21 +428,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 1 · <strong>Pré-requisitos:</strong> <a href="01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a> · <strong>Pacotes:</strong> R base</p>
+<p><strong>Encontro previsto:</strong> 1 · <strong>Pré-requisitos:</strong> <a href="01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a> · <strong>Pacotes:</strong> apenas o R base</p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -408,36 +441,356 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de usar o R como calculadora, respeitando a precedência dos operadores; criar objetos por meio de atribuição e nomeá-los segundo boas práticas; chamar funções, reconhecendo argumentos obrigatórios, opcionais e valores padrão; construir expressões com operadores relacionais e lógicos; aplicar funções estatísticas elementares a conjuntos de valores; e distinguir mensagens de erro, avisos e mensagens informativas, usando-as para corrigir o próprio código.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de usar o R como calculadora, respeitando a ordem das operações; criar objetos e escolher bons nomes para eles; chamar funções, reconhecendo argumentos obrigatórios, opcionais e valores padrão; montar comparações e condições com operadores relacionais e lógicos; aplicar funções estatísticas simples a um conjunto de valores; e ler mensagens de erro e de aviso para corrigir o próprio código.</p>
 </div>
 </div>
+<p>No capítulo anterior, o R foi usado apenas para somar dois números e consultar sua versão. Neste capítulo começamos a conversar com ele de verdade. Vamos guardar valores em objetos, chamar funções, comparar números e calcular alguns indicadores de saúde a partir de contagens. Tudo o que aparece aqui será usado em todos os capítulos seguintes, por isso vale a pena executar cada exemplo no seu próprio computador, de preferência em um script salvo dentro do projeto da disciplina.</p>
 <section id="sec-calculadora" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-calculadora"><span class="header-section-number">2.1</span> O R como calculadora</h2>
-<p>Apresenta os operadores aritméticos (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>^</code>, <code>%/%</code>, <code>%%</code>), a ordem de precedência e o uso de parênteses. Chama a atenção para o uso do ponto como separador decimal no R, em contraste com a vírgula usada no Brasil, e introduz funções matemáticas de uso frequente (<code>sqrt()</code>, <code>exp()</code>, <code>log()</code>, <code>log10()</code>), destacando que <code>log()</code> calcula, por padrão, o logaritmo natural.</p>
+<p>O jeito mais simples de usar o R é como uma calculadora. Os operadores aritméticos são os mesmos que usamos no papel, com algumas pequenas diferenças de grafia.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">5</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 50</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">4</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.5</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">^</span> <span class="dv">2</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 100</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O asterisco (<code>*</code>) indica multiplicação e o acento circunflexo (<code>^</code>) indica potência. Há ainda dois operadores menos conhecidos, mas úteis. O operador <code>%/%</code> devolve apenas a parte inteira de uma divisão, e o operador <code>%%</code> devolve o resto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span> <span class="sc">%/%</span> <span class="dv">5</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span> <span class="sc">%%</span> <span class="dv">5</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esses dois operadores aparecem, por exemplo, quando queremos transformar uma idade em dias em anos completos e dias restantes, ou quando precisamos descobrir se um número é par (o resto da divisão por 2 é zero).</p>
+<p>O R segue a ordem usual das operações da matemática. Potências são calculadas antes de multiplicações e divisões, que por sua vez vêm antes de somas e subtrações. Quando houver dúvida, os parênteses resolvem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 14</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">4</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Um cuidado importante para quem trabalha no Brasil é o separador decimal. No R, a parte decimal é sempre separada por <strong>ponto</strong>, e nunca por vírgula. Escrever <code>3,5</code> não representa três e meio; a vírgula, como veremos adiante, serve para separar os argumentos de uma função. Esse detalhe parece pequeno, mas é a origem de muitos problemas na importação de planilhas preparadas com a configuração brasileira, assunto do <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>.</p>
+<p>Além das operações básicas, o R oferece funções matemáticas prontas. As mais usadas são a raiz quadrada (<code>sqrt()</code>), a exponencial (<code>exp()</code>) e os logaritmos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">144</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 12</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.718282</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">100</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4.60517</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">100</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">8</span>, <span class="at">base =</span> <span class="dv">2</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Repare que <code>log()</code> calcula o logaritmo <strong>natural</strong> (na base <em>e</em>), e não o logaritmo na base 10, como acontece em muitas calculadoras. Para a base 10 existe a função <code>log10()</code>, e para qualquer outra base basta informar o argumento <code>base</code>. Essa distinção será importante quando calcularmos intervalos de confiança para medidas de associação, no <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>, que usam o logaritmo natural.</p>
 </section>
 <section id="sec-objetos" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-objetos"><span class="header-section-number">2.2</span> Objetos e atribuição</h2>
-<p>Define objeto como um nome associado a um valor armazenado na memória e apresenta o operador de atribuição <code>&lt;-</code>. Discute regras e convenções de nomes (sensibilidade a maiúsculas, uso de <code>snake_case</code>, nomes descritivos), a sobrescrita de objetos e a inspeção do ambiente (<code>ls()</code>, painel <em>Environment</em>).</p>
+<p>Fazer contas soltas no console tem pouca utilidade se não pudermos guardar os resultados. No R, guardamos valores em <strong>objetos</strong>. Um objeto é um nome que aponta para um valor armazenado na memória do computador. Para criar um objeto, usamos o operador de atribuição <code>&lt;-</code>, formado pelo sinal de menor seguido de um hífen. No RStudio, o atalho <em>Alt + -</em> (no macOS, <em>Option + -</em>) digita esse operador de uma vez.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nascidos_vivos <span class="ot">&lt;-</span> <span class="dv">1350</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>obitos_infantis <span class="ot">&lt;-</span> <span class="dv">16</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ao executar essas duas linhas, nada aparece no console, mas os objetos passam a existir e são listados no painel <em>Environment</em>. Para ver o valor de um objeto, basta digitar o seu nome.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nascidos_vivos</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1350</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A partir daí, o objeto pode ser usado em qualquer cálculo, exatamente como se fosse o número que ele guarda.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>obitos_infantis <span class="sc">/</span> nascidos_vivos <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.85185</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se atribuirmos um novo valor a um objeto que já existe, o valor antigo é substituído sem nenhum aviso. Isso é útil, mas exige atenção, porque um resultado importante pode ser perdido por descuido.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nascidos_vivos <span class="ot">&lt;-</span> <span class="dv">1412</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>nascidos_vivos</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1412</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="sec-nomes" class="level3">
+<h3 class="anchored" data-anchor-id="sec-nomes">Como dar nomes aos objetos</h3>
+<p>O R aceita nomes formados por letras, números, pontos e sublinhados, desde que comecem por uma letra (ou por um ponto que não seja seguido de número). Não são permitidos espaços nem palavras reservadas da linguagem, como <code>if</code>, <code>for</code>, <code>TRUE</code> ou <code>NA</code>. O R também diferencia letras maiúsculas e minúsculas, de modo que <code>Peso</code>, <code>peso</code> e <code>PESO</code> são três objetos diferentes.</p>
+<p>Dentro dessas regras, vale a pena seguir algumas convenções. A mais adotada na comunidade, e seguida neste livro, é escrever nomes em letras minúsculas, sem acentos, separando as palavras por sublinhado, como em <code>taxa_mortalidade</code> ou <code>casos_confirmados</code>. Os nomes devem ser descritivos o bastante para que outra pessoa entenda o que guardam. Um objeto chamado <code>x2</code> não diz nada; um objeto chamado <code>peso_medio_gramas</code> dispensa explicações.</p>
+<div class="callout callout-style-simple callout-warning callout-titled" title="Cuidado com acentos nos nomes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cuidado com acentos nos nomes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>O R até aceita letras acentuadas em nomes de objetos, mas elas costumam causar problemas quando o script é aberto em outro computador ou sistema operacional. Prefira <code>obitos</code> a <code>óbitos</code> e <code>populacao</code> a <code>população</code>.</p>
+</div>
+</div>
+<p>Para listar os objetos existentes na sessão, usamos a função <code>ls()</code>. Para remover um objeto que não é mais necessário, usamos <code>rm()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "nascidos_vivos"  "obitos_infantis"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(obitos_infantis)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="sec-funcoes-argumentos" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="sec-funcoes-argumentos"><span class="header-section-number">2.3</span> Funções e argumentos</h2>
-<p>Explica a anatomia de uma chamada de função, a correspondência de argumentos por nome e por posição, os valores padrão e o aninhamento de funções. Mostra como ler a página de ajuda de uma função (seções <em>Usage</em>, <em>Arguments</em>, <em>Value</em> e <em>Examples</em>), usando <code>round()</code> e <code>log()</code> como exemplos.</p>
+<p>Já usamos várias funções, como <code>sqrt()</code> e <code>log()</code>. Uma função é um conjunto de instruções que recebe valores de entrada, realiza alguma tarefa e devolve um resultado. A forma geral de chamar uma função é sempre a mesma: o nome da função, seguido de parênteses, e dentro dos parênteses os <strong>argumentos</strong>, separados por vírgulas.</p>
+<p>Tome como exemplo a função <code>round()</code>, que arredonda números. Ela tem dois argumentos. O primeiro, <code>x</code>, é o número a ser arredondado. O segundo, <code>digits</code>, indica quantas casas decimais devem ser mantidas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="at">x =</span> <span class="fl">3.14159</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.14</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os argumentos podem ser informados pelo nome, como acima, ou apenas pela posição. Como <code>x</code> é o primeiro argumento e <code>digits</code> é o segundo, a chamada abaixo tem o mesmo efeito.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.14</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Quando um argumento tem um <strong>valor padrão</strong>, ele pode ser omitido. No caso de <code>round()</code>, o valor padrão de <code>digits</code> é zero. Por isso, a chamada a seguir arredonda para o inteiro mais próximo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Como saber quais argumentos uma função aceita e quais são os valores padrão? A resposta está na página de ajuda, que vimos no <a href="01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a>. Ao digitar <code>?round</code>, a seção <em>Usage</em> mostra <code>round(x, digits = 0, ...)</code>. O argumento <code>x</code> não tem valor padrão, por isso é obrigatório; <code>digits</code> já vem igual a zero e só precisa ser informado quando queremos outra coisa.</p>
+<p>Uma recomendação prática é informar pelo nome todos os argumentos, exceto o primeiro, que costuma ser óbvio. Escrever <code>round(taxa, digits = 1)</code> é mais claro do que <code>round(taxa, 1)</code>, principalmente para quem lê o código meses depois.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Uma curiosidade sobre arredondamento">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Uma curiosidade sobre arredondamento
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Faça o teste: <code>round(0.5)</code> devolve 0, mas <code>round(1.5)</code> devolve 2, e <code>round(2.5)</code> devolve 2 de novo. Não é erro. Quando o número está exatamente no meio do caminho, o R arredonda para o número par mais próximo, seguindo uma norma internacional para cálculos em computador. Na prática, isso raramente faz diferença, mas é bom saber para não estranhar o resultado.</p>
+</div>
+</div>
+<p>Funções também podem ser colocadas umas dentro das outras. Nesse caso, o R executa primeiro a função mais interna e usa o resultado como argumento da mais externa.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="dv">10</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.16</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-operadores-logicos" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="sec-operadores-logicos"><span class="header-section-number">2.4</span> Operadores relacionais e lógicos</h2>
-<p>Apresenta os operadores de comparação (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>), os operadores lógicos (<code>&amp;</code>, <code>|</code>, <code>!</code>) e o operador <code>%in%</code>, com exemplos de critérios usados na prática, como identificar pesos ao nascer inferiores a 2.500 g ou idades maternas abaixo de 20 anos. Introduz os valores <code>TRUE</code> e <code>FALSE</code> e prepara o terreno para a filtragem de dados no <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>.</p>
+<p>Em análise de dados, fazemos perguntas o tempo todo. Este recém-nascido tem baixo peso? Esta mãe é adolescente? Este caso foi confirmado? No R, perguntas desse tipo são feitas com <strong>operadores relacionais</strong>, que comparam dois valores e respondem <code>TRUE</code> (verdadeiro) ou <code>FALSE</code> (falso).</p>
+<div id="tbl-relacionais" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-relacionais-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.1: Operadores relacionais.
+</figcaption>
+<div aria-describedby="tbl-relacionais-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Operador</th>
+<th style="text-align: left;">Significado</th>
+<th style="text-align: left;">Exemplo</th>
+<th style="text-align: left;">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>==</code></td>
+<td style="text-align: left;">igual a</td>
+<td style="text-align: left;"><code>5 == 5</code></td>
+<td style="text-align: left;"><code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!=</code></td>
+<td style="text-align: left;">diferente de</td>
+<td style="text-align: left;"><code>5 != 5</code></td>
+<td style="text-align: left;"><code>FALSE</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt;</code></td>
+<td style="text-align: left;">menor que</td>
+<td style="text-align: left;"><code>2300 &lt; 2500</code></td>
+<td style="text-align: left;"><code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;</code></td>
+<td style="text-align: left;">maior que</td>
+<td style="text-align: left;"><code>2300 &gt; 2500</code></td>
+<td style="text-align: left;"><code>FALSE</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&lt;=</code></td>
+<td style="text-align: left;">menor ou igual a</td>
+<td style="text-align: left;"><code>37 &lt;= 37</code></td>
+<td style="text-align: left;"><code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;=</code></td>
+<td style="text-align: left;">maior ou igual a</td>
+<td style="text-align: left;"><code>19 &gt;= 20</code></td>
+<td style="text-align: left;"><code>FALSE</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Repare que o teste de igualdade usa <strong>dois</strong> sinais de igual. Um único sinal (<code>=</code>) tem outra função, a de atribuir valores a argumentos dentro de funções, e confundir os dois é um erro comum.</p>
+<p>Vamos usar esses operadores com um exemplo concreto. Na saúde materno-infantil, considera-se com baixo peso ao nascer o recém-nascido que pesa menos de 2.500 gramas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">&lt;-</span> <span class="dv">2350</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>peso <span class="sc">&lt;</span> <span class="dv">2500</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Muitas vezes precisamos combinar duas ou mais condições. Para isso existem os <strong>operadores lógicos</strong>. O operador <code>&amp;</code> (e) só devolve <code>TRUE</code> quando as duas condições são verdadeiras. O operador <code>|</code> (ou) devolve <code>TRUE</code> quando pelo menos uma delas é verdadeira. O operador <code>!</code> (não) inverte o resultado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>idade_mae <span class="ot">&lt;-</span> <span class="dv">17</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>semanas_gestacao <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>idade_mae <span class="sc">&lt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> semanas_gestacao <span class="sc">&lt;</span> <span class="dv">37</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>idade_mae <span class="sc">&lt;</span> <span class="dv">20</span> <span class="sc">|</span> semanas_gestacao <span class="sc">&lt;</span> <span class="dv">37</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span>(idade_mae <span class="sc">&lt;</span> <span class="dv">20</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Na primeira linha, perguntamos se a mãe é adolescente <strong>e</strong> o parto foi prematuro; as duas coisas são verdadeiras, então a resposta é <code>TRUE</code>. Na segunda, basta uma das duas ser verdadeira. Na terceira, o <code>!</code> transforma a resposta de “a mãe tem menos de 20 anos?” em “a mãe <strong>não</strong> tem menos de 20 anos?”.</p>
+<p>Um último operador muito usado é <code>%in%</code>, que verifica se um valor pertence a um conjunto de valores. Ele é bem mais prático do que escrever várias comparações ligadas por <code>|</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>uf <span class="ot">&lt;-</span> <span class="st">"RO"</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>uf <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AC"</span>, <span class="st">"AM"</span>, <span class="st">"RO"</span>, <span class="st">"RR"</span>, <span class="st">"PA"</span>, <span class="st">"AP"</span>, <span class="st">"TO"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aqui perguntamos se a unidade da federação pertence à Região Norte. A função <code>c()</code>, que reúne vários valores em um só objeto, será apresentada com calma na próxima seção.</p>
 </section>
 <section id="sec-funcoes-estatisticas" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="sec-funcoes-estatisticas"><span class="header-section-number">2.5</span> Funções estatísticas básicas</h2>
-<p>Introduz a criação de conjuntos de valores com <code>c()</code> e a aplicação de funções resumo (<code>sum()</code>, <code>length()</code>, <code>mean()</code>, <code>median()</code>, <code>var()</code>, <code>sd()</code>, <code>min()</code>, <code>max()</code>, <code>range()</code>). Antecipa o argumento <code>na.rm</code>, que será tratado com mais detalhe no <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a>. A interpretação estatística dessas medidas é retomada no <a href="11-descritiva.html" class="quarto-xref"><span>Capítulo 11</span></a>.</p>
+<p>Até agora, cada objeto guardou um único número. Na prática, trabalhamos com conjuntos de valores, como os pesos de todos os recém-nascidos de um hospital. A função <code>c()</code> (de <em>combinar</em>) junta vários valores em um único objeto, chamado <strong>vetor</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pesos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3200</span>, <span class="dv">2850</span>, <span class="dv">3540</span>, <span class="dv">2410</span>, <span class="dv">3100</span>, <span class="dv">3890</span>, <span class="dv">2980</span>, <span class="dv">1980</span>, <span class="dv">3330</span>, <span class="dv">3015</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>pesos</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 3200 2850 3540 2410 3100 3890 2980 1980 3330 3015</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os dez pesos acima, em gramas, são fictícios e servem apenas para ilustrar. Com eles, podemos calcular as medidas resumo mais comuns usando funções prontas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(pesos)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(pesos)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30295</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pesos)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3029.5</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(pesos)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3057.5</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(pesos)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1980</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(pesos)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3890</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(pesos)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1980 3890</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(pesos)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 542.1687</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(pesos)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 293946.9</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>length()</code> conta quantos valores há no vetor; <code>sum()</code> os soma; <code>mean()</code> e <code>median()</code> calculam a média e a mediana; <code>min()</code>, <code>max()</code> e <code>range()</code> mostram os extremos; <code>sd()</code> e <code>var()</code> calculam o desvio-padrão e a variância. O significado estatístico dessas medidas e a escolha entre elas serão discutidos no <a href="11-descritiva.html" class="quarto-xref"><span>Capítulo 11</span></a>.</p>
+<p>Os operadores relacionais também funcionam com vetores. Nesse caso, a comparação é feita valor a valor, e o resultado é um vetor de <code>TRUE</code> e <code>FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>pesos <span class="sc">&lt;</span> <span class="dv">2500</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esse resultado pode ser somado. Como o R trata <code>TRUE</code> como 1 e <code>FALSE</code> como 0, a soma conta quantos valores atendem à condição, e a média dá a proporção.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(pesos <span class="sc">&lt;</span> <span class="dv">2500</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pesos <span class="sc">&lt;</span> <span class="dv">2500</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ou seja, 2 dos 10 recém-nascidos têm baixo peso, o que corresponde a 20%. Esse truque de somar ou tirar a média de uma condição será usado muitas vezes ao longo do livro.</p>
+<p>Um último detalhe. Quando um vetor contém um valor ausente, representado no R por <code>NA</code>, as funções resumo devolvem <code>NA</code>, porque não é possível saber o resultado sem conhecer todos os valores. O argumento <code>na.rm = TRUE</code> pede que os valores ausentes sejam ignorados no cálculo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pesos_com_ausente <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3200</span>, <span class="dv">2850</span>, <span class="cn">NA</span>, <span class="dv">2410</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pesos_com_ausente)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pesos_com_ausente, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2820</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Valores ausentes são muito comuns nos sistemas de informação em saúde e voltarão a aparecer em vários capítulos, com destaque para o <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a> e o <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
 </section>
 <section id="sec-erros-estilo" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="sec-erros-estilo"><span class="header-section-number">2.6</span> Erros, avisos e estilo de código</h2>
-<p>Distingue erros, que interrompem a execução, de avisos e mensagens. Apresenta os erros mais comuns de quem está começando (objeto não encontrado, símbolo inesperado, parêntese ou aspas não fechados, diferença entre maiúsculas e minúsculas) e as regras básicas do guia de estilo do tidyverse quanto a espaços, nomes e comentários.</p>
+<p>Errar faz parte de programar, e o R avisa quando algo não vai bem. Há três tipos de mensagem. Um <strong>erro</strong> (<em>error</em>) interrompe a execução, e o comando não produz resultado. Um <strong>aviso</strong> (<em>warning</em>) indica que o comando foi executado, mas algo merece atenção. Uma <strong>mensagem</strong> (<em>message</em>) apenas informa o que está acontecendo, como a lista de pacotes carregados que vimos no <a href="01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a>.</p>
+<p>Os erros mais frequentes de quem está começando são bem previsíveis. O primeiro é usar um objeto que não existe, quase sempre por erro de digitação ou de maiúsculas e minúsculas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Pesos</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error:</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! object 'Pesos' not found</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O segundo é esquecer um parêntese, uma vírgula ou aspas. Nesse caso, o R não entende o comando e informa que encontrou algo inesperado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pesos)<span class="er">)</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in parse(text = input): &lt;text&gt;:1:12: unexpected ')'</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1: mean(pesos))</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                ^</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O terceiro é chamar uma função com o tipo errado de valor, como tentar calcular o logaritmo de um texto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="st">"cem"</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `log()`:</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! non-numeric argument to mathematical function</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Já um aviso aparece, por exemplo, quando pedimos o logaritmo de um número negativo. O R devolve <code>NaN</code> (<em>not a number</em>, ou “não é um número”) e avisa que o resultado não faz sentido.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning in log(-1): NaNs produced</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NaN</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Diante de qualquer erro, vale seguir uma rotina simples. Leia a mensagem até o fim, confira se os nomes estão escritos exatamente como foram criados, verifique se todos os parênteses e aspas foram fechados e, se nada disso resolver, copie a mensagem e procure por ela na internet. Essas estratégias estão reunidas no <a href="../apendices/d-erros-ajuda.html" class="quarto-xref"><span>Apêndice D</span></a>.</p>
+<section id="sec-estilo" class="level3">
+<h3 class="anchored" data-anchor-id="sec-estilo">Escrevendo código que outras pessoas consigam ler</h3>
+<p>Código é lido muito mais vezes do que é escrito, e quase sempre por nós mesmos, algum tempo depois. Por isso, vale adotar desde cedo um estilo consistente. Este livro segue o guia de estilo do tidyverse, cujas regras principais cabem em poucas linhas. Coloque espaços ao redor dos operadores (<code>peso &lt; 2500</code>, e não <code>peso&lt;2500</code>), depois das vírgulas e antes e depois de <code>&lt;-</code>. Use nomes descritivos em minúsculas e com sublinhados. Escreva comentários que expliquem o porquê de cada decisão. Evite linhas muito longas, quebrando-as depois de uma vírgula.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Difícil de ler</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>tmi<span class="ot">&lt;-</span>obitos<span class="sc">/</span>nv<span class="sc">*</span><span class="dv">1000</span>;<span class="fu">round</span>(tmi,<span class="dv">1</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Mais claro</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>taxa_mortalidade_infantil <span class="ot">&lt;-</span> obitos_infantis <span class="sc">/</span> nascidos_vivos <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(taxa_mortalidade_infantil, <span class="at">digits =</span> <span class="dv">1</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="sec-caso-02" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="sec-caso-02"><span class="header-section-number">2.7</span> Estudo de caso: calculando indicadores a partir de contagens</h2>
-<p>A partir de contagens agregadas de nascidos vivos, óbitos infantis e casos notificados de dengue de um município, o estudante calcula a taxa de mortalidade infantil, a proporção de nascidos vivos com baixo peso e o coeficiente de incidência de dengue por 100 mil habitantes. O exemplo serve para discutir numerador, denominador e constante multiplicativa, conceitos retomados no <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a>.</p>
+<p>Vamos juntar tudo o que foi visto em um exemplo próximo do trabalho em um serviço de saúde. Suponha que a equipe de vigilância de um município hipotético recebeu as seguintes informações sobre o ano de 2023: 1.412 nascidos vivos de mães residentes, 16 óbitos de menores de um ano, 118 nascidos vivos com menos de 2.500 gramas, população residente de 58.300 habitantes e 412 casos confirmados de dengue. Todos esses números são fictícios.</p>
+<p>Começamos guardando cada contagem em um objeto com nome descritivo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>nascidos_vivos <span class="ot">&lt;-</span> <span class="dv">1412</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>obitos_menores_1_ano <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>nascidos_baixo_peso <span class="ot">&lt;-</span> <span class="dv">118</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>populacao <span class="ot">&lt;-</span> <span class="dv">58300</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>casos_dengue <span class="ot">&lt;-</span> <span class="dv">412</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A <strong>taxa de mortalidade infantil</strong> é o número de óbitos de menores de um ano dividido pelo número de nascidos vivos, multiplicado por mil. Ela expressa quantas crianças morrem antes do primeiro aniversário a cada mil que nascem vivas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>taxa_mortalidade_infantil <span class="ot">&lt;-</span> obitos_menores_1_ano <span class="sc">/</span> nascidos_vivos <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(taxa_mortalidade_infantil, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11.3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A <strong>proporção de nascidos vivos com baixo peso</strong> é o número de nascidos com menos de 2.500 gramas dividido pelo total de nascidos vivos, multiplicado por cem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>proporcao_baixo_peso <span class="ot">&lt;-</span> nascidos_baixo_peso <span class="sc">/</span> nascidos_vivos <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(proporcao_baixo_peso, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8.4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O <strong>coeficiente de incidência de dengue</strong> é o número de casos novos dividido pela população exposta, multiplicado por cem mil.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>incidencia_dengue <span class="ot">&lt;-</span> casos_dengue <span class="sc">/</span> populacao <span class="sc">*</span> <span class="dv">100000</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(incidencia_dengue, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 706.7</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os três indicadores têm a mesma estrutura, com um numerador, um denominador e uma constante multiplicativa, mas diferem no significado. A proporção de baixo peso é uma parte do todo, e por isso seu numerador está contido no denominador. A taxa de mortalidade infantil usa os nascidos vivos como aproximação da população de menores de um ano exposta ao risco de morrer. O coeficiente de incidência relaciona casos novos à população residente em um período. A constante (mil, cem ou cem mil) é escolhida apenas para que o número final fique fácil de ler e de comparar.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -448,17 +801,51 @@ Saúde Pública em foco
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Prevê-se uma caixa sobre a diferença entre proporção, razão e coeficiente, com base nas definições de <span class="citation" data-cites="opas2008indicadores">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE (<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">2008</a>)</span>.</p>
+<p>Proporção, razão e coeficiente não são sinônimos. Na proporção, o numerador é parte do denominador (por exemplo, nascidos com baixo peso entre todos os nascidos vivos). Na razão, numerador e denominador são grandezas diferentes (por exemplo, número de leitos por mil habitantes). O coeficiente, também chamado de taxa, relaciona o número de eventos à população exposta ao risco em um período. A publicação da Ripsa sobre indicadores de saúde <span class="citation" data-cites="opas2008indicadores">(<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE, 2008</a>)</span> traz a definição, o método de cálculo e as limitações de cada indicador usado no Brasil.</p>
 </div>
 </div>
+<p>Por fim, é uma boa prática reunir os resultados com uma mensagem clara. A função <code>paste()</code> junta textos e números em uma única frase.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"Taxa de mortalidade infantil:"</span>, <span class="fu">round</span>(taxa_mortalidade_infantil, <span class="dv">1</span>), <span class="st">"por mil nascidos vivos"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Taxa de mortalidade infantil: 11.3 por mil nascidos vivos"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No <a href="04-quarto.html" class="quarto-xref"><span>Capítulo 4</span></a> veremos uma forma mais elegante de colocar resultados como esse diretamente no texto de um relatório.</p>
 </section>
 <section id="sec-ex-02" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="sec-ex-02"><span class="header-section-number">2.8</span> Exercícios</h2>
-<p>Os exercícios de fixação envolvem expressões aritméticas e criação de objetos. Os de aplicação pedem o cálculo de indicadores para vários municípios a partir de vetores de contagens. O desafio propõe investigar por que <code>0.1 + 0.2 == 0.3</code> retorna <code>FALSE</code> e como <code>all.equal()</code> resolve comparações entre números decimais.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Calcule, no console, o resultado de <code>(15 + 5) / 4 ^ 2</code> e explique a ordem em que as operações foram feitas. Depois, coloque parênteses de modo que o resultado seja 1,25.</p></li>
+<li><p>Crie um objeto chamado <code>altura_m</code> com o valor 1,68 e outro chamado <code>peso_kg</code> com o valor 72. Calcule o índice de massa corporal (peso dividido pelo quadrado da altura) e arredonde o resultado para uma casa decimal.</p></li>
+<li><p>Quais dos nomes a seguir são válidos no R? Justifique. <code>casos_2023</code>, <code>2023_casos</code>, <code>casos.2023</code>, <code>casos 2023</code>, <code>if</code>.</p></li>
+<li><p>Usando o vetor <code>pesos</code> do texto, conte quantos recém-nascidos têm peso igual ou superior a 4.000 gramas e calcule a proporção correspondente.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="5" type="1">
+<li><p>Três municípios fictícios registraram, em um ano, 820, 1.540 e 310 nascidos vivos, e 9, 14 e 6 óbitos de menores de um ano, respectivamente. Crie um vetor para os nascidos vivos e outro para os óbitos e calcule a taxa de mortalidade infantil dos três municípios com uma única linha de código. Qual município tem a maior taxa? Por que essa comparação deve ser feita com cautela no município menor?</p></li>
+<li><p>Uma unidade de saúde registrou as idades, em anos, das gestantes atendidas em uma semana: 16, 23, 31, 19, 27, 35, 41, 18, 22 e 29. Usando operadores relacionais e lógicos, calcule quantas gestantes são adolescentes (menos de 20 anos), quantas têm 35 anos ou mais e quantas estão fora dessas duas faixas.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="7" type="1">
+<li><p>Execute <code>0.1 + 0.2 == 0.3</code> e observe o resultado. Pesquise por que o computador responde dessa forma e mostre como a função <code>all.equal()</code> resolve o problema. Em que situações de análise de dados esse comportamento poderia causar erros difíceis de perceber?</p></li>
+<li><p>Uma pessoa calculou a taxa de mortalidade infantil escrevendo <code>obitos / nascidos * 1000</code> em um município com zero nascidos vivos no período. Teste o que o R devolve quando se divide um número positivo por zero e quando se divide zero por zero. Explique os resultados e proponha uma forma de evitar que esses valores entrem, sem perceber, em uma tabela de indicadores.</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-02" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="sec-sintese-02"><span class="header-section-number">2.9</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>Neste capítulo, o R deixou de ser apenas uma calculadora. Vimos que valores podem ser guardados em objetos por meio do operador <code>&lt;-</code> e que bons nomes tornam o código mais fácil de entender. Vimos que funções recebem argumentos, que podem ser informados pelo nome ou pela posição, e que muitos argumentos têm valores padrão, descritos na página de ajuda. Os operadores relacionais e lógicos permitem fazer perguntas sobre os dados, e as respostas, do tipo verdadeiro ou falso, podem ser somadas para contar casos. As funções estatísticas básicas resumem um conjunto de valores, e o argumento <code>na.rm</code> controla o tratamento de valores ausentes. Por fim, aprendemos a distinguir erros, avisos e mensagens e a adotar um estilo de código legível.</p>
+<div id="tbl-sintese-02" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;2.2: Funções e operadores apresentados no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -474,19 +861,29 @@ Saúde Pública em foco
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>+ - * / ^ %/% %%</code></td>
+<td style="text-align: left;"><code>+ - * / ^</code></td>
 <td style="text-align: left;">base</td>
 <td style="text-align: left;">Operações aritméticas</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>&lt;-</code></td>
+<td style="text-align: left;"><code>%/%</code>, <code>%%</code></td>
 <td style="text-align: left;">base</td>
-<td style="text-align: left;">Atribuição</td>
+<td style="text-align: left;">Divisão inteira e resto</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>sqrt()</code>, <code>exp()</code>, <code>log()</code>, <code>log10()</code>, <code>round()</code></td>
+<td style="text-align: left;"><code>&lt;-</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Atribuição de valores a objetos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sqrt()</code>, <code>exp()</code>, <code>log()</code>, <code>log10()</code></td>
 <td style="text-align: left;">base</td>
 <td style="text-align: left;">Funções matemáticas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>round()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Arredondamento</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>== != &lt; &gt; &lt;= &gt;=</code></td>
@@ -501,7 +898,7 @@ Saúde Pública em foco
 <tr class="even">
 <td style="text-align: left;"><code>c()</code>, <code>length()</code></td>
 <td style="text-align: left;">base</td>
-<td style="text-align: left;">Criar e medir conjuntos de valores</td>
+<td style="text-align: left;">Criar vetores e contar elementos</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>sum()</code>, <code>mean()</code>, <code>min()</code>, <code>max()</code>, <code>range()</code></td>
@@ -509,19 +906,19 @@ Saúde Pública em foco
 <td style="text-align: left;">Medidas resumo</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>median()</code></td>
+<td style="text-align: left;"><code>median()</code>, <code>var()</code>, <code>sd()</code></td>
 <td style="text-align: left;">stats</td>
-<td style="text-align: left;">Mediana</td>
+<td style="text-align: left;">Mediana, variância e desvio-padrão</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>var()</code>, <code>sd()</code></td>
-<td style="text-align: left;">stats</td>
-<td style="text-align: left;">Variância e desvio-padrão</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;"><code>ls()</code>, <code>rm()</code></td>
 <td style="text-align: left;">base</td>
 <td style="text-align: left;">Listar e remover objetos</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>paste()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Juntar textos e números</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>all.equal()</code></td>
@@ -530,9 +927,13 @@ Saúde Pública em foco
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-02" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="sec-mais-02"><span class="header-section-number">2.10</span> Para saber mais</h2>
+<p>O capítulo 2 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> apresenta os mesmos fundamentos com outros exemplos, e o capítulo 4 da mesma obra detalha o guia de estilo do tidyverse. O primeiro capítulo de Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> traz uma explicação cuidadosa sobre objetos e funções, em português. No <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span>, o capítulo 3 trata de objetos, funções e operadores, e o capítulo 47 reúne os erros mais comuns. Bougioukas <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span> dedica os capítulos 3, 4 e 6 ao R como calculadora, às funções e aos objetos.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -550,12 +951,12 @@ Saúde Pública em foco
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">2. Fluxo de trabalho: básico; 4. Fluxo de trabalho: estilo de código</td>
-<td style="text-align: left;">Princípios básicos de programação; A importância dos nomes; Chamando funções; Nomes; Espaços</td>
+<td style="text-align: left;">Princípios básicos de programação; A importância dos nomes; Chamando funções</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">3. Introdução ao R; 47. Erros comuns</td>
-<td style="text-align: left;">Funções; Objetos; Principais operadores e funções; Erros &amp; avisos</td>
+<td style="text-align: left;">Funções; Objetos; Principais operadores e funções</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
@@ -1006,7 +1407,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

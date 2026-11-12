@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -355,8 +390,13 @@ div.csl-indent {
   <li><a href="#sec-interacoes-independencia" id="toc-sec-interacoes-independencia" class="nav-link" data-scroll-target="#sec-interacoes-independencia"><span class="header-section-number">12.6</span> Interações e independência</a></li>
   <li><a href="#sec-qualidade-dados" id="toc-sec-qualidade-dados" class="nav-link" data-scroll-target="#sec-qualidade-dados"><span class="header-section-number">12.7</span> Qualidade dos dados dos sistemas de informação</a></li>
   <li><a href="#sec-documentando-aed" id="toc-sec-documentando-aed" class="nav-link" data-scroll-target="#sec-documentando-aed"><span class="header-section-number">12.8</span> Documentando a exploração</a></li>
-  <li><a href="#sec-caso-12" id="toc-sec-caso-12" class="nav-link" data-scroll-target="#sec-caso-12"><span class="header-section-number">12.9</span> Estudo de caso: exploração do extrato do SINASC antes da análise inferencial</a></li>
-  <li><a href="#sec-ex-12" id="toc-sec-ex-12" class="nav-link" data-scroll-target="#sec-ex-12"><span class="header-section-number">12.10</span> Exercícios</a></li>
+  <li><a href="#sec-caso-12" id="toc-sec-caso-12" class="nav-link" data-scroll-target="#sec-caso-12"><span class="header-section-number">12.9</span> Estudo de caso: preparando a base para a análise inferencial</a></li>
+  <li><a href="#sec-ex-12" id="toc-sec-ex-12" class="nav-link" data-scroll-target="#sec-ex-12"><span class="header-section-number">12.10</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-12" id="toc-sec-sintese-12" class="nav-link" data-scroll-target="#sec-sintese-12"><span class="header-section-number">12.11</span> Síntese</a></li>
   <li><a href="#sec-mais-12" id="toc-sec-mais-12" class="nav-link" data-scroll-target="#sec-mais-12"><span class="header-section-number">12.12</span> Para saber mais</a></li>
   </ul>
@@ -384,21 +424,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 6 · <strong>Pré-requisitos:</strong> <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a> e <a href="11-descritiva.html" class="quarto-xref"><span>Capítulo 11</span></a> · <strong>Pacotes:</strong> <code>ggplot2</code>, <code>dplyr</code>, <code>janitor</code>, <code>skimr</code>, <code>GGally</code>; R base (<code>graphics</code>, <code>stats</code>)</p>
+<p><strong>Encontro previsto:</strong> 6 · <strong>Pré-requisitos:</strong> <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a> e <a href="11-descritiva.html" class="quarto-xref"><span>Capítulo 11</span></a> · <strong>Pacotes:</strong> <code>ggplot2</code>, <code>dplyr</code>, <code>janitor</code>, <code>skimr</code>, <code>GGally</code>, <code>here</code>; R base (<code>graphics</code>, <code>stats</code>)</p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -410,52 +437,633 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar o papel da análise exploratória antes da aplicação de testes e modelos; aplicar, de forma sistemática, um protocolo de exploração que examina valores extremos, homogeneidade de variâncias, forma das distribuições, excesso de zeros, colinearidade, relações entre variáveis, interações e dependência entre observações; avaliar a qualidade de dados provenientes dos sistemas de informação em saúde quanto a completude, consistência, duplicidades e valores implausíveis; e documentar as decisões tomadas durante a exploração.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar o papel da análise exploratória antes da aplicação de testes e modelos; aplicar, de forma sistemática, um protocolo que examina valores extremos, homogeneidade de variâncias, forma das distribuições, excesso de zeros, colinearidade, relações entre variáveis, interações e dependência entre observações; avaliar a qualidade de dados dos sistemas de informação em saúde quanto a completude, consistência, duplicidades e valores implausíveis; e documentar as decisões tomadas durante a exploração.</p>
 </div>
+</div>
+<p>Os capítulos anteriores apresentaram as ferramentas para descrever e visualizar dados. Este capítulo as organiza em um roteiro de trabalho. A ideia é simples: antes de aplicar um teste estatístico ou ajustar um modelo, vale a pena olhar os dados de forma sistemática, procurando problemas que poderiam levar a conclusões erradas. Um valor de peso digitado errado, uma variável com muitos zeros ou observações que não são independentes entre si podem invalidar uma análise que, no papel, parecia correta.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"covid_norte_2020_2022.csv"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-o-que-e-aed" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="sec-o-que-e-aed"><span class="header-section-number">12.1</span> O que é a análise exploratória e por que fazê-la</h2>
-<p>Apresenta a análise exploratória como etapa em que se conhece a estrutura dos dados, se formulam perguntas e se identificam problemas que podem comprometer as análises seguintes, distinguindo-a da busca de resultados a qualquer custo.</p>
+<p>A análise exploratória de dados é a etapa em que conhecemos a estrutura dos dados, verificamos sua qualidade e formulamos perguntas. Ela não tem o objetivo de confirmar hipóteses, e sim de evitar surpresas. Em pesquisa, a exploração orienta a escolha dos métodos: uma variável muito assimétrica pode pedir uma transformação ou um teste não paramétrico; uma relação curva pode pedir um modelo diferente da reta. Em serviços de saúde, ela é a forma de detectar erros de registro antes que eles cheguem a um boletim ou a um painel de indicadores.</p>
+<p>Há um cuidado a tomar. A exploração não deve se transformar em uma busca por resultados interessantes, testando dezenas de comparações até encontrar alguma significativa. As decisões tomadas na exploração devem ser registradas e justificadas, e as hipóteses principais de um estudo devem ser definidas antes de olhar os dados.</p>
 </section>
 <section id="sec-protocolo-zuur" class="level2" data-number="12.2">
 <h2 data-number="12.2" class="anchored" data-anchor-id="sec-protocolo-zuur"><span class="header-section-number">12.2</span> Um protocolo para exploração de dados</h2>
-<p>Apresenta o protocolo de oito etapas proposto por <span class="citation" data-cites="zuur2010protocol">ZUUR; IENO; ELPHICK (<a href="../references.html#ref-zuur2010protocol" role="doc-biblioref">2010</a>)</span>, que integra a bibliografia da disciplina, e discute sua adaptação a dados de saúde. Cada uma das seções seguintes corresponde a uma ou mais etapas do protocolo.</p>
+<p><span class="citation" data-cites="zuur2010protocol">ZUUR; IENO; ELPHICK (<a href="../references.html#ref-zuur2010protocol" role="doc-biblioref">2010</a>)</span> propuseram um protocolo de oito etapas para explorar dados antes de aplicar métodos estatísticos. Embora tenha sido escrito para a ecologia, ele se aplica muito bem aos dados de saúde, e por isso integra a bibliografia da disciplina. As etapas estão resumidas na <a href="#tbl-protocolo" class="quarto-xref">Tabela&nbsp;<span>12.1</span></a>.</p>
+<div id="tbl-protocolo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-protocolo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;12.1: Etapas do protocolo de exploração de dados de Zuur, Ieno e Elphick (2010).
+</figcaption>
+<div aria-describedby="tbl-protocolo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Etapa</th>
+<th style="text-align: left;">Pergunta</th>
+<th style="text-align: left;">Ferramentas principais</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1. Valores extremos</td>
+<td style="text-align: left;">Há valores muito distantes dos demais, na variável resposta ou nas explicativas?</td>
+<td style="text-align: left;">Boxplot, gráfico de pontos de Cleveland</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2. Homogeneidade</td>
+<td style="text-align: left;">A variabilidade da resposta é parecida entre os grupos?</td>
+<td style="text-align: left;">Boxplots condicionais</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3. Normalidade</td>
+<td style="text-align: left;">A distribuição tem a forma que o método supõe?</td>
+<td style="text-align: left;">Histograma, gráfico quantil-quantil</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4. Excesso de zeros</td>
+<td style="text-align: left;">Há mais zeros do que o esperado em uma contagem?</td>
+<td style="text-align: left;">Tabela ou gráfico de frequências</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5. Colinearidade</td>
+<td style="text-align: left;">As variáveis explicativas estão fortemente relacionadas entre si?</td>
+<td style="text-align: left;">Matriz de dispersão, correlações</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6. Relações</td>
+<td style="text-align: left;">Qual a forma da relação entre a resposta e as explicativas?</td>
+<td style="text-align: left;">Gráficos de dispersão, boxplots</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7. Interações</td>
+<td style="text-align: left;">A relação entre duas variáveis muda conforme uma terceira?</td>
+<td style="text-align: left;">Gráficos condicionais, facetas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8. Independência</td>
+<td style="text-align: left;">As observações são independentes entre si?</td>
+<td style="text-align: left;">Gráficos ao longo do tempo ou do espaço, autocorrelação</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Neste capítulo, vamos aplicar o protocolo à pergunta que guiará os capítulos de inferência: como o peso ao nascer se relaciona com a idade gestacional, a idade da mãe, o pré-natal e o tipo de parto? A resposta é o peso ao nascer, e as variáveis explicativas são as demais.</p>
+<p>Antes de começar, um panorama geral ajuda. A função <code>skim()</code>, do pacote <code>skimr</code>, resume todas as variáveis de uma base em uma única saída, com ausentes, medidas resumo e pequenos histogramas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(peso, semagestac, idademae, apgar5, parto, consultas_cat) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  skimr<span class="sc">::</span><span class="fu">skim</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">select(nascidos, peso, se…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">27028</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">ordered</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: left;">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">parto</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Ces: 18036, Vag: 8943</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">consultas_cat</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">7 o: 18624, 4 a: 5988, 1 a: 1379, Nen: 986</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">peso</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3243.19</td>
+<td style="text-align: right;">544.75</td>
+<td style="text-align: right;">258</td>
+<td style="text-align: right;">2965</td>
+<td style="text-align: right;">3270</td>
+<td style="text-align: right;">3575</td>
+<td style="text-align: right;">5985</td>
+<td style="text-align: left;">▁▁▇▂▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">semagestac</td>
+<td style="text-align: right;">1238</td>
+<td style="text-align: right;">0.95</td>
+<td style="text-align: right;">38.57</td>
+<td style="text-align: right;">2.02</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: left;">▁▁▁▇▃</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">idademae</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">26.09</td>
+<td style="text-align: right;">6.39</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: left;">▃▇▆▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">apgar5</td>
+<td style="text-align: right;">103</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">9.18</td>
+<td style="text-align: right;">0.79</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">▁▁▁▁▇</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="sec-extremos" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="sec-extremos"><span class="header-section-number">12.3</span> Valores extremos e implausíveis</h2>
-<p>Mostra o uso de boxplots e do gráfico de pontos de Cleveland (<code>dotchart()</code>) para identificar valores extremos e discute a diferença entre um valor extremo verdadeiro e um erro de registro, com exemplos como pesos ao nascer de 9.999 g, que costumam corresponder a códigos de ignorado, e idades maternas incompatíveis com a gestação.</p>
+<p>Valores extremos são observações muito distantes das demais. Eles podem ser valores reais, como o peso de um recém-nascido extremamente prematuro, ou erros, como um peso digitado com um zero a mais. A distinção importa: valores reais devem ser mantidos e, se necessário, tratados com métodos adequados; erros devem ser corrigidos ou excluídos, com registro da decisão.</p>
+<p>O boxplot marca como pontos isolados as observações além das hastes. O gráfico de pontos de Cleveland mostra o valor de cada observação no eixo horizontal e a sua posição na base no eixo vertical, o que facilita perceber valores que destoam dos demais. No R base, a função <code>dotchart()</code> faz esse gráfico, mas, com bases grandes como a nossa, é mais simples obter o mesmo resultado com <code>plot()</code>, colocando no eixo vertical a sequência de 1 até o número de linhas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(nascidos<span class="sc">$</span>peso, <span class="at">main =</span> <span class="st">"Boxplot"</span>, <span class="at">ylab =</span> <span class="st">"Peso (g)"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nascidos<span class="sc">$</span>peso, <span class="fu">seq_along</span>(nascidos<span class="sc">$</span>peso), <span class="at">main =</span> <span class="st">"Gráfico de Cleveland"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Peso (g)"</span>, <span class="at">ylab =</span> <span class="st">"Ordem na base"</span>, <span class="at">pch =</span> <span class="st">"."</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-extremos-peso" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Dois gráficos lado a lado. À esquerda, um boxplot do peso ao nascer com muitos pontos isolados abaixo de cerca de 2.000 gramas e alguns acima de 4.500 gramas. À direita, o gráfico de Cleveland mostra uma faixa densa de pontos entre 2.500 e 4.000 gramas e pontos esparsos nos dois extremos, sem nenhum valor completamente isolado.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-extremos-peso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="12-aed-protocolo_files/figure-html/fig-extremos-peso-1.png" class="img-fluid figure-img" alt="Dois gráficos lado a lado. À esquerda, um boxplot do peso ao nascer com muitos pontos isolados abaixo de cerca de 2.000 gramas e alguns acima de 4.500 gramas. À direita, o gráfico de Cleveland mostra uma faixa densa de pontos entre 2.500 e 4.000 gramas e pontos esparsos nos dois extremos, sem nenhum valor completamente isolado." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-extremos-peso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.1: Boxplot e gráfico de pontos de Cleveland do peso ao nascer.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Em uma base grande, o boxplot marca muitos pontos como extremos, porque, com milhares de observações, sempre haverá valores nas caudas. O gráfico de Cleveland mostra que esses valores formam um contínuo, sem pontos completamente separados dos demais, o que sugere que não há erros grosseiros de digitação.</p>
+<p>Uma verificação mais eficiente é a <strong>plausibilidade conjunta</strong>: o peso faz sentido para a idade gestacional? Um recém-nascido de 4.000 gramas com 26 semanas de gestação, por exemplo, é praticamente impossível.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(semagestac)) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(semagestac) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">peso_min =</span> <span class="fu">min</span>(peso), <span class="at">peso_mediano =</span> <span class="fu">median</span>(peso), <span class="at">peso_max =</span> <span class="fu">max</span>(peso)) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(semagestac <span class="sc">&lt;</span> <span class="dv">30</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 5</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    semagestac     n peso_min peso_mediano peso_max</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt;        &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1         19     2     2720        2810      2900</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2         21     5      320        1420      3430</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3         22     7      430         846      3420</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4         23     6      500         632.     1360</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5         24     7      500         585      3455</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6         25    18      350         750      5050</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7         26    21      540         935      3620</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8         27    27      545         965      3985</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9         28    23      740        1150      3150</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10         29    32      425        1300      3920</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">x =</span> semagestac, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> median, <span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"#b5401f"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Idade gestacional (semanas)"</span>, <span class="at">y =</span> <span class="st">"Peso ao nascer (g)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-plausibilidade" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão do peso ao nascer contra a idade gestacional em semanas, com uma linha que liga as medianas de cada semana. Há alguns pontos isolados com pesos acima de 3.000 gramas em idades gestacionais abaixo de 30 semanas, muito acima da mediana dessas semanas.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plausibilidade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="12-aed-protocolo_files/figure-html/fig-plausibilidade-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão do peso ao nascer contra a idade gestacional em semanas, com uma linha que liga as medianas de cada semana. Há alguns pontos isolados com pesos acima de 3.000 gramas em idades gestacionais abaixo de 30 semanas, muito acima da mediana dessas semanas." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plausibilidade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.2: Peso ao nascer segundo a idade gestacional, com a mediana por semana.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Repare que a linha da mediana sobe nas semanas iniciais, puxada por alguns pontos com peso alto em idades gestacionais muito baixas. Esses registros são inconsistentes. É mais provável que o erro esteja na idade gestacional, cuja estimativa é mais difícil, do que no peso, medido em balança. Uma decisão possível, comum em estudos com dados do SINASC, é considerar a idade gestacional como ausente nesses registros, mantendo o peso. Vamos identificar quantos registros seriam afetados, usando como critério um peso acima de 2.500 gramas com menos de 28 semanas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(semagestac <span class="sc">&lt;</span> <span class="dv">28</span>, peso <span class="sc">&gt;</span> <span class="dv">2500</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(semagestac, gestacao, peso)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 16 × 3</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    semagestac gestacao             peso</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1         22 22 a 27 semanas      2810</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2         25 22 a 27 semanas      5050</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3         26 22 a 27 semanas      3275</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4         22 22 a 27 semanas      3420</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5         25 22 a 27 semanas      3025</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6         26 22 a 27 semanas      2830</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7         27 22 a 27 semanas      2934</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8         27 22 a 27 semanas      3740</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9         24 22 a 27 semanas      3455</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10         19 Menos de 22 semanas  2900</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11         27 22 a 27 semanas      3985</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12         21 Menos de 22 semanas  3430</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13         19 Menos de 22 semanas  2720</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14         25 22 a 27 semanas      2520</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15         26 22 a 27 semanas      3620</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16         22 22 a 27 semanas      2675</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>São 16 registros. Repare que a faixa de idade gestacional (<code>gestacao</code>) concorda com as semanas em todos eles, o que indica que as duas variáveis vêm da mesma informação e, portanto, a faixa não ajuda a decidir qual dos dois valores está errado. São poucos registros, que não afetam as análises descritivas, mas poderiam distorcer uma análise da relação entre peso e idade gestacional nas semanas iniciais.</p>
 </section>
 <section id="sec-normalidade" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="sec-normalidade"><span class="header-section-number">12.4</span> Forma das distribuições e homogeneidade de variâncias</h2>
-<p>Mostra histogramas, densidades e gráficos quantil-quantil (<code>qqnorm()</code>, <code>qqline()</code>, <code>geom_qq()</code>) e boxplots condicionais para avaliar a variabilidade entre grupos. Discute que, em modelos lineares, o pressuposto de normalidade se refere aos resíduos e não à variável original, e as limitações dos testes formais de normalidade em amostras grandes.</p>
+<p>Muitos procedimentos estatísticos, como o teste t e a regressão linear, que veremos nos próximos capítulos, supõem que os dados (ou, mais precisamente, os resíduos do modelo) seguem uma distribuição aproximadamente normal e que a variabilidade é parecida entre os grupos comparados. A exploração verifica se essas suposições são razoáveis.</p>
+<p>O <strong>gráfico quantil-quantil</strong> (<em>Q-Q plot</em>) compara os quantis dos dados com os quantis de uma distribuição normal. Se os dados forem aproximadamente normais, os pontos ficam sobre uma reta. Desvios sistemáticos nas pontas indicam caudas mais pesadas ou mais leves que as da normal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">sample =</span> peso)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">"#b5401f"</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Quantis teóricos da normal"</span>, <span class="at">y =</span> <span class="st">"Quantis observados (g)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-qqplot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico quantil-quantil do peso ao nascer. Os pontos acompanham a reta de referência na parte central, mas se desviam para baixo na extremidade esquerda, indicando uma cauda inferior mais longa que a da distribuição normal.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-qqplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="12-aed-protocolo_files/figure-html/fig-qqplot-1.png" class="img-fluid figure-img" alt="Gráfico quantil-quantil do peso ao nascer. Os pontos acompanham a reta de referência na parte central, mas se desviam para baixo na extremidade esquerda, indicando uma cauda inferior mais longa que a da distribuição normal." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qqplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.3: Gráfico quantil-quantil do peso ao nascer.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na parte central, os pontos seguem a reta, mas na extremidade esquerda eles caem abaixo dela, indicando uma cauda inferior mais longa: há mais recém-nascidos muito leves do que uma distribuição normal preveria. Isso era de se esperar, já que os prematuros formam um grupo à parte.</p>
+<p>Os testes formais de normalidade, como o de Shapiro-Wilk (<code>shapiro.test()</code>), devem ser usados com cautela. Com amostras grandes, eles rejeitam a normalidade por desvios mínimos, sem importância prática; com amostras pequenas, deixam de detectar desvios importantes. Por isso, os gráficos são, em geral, mais informativos. Além disso, a função <code>shapiro.test()</code> do R só aceita até 5 mil observações.</p>
+<p>A <strong>homogeneidade de variâncias</strong> é examinada com boxplots da resposta para cada grupo. Caixas de alturas muito diferentes indicam variâncias diferentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(consultas_cat)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> consultas_cat, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Consultas de pré-natal"</span>, <span class="at">y =</span> <span class="st">"Peso ao nascer (g)"</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(consultas_cat) <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">desvio_padrao =</span> <span class="fu">sd</span>(peso), <span class="at">iiq =</span> <span class="fu">IQR</span>(peso))</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   consultas_cat desvio_padrao   iiq</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;                 &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma                701.  764.</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3                  684.  690 </span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 6                  592.  635 </span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 7 ou mais              499.  595 </span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 &lt;NA&gt;                   686.  762.</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-homogeneidade" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Boxplots do peso ao nascer para quatro categorias de consultas de pré-natal. As medianas são parecidas nas três primeiras categorias e um pouco maiores na categoria 7 ou mais. As caixas ficam um pouco mais altas nas categorias com menos consultas.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-homogeneidade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="12-aed-protocolo_files/figure-html/fig-homogeneidade-1.png" class="img-fluid figure-img" alt="Boxplots do peso ao nascer para quatro categorias de consultas de pré-natal. As medianas são parecidas nas três primeiras categorias e um pouco maiores na categoria 7 ou mais. As caixas ficam um pouco mais altas nas categorias com menos consultas." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-homogeneidade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.4: Peso ao nascer segundo o número de consultas de pré-natal.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A variabilidade do peso é maior entre os filhos de mães com poucas consultas, provavelmente porque esses grupos concentram mais prematuros. Essa informação será importante ao escolher entre as versões do teste de comparação de médias, no <a href="13-comparacao-medias.html" class="quarto-xref"><span>Capítulo 13</span></a>.</p>
 </section>
 <section id="sec-zeros-colinearidade" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="sec-zeros-colinearidade"><span class="header-section-number">12.5</span> Excesso de zeros, colinearidade e relações entre variáveis</h2>
-<p>Mostra a frequência de zeros em contagens semanais de casos em municípios pequenos, a matriz de dispersão (<code>pairs()</code>, <code>GGally::ggpairs()</code>) e a matriz de correlações (<code>cor()</code>) para examinar colinearidade e relações entre variáveis explicativas e o desfecho.</p>
+<p>O <strong>excesso de zeros</strong> é um problema típico de contagens, como o número de casos de uma doença por semana em municípios pequenos. Muitos métodos para contagens supõem uma certa proporção de zeros, e um excesso deles pede métodos específicos. Na série de COVID-19, a proporção de dias com zero casos novos varia bastante entre os estados, o que reflete, em boa parte, diferenças na rotina de divulgação dos dados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>covid <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(uf) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">dias =</span> <span class="fu">n</span>(), <span class="at">dias_com_zero =</span> <span class="fu">sum</span>(casos_novos <span class="sc">==</span> <span class="dv">0</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">perc_zeros =</span> <span class="fu">mean</span>(casos_novos <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 4</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   uf     dias dias_com_zero perc_zeros</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;         &lt;int&gt;      &lt;dbl&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 AC     1020           132     12.9  </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 AM     1024            10      0.977</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 AP     1017            57      5.60 </span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 PA     1019            12      1.18 </span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 RO     1017            52      5.11 </span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 RR     1016           144     14.2  </span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 TO     1019           210     20.6</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Parte desses zeros não significa ausência de casos, e sim ausência de notificação naquele dia, como em fins de semana e feriados. Agregar os dados por semana, como fizemos no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>, reduz esse problema.</p>
+<p>A <strong>colinearidade</strong> ocorre quando duas variáveis explicativas estão fortemente relacionadas entre si, o que dificulta separar o efeito de cada uma. A matriz de dispersão e a matriz de correlações ajudam a identificá-la.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(peso, semagestac, idademae, apgar5, consultas) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cor</span>(<span class="at">use =</span> <span class="st">"complete.obs"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            peso semagestac idademae apgar5 consultas</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; peso       1.00       0.47     0.05   0.16      0.12</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; semagestac 0.47       1.00    -0.06   0.19      0.14</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; idademae   0.05      -0.06     1.00   0.02      0.07</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; apgar5     0.16       0.19     0.02   1.00      0.07</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; consultas  0.12       0.14     0.07   0.07      1.00</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O argumento <code>use = "complete.obs"</code> faz o cálculo apenas com os registros sem ausentes em nenhuma das variáveis. Nenhuma correlação entre variáveis explicativas é muito alta (acima de 0,7 ou 0,8, como se costuma considerar), o que indica que a colinearidade não é um problema aqui. A correlação mais forte é entre o peso e a idade gestacional, que são, respectivamente, a resposta e uma explicativa.</p>
+<p>A <strong>forma das relações</strong> entre a resposta e as explicativas foi vista no gráfico de dispersão da seção anterior: a relação entre peso e idade gestacional não é uma reta, e sim uma curva que cresce e depois se estabiliza. Essa informação será importante na regressão linear, no <a href="14-correlacao-regressao.html" class="quarto-xref"><span>Capítulo 14</span></a>.</p>
 </section>
 <section id="sec-interacoes-independencia" class="level2" data-number="12.6">
 <h2 data-number="12.6" class="anchored" data-anchor-id="sec-interacoes-independencia"><span class="header-section-number">12.6</span> Interações e independência</h2>
-<p>Mostra gráficos condicionais com facetas para explorar se a relação entre duas variáveis muda segundo uma terceira, e discute a dependência entre observações em dados temporais (semanas consecutivas), espaciais (municípios vizinhos) e agrupados (nascimentos de um mesmo hospital), situações que exigem métodos além do escopo do livro.</p>
+<p>Há <strong>interação</strong> quando a relação entre duas variáveis muda conforme o valor de uma terceira. Os gráficos com facetas, ou com cores para uma terceira variável, permitem explorar essa possibilidade.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sexo), <span class="fu">between</span>(semagestac, <span class="dv">30</span>, <span class="dv">42</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> semagestac, <span class="at">y =</span> peso, <span class="at">color =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Feminino =</span> <span class="st">"#ff6347"</span>, <span class="at">Masculino =</span> <span class="st">"#1f6f8b"</span>)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Idade gestacional (semanas)"</span>, <span class="at">y =</span> <span class="st">"Peso ao nascer (g)"</span>, <span class="at">color =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-interacao" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Duas curvas suavizadas do peso ao nascer em função da idade gestacional, uma para cada sexo. As curvas têm o mesmo formato, crescente até cerca de 40 semanas, e a curva do sexo masculino fica ligeiramente acima da do feminino em quase toda a faixa, com diferença um pouco maior nas semanas finais.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-interacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="12-aed-protocolo_files/figure-html/fig-interacao-1.png" class="img-fluid figure-img" alt="Duas curvas suavizadas do peso ao nascer em função da idade gestacional, uma para cada sexo. As curvas têm o mesmo formato, crescente até cerca de 40 semanas, e a curva do sexo masculino fica ligeiramente acima da do feminino em quase toda a faixa, com diferença um pouco maior nas semanas finais." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-interacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.5: Peso ao nascer segundo a idade gestacional, por sexo do recém-nascido (curvas suavizadas).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As curvas têm a mesma forma, com os meninos um pouco mais pesados em quase toda a faixa. A diferença aumenta um pouco nas semanas finais, mas é pequena diante da variação do peso ao longo da gestação. Isso sugere que o sexo desloca a curva sem mudar muito sua forma, ou seja, não há indício forte de interação.</p>
+<p>A <strong>independência</strong> das observações é uma suposição de quase todos os métodos estatísticos básicos. Ela é violada quando as observações estão agrupadas (nascimentos de um mesmo hospital, gêmeos de uma mesma gestação) ou ordenadas no tempo ou no espaço (casos em semanas consecutivas, municípios vizinhos). Em séries temporais, o valor de uma semana depende fortemente do valor da semana anterior, o que pode ser visto com a função de autocorrelação, <code>acf()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>casos_semanais_ro <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(uf <span class="sc">==</span> <span class="st">"RO"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">semana =</span> <span class="fu">floor_date</span>(data, <span class="st">"week"</span>, <span class="at">week_start =</span> <span class="dv">7</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(semana) <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">casos =</span> <span class="fu">sum</span>(casos_novos))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">acf</span>(casos_semanais_ro<span class="sc">$</span>casos, <span class="at">lag.max =</span> <span class="dv">20</span>, <span class="at">main =</span> <span class="st">""</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-acf" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de autocorrelação com barras verticais para defasagens de 0 a 20 semanas. As barras começam em 1 e diminuem aos poucos, ficando acima da linha tracejada superior até cerca de seis semanas. Entre 12 e 17 semanas, as barras são negativas e algumas passam da linha tracejada inferior.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-acf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="12-aed-protocolo_files/figure-html/fig-acf-1.png" class="img-fluid figure-img" alt="Gráfico de autocorrelação com barras verticais para defasagens de 0 a 20 semanas. As barras começam em 1 e diminuem aos poucos, ficando acima da linha tracejada superior até cerca de seis semanas. Entre 12 e 17 semanas, as barras são negativas e algumas passam da linha tracejada inferior." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-acf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.6: Autocorrelação dos casos semanais de COVID-19 em Rondônia.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>As autocorrelações altas nas primeiras defasagens mostram que semanas próximas têm valores parecidos, ou seja, as semanas não são independentes. As autocorrelações negativas em defasagens maiores refletem as ondas da epidemia, já que semanas de pico tendem a estar distantes de semanas de vale. Análises de séries temporais exigem métodos próprios, que estão além deste livro. O importante, aqui, é reconhecer quando a suposição de independência não se sustenta, para não aplicar um teste que a exige.</p>
 </section>
 <section id="sec-qualidade-dados" class="level2" data-number="12.7">
 <h2 data-number="12.7" class="anchored" data-anchor-id="sec-qualidade-dados"><span class="header-section-number">12.7</span> Qualidade dos dados dos sistemas de informação</h2>
-<p>Apresenta as dimensões de completude, consistência entre variáveis (por exemplo, peso ao nascer incompatível com a idade gestacional) e duplicidade de registros, com <code>skimr::skim()</code>, <code>janitor::get_dupes()</code> e <code>distinct()</code>. Relaciona essas verificações às recomendações de uso dos dados de cada sistema descritas no <a href="../apendices/b-sistemas-informacao.html" class="quarto-xref"><span>Apêndice B</span></a>.</p>
+<p>Nos dados dos sistemas de informação em saúde, a exploração inclui uma avaliação de qualidade com quatro dimensões principais. A <strong>completude</strong> é a proporção de campos preenchidos, calculada no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>. A <strong>consistência</strong> é a coerência entre variáveis relacionadas, como o peso e a idade gestacional, ou a idade gestacional em semanas e em faixas. A <strong>unicidade</strong> é a ausência de registros duplicados. A <strong>plausibilidade</strong> é a ocorrência de valores dentro de limites possíveis.</p>
+<p>A consistência entre a idade gestacional em semanas e em faixas pode ser verificada cruzando as duas variáveis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(semagestac), <span class="sc">!</span><span class="fu">is.na</span>(gestacao)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">faixa_calculada =</span> <span class="fu">cut</span>(semagestac, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">21</span>, <span class="dv">27</span>, <span class="dv">31</span>, <span class="dv">36</span>, <span class="dv">41</span>, <span class="cn">Inf</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Menos de 22 semanas"</span>, <span class="st">"22 a 27 semanas"</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"28 a 31 semanas"</span>, <span class="st">"32 a 36 semanas"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="st">"37 a 41 semanas"</span>, <span class="st">"42 semanas e mais"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">concordancia =</span> <span class="fu">mean</span>(<span class="fu">as.character</span>(faixa_calculada) <span class="sc">==</span> gestacao) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   concordancia</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          &lt;dbl&gt;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          100</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As duas variáveis concordam em todos os registros com as duas informações preenchidas. Isso mostra que, nesta base, a faixa foi calculada a partir das semanas. Em outras bases, ou em anos anteriores do SINASC, em que as duas informações eram coletadas de forma independente, essa verificação pode revelar discordâncias.</p>
+<p>Registros duplicados podem ser identificados com a função <code>get_dupes()</code>, do <code>janitor</code>, que lista as linhas repetidas nas colunas indicadas. Como o SINASC público não traz um identificador único, só podemos procurar registros idênticos em todas as variáveis, o que não prova duplicidade, já que dois nascimentos diferentes podem ter as mesmas características.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">get_dupes</span>(codmunres, dtnasc, sexo, peso, idademae, parto) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 14</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>São 14 linhas, ou seja, alguns poucos pares de registros com a mesma combinação de município, data, sexo, peso, idade da mãe e tipo de parto. Parte deles pode corresponder a gêmeos do mesmo sexo e peso parecido, o que pode ser conferido com a variável <code>gravidez</code>, e outra parte pode ser coincidência. Sem um identificador, não é possível afirmar que sejam duplicidades. Na série de COVID-19, a qualidade aparece de outra forma: valores negativos, que correspondem a correções de registros anteriores, como vimos no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
 </section>
 <section id="sec-documentando-aed" class="level2" data-number="12.8">
 <h2 data-number="12.8" class="anchored" data-anchor-id="sec-documentando-aed"><span class="header-section-number">12.8</span> Documentando a exploração</h2>
-<p>Propõe que a exploração seja registrada em um documento Quarto, com as decisões de exclusão, recodificação e correção justificadas, para que possam ser revistas e relatadas na seção de métodos.</p>
+<p>Todas as decisões tomadas na exploração devem ser registradas, de preferência no próprio documento Quarto em que a análise é feita. Isso inclui o que foi verificado, o que foi encontrado, o que foi decidido e por quê. Uma forma prática é manter, no início do relatório, uma seção de qualidade dos dados com uma tabela de decisões.</p>
+<div id="tbl-decisoes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-decisoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;12.2: Exemplo de registro das decisões da análise exploratória.
+</figcaption>
+<div aria-describedby="tbl-decisoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Verificação</th>
+<th style="text-align: left;">Achado</th>
+<th style="text-align: left;">Decisão</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Valores extremos de peso</td>
+<td style="text-align: left;">Contínuo de valores entre 258 e 5.985 g, sem erros grosseiros</td>
+<td style="text-align: left;">Manter todos os registros</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Peso inconsistente com a idade gestacional</td>
+<td style="text-align: left;">Poucos registros com peso acima de 2.500 g e menos de 28 semanas</td>
+<td style="text-align: left;">Considerar a idade gestacional como ausente nesses registros</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Completude</td>
+<td style="text-align: left;">Idade gestacional ausente em cerca de 5% dos registros</td>
+<td style="text-align: left;">Relatar a completude; analisar com os registros disponíveis</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Duplicidades</td>
+<td style="text-align: left;">Pares com mesmas características, sem identificador único</td>
+<td style="text-align: left;">Manter; registrar a limitação</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Esse registro será usado na seção de métodos do relatório e permite que outra pessoa, ou nós mesmos no futuro, entenda e reproduza a análise.</p>
 </section>
 <section id="sec-caso-12" class="level2" data-number="12.9">
-<h2 data-number="12.9" class="anchored" data-anchor-id="sec-caso-12"><span class="header-section-number">12.9</span> Estudo de caso: exploração do extrato do SINASC antes da análise inferencial</h2>
-<p>O estudante aplica o protocolo às variáveis que serão usadas na Parte IV (peso ao nascer, idade gestacional, idade e escolaridade maternas, tipo de parto, número de consultas), identifica e trata valores implausíveis e registra as decisões em um relatório curto.</p>
+<h2 data-number="12.9" class="anchored" data-anchor-id="sec-caso-12"><span class="header-section-number">12.9</span> Estudo de caso: preparando a base para a análise inferencial</h2>
+<p>Vamos aplicar as decisões do quadro anterior e criar a base que será usada nos capítulos de inferência.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nascidos_analise <span class="ot">&lt;-</span> nascidos <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ig_inconsistente =</span> <span class="sc">!</span><span class="fu">is.na</span>(semagestac) <span class="sc">&amp;</span> semagestac <span class="sc">&lt;</span> <span class="dv">28</span> <span class="sc">&amp;</span> peso <span class="sc">&gt;</span> <span class="dv">2500</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">semagestac =</span> <span class="fu">if_else</span>(ig_inconsistente, <span class="cn">NA</span>, semagestac),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">gestacao =</span> <span class="fu">if_else</span>(ig_inconsistente, <span class="cn">NA</span>, gestacao),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">prematuro =</span> semagestac <span class="sc">&lt;</span> <span class="dv">37</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>nascidos_analise <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">registros =</span> <span class="fu">n</span>(),</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">ig_corrigida =</span> <span class="fu">sum</span>(ig_inconsistente),</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">ig_ausente =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(semagestac)),</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_prematuro =</span> <span class="fu">mean</span>(prematuro, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   registros ig_corrigida ig_ausente perc_prematuro</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;int&gt;        &lt;int&gt;      &lt;int&gt;          &lt;dbl&gt;</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     27028           16       1254           9.66</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A base mantém todos os registros. A idade gestacional foi considerada ausente nos poucos registros inconsistentes, e a variável de prematuridade foi recalculada. Esse mesmo código foi incluído no final do script <code>preparar-sinasc.R</code>, que passa a criar também o objeto <code>nascidos_analise</code>. Assim, os próximos capítulos usam a base revisada sem precisar repetir a correção.</p>
 </section>
 <section id="sec-ex-12" class="level2" data-number="12.10">
 <h2 data-number="12.10" class="anchored" data-anchor-id="sec-ex-12"><span class="header-section-number">12.10</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem a aplicação de etapas isoladas do protocolo. Os de aplicação envolvem a exploração da base de notificações de dengue. O desafio solicita a elaboração de um relatório de qualidade de dados para uma base escolhida pelo estudante, que poderá ser aproveitado no trabalho final.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Faça o gráfico de Cleveland e o boxplot da idade da mãe. Há valores implausíveis?</p></li>
+<li><p>Construa o gráfico quantil-quantil da idade da mãe. A distribuição parece normal? Em que parte ela se afasta da reta?</p></li>
+<li><p>Verifique se há registros de mães com 12 anos ou mais de estudo e idade inferior a 17 anos. Esses registros são plausíveis? Que decisão você tomaria sobre eles?</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="4" type="1">
+<li><p>Aplique as etapas 1 a 3 do protocolo ao índice de Apgar no quinto minuto. Que características dessa variável dificultariam o uso de métodos que supõem normalidade?</p></li>
+<li><p>Explore a série semanal de óbitos por COVID-19 no Pará: há valores negativos? Há semanas com zero óbitos? Qual o padrão de autocorrelação?</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="6" type="1">
+<li><p>Escolha uma base de dados de saúde de seu interesse (pode ser uma das bases do pacote <code>medicaldata</code>, que reúne dados de estudos médicos reais) e produza um relatório de qualidade dos dados, com a tabela de decisões da <a href="#sec-documentando-aed" class="quarto-xref"><span>Seção 12.8</span></a>. Esse relatório pode ser aproveitado no trabalho final.</p></li>
+<li><p>Os registros com peso alto e idade gestacional muito baixa poderiam ter erro no peso, e não na idade gestacional. Pesquise como estudos com dados do SINASC tratam esse problema e discuta as consequências de cada escolha para a estimativa da prevalência de prematuridade.</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-12" class="level2" data-number="12.11">
 <h2 data-number="12.11" class="anchored" data-anchor-id="sec-sintese-12"><span class="header-section-number">12.11</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>A análise exploratória é a etapa em que conhecemos os dados, verificamos sua qualidade e checamos se as suposições dos métodos que pretendemos usar são razoáveis. O protocolo de <span class="citation" data-cites="zuur2010protocol">ZUUR; IENO; ELPHICK (<a href="../references.html#ref-zuur2010protocol" role="doc-biblioref">2010</a>)</span> organiza essa etapa em oito passos: valores extremos, homogeneidade, normalidade, excesso de zeros, colinearidade, relações, interações e independência. Os gráficos (boxplot, gráfico de Cleveland, histograma, gráfico quantil-quantil, matriz de dispersão, gráficos condicionais e autocorrelação) são as principais ferramentas, complementados por tabelas e medidas resumo. Nos dados dos sistemas de informação, a exploração inclui a avaliação de completude, consistência, unicidade e plausibilidade. Todas as decisões devem ser registradas e justificadas.</p>
+<div id="tbl-sintese-12" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;12.3: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-12-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -476,45 +1084,54 @@ Objetivos de aprendizagem
 <td style="text-align: left;">Resumo exploratório de toda a base</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>boxplot()</code>, <code>dotchart()</code></td>
+<td style="text-align: left;"><code>boxplot()</code>, <code>dotchart()</code>, <code>plot()</code></td>
 <td style="text-align: left;">graphics</td>
-<td style="text-align: left;">Valores extremos</td>
+<td style="text-align: left;">Valores extremos e gráfico de Cleveland</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>hist()</code>, <code>qqnorm()</code>, <code>qqline()</code></td>
-<td style="text-align: left;">graphics, stats</td>
-<td style="text-align: left;">Forma das distribuições no R base</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;"><code>geom_qq()</code>, <code>geom_qq_line()</code></td>
 <td style="text-align: left;">ggplot2</td>
-<td style="text-align: left;">Gráfico quantil-quantil no <code>ggplot2</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>pairs()</code>, <code>ggpairs()</code></td>
-<td style="text-align: left;">graphics, GGally</td>
-<td style="text-align: left;">Matriz de dispersão</td>
+<td style="text-align: left;">Gráfico quantil-quantil</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><code>qqnorm()</code>, <code>qqline()</code></td>
+<td style="text-align: left;">stats</td>
+<td style="text-align: left;">Gráfico quantil-quantil no R base</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>stat_summary()</code></td>
+<td style="text-align: left;">ggplot2</td>
+<td style="text-align: left;">Acrescentar resumos (como a mediana) ao gráfico</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>shapiro.test()</code></td>
+<td style="text-align: left;">stats</td>
+<td style="text-align: left;">Teste de normalidade de Shapiro-Wilk</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><code>cor()</code></td>
 <td style="text-align: left;">stats</td>
 <td style="text-align: left;">Matriz de correlações</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;"><code>acf()</code></td>
+<td style="text-align: left;">stats</td>
+<td style="text-align: left;">Autocorrelação de uma série temporal</td>
+</tr>
 <tr class="odd">
 <td style="text-align: left;"><code>get_dupes()</code></td>
 <td style="text-align: left;">janitor</td>
-<td style="text-align: left;">Registros duplicados</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>distinct()</code></td>
-<td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">Remover duplicatas</td>
+<td style="text-align: left;">Registros repetidos</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-12" class="level2" data-number="12.12">
 <h2 data-number="12.12" class="anchored" data-anchor-id="sec-mais-12"><span class="header-section-number">12.12</span> Para saber mais</h2>
+<p>O artigo de <span class="citation" data-cites="zuur2010protocol">ZUUR; IENO; ELPHICK (<a href="../references.html#ref-zuur2010protocol" role="doc-biblioref">2010</a>)</span> é curto, muito didático e vale a leitura integral. O capítulo 10 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> apresenta a análise exploratória como um processo de perguntas e respostas, com uma seção sobre valores atípicos. O <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> trata da eliminação de duplicidades no capítulo 15 e da avaliação de campos ausentes no capítulo 20. Bougioukas <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span> discute, no capítulo 15, a exibição de dados numéricos com gráficos quantil-quantil e boxplots, e, no capítulo 14, a distribuição normal.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -532,22 +1149,22 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;">Protocolo de exploração de dados <span class="citation" data-cites="zuur2010protocol">(<a href="../references.html#ref-zuur2010protocol" role="doc-biblioref">ZUUR; IENO; ELPHICK, 2010</a>)</span></td>
 <td style="text-align: left;">—</td>
-<td style="text-align: left;">Artigo integral (bibliografia da disciplina)</td>
+<td style="text-align: left;">Artigo integral</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">10. Análise exploratória de dados</td>
-<td style="text-align: left;">Questões; Variação; Lidando com valores atípicos; Covariação; Padrões e modelos</td>
+<td style="text-align: left;">Variação; Lidando com valores atípicos; Covariação</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
-<td style="text-align: left;">15. Eliminação de duplicidades; 17. Tabelas descritivas; 20. Campos em branco/faltantes</td>
-<td style="text-align: left;">Remoção de duplicidades; Explore seus dados; Avalie os campos em branco no conjunto de dados</td>
+<td style="text-align: left;">15. Eliminação de duplicidades; 20. Campos em branco/faltantes</td>
+<td style="text-align: left;">Remoção de duplicidades; Avalie os campos em branco</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
 <td style="text-align: left;">14. Probability distributions; 15. Descriptive Statistics</td>
-<td style="text-align: left;">Displaying Numerical Data (Normal Q-Q plot; Box Plots)</td>
+<td style="text-align: left;">Normal distribution; Displaying numerical data</td>
 </tr>
 </tbody>
 </table>
@@ -985,7 +1602,7 @@ ZUUR, A. F.; IENO, E. N.; ELPHICK, C. S. <a href="https://doi.org/10.1111/j.2041
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

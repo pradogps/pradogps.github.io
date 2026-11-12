@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -349,15 +384,21 @@ div.csl-indent {
   <ul>
   <li><a href="#sec-formatos" id="toc-sec-formatos" class="nav-link active" data-scroll-target="#sec-formatos"><span class="header-section-number">5.1</span> Dados em saúde e seus formatos</a></li>
   <li><a href="#sec-readr" id="toc-sec-readr" class="nav-link" data-scroll-target="#sec-readr"><span class="header-section-number">5.2</span> Arquivos de texto delimitado com <code>readr</code></a></li>
-  <li><a href="#sec-readxl" id="toc-sec-readxl" class="nav-link" data-scroll-target="#sec-readxl"><span class="header-section-number">5.3</span> Planilhas eletrônicas com <code>readxl</code></a></li>
-  <li><a href="#sec-outros-formatos" id="toc-sec-outros-formatos" class="nav-link" data-scroll-target="#sec-outros-formatos"><span class="header-section-number">5.4</span> Outros formatos</a></li>
-  <li><a href="#sec-clean-names" id="toc-sec-clean-names" class="nav-link" data-scroll-target="#sec-clean-names"><span class="header-section-number">5.5</span> Nomes de colunas e primeira inspeção</a></li>
-  <li><a href="#sec-exportacao" id="toc-sec-exportacao" class="nav-link" data-scroll-target="#sec-exportacao"><span class="header-section-number">5.6</span> Exportando dados e resultados</a></li>
+  <li><a href="#sec-clean-names" id="toc-sec-clean-names" class="nav-link" data-scroll-target="#sec-clean-names"><span class="header-section-number">5.3</span> Primeira inspeção dos dados</a></li>
+  <li><a href="#sec-readxl" id="toc-sec-readxl" class="nav-link" data-scroll-target="#sec-readxl"><span class="header-section-number">5.4</span> Planilhas eletrônicas com <code>readxl</code></a></li>
+  <li><a href="#sec-tabnet" id="toc-sec-tabnet" class="nav-link" data-scroll-target="#sec-tabnet"><span class="header-section-number">5.5</span> Tabelas exportadas pelo TabNet</a></li>
+  <li><a href="#sec-outros-formatos" id="toc-sec-outros-formatos" class="nav-link" data-scroll-target="#sec-outros-formatos"><span class="header-section-number">5.6</span> Outros formatos</a></li>
   <li><a href="#sec-obtencao-datasus" id="toc-sec-obtencao-datasus" class="nav-link" data-scroll-target="#sec-obtencao-datasus"><span class="header-section-number">5.7</span> Obtendo dados dos sistemas de informação em saúde</a></li>
-  <li><a href="#sec-caso-05" id="toc-sec-caso-05" class="nav-link" data-scroll-target="#sec-caso-05"><span class="header-section-number">5.8</span> Estudo de caso: importando um extrato do SINASC</a></li>
-  <li><a href="#sec-ex-05" id="toc-sec-ex-05" class="nav-link" data-scroll-target="#sec-ex-05"><span class="header-section-number">5.9</span> Exercícios</a></li>
-  <li><a href="#sec-sintese-05" id="toc-sec-sintese-05" class="nav-link" data-scroll-target="#sec-sintese-05"><span class="header-section-number">5.10</span> Síntese</a></li>
-  <li><a href="#sec-mais-05" id="toc-sec-mais-05" class="nav-link" data-scroll-target="#sec-mais-05"><span class="header-section-number">5.11</span> Para saber mais</a></li>
+  <li><a href="#sec-exportacao" id="toc-sec-exportacao" class="nav-link" data-scroll-target="#sec-exportacao"><span class="header-section-number">5.8</span> Exportando dados e resultados</a></li>
+  <li><a href="#sec-caso-05" id="toc-sec-caso-05" class="nav-link" data-scroll-target="#sec-caso-05"><span class="header-section-number">5.9</span> Estudo de caso: importando e verificando o extrato do SINASC</a></li>
+  <li><a href="#sec-ex-05" id="toc-sec-ex-05" class="nav-link" data-scroll-target="#sec-ex-05"><span class="header-section-number">5.10</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
+  <li><a href="#sec-sintese-05" id="toc-sec-sintese-05" class="nav-link" data-scroll-target="#sec-sintese-05"><span class="header-section-number">5.11</span> Síntese</a></li>
+  <li><a href="#sec-mais-05" id="toc-sec-mais-05" class="nav-link" data-scroll-target="#sec-mais-05"><span class="header-section-number">5.12</span> Para saber mais</a></li>
   </ul>
 </nav>
     </div>
@@ -383,21 +424,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 3 · <strong>Pré-requisitos:</strong> <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a> · <strong>Pacotes:</strong> <code>readr</code>, <code>readxl</code>, <code>haven</code>, <code>janitor</code>, <code>here</code>; <code>microdatasus</code> apenas na seção sobre obtenção de dados</p>
+<p><strong>Encontro previsto:</strong> 3 · <strong>Pré-requisitos:</strong> <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a> · <strong>Pacotes:</strong> <code>readr</code>, <code>readxl</code>, <code>janitor</code>, <code>here</code>; <code>microdatasus</code> e <code>healthbR</code> para obter dados do DATASUS</p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -409,48 +437,359 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de reconhecer os formatos de arquivo mais comuns em dados de saúde; importar arquivos de texto delimitado e planilhas, controlando delimitador, separador decimal, codificação de caracteres, tipos de colunas e representação de valores ausentes; padronizar nomes de colunas; verificar se a importação ocorreu como esperado; exportar dados e resultados em formatos adequados; e descrever as principais vias de acesso aos dados do DATASUS, consultando os respectivos dicionários de dados.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de reconhecer os formatos de arquivo mais comuns em dados de saúde; importar arquivos de texto e planilhas, controlando separador de colunas, separador decimal, codificação de caracteres, tipos de colunas e valores ausentes; padronizar os nomes das colunas; conferir se a importação deu certo; exportar dados e resultados; e obter microdados dos sistemas de informação do SUS diretamente no R, consultando os dicionários de dados.</p>
 </div>
+</div>
+<p>Toda análise começa com a leitura dos dados. Parece a etapa mais simples, e muitas vezes é, mas é também onde surgem alguns dos problemas mais traiçoeiros: números que viram texto, acentos que se transformam em símbolos estranhos, códigos de município que perdem o zero à esquerda. Este capítulo mostra como importar dados com cuidado e como verificar se tudo chegou como deveria. Usaremos arquivos reais, preparados para o livro a partir dos microdados do SINASC de Rondônia de 2019 e das estimativas populacionais do Ministério da Saúde.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-formatos" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="sec-formatos"><span class="header-section-number">5.1</span> Dados em saúde e seus formatos</h2>
-<p>Diferencia microdados (um registro por evento, como cada nascimento ou óbito) de dados tabulados (contagens agregadas, como as geradas pelo TabNet) e apresenta os formatos mais frequentes: CSV com vírgula ou ponto e vírgula, planilhas do Excel, arquivos DBC/DBF do DATASUS, arquivos de outros programas estatísticos e o formato RDS do próprio R. Introduz o dicionário de dados como documento indispensável para interpretar códigos e categorias.</p>
+<p>Antes de abrir um arquivo, vale saber que tipo de dado ele contém. Os sistemas de informação do SUS oferecem dois tipos principais. Os <strong>microdados</strong> têm um registro por evento: cada linha do SINASC é um nascimento, cada linha do SIM é um óbito, cada linha do SINAN é uma notificação. Os <strong>dados tabulados</strong> já vêm agregados, como uma tabela com o número de nascimentos por município e ano, do jeito que o TabNet produz. Microdados permitem qualquer cruzamento, mas são maiores e exigem mais preparo; dados tabulados são práticos, mas limitados às combinações que foram escolhidas na tabulação.</p>
+<p>Quanto ao formato, os arquivos mais comuns são os de texto delimitado (CSV), as planilhas do Excel, os arquivos compactados do DATASUS (com extensão <code>.dbc</code>), os arquivos de outros programas estatísticos, como Stata e SPSS, e o formato próprio do R, o RDS.</p>
+<p>Seja qual for o formato, há um documento que sempre deve acompanhar os dados: o <strong>dicionário de dados</strong>. Ele informa o significado de cada variável, os códigos de cada categoria e a forma de registrar a ausência de informação. Os dicionários do SINASC, do SIM e do SINAN estão disponíveis no sítio do DATASUS e são citados no <a href="../apendices/b-sistemas-informacao.html" class="quarto-xref"><span>Apêndice B</span></a>.</p>
 </section>
 <section id="sec-readr" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="sec-readr"><span class="header-section-number">5.2</span> Arquivos de texto delimitado com <code>readr</code></h2>
-<p>Apresenta <code>read_csv()</code>, <code>read_csv2()</code> e <code>read_delim()</code> e o controle da importação por meio dos argumentos <code>col_types</code>, <code>na</code>, <code>skip</code> e <code>n_max</code> e da função <code>locale()</code> (separador decimal e codificação, como <code>latin1</code>). Mostra como inspecionar a especificação de colunas e os problemas de leitura (<code>spec()</code>, <code>problems()</code>). Destaca que códigos como o do município ou da CID-10 devem ser lidos como texto para preservar zeros à esquerda e letras.</p>
+<p>Um arquivo de texto delimitado guarda uma tabela em texto simples, com uma linha por registro e um caractere separando as colunas. No padrão internacional, o separador é a vírgula e o decimal é o ponto. No Brasil, como a vírgula é o separador decimal, os arquivos costumam usar ponto e vírgula entre as colunas. Ambos recebem a extensão <code>.csv</code>.</p>
+<p>O pacote <code>readr</code>, parte do tidyverse, tem uma função para cada caso. A função <code>read_csv()</code> lê o padrão internacional, e a função <code>read_csv2()</code> lê o padrão com ponto e vírgula e vírgula decimal. Para qualquer outro separador, existe <code>read_delim()</code>, em que o separador é informado no argumento <code>delim</code>.</p>
+<p>Antes de importar, é útil espiar as primeiras linhas do arquivo, sem interpretá-las. A função <code>read_lines()</code> faz isso.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_lines</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"sinasc_ro_2019.csv"</span>), <span class="at">n_max =</span> <span class="dv">3</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "\"CODMUNRES\";\"MUNRESNOME\";\"DTNASC\";\"SEXO\";\"PESO\";\"IDADEMAE\";\"ESCMAE\";\"ESTCIVMAE\";\"RACACOR\";\"GESTACAO\";\"SEMAGESTAC\";\"GRAVIDEZ\";\"PARTO\";\"CONSULTAS\";\"APGAR1\";\"APGAR5\";\"QTDFILVIVO\";\"LOCNASC\""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] "110001;\"Alta Floresta D'Oeste\";\"19022019\";\"Masculino\";3685;19;\"8 a 11 anos\";5;\"Branca\";\"37 a 41 semanas\";39;\"\xdanica\";\"Ces\xe1reo\";4;9;10;0;1"                                                               </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "110001;\"Alta Floresta D'Oeste\";\"21022019\";\"Feminino\";3055;29;\"8 a 11 anos\";2;\"Branca\";\"37 a 41 semanas\";38;\"\xdanica\";\"Ces\xe1reo\";4;8;9;1;1"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Repare em duas coisas. As colunas estão separadas por ponto e vírgula, então a função certa é <code>read_csv2()</code>. E há um caractere estranho onde deveria haver um acento, em “Única”. Isso indica que o arquivo não está na codificação UTF-8, que o R usa por padrão, e sim em <strong>latin1</strong> (ISO-8859-1), muito comum em arquivos gerados por sistemas brasileiros mais antigos. A codificação é informada pela função <code>locale()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"sinasc_ro_2019.csv"</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"latin1"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ao terminar a leitura, o <code>readr</code> informa quantas linhas e colunas foram lidas e qual tipo foi atribuído a cada coluna. Essa mensagem merece atenção. O <code>readr</code> adivinha o tipo de cada coluna olhando os primeiros valores, e a adivinhação nem sempre é a que queremos. Duas colunas preocupam aqui. A coluna <code>CODMUNRES</code>, com o código do município de residência, foi lida como número; isso funciona em Rondônia, mas em estados cujo código começa com zero, ou quando o código é comparado a um texto, causa problemas. A coluna <code>DTNASC</code>, com a data de nascimento no formato <code>ddmmaaaa</code>, também foi lida como número, e com isso as datas de dias 1 a 9 perdem o zero inicial (<code>01022019</code> vira <code>1022019</code>).</p>
+<p>A solução é dizer ao <code>readr</code> o tipo de cada coluna problemática, com o argumento <code>col_types</code>. Códigos de identificação, mesmo que sejam formados só por algarismos, devem ser lidos como texto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"sinasc_ro_2019.csv"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"latin1"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">CODMUNRES =</span> <span class="fu">col_character</span>(),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">DTNASC =</span> <span class="fu">col_character</span>()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>sinasc</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 27,028 × 18</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    CODMUNRES MUNRESNOME     DTNASC SEXO   PESO IDADEMAE ESCMAE ESTCIVMAE RACACOR</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 110001    Alta Floresta… 19022… Masc…  3685       19 8 a 1…         5 Branca </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 110001    Alta Floresta… 21022… Femi…  3055       29 8 a 1…         2 Branca </span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 110001    Alta Floresta… 25022… Femi…  3460       37 8 a 1…         9 Branca </span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 110037    Alto Alegre d… 20032… Femi…  2982       30 12 an…         5 Parda  </span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 110001    Alta Floresta… 23032… Femi…  3310       30 8 a 1…         2 Parda  </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 110001    Alta Floresta… 27032… Masc…  2740       33 1 a 3…         5 Branca </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 110050    Novo Horizont… 01042… Femi…  3158       37 8 a 1…         1 Branca </span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 110001    Alta Floresta… 01042… Femi…  3192       27 12 an…         2 Parda  </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 110001    Alta Floresta… 28022… Masc…  3570       20 8 a 1…         5 &lt;NA&gt;   </span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 110001    Alta Floresta… 11032… Femi…  3900       30 1 a 3…         2 Preta  </span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 27,018 more rows</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 9 more variables: GESTACAO &lt;chr&gt;, SEMAGESTAC &lt;dbl&gt;, GRAVIDEZ &lt;chr&gt;,</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   PARTO &lt;chr&gt;, CONSULTAS &lt;dbl&gt;, APGAR1 &lt;dbl&gt;, APGAR5 &lt;dbl&gt;, QTDFILVIVO &lt;dbl&gt;,</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   LOCNASC &lt;dbl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora as duas colunas aparecem como <code>&lt;chr&gt;</code> e preservam seus zeros. A data ainda está como texto; sua conversão para o tipo data será feita no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
+<p>Outros argumentos úteis de <code>read_csv()</code> e <code>read_csv2()</code> são <code>na</code>, que informa quais valores devem ser tratados como ausentes (por padrão, células vazias e o texto <code>"NA"</code>), <code>skip</code>, que pula linhas no início do arquivo, e <code>n_max</code>, que limita o número de linhas lidas. Veremos esses dois últimos em ação logo adiante.</p>
+<div class="callout callout-style-simple callout-warning callout-titled" title="Não confie cegamente na adivinhação de tipos">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Não confie cegamente na adivinhação de tipos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Depois de importar um arquivo, olhe sempre os tipos das colunas. Uma coluna numérica que aparece como texto (<code>&lt;chr&gt;</code>) costuma indicar vírgula decimal, um valor como “ignorado” no meio dos números ou um símbolo de milhar. Um código que aparece como número (<code>&lt;dbl&gt;</code>) pode ter perdido zeros à esquerda. A função <code>problems()</code>, aplicada ao objeto importado, lista as linhas que o <code>readr</code> não conseguiu interpretar.</p>
+</div>
+</div>
 </section>
-<section id="sec-readxl" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="sec-readxl"><span class="header-section-number">5.3</span> Planilhas eletrônicas com <code>readxl</code></h2>
-<p>Apresenta <code>read_excel()</code> e <code>excel_sheets()</code>, com os argumentos <code>sheet</code>, <code>range</code> e <code>skip</code>, e discute problemas típicos de planilhas preparadas para leitura humana: células mescladas, cabeçalhos em várias linhas, totais no meio da tabela e datas armazenadas como números.</p>
+<section id="sec-clean-names" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="sec-clean-names"><span class="header-section-number">5.3</span> Primeira inspeção dos dados</h2>
+<p>Com os dados importados, o primeiro passo é conferir se o que chegou corresponde ao esperado. Uma rotina mínima tem três perguntas. Quantos registros e quantas variáveis há? Os tipos das colunas fazem sentido? Os valores parecem plausíveis?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(sinasc)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 27028    18</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(sinasc)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 27,028</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 18</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ CODMUNRES  &lt;chr&gt; "110001", "110001", "110001", "110037", "110001", "110001",…</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ MUNRESNOME &lt;chr&gt; "Alta Floresta D'Oeste", "Alta Floresta D'Oeste", "Alta Flo…</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ DTNASC     &lt;chr&gt; "19022019", "21022019", "25022019", "20032019", "23032019",…</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ SEXO       &lt;chr&gt; "Masculino", "Feminino", "Feminino", "Feminino", "Feminino"…</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ PESO       &lt;dbl&gt; 3685, 3055, 3460, 2982, 3310, 2740, 3158, 3192, 3570, 3900,…</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ IDADEMAE   &lt;dbl&gt; 19, 29, 37, 30, 30, 33, 37, 27, 20, 30, 31, 21, 21, 18, 31,…</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ ESCMAE     &lt;chr&gt; "8 a 11 anos", "8 a 11 anos", "8 a 11 anos", "12 anos ou ma…</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ ESTCIVMAE  &lt;dbl&gt; 5, 2, 9, 5, 2, 5, 1, 2, 5, 2, 5, 5, 5, 5, 1, 5, 2, 5, 5, 2,…</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ RACACOR    &lt;chr&gt; "Branca", "Branca", "Branca", "Parda", "Parda", "Branca", "…</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ GESTACAO   &lt;chr&gt; "37 a 41 semanas", "37 a 41 semanas", "37 a 41 semanas", "3…</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ SEMAGESTAC &lt;dbl&gt; 39, 38, 40, 38, 38, 38, 38, 39, 39, 39, 40, 38, 41, 39, 38,…</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ GRAVIDEZ   &lt;chr&gt; "Única", "Única", "Única", "Única", "Única", "Única", "Únic…</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ PARTO      &lt;chr&gt; "Cesáreo", "Cesáreo", "Cesáreo", "Cesáreo", "Cesáreo", "Ces…</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ CONSULTAS  &lt;dbl&gt; 4, 4, 4, 3, 4, 4, 4, 4, 3, 4, 4, 3, 4, 3, 4, 3, 4, 3, 4, 4,…</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ APGAR1     &lt;dbl&gt; 9, 8, 8, 9, 8, 9, 9, 9, 8, 9, 8, 9, 8, 8, 5, 9, 9, 9, 9, 9,…</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ APGAR5     &lt;dbl&gt; 10, 9, 10, 10, 10, 10, 10, 10, 9, 10, 9, 10, 9, 9, 7, 10, 1…</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ QTDFILVIVO &lt;dbl&gt; 0, 1, 2, 0, 1, 2, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 2, 2, 2, 1,…</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ LOCNASC    &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Foram lidos 27.028 registros de nascimentos e 18 variáveis. Os nomes das colunas seguem o padrão do DATASUS, em letras maiúsculas. Para facilitar a digitação, é comum padronizá-los em letras minúsculas com a função <code>clean_names()</code> do pacote <code>janitor</code>, que também remove acentos, espaços e símbolos dos nomes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="ot">&lt;-</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>(sinasc)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sinasc)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] "codmunres"  "munresnome" "dtnasc"     "sexo"       "peso"      </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] "idademae"   "escmae"     "estcivmae"  "racacor"    "gestacao"  </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] "semagestac" "gravidez"   "parto"      "consultas"  "apgar1"    </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] "apgar5"     "qtdfilvivo" "locnasc"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por fim, um olhar sobre algumas variáveis ajuda a encontrar problemas logo no início.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sinasc<span class="sc">$</span>peso)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     258    2965    3270    3243    3575    5985</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(sinasc, parto)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   parto       n</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;   &lt;int&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Cesáreo 18036</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Vaginal  8943</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 &lt;NA&gt;       49</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O peso varia de valores muito baixos, compatíveis com recém-nascidos extremamente prematuros, até quase 6 kg, valor raro, mas possível. O tipo de parto tem três situações: cesáreo, vaginal e ausente (<code>NA</code>). Essas verificações serão sistematizadas no protocolo de exploração do <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Saúde Pública em foco
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Em Rondônia, em 2019, cerca de dois terços dos nascimentos ocorreram por cesariana. A Organização Mundial da Saúde observa que, no nível populacional, taxas de cesariana acima de 10% não se associam a reduções da mortalidade materna e neonatal <span class="citation" data-cites="who2015cesarea">(<a href="../references.html#ref-who2015cesarea" role="doc-biblioref">WORLD HEALTH ORGANIZATION, 2015</a>)</span>. Esse é o tipo de achado que a simples contagem de uma variável já revela e que será aprofundado nos capítulos de descrição e de análise.</p>
+</div>
+</div>
 </section>
-<section id="sec-outros-formatos" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="sec-outros-formatos"><span class="header-section-number">5.4</span> Outros formatos</h2>
-<p>Mostra a leitura de arquivos do Stata e do SPSS com <code>haven</code> e a conversão de variáveis rotuladas em fatores (<code>as_factor()</code>), a leitura e a gravação de arquivos RDS (<code>read_rds()</code>, <code>write_rds()</code>) e menciona a existência de pacotes para ler arquivos DBC do DATASUS.</p>
+<section id="sec-readxl" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-readxl"><span class="header-section-number">5.4</span> Planilhas eletrônicas com <code>readxl</code></h2>
+<p>Muitos dados de saúde circulam em planilhas do Excel. O pacote <code>readxl</code>, instalado com o tidyverse mas não carregado automaticamente, lê arquivos <code>.xls</code> e <code>.xlsx</code> sem precisar do Excel instalado. A função <code>excel_sheets()</code> lista as abas de uma planilha, e <code>read_excel()</code> importa uma delas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_ro_2015_2024.xlsx"</span>))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "populacao"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>populacao_anos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_ro_2015_2024.xlsx"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">sheet =</span> <span class="st">"populacao"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>populacao_anos</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 52 × 12</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    cod_municipio municipio      `2015` `2016` `2017` `2018` `2019` `2020` `2021`</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 1100015       Alta Floresta…  24540  24396  24238  24068  23910  23752  23546</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 1100379       Alto Alegre d…  12983  12927  12864  12790  12723  12658  12569</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 1100403       Alto Paraíso    17696  17712  17718  17704  17697  17680  17640</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 1100346       Alvorada D'Oe…  16223  15964  15699  15436  15187  14938  14657</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 1100023       Ariquemes       98956 100316 101559 102718 103895 105044 105986</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 1100452       Buritis         32969  32810  32606  32368  32152  31915  31633</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 1100031       Cabixi           6293   6235   6186   6117   6059   5995   5922</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 1100601       Cacaulândia      5347   5218   5090   4967   4854   4745   4620</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 1100049       Cacoal          86910  88323  89662  90912  92203  93443  94502</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 1100700       Campo Novo de…  11709  11412  11110  10805  10514  10241   9952</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 42 more rows</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 3 more variables: `2022` &lt;dbl&gt;, `2023` &lt;dbl&gt;, `2024` &lt;dbl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A planilha traz a população dos 52 municípios de Rondônia de 2015 a 2024, com um ano em cada coluna. Esse formato, com anos nas colunas, é muito comum em planilhas, mas não é o mais adequado para análise no R. A forma de reorganizá-lo é o assunto do <a href="08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a>.</p>
+<p>Os argumentos <code>sheet</code>, <code>range</code> e <code>skip</code> permitem escolher a aba, um intervalo de células (como <code>"A1:D20"</code>) e o número de linhas a pular no início. Eles são especialmente úteis em planilhas preparadas para leitura humana, que costumam ter títulos, células mescladas, linhas de total e notas de rodapé. Quando possível, a melhor estratégia é pedir os dados em um formato mais simples. Quando não é, esses argumentos ajudam a isolar a parte da planilha que contém a tabela.</p>
 </section>
-<section id="sec-clean-names" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="sec-clean-names"><span class="header-section-number">5.5</span> Nomes de colunas e primeira inspeção</h2>
-<p>Apresenta <code>janitor::clean_names()</code> para padronizar nomes de colunas e uma rotina mínima de verificação após a importação: número de linhas e colunas comparado ao esperado, tipos de cada coluna (<code>glimpse()</code>) e primeiros registros.</p>
+<section id="sec-tabnet" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-tabnet"><span class="header-section-number">5.5</span> Tabelas exportadas pelo TabNet</h2>
+<p>O TabNet é a ferramenta do DATASUS para tabular dados dos sistemas de informação diretamente no navegador. As tabelas podem ser exportadas em CSV, mas o arquivo vem com linhas de título no começo e notas no final. Vamos espiar um arquivo nesse formato, com a população de Rondônia por município e sexo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_lines</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"tabnet_populacao_ro_2019.csv"</span>),</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"latin1"</span>))[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Estimativas populacionais por município, sexo e faixa etária"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2] "População residente por Município e Sexo"                    </span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [3] "Unidade da Federação: Rondônia"                              </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "Período: 2019"                                               </span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [5] "\"Município\";\"Masculino\";\"Feminino\";\"Total\""          </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "\"110001 Alta Floresta D'Oeste\";12239;11671;23910"          </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [7] "\"110002 Ariquemes\";52140;51755;103895"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A tabela propriamente dita começa na quinta linha, com os nomes das colunas. Antes disso há quatro linhas de título. No final do arquivo há uma linha de total e algumas notas. Com <code>skip = 4</code>, pulamos o título, e com <code>n_max = 52</code>, lemos apenas as 52 linhas dos municípios, deixando de fora a linha de total e as notas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>populacao_sexo <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"tabnet_populacao_ro_2019.csv"</span>),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"latin1"</span>),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">4</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_max =</span> <span class="dv">52</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>populacao_sexo</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 52 × 4</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Município                    Masculino Feminino  Total</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                            &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 110001 Alta Floresta D'Oeste     12239    11671  23910</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 110002 Ariquemes                 52140    51755 103895</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 110003 Cabixi                     3091     2968   6059</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 110004 Cacoal                    45744    46459  92203</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 110005 Cerejeiras                 8662     8622  17284</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 110006 Colorado do Oeste          8881     8821  17702</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 110007 Corumbiara                 4436     3976   8412</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 110008 Costa Marques              7335     6646  13981</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 110009 Espigão D'Oeste           16246    15764  32010</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 110010 Guajará-Mirim             22176    21665  43841</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 42 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A primeira coluna junta o código e o nome do município, um padrão típico do TabNet. Separá-la em duas colunas é um dos exercícios do <a href="08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a>.</p>
 </section>
-<section id="sec-exportacao" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="sec-exportacao"><span class="header-section-number">5.6</span> Exportando dados e resultados</h2>
-<p>Mostra a exportação com <code>write_csv()</code> e <code>write_csv2()</code>, este último compatível com a configuração regional brasileira do Excel, e com <code>write_rds()</code>, que preserva tipos e fatores. Discute a separação entre dados brutos, que nunca são alterados, e dados processados.</p>
+<section id="sec-outros-formatos" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-outros-formatos"><span class="header-section-number">5.6</span> Outros formatos</h2>
+<p>Bases produzidas em outros programas estatísticos podem ser lidas com o pacote <code>haven</code>. A função <code>read_dta()</code> lê arquivos do Stata, e <code>read_sav()</code> lê arquivos do SPSS. Esses arquivos costumam ter variáveis com rótulos, e a função <code>as_factor()</code> converte essas variáveis em fatores do R, usando os rótulos como categorias.</p>
+<p>O R também tem um formato próprio, o <strong>RDS</strong>. Um arquivo RDS guarda um único objeto exatamente como ele está na memória, com tipos, fatores e datas preservados. É o formato ideal para guardar dados já preparados, que serão usados em outros scripts. As funções <code>write_rds()</code> e <code>read_rds()</code>, do <code>readr</code>, gravam e leem esses arquivos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_rds</span>(sinasc, <span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"processados"</span>, <span class="st">"sinasc_ro_2019.rds"</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sinasc <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"processados"</span>, <span class="st">"sinasc_ro_2019.rds"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por fim, os microdados do DATASUS são distribuídos em arquivos compactados com extensão <code>.dbc</code>, um formato próprio do sistema. Esses arquivos podem ser lidos com os pacotes apresentados na próxima seção, sem necessidade de conversão manual.</p>
 </section>
 <section id="sec-obtencao-datasus" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="sec-obtencao-datasus"><span class="header-section-number">5.7</span> Obtendo dados dos sistemas de informação em saúde</h2>
-<p>Apresenta as três vias principais de acesso: as tabulações do TabNet, exportadas em CSV; os microdados, que podem ser baixados e pré-processados no R com o pacote <code>microdatasus</code> <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span>; e os conjuntos publicados no portal OpenDataSUS. Remete ao <a href="../apendices/b-sistemas-informacao.html" class="quarto-xref"><span>Apêndice B</span></a> para a descrição de cada sistema e para as considerações éticas sobre o uso de microdados.</p>
+<p>Há três caminhos principais para obter dados do SUS. O primeiro é o TabNet, já comentado, adequado para tabelas agregadas. O segundo é o portal OpenDataSUS, que disponibiliza diversos conjuntos em CSV. O terceiro, e o mais flexível, é baixar os microdados diretamente no R, com pacotes desenvolvidos para isso. Dois deles são apresentados aqui.</p>
+<p>O pacote <code>microdatasus</code> <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span> baixa os arquivos do servidor do DATASUS com a função <code>fetch_datasus()</code> e oferece funções de pré-processamento, como <code>process_sinasc()</code> e <code>process_sim()</code>, que convertem os códigos em categorias com rótulos, ajustam os tipos das variáveis e acrescentam informações sobre os municípios. O código abaixo baixa os nascimentos de mães residentes em Rondônia em 2019 e os processa. Foi assim que a base usada neste livro foi obtida.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("microdatasus")</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microdatasus)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>sinasc_bruto <span class="ot">&lt;-</span> <span class="fu">fetch_datasus</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_start =</span> <span class="dv">2019</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_end =</span> <span class="dv">2019</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">uf =</span> <span class="st">"RO"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">information_system =</span> <span class="st">"SINASC"</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>sinasc_processado <span class="ot">&lt;-</span> <span class="fu">process_sinasc</span>(sinasc_bruto)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O pacote <code>healthbR</code> é uma alternativa mais recente, que reúne em um só lugar o acesso ao SINASC, ao SIM, ao SINAN, ao SIH, ao Programa Nacional de Imunizações, a pesquisas como a PNS e a dados do IBGE. Cada sistema tem uma função própria, como <code>sinasc_data()</code>, <code>sim_data()</code> e <code>sinan_data()</code>, e as funções <code>*_dictionary()</code> mostram o dicionário de cada sistema no próprio R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("healthbR")</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(healthbR)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>sinasc_ro <span class="ot">&lt;-</span> <span class="fu">sinasc_data</span>(<span class="at">year =</span> <span class="dv">2019</span>, <span class="at">uf =</span> <span class="st">"RO"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sinasc_dictionary</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O download depende da disponibilidade dos servidores do DATASUS, que às vezes ficam lentos ou fora do ar. Por isso, é boa prática baixar os dados uma vez, guardá-los na pasta <code>dados/brutos/</code> do projeto e trabalhar a partir dessa cópia local. Os arquivos usados neste livro estão na pasta <code>dados/</code> do projeto, e o <a href="../apendices/c-bases-do-livro.html" class="quarto-xref"><span>Apêndice C</span></a> descreve sua origem e seu conteúdo.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Uso responsável de microdados">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Uso responsável de microdados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Os microdados dos sistemas de informação do SUS são públicos e não contêm nome, endereço ou documentos das pessoas. Mesmo assim, combinações de variáveis podem, em municípios pequenos, permitir a identificação de alguém. O uso desses dados deve se limitar a análises agregadas, e qualquer tentativa de identificar indivíduos é eticamente inaceitável e contraria a Lei Geral de Proteção de Dados (Lei nº 13.709/2018).</p>
+</div>
+</div>
 </section>
-<section id="sec-caso-05" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="sec-caso-05"><span class="header-section-number">5.8</span> Estudo de caso: importando um extrato do SINASC</h2>
-<p>O estudante importa um extrato de nascidos vivos em CSV separado por ponto e vírgula e codificado em <code>latin1</code>, define o tipo das colunas de códigos como texto, verifica problemas de leitura, padroniza os nomes das colunas e salva o resultado em formato RDS na pasta de dados processados, que será o ponto de partida dos capítulos seguintes.</p>
+<section id="sec-exportacao" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="sec-exportacao"><span class="header-section-number">5.8</span> Exportando dados e resultados</h2>
+<p>Exportar é o caminho inverso. As funções <code>write_csv()</code> e <code>write_csv2()</code> gravam um <em>data frame</em> em arquivo de texto. A primeira usa vírgula como separador; a segunda usa ponto e vírgula e vírgula decimal, o padrão que o Excel espera quando está configurado para o português.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>partos <span class="ot">&lt;-</span> <span class="fu">count</span>(sinasc, parto)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv2</span>(partos, <span class="fu">here</span>(<span class="st">"resultados"</span>, <span class="st">"tabelas"</span>, <span class="st">"partos_ro_2019.csv"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Uma regra de ouro merece ser repetida: os arquivos da pasta <code>dados/brutos/</code> nunca são alterados. Toda transformação é feita por scripts, e os resultados são gravados em outras pastas. Assim, sempre é possível refazer o caminho dos dados originais até o resultado final.</p>
 </section>
-<section id="sec-ex-05" class="level2" data-number="5.9">
-<h2 data-number="5.9" class="anchored" data-anchor-id="sec-ex-05"><span class="header-section-number">5.9</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem a importação de arquivos CSV com diferentes delimitadores e separadores decimais. Os de aplicação envolvem uma tabela exportada do TabNet, cujas linhas de título e notas de rodapé exigem os argumentos <code>skip</code> e <code>n_max</code>. O desafio propõe importar e empilhar arquivos de vários anos em uma única tabela, usando o argumento <code>id</code> de <code>read_csv()</code>.</p>
+<section id="sec-caso-05" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="sec-caso-05"><span class="header-section-number">5.9</span> Estudo de caso: importando e verificando o extrato do SINASC</h2>
+<p>Vamos reunir os passos deste capítulo em um script de importação, como o que faria parte do projeto organizado no <a href="01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a>. O objetivo é ler o arquivo, padronizar os nomes, verificar se os dados estão completos e guardar uma cópia pronta para os próximos passos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"sinasc_ro_2019.csv"</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"latin1"</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">CODMUNRES =</span> <span class="fu">col_character</span>(), <span class="at">DTNASC =</span> <span class="fu">col_character</span>())</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O símbolo <code>|&gt;</code>, que aparece no fim da leitura, é o operador <em>pipe</em>. Ele passa o resultado da função anterior para a seguinte, e será explicado em detalhe no próximo capítulo. Por enquanto, basta ler a expressão como “leia o arquivo e, em seguida, padronize os nomes”.</p>
+<p>Agora, as verificações. Começamos pelo número de municípios de residência. Rondônia tem 52 municípios.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">n_distinct</span>(sinasc<span class="sc">$</span>codmunres)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 53</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Apareceram 53 códigos diferentes. Para descobrir qual é o código a mais, contamos os registros por código e nome e olhamos o menos frequente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(sinasc, codmunres, munresnome) <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(n) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   codmunres munresnome                  n</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;                   &lt;int&gt;</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 110000    Município ignorado - RO     1</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 110090    Castanheiras               32</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 110146    Pimenteiras do Oeste       40</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O código <code>110000</code> corresponde a “Município ignorado - RO”, usado quando se sabe que a mãe reside no estado, mas não em qual município. É um exemplo típico de categoria que precisa ser levada em conta em análises por município.</p>
+<p>Em seguida, contamos os valores ausentes em cada variável. A função <code>colSums()</code> soma as colunas de uma tabela de <code>TRUE</code> e <code>FALSE</code>, o que resulta no número de ausentes por variável.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(sinasc))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  codmunres munresnome     dtnasc       sexo       peso   idademae     escmae </span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          0          0          0          4          0          0        312 </span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  estcivmae    racacor   gestacao semagestac   gravidez      parto  consultas </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        317        647       1232       1238         79         49          0 </span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     apgar1     apgar5 qtdfilvivo    locnasc </span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         96        103       1573          0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A maioria das variáveis está bem preenchida. A idade gestacional em semanas (<code>semagestac</code>) tem cerca de 1.200 registros sem informação, o que deve ser levado em conta quando essa variável for analisada. A variável <code>consultas</code>, embora não tenha ausentes, usa o código 9 para “ignorado”, e esse código ainda precisará ser tratado.</p>
+<p>Por fim, uma checagem simples de plausibilidade. A idade da mãe deve estar entre, aproximadamente, 10 e 55 anos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(sinasc<span class="sc">$</span>idademae, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11 53</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os valores estão dentro do esperado. Com a base verificada, o último passo seria gravá-la em formato RDS na pasta <code>dados/processados/</code>, com <code>write_rds()</code>, para ser usada nos próximos scripts.</p>
 </section>
-<section id="sec-sintese-05" class="level2" data-number="5.10">
-<h2 data-number="5.10" class="anchored" data-anchor-id="sec-sintese-05"><span class="header-section-number">5.10</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<section id="sec-ex-05" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="sec-ex-05"><span class="header-section-number">5.10</span> Exercícios</h2>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Importe o arquivo <code>sinasc_ro_2019.csv</code> sem informar a codificação. Observe como aparecem as categorias com acento da variável <code>GRAVIDEZ</code> e explique o que aconteceu.</p></li>
+<li><p>Importe o mesmo arquivo com <code>read_csv()</code>, em vez de <code>read_csv2()</code>. Quantas colunas o R encontrou? Por quê?</p></li>
+<li><p>Leia a aba <code>populacao</code> da planilha <code>populacao_ro_2015_2024.xlsx</code> e responda: qual era a população de Porto Velho em 2024?</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="4" type="1">
+<li><p>Importe o arquivo <code>tabnet_populacao_ro_2019.csv</code> sem os argumentos <code>skip</code> e <code>n_max</code> e descreva o resultado. Em seguida, importe-o corretamente e verifique se a soma da coluna <code>Total</code> coincide com o valor informado na linha de total do arquivo original.</p></li>
+<li><p>Importe o arquivo <code>populacao_ro_2019.csv</code>, com a população por município, sexo e faixa etária. Verifique os tipos das colunas, confira se há 52 municípios e calcule a população total do estado.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="6" type="1">
+<li><p>Em seu computador, use o pacote <code>microdatasus</code> ou o <code>healthbR</code> para baixar os nascimentos de mães residentes em outro estado em 2019. Compare o número de registros e a proporção de partos cesáreos com os de Rondônia. Registre, em comentários no script, as dificuldades encontradas no download.</p></li>
+<li><p>Crie um arquivo CSV no padrão brasileiro com <code>write_csv2()</code> e abra-o no Excel ou em outro programa de planilhas. Depois, faça o mesmo com <code>write_csv()</code>. Explique as diferenças que aparecem na abertura e relacione-as à configuração regional do computador.</p></li>
+</ol>
+</section>
+</section>
+<section id="sec-sintese-05" class="level2" data-number="5.11">
+<h2 data-number="5.11" class="anchored" data-anchor-id="sec-sintese-05"><span class="header-section-number">5.11</span> Síntese</h2>
+<p>Importar dados exige atenção a quatro detalhes: o separador de colunas, o separador decimal, a codificação de caracteres e o tipo de cada coluna. Arquivos brasileiros costumam usar ponto e vírgula, vírgula decimal e, muitas vezes, a codificação latin1, o que pede <code>read_csv2()</code> com <code>locale(encoding = "latin1")</code>. Códigos de identificação devem ser lidos como texto, por meio de <code>col_types</code>. Planilhas são lidas com <code>readxl</code>, e tabelas do TabNet exigem <code>skip</code> e <code>n_max</code> para descartar títulos e notas. Depois da importação, uma verificação rápida de dimensões, tipos, valores ausentes e plausibilidade evita surpresas mais adiante. Os pacotes <code>microdatasus</code> e <code>healthbR</code> permitem obter os microdados do DATASUS diretamente no R, e a regra de nunca alterar os dados brutos garante que toda a análise possa ser refeita.</p>
+<div id="tbl-sintese-05" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;5.1: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-05-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -466,60 +805,79 @@ Objetivos de aprendizagem
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;"><code>read_lines()</code></td>
+<td style="text-align: left;">readr</td>
+<td style="text-align: left;">Espiar as primeiras linhas de um arquivo</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><code>read_csv()</code>, <code>read_csv2()</code>, <code>read_delim()</code></td>
 <td style="text-align: left;">readr</td>
-<td style="text-align: left;">Importar texto delimitado</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>locale()</code>, <code>cols()</code>, <code>col_character()</code></td>
-<td style="text-align: left;">readr</td>
-<td style="text-align: left;">Separador decimal, codificação e tipos de colunas</td>
+<td style="text-align: left;">Importar arquivos de texto delimitado</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>spec()</code>, <code>problems()</code></td>
+<td style="text-align: left;"><code>locale()</code>, <code>cols()</code>, <code>col_character()</code></td>
 <td style="text-align: left;">readr</td>
-<td style="text-align: left;">Verificar a importação</td>
+<td style="text-align: left;">Codificação, separador decimal e tipos de colunas</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>read_excel()</code>, <code>excel_sheets()</code></td>
+<td style="text-align: left;"><code>problems()</code></td>
+<td style="text-align: left;">readr</td>
+<td style="text-align: left;">Listar problemas de leitura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>excel_sheets()</code>, <code>read_excel()</code></td>
 <td style="text-align: left;">readxl</td>
 <td style="text-align: left;">Importar planilhas</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>read_dta()</code>, <code>read_sav()</code>, <code>as_factor()</code></td>
 <td style="text-align: left;">haven</td>
 <td style="text-align: left;">Arquivos do Stata e do SPSS</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>read_rds()</code>, <code>write_rds()</code></td>
 <td style="text-align: left;">readr</td>
 <td style="text-align: left;">Ler e gravar objetos do R</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>write_csv()</code>, <code>write_csv2()</code></td>
 <td style="text-align: left;">readr</td>
-<td style="text-align: left;">Exportar texto delimitado</td>
+<td style="text-align: left;">Exportar arquivos de texto delimitado</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>clean_names()</code></td>
 <td style="text-align: left;">janitor</td>
 <td style="text-align: left;">Padronizar nomes de colunas</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>here()</code></td>
 <td style="text-align: left;">here</td>
-<td style="text-align: left;">Caminhos relativos ao projeto</td>
+<td style="text-align: left;">Caminhos a partir da raiz do projeto</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>fetch_datasus()</code>, <code>process_sinasc()</code></td>
 <td style="text-align: left;">microdatasus</td>
-<td style="text-align: left;">Baixar e pré-processar microdados</td>
+<td style="text-align: left;">Baixar e pré-processar microdados do DATASUS</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>sinasc_data()</code>, <code>sim_data()</code>, <code>sinan_data()</code></td>
+<td style="text-align: left;">healthbR</td>
+<td style="text-align: left;">Baixar dados dos sistemas de informação</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>colSums()</code>, <code>n_distinct()</code></td>
+<td style="text-align: left;">base, dplyr</td>
+<td style="text-align: left;">Verificações rápidas</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
-<section id="sec-mais-05" class="level2" data-number="5.11">
-<h2 data-number="5.11" class="anchored" data-anchor-id="sec-mais-05"><span class="header-section-number">5.11</span> Para saber mais</h2>
+<section id="sec-mais-05" class="level2" data-number="5.12">
+<h2 data-number="5.12" class="anchored" data-anchor-id="sec-mais-05"><span class="header-section-number">5.12</span> Para saber mais</h2>
+<p>O capítulo 7 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> trata da importação com <code>readr</code>, inclusive da leitura de vários arquivos de uma vez, e o capítulo 20 trata das planilhas. O capítulo 7 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> apresenta a importação com o pacote <code>rio</code>, uma alternativa que usa uma única função para muitos formatos, e o capítulo 4 de Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> discute em detalhe a codificação de caracteres, tema que costuma confundir usuários brasileiros. O artigo de apresentação do <code>microdatasus</code> <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span> explica como os arquivos do DATASUS são organizados.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -537,17 +895,17 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">7. Importação de dados; 20. Planilhas</td>
-<td style="text-align: left;">Lendo dados de um arquivo; Controlando tipos de colunas; Importando dados de múltiplos arquivos; Exportando para um arquivo; Excel</td>
+<td style="text-align: left;">Lendo dados de um arquivo; Controlando tipos de colunas; Exportando para um arquivo; Excel</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">7. Importar e exportar</td>
-<td style="text-align: left;">O pacote <strong>here</strong>; Caminhos dos arquivos; Importar dados; Múltiplos arquivos; Exportar; Arquivos RDS</td>
+<td style="text-align: left;">O pacote <strong>here</strong>; Importar dados; Múltiplos arquivos; Exportar; Arquivos RDS</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
 <td style="text-align: left;">4. Importando e exportando dados com <code>readr</code>, <code>readxl</code> e <code>haven</code></td>
-<td style="text-align: left;">Diretório de trabalho; Importando arquivos de texto com <code>readr</code>; Importando planilhas do Excel com <code>readxl</code>; <em>Encoding</em> de caracteres</td>
+<td style="text-align: left;">Importando arquivos de texto com <code>readr</code>; Importando planilhas do Excel com <code>readxl</code>; <em>Encoding</em> de caracteres</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
@@ -556,7 +914,6 @@ Objetivos de aprendizagem
 </tr>
 </tbody>
 </table>
-<p>O <em>Manual de R para Epidemiologistas</em> usa o pacote <code>rio</code> como interface única de importação; neste livro, optou-se por <code>readr</code> e <code>readxl</code>, mas a alternativa será mencionada.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
@@ -574,6 +931,9 @@ SALDANHA, R. DE F.; BASTOS, R. R.; BARCELLOS, C. <a href="https://doi.org/10.159
 </div>
 <div id="ref-wickham2023r4ds" class="csl-entry" role="listitem">
 WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4ds.hadley.nz/">R para Ciência de Dados</a></strong>. 2. ed. [s.l: s.n.].
+</div>
+<div id="ref-who2015cesarea" class="csl-entry" role="listitem">
+WORLD HEALTH ORGANIZATION. <strong>WHO statement on caesarean section rates</strong>. Geneva: World Health Organization, 2015.
 </div>
 </div>
 </section>
@@ -994,7 +1354,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

@@ -342,8 +342,17 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#principais-sistemas" id="toc-principais-sistemas" class="nav-link active" data-scroll-target="#principais-sistemas">Principais sistemas</a></li>
+  <li><a href="#limitações-a-considerar" id="toc-limitações-a-considerar" class="nav-link" data-scroll-target="#limitações-a-considerar">Limitações a considerar</a></li>
+  <li><a href="#formas-de-acesso" id="toc-formas-de-acesso" class="nav-link" data-scroll-target="#formas-de-acesso">Formas de acesso</a></li>
+  <li><a href="#responsabilidades-éticas" id="toc-responsabilidades-éticas" class="nav-link" data-scroll-target="#responsabilidades-éticas">Responsabilidades éticas</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -367,28 +376,41 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este apêndice ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
-<p>Este apêndice apresentará, de forma sintética, os sistemas de informação em saúde usados no livro: o Sistema de Informações sobre Mortalidade (SIM), o Sistema de Informações sobre Nascidos Vivos (SINASC), o Sistema de Informação de Agravos de Notificação (SINAN), o Sistema de Informações Hospitalares do SUS (SIH/SUS) e o sistema de informação do Programa Nacional de Imunizações, além das estimativas populacionais usadas como denominadores. Para cada sistema, serão descritos o documento de origem dos dados, a unidade de registro, as principais variáveis, a periodicidade de atualização e as limitações conhecidas, como o caráter preliminar dos dados mais recentes.</p>
-<p>Serão também descritas as formas de acesso (tabulações do TabNet, microdados baixados com o pacote <code>microdatasus</code> <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span> e o portal OpenDataSUS), a localização dos dicionários de dados e as responsabilidades éticas no uso de microdados, ainda que desidentificados, incluindo a vedação de qualquer tentativa de reidentificação de pessoas.</p>
+<p>Os sistemas de informação em saúde do Sistema Único de Saúde (SUS) estão entre as fontes de dados mais ricas para a pesquisa e a vigilância em saúde pública no Brasil. Este apêndice apresenta, de forma resumida, os sistemas mencionados no livro, as formas de acesso aos seus dados e os cuidados éticos no uso de microdados. O objetivo é oferecer um ponto de partida. A documentação oficial de cada sistema, disponível nas páginas do DATASUS, deve ser sempre consultada antes de uma análise.</p>
+<section id="principais-sistemas" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="principais-sistemas">Principais sistemas</h2>
+<p>O <strong>Sistema de Informações sobre Nascidos Vivos (SINASC)</strong> registra os nascimentos ocorridos no país a partir da Declaração de Nascido Vivo (DN), preenchida no estabelecimento onde ocorreu o parto. A unidade de registro é o nascido vivo. Ele traz informações sobre a mãe (idade, escolaridade, raça/cor, número de filhos anteriores), a gestação e o parto (duração da gestação, tipo de gravidez, número de consultas de pré-natal, tipo de parto) e o recém-nascido (sexo, peso, índice de Apgar, anomalias congênitas). É a fonte dos denominadores de vários indicadores, como a taxa de mortalidade infantil.</p>
+<p>O <strong>Sistema de Informações sobre Mortalidade (SIM)</strong> registra os óbitos a partir da Declaração de Óbito (DO), preenchida pelo médico. A unidade de registro é o óbito. Além das características da pessoa falecida e do local do óbito, a DO traz as causas de morte, codificadas segundo a Classificação Internacional de Doenças (CID-10), das quais se seleciona a causa básica, usada nas estatísticas de mortalidade. A idade é registrada com um código que combina a unidade (minutos, horas, dias, meses ou anos) e o valor, como vimos no <a href="../capitulos/09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
+<p>O <strong>Sistema de Informação de Agravos de Notificação (SINAN)</strong> recebe as notificações das doenças e agravos de notificação compulsória, como dengue, tuberculose, sífilis e violências, a partir das fichas de notificação e investigação preenchidas pelos serviços de saúde. A unidade de registro é a notificação, o que exige atenção: um mesmo caso pode ser notificado mais de uma vez, e casos notificados podem ser descartados após a investigação. Cada agravo tem uma ficha e um conjunto de variáveis próprios.</p>
+<p>O <strong>Sistema de Informações Hospitalares do SUS (SIH/SUS)</strong> registra as internações financiadas pelo SUS a partir da Autorização de Internação Hospitalar (AIH). A unidade de registro é a AIH, que, em geral, corresponde a uma internação, mas uma mesma pessoa pode ter várias internações. Por ter finalidade de pagamento, o sistema não cobre as internações custeadas por planos de saúde ou particulares, o que deve ser considerado ao comparar regiões com diferentes coberturas de saúde suplementar.</p>
+<p>O <strong>sistema de informação do Programa Nacional de Imunizações</strong> registra as doses de vacinas aplicadas e permite calcular as coberturas vacinais, que comparam o número de doses aplicadas com a população-alvo. As coberturas dependem, portanto, da qualidade tanto do registro das doses quanto da estimativa da população.</p>
+<p>As <strong>estimativas populacionais</strong> são os denominadores da maior parte dos indicadores. Elas vêm dos censos demográficos do IBGE e das estimativas feitas para os anos entre os censos, que são disponibilizadas pelo DATASUS por município, sexo e faixa etária. Estimativas de fontes ou anos de referência diferentes podem produzir indicadores um pouco diferentes, e a fonte usada deve sempre ser informada.</p>
+</section>
+<section id="limitações-a-considerar" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="limitações-a-considerar">Limitações a considerar</h2>
+<p>Todos esses sistemas dependem da cobertura (a proporção dos eventos que são efetivamente registrados) e da qualidade do preenchimento, que variam entre regiões e ao longo do tempo. Os dados dos anos mais recentes costumam ser <strong>preliminares</strong> e podem mudar quando se tornam definitivos, com o acréscimo de registros atrasados e a correção de inconsistências. Indicadores calculados para municípios pequenos são instáveis, como vimos no <a href="../capitulos/07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a>. E variáveis com muitos valores ignorados ou em branco exigem cautela, como discutido no <a href="../capitulos/12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>. Uma leitura útil sobre o cálculo e as limitações dos indicadores é a publicação da Rede Interagencial de Informações para a Saúde <span class="citation" data-cites="opas2008indicadores">(<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE, 2008</a>)</span>.</p>
+</section>
+<section id="formas-de-acesso" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="formas-de-acesso">Formas de acesso</h2>
+<p>O <strong>TabNet</strong>, ferramenta de tabulação do DATASUS, permite montar tabelas agregadas pela internet, escolhendo linhas, colunas e filtros, e exportá-las em formato CSV. É a forma mais simples de obter contagens por município, ano ou outras categorias, e foi o formato tratado no <a href="../capitulos/05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>.</p>
+<p>Os <strong>microdados</strong>, com um registro por evento, são disponibilizados pelo DATASUS em arquivos no formato <code>.dbc</code>, uma versão comprimida do formato <code>.dbf</code>. Eles podem ser lidos no R com o pacote <code>read.dbc</code>, mas é muito mais prático usar pacotes que fazem o download e a leitura de uma vez. O <code>microdatasus</code> <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span> baixa os arquivos com a função <code>fetch_datasus()</code> e os pré-processa, convertendo códigos em rótulos, com funções como <code>process_sinasc()</code> e <code>process_sim()</code>. O <code>healthbR</code> reúne o acesso a diversos sistemas e pesquisas com funções como <code>sinasc_data()</code>, <code>sim_data()</code> e <code>sinan_data()</code>, e traz os dicionários de variáveis no próprio R. O uso dos dois pacotes foi apresentado no <a href="../capitulos/05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>. Parte dos dados também está disponível no portal OpenDataSUS, em formatos abertos como CSV.</p>
+<p>Os <strong>dicionários de variáveis</strong> e a documentação de cada sistema, com a descrição dos campos e de seus códigos, estão disponíveis nas páginas do DATASUS e devem acompanhar qualquer análise. Os códigos de uma mesma variável podem mudar ao longo dos anos, quando o formulário de origem é alterado, o que exige atenção em análises de séries históricas.</p>
+</section>
+<section id="responsabilidades-éticas" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="responsabilidades-éticas">Responsabilidades éticas</h2>
+<p>Os microdados disponibilizados publicamente pelo DATASUS não trazem nome, endereço ou documentos das pessoas. Ainda assim, combinações de variáveis, como data de nascimento, município de residência e sexo, podem tornar algumas pessoas identificáveis, sobretudo em municípios pequenos e em eventos raros. O uso desses dados exige, por isso, alguns cuidados. Nenhuma tentativa de reidentificar pessoas deve ser feita, e os resultados devem ser divulgados de forma agregada, evitando tabelas com contagens muito pequenas que permitam identificar indivíduos.</p>
+<p>A Resolução nº 510/2016 do Conselho Nacional de Saúde prevê que pesquisas que usam exclusivamente informações de acesso ou de domínio público, ou bancos de dados com informações agregadas, sem possibilidade de identificação individual, não precisam ser registradas nem avaliadas pelo sistema de comitês de ética em pesquisa. Trabalhos com dados identificados, obtidos mediante solicitação aos gestores, seguem outras regras, incluindo a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018), e precisam de aprovação ética. Em caso de dúvida, o comitê de ética da instituição deve ser consultado.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-opas2008indicadores" class="csl-entry" role="listitem">
+ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE. <strong>Indicadores básicos para a saúde no Brasil: conceitos e aplicações</strong>. 2. ed. Brasília: Organização Pan-Americana da Saúde, 2008.
+</div>
 <div id="ref-saldanha2019microdatasus" class="csl-entry" role="listitem">
 SALDANHA, R. DE F.; BASTOS, R. R.; BARCELLOS, C. <a href="https://doi.org/10.1590/0102-311X00032419">Microdatasus: pacote para download e pré-processamento de microdados do Departamento de Informática do SUS (DATASUS)</a>. <strong>Cadernos de Saúde Pública</strong>, v. 35, n. 9, p. e00032419, 2019.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -806,7 +828,7 @@ SALDANHA, R. DE F.; BASTOS, R. R.; BARCELLOS, C. <a href="https://doi.org/10.159
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

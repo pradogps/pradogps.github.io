@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -354,8 +389,13 @@ div.csl-indent {
   <li><a href="#sec-dispersao" id="toc-sec-dispersao" class="nav-link" data-scroll-target="#sec-dispersao"><span class="header-section-number">11.5</span> Medidas de dispersão</a></li>
   <li><a href="#sec-descricao-grupos" id="toc-sec-descricao-grupos" class="nav-link" data-scroll-target="#sec-descricao-grupos"><span class="header-section-number">11.6</span> Descrição por grupos</a></li>
   <li><a href="#sec-tabela-1" id="toc-sec-tabela-1" class="nav-link" data-scroll-target="#sec-tabela-1"><span class="header-section-number">11.7</span> Tabelas para relatórios e artigos</a></li>
-  <li><a href="#sec-caso-11" id="toc-sec-caso-11" class="nav-link" data-scroll-target="#sec-caso-11"><span class="header-section-number">11.8</span> Estudo de caso: características maternas e do recém-nascido segundo tipo de parto</a></li>
-  <li><a href="#sec-ex-11" id="toc-sec-ex-11" class="nav-link" data-scroll-target="#sec-ex-11"><span class="header-section-number">11.9</span> Exercícios</a></li>
+  <li><a href="#sec-caso-11" id="toc-sec-caso-11" class="nav-link" data-scroll-target="#sec-caso-11"><span class="header-section-number">11.8</span> Estudo de caso: características das mães e dos recém-nascidos segundo o tipo de parto</a></li>
+  <li><a href="#sec-ex-11" id="toc-sec-ex-11" class="nav-link" data-scroll-target="#sec-ex-11"><span class="header-section-number">11.9</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-11" id="toc-sec-sintese-11" class="nav-link" data-scroll-target="#sec-sintese-11"><span class="header-section-number">11.10</span> Síntese</a></li>
   <li><a href="#sec-mais-11" id="toc-sec-mais-11" class="nav-link" data-scroll-target="#sec-mais-11"><span class="header-section-number">11.11</span> Para saber mais</a></li>
   </ul>
@@ -383,21 +423,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 6 · <strong>Pré-requisitos:</strong> <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a> e <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a> · <strong>Pacotes:</strong> <code>dplyr</code>, <code>janitor</code>, <code>gtsummary</code>, <code>flextable</code></p>
+<p><strong>Encontro previsto:</strong> 6 · <strong>Pré-requisitos:</strong> <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a> e <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a> · <strong>Pacotes:</strong> <code>dplyr</code>, <code>janitor</code>, <code>gtsummary</code>, <code>flextable</code>, <code>here</code></p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -409,40 +436,2113 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de classificar variáveis quanto ao tipo e escolher as medidas e os gráficos adequados a cada uma; construir tabelas de frequências simples e de dupla entrada, com percentuais na direção correta; calcular e interpretar medidas de tendência central, de posição e de dispersão, tratando valores ausentes; descrever variáveis segundo grupos; e produzir e exportar uma tabela descritiva no formato usual de artigos epidemiológicos.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de classificar variáveis quanto ao tipo e escolher as medidas e os gráficos adequados a cada uma; construir tabelas de frequências simples e de dupla entrada, com percentuais na direção correta; calcular e interpretar medidas de tendência central, de posição e de dispersão; descrever variáveis segundo grupos; e produzir e exportar uma tabela descritiva no formato usado em artigos científicos.</p>
 </div>
+</div>
+<p>Descrever bem os dados é o primeiro resultado de qualquer estudo. Antes de testar hipóteses ou ajustar modelos, é preciso saber quem são as pessoas estudadas, como as variáveis se distribuem e como os grupos diferem entre si. Em epidemiologia, essa descrição costuma aparecer na primeira tabela de um artigo, que apresenta as características da população estudada. Este capítulo reúne as ferramentas para fazer essa descrição no R, retomando conceitos de estatística descritiva que costumam ser vistos nas disciplinas de bioestatística.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-tipos-variaveis" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="sec-tipos-variaveis"><span class="header-section-number">11.1</span> Tipos de variáveis e escolhas descritivas</h2>
-<p>Retoma a classificação de variáveis (qualitativas nominais e ordinais; quantitativas discretas e contínuas) e relaciona cada tipo às medidas resumo, às tabelas e aos gráficos apropriados, articulando o conteúdo com o <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a>.</p>
+<p>As variáveis podem ser <strong>qualitativas</strong> (ou categóricas), quando seus valores são categorias, ou <strong>quantitativas</strong>, quando seus valores são números que expressam uma quantidade. As qualitativas se dividem em <strong>nominais</strong>, sem ordem entre as categorias (como sexo ou tipo de parto), e <strong>ordinais</strong>, com uma ordem natural (como escolaridade ou faixa etária). As quantitativas se dividem em <strong>discretas</strong>, que assumem valores inteiros resultantes de contagens (como o número de filhos), e <strong>contínuas</strong>, que podem assumir qualquer valor em um intervalo (como o peso ou a altura).</p>
+<p>O tipo da variável orienta a forma de descrevê-la, como resume a <a href="#tbl-tipos-descricao" class="quarto-xref">Tabela&nbsp;<span>11.1</span></a>. Variáveis qualitativas são descritas por frequências e percentuais. Variáveis quantitativas são descritas por medidas de tendência central e de dispersão. No R, as qualitativas costumam estar guardadas como texto ou fator, e as quantitativas, como números.</p>
+<div id="tbl-tipos-descricao" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tipos-descricao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;11.1: Tipos de variáveis e formas de descrevê-las.
+</figcaption>
+<div aria-describedby="tbl-tipos-descricao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipo de variável</th>
+<th style="text-align: left;">Exemplo no SINASC</th>
+<th style="text-align: left;">Medidas</th>
+<th style="text-align: left;">Gráficos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Qualitativa nominal</td>
+<td style="text-align: left;">Tipo de parto, raça/cor</td>
+<td style="text-align: left;">Frequências e percentuais</td>
+<td style="text-align: left;">Barras</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Qualitativa ordinal</td>
+<td style="text-align: left;">Escolaridade, faixa de idade da mãe</td>
+<td style="text-align: left;">Frequências, percentuais e percentuais acumulados</td>
+<td style="text-align: left;">Barras, na ordem das categorias</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Quantitativa discreta</td>
+<td style="text-align: left;">Número de consultas, Apgar</td>
+<td style="text-align: left;">Média, mediana, quartis</td>
+<td style="text-align: left;">Barras ou histograma</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quantitativa contínua</td>
+<td style="text-align: left;">Peso ao nascer, idade da mãe</td>
+<td style="text-align: left;">Média, desvio-padrão, mediana, quartis</td>
+<td style="text-align: left;">Histograma, boxplot</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-frequencias" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="sec-frequencias"><span class="header-section-number">11.2</span> Tabelas de frequências</h2>
-<p>Apresenta <code>table()</code>, <code>prop.table()</code> e <code>addmargins()</code> do R base, <code>count()</code> do <code>dplyr</code> e <code>tabyl()</code> com as funções <code>adorn_*()</code> do <code>janitor</code>, comparando as três abordagens quanto à legibilidade e à facilidade de uso posterior dos resultados.</p>
+<p>Uma tabela de frequências mostra quantas observações há em cada categoria (frequência absoluta) e qual a proporção que elas representam (frequência relativa). Há várias formas de construí-la no R.</p>
+<p>No R base, a função <code>table()</code> conta as categorias, <code>prop.table()</code> transforma as contagens em proporções e <code>addmargins()</code> acrescenta o total.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tabela_parto <span class="ot">&lt;-</span> <span class="fu">table</span>(nascidos<span class="sc">$</span>parto)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tabela_parto</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Vaginal Cesáreo </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    8943   18036</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabela_parto)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Vaginal Cesáreo </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.33148 0.66852</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com o <code>dplyr</code>, como vimos no <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a>, usamos <code>count()</code> e calculamos as proporções com <code>mutate()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(faixa_idade_mae) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentual =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   faixa_idade_mae     n percentual</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt;      &lt;dbl&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Menos de 20      4558       16.9</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20 a 34         19327       71.5</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 35 ou mais       3143       11.6</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O pacote <code>janitor</code> oferece a função <code>tabyl()</code>, que produz a tabela de frequências com o percentual em uma única chamada, já excluindo os ausentes do percentual válido. As funções <code>adorn_*()</code> acrescentam totais e formatam os percentuais.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">tabyl</span>(escmae) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_totals</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           escmae     n percent valid_percent</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          Nenhuma    40    0.1%          0.1%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       1 a 3 anos   516    1.9%          1.9%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       4 a 7 anos  4760   17.6%         17.8%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      8 a 11 anos 15633   57.8%         58.5%</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  12 anos ou mais  5767   21.3%         21.6%</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;NA&gt;   312    1.2%             -</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            Total 27028  100.0%        100.0%</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A coluna <code>percent</code> usa todos os registros como denominador, inclusive os ausentes, e a coluna <code>valid_percent</code> usa apenas os registros com informação. Para uma variável ordinal como a escolaridade, também é útil o percentual acumulado, que responde a perguntas como “qual a proporção de mães com até 7 anos de estudo?”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(escmae)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(escmae) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentual =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">percentual_acumulado =</span> <span class="fu">cumsum</span>(percentual))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   escmae              n percentual percentual_acumulado</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt;      &lt;dbl&gt;                &lt;dbl&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma            40      0.150                0.150</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3 anos        516      1.93                 2.08 </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 7 anos       4760     17.8                 19.9  </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 8 a 11 anos     15633     58.5                 78.4  </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 12 anos ou mais  5767     21.6                100</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>cumsum()</code> calcula a soma acumulada. Cerca de 20% das mães tinham até 7 anos de estudo.</p>
 </section>
 <section id="sec-dupla-entrada" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="sec-dupla-entrada"><span class="header-section-number">11.3</span> Tabelas de dupla entrada</h2>
-<p>Mostra o cruzamento de duas variáveis e o cálculo de percentuais por linha, por coluna e sobre o total, discutindo qual percentual responde a cada pergunta. O conteúdo prepara as tabelas de contingência do <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>.</p>
+<p>Uma tabela de dupla entrada, ou tabela cruzada, mostra a distribuição conjunta de duas variáveis categóricas. A grande questão é a direção dos percentuais. Percentuais <strong>por linha</strong> mostram como a variável da coluna se distribui dentro de cada categoria da linha; percentuais <strong>por coluna</strong> mostram o contrário. Cada direção responde a uma pergunta diferente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">tabyl</span>(faixa_idade_mae, parto, <span class="at">show_na =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_percentages</span>(<span class="st">"row"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">adorn_ns</span>()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  faixa_idade_mae       Vaginal        Cesáreo</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Menos de 20 48.2% (2,192) 51.8%  (2,359)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          20 a 34 31.4% (6,062) 68.6% (13,234)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       35 ou mais 22.0%   (689) 78.0%  (2,443)</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Essa tabela responde: entre as mães de cada faixa etária, qual a proporção de partos cesáreos? A resposta é que a cesariana é mais frequente quanto maior a idade da mãe. Se usássemos percentuais por coluna, a pergunta seria outra: entre os partos cesáreos, qual a proporção de mães de cada faixa etária? As duas perguntas são legítimas, mas a primeira é a que interessa quando queremos comparar os grupos de idade. A regra prática é calcular os percentuais dentro das categorias da variável que define os grupos a comparar.</p>
+<p>No R base, o mesmo resultado é obtido com <code>table()</code> e <code>prop.table()</code>, cujo argumento <code>margin = 1</code> indica percentuais por linha e <code>margin = 2</code>, por coluna.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(nascidos<span class="sc">$</span>faixa_idade_mae, nascidos<span class="sc">$</span>parto), <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;               Vaginal Cesáreo</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Menos de 20    48.2    51.8</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   20 a 34        31.4    68.6</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   35 ou mais     22.0    78.0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-tendencia-central" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="sec-tendencia-central"><span class="header-section-number">11.4</span> Medidas de tendência central e de posição</h2>
-<p>Apresenta <code>mean()</code>, <code>median()</code> e <code>quantile()</code>, a ausência de uma função nativa para a moda e a escolha entre média e mediana em distribuições assimétricas, como a de tempo de internação.</p>
+<p>As medidas de tendência central resumem em um único número o valor típico de uma variável quantitativa. A <strong>média</strong> é a soma dos valores dividida pelo número de observações. A <strong>mediana</strong> é o valor que divide as observações ordenadas em duas metades. A <strong>moda</strong> é o valor mais frequente, e o R não tem uma função pronta para calculá-la, mas ela pode ser obtida com <code>count()</code> e <code>slice_max()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">media =</span> <span class="fu">mean</span>(idademae),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediana =</span> <span class="fu">median</span>(idademae)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   media mediana</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  26.1      26</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(idademae) <span class="sc">|&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   idademae     n</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       25  1570</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Quando a distribuição é simétrica, média e mediana são parecidas. Quando é assimétrica, a média é puxada na direção da cauda mais longa, e a mediana representa melhor o valor típico. A idade das mães, por exemplo, tem uma cauda à direita (algumas mães bem mais velhas), e por isso a média fica um pouco acima da mediana. Em variáveis muito assimétricas, como o tempo de internação hospitalar ou a renda, essa diferença pode ser grande, e a mediana costuma ser a medida preferida.</p>
+<p>As medidas de posição dividem os dados ordenados em partes. Os <strong>quartis</strong> dividem em quatro partes iguais, e os <strong>percentis</strong>, em cem. A função <code>quantile()</code> calcula qualquer um deles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(nascidos<span class="sc">$</span>peso, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.10</span>, <span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span>, <span class="fl">0.90</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  10%  25%  50%  75%  90% </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2635 2965 3270 3575 3865</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dez por cento dos recém-nascidos pesaram menos de 2.635 gramas, e dez por cento pesaram mais de 3.865 gramas.</p>
 </section>
 <section id="sec-dispersao" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="sec-dispersao"><span class="header-section-number">11.5</span> Medidas de dispersão</h2>
-<p>Apresenta amplitude, variância, desvio-padrão, intervalo interquartil e coeficiente de variação (<code>range()</code>, <code>var()</code>, <code>sd()</code>, <code>IQR()</code>), relacionando-os à leitura do boxplot.</p>
+<p>As medidas de dispersão indicam o quanto os valores variam em torno do centro. A <strong>amplitude</strong> é a diferença entre o maior e o menor valor, e é muito sensível a valores extremos. A <strong>variância</strong> é a média dos quadrados dos desvios em relação à média, e o <strong>desvio-padrão</strong> é sua raiz quadrada, expresso na mesma unidade da variável. O <strong>intervalo interquartil</strong> (IIQ) é a diferença entre o terceiro e o primeiro quartis e corresponde à altura da caixa do boxplot. O <strong>coeficiente de variação</strong> (CV) é o desvio-padrão dividido pela média, e permite comparar a variabilidade de variáveis com unidades ou magnitudes diferentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">amplitude =</span> <span class="fu">max</span>(peso) <span class="sc">-</span> <span class="fu">min</span>(peso),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">variancia =</span> <span class="fu">var</span>(peso),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">desvio_padrao =</span> <span class="fu">sd</span>(peso),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">iiq =</span> <span class="fu">IQR</span>(peso),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cv_percentual =</span> <span class="fu">sd</span>(peso) <span class="sc">/</span> <span class="fu">mean</span>(peso) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 5</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   amplitude variancia desvio_padrao   iiq cv_percentual</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1      5727   296757.          545.   610          16.8</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A escolha entre as medidas acompanha a escolha da medida de tendência central. Média e desvio-padrão são apresentados juntos, e são adequados para distribuições aproximadamente simétricas. Mediana e intervalo interquartil também são apresentados juntos, e são preferíveis para distribuições assimétricas ou com valores extremos.</p>
 </section>
 <section id="sec-descricao-grupos" class="level2" data-number="11.6">
 <h2 data-number="11.6" class="anchored" data-anchor-id="sec-descricao-grupos"><span class="header-section-number">11.6</span> Descrição por grupos</h2>
-<p>Combina <code>group_by()</code>, <code>summarise()</code> e <code>across()</code> para produzir resumos de várias variáveis segundo uma variável de grupo.</p>
+<p>Na prática, quase sempre queremos descrever as variáveis segundo grupos. Com <code>group_by()</code> e <code>summarise()</code>, isso é simples.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(consultas_cat) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_medio =</span> <span class="fu">mean</span>(peso),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_dp =</span> <span class="fu">sd</span>(peso),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_mediana =</span> <span class="fu">median</span>(peso),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_baixo_peso =</span> <span class="fu">mean</span>(baixo_peso) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 6</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   consultas_cat     n peso_medio peso_dp peso_mediana perc_baixo_peso</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;         &lt;int&gt;      &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma         986      3083.    701.         3195           15.0 </span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3          1379      3079.    684.         3170           14.1 </span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 6          5988      3172.    592.         3225            9.62</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 7 ou mais     18624      3287.    499.         3300            5.15</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 &lt;NA&gt;             51      3088.    686.         3115           15.7</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O peso médio é maior, e a proporção de baixo peso é bem menor, entre os filhos de mães que fizeram mais consultas de pré-natal. A relação, porém, não é necessariamente causal. Gestações que terminam mais cedo, em partos prematuros, têm menos tempo para que a mulher faça consultas, e o recém-nascido prematuro tende a ter menor peso. Esse ponto será retomado no <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>.</p>
 </section>
 <section id="sec-tabela-1" class="level2" data-number="11.7">
 <h2 data-number="11.7" class="anchored" data-anchor-id="sec-tabela-1"><span class="header-section-number">11.7</span> Tabelas para relatórios e artigos</h2>
-<p>Apresenta <code>gtsummary::tbl_summary()</code>, com o argumento <code>by</code>, <code>add_overall()</code> e a personalização de estatísticas e rótulos, e a exportação para Word por meio de <code>as_flex_table()</code> e <code>flextable::save_as_docx()</code>. A inclusão de testes estatísticos na tabela (<code>add_p()</code>) é deixada para a Parte IV.</p>
+<p>Montar a tabela descritiva de um artigo à mão, juntando médias, desvios-padrão e percentuais de várias variáveis, é trabalhoso e sujeito a erros. O pacote <code>gtsummary</code> faz isso automaticamente com a função <code>tbl_summary()</code>. Ela escolhe a descrição adequada a cada tipo de variável: para as categóricas, número e percentual; para as contínuas, mediana e intervalo interquartil, por padrão.</p>
+<p>Por padrão, os textos da tabela saem em inglês e os números seguem a notação americana. A função <code>theme_gtsummary_language()</code> muda o idioma e os separadores para todas as tabelas criadas depois dela na mesma sessão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_gtsummary_language</span>(<span class="at">language =</span> <span class="st">"pt"</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(peso, idademae, escmae, consultas_cat, faixa_idade_mae, sexo) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="elfcjuztih" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#elfcjuztih table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#elfcjuztih thead, #elfcjuztih tbody, #elfcjuztih tfoot, #elfcjuztih tr, #elfcjuztih td, #elfcjuztih th {
+  border-style: none;
+}
+
+#elfcjuztih p {
+  margin: 0;
+  padding: 0;
+}
+
+#elfcjuztih .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#elfcjuztih .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#elfcjuztih .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#elfcjuztih .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#elfcjuztih .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#elfcjuztih .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#elfcjuztih .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#elfcjuztih .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#elfcjuztih .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#elfcjuztih .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#elfcjuztih .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#elfcjuztih .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#elfcjuztih .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#elfcjuztih .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#elfcjuztih .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#elfcjuztih .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#elfcjuztih .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#elfcjuztih .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#elfcjuztih .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#elfcjuztih .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#elfcjuztih .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#elfcjuztih .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#elfcjuztih .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#elfcjuztih .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#elfcjuztih .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#elfcjuztih .gt_left {
+  text-align: left;
+}
+
+#elfcjuztih .gt_center {
+  text-align: center;
+}
+
+#elfcjuztih .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#elfcjuztih .gt_font_normal {
+  font-weight: normal;
+}
+
+#elfcjuztih .gt_font_bold {
+  font-weight: bold;
+}
+
+#elfcjuztih .gt_font_italic {
+  font-style: italic;
+}
+
+#elfcjuztih .gt_super {
+  font-size: 65%;
+}
+
+#elfcjuztih .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#elfcjuztih .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#elfcjuztih .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#elfcjuztih .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#elfcjuztih .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#elfcjuztih .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#elfcjuztih .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#elfcjuztih .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#elfcjuztih div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Características</strong></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>N = 27.028</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">peso</td>
+<td class="gt_row gt_center" headers="stat_0">3.270 (2.965 – 3.575)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">idademae</td>
+<td class="gt_row gt_center" headers="stat_0">26 (21 – 31)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">escmae</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Nenhuma</td>
+<td class="gt_row gt_center" headers="stat_0">40 (0,1%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1 a 3 anos</td>
+<td class="gt_row gt_center" headers="stat_0">516 (1,9%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4 a 7 anos</td>
+<td class="gt_row gt_center" headers="stat_0">4.760 (18%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;8 a 11 anos</td>
+<td class="gt_row gt_center" headers="stat_0">15.633 (59%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;12 anos ou mais</td>
+<td class="gt_row gt_center" headers="stat_0">5.767 (22%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Desconhecido</td>
+<td class="gt_row gt_center" headers="stat_0">312</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">consultas_cat</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Nenhuma</td>
+<td class="gt_row gt_center" headers="stat_0">986 (3,7%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1 a 3</td>
+<td class="gt_row gt_center" headers="stat_0">1.379 (5,1%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4 a 6</td>
+<td class="gt_row gt_center" headers="stat_0">5.988 (22%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7 ou mais</td>
+<td class="gt_row gt_center" headers="stat_0">18.624 (69%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Desconhecido</td>
+<td class="gt_row gt_center" headers="stat_0">51</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">faixa_idade_mae</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Menos de 20</td>
+<td class="gt_row gt_center" headers="stat_0">4.558 (17%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;20 a 34</td>
+<td class="gt_row gt_center" headers="stat_0">19.327 (72%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;35 ou mais</td>
+<td class="gt_row gt_center" headers="stat_0">3.143 (12%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">sexo</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Feminino</td>
+<td class="gt_row gt_center" headers="stat_0">13.138 (49%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Masculino</td>
+<td class="gt_row gt_center" headers="stat_0">13.886 (51%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Desconhecido</td>
+<td class="gt_row gt_center" headers="stat_0">4</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Mediana (Q1 – Q3); n (%)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>O argumento <code>by</code> separa a descrição por grupos, e outros argumentos ajustam rótulos e estatísticas. O argumento <code>statistic</code> define a estatística para cada tipo de variável, usando chaves para indicar onde entra cada valor, e <code>label</code> define os nomes que aparecem na tabela.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tabela_1 <span class="ot">&lt;-</span> nascidos <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(parto)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(parto, peso, idademae, escmae, consultas_cat, faixa_idade_mae, sexo) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> parto,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> <span class="fu">list</span>(<span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      peso <span class="sc">~</span> <span class="st">"Peso ao nascer (g)"</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      idademae <span class="sc">~</span> <span class="st">"Idade da mãe (anos)"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>      escmae <span class="sc">~</span> <span class="st">"Escolaridade da mãe"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      consultas_cat <span class="sc">~</span> <span class="st">"Consultas de pré-natal"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      faixa_idade_mae <span class="sc">~</span> <span class="st">"Faixa etária da mãe"</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      sexo <span class="sc">~</span> <span class="st">"Sexo do recém-nascido"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_text =</span> <span class="st">"Sem informação"</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_overall</span>(<span class="at">last =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_header</span>(label <span class="sc">~</span> <span class="st">"**Característica**"</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>tabela_1</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="xjuxeppdww" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xjuxeppdww table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xjuxeppdww thead, #xjuxeppdww tbody, #xjuxeppdww tfoot, #xjuxeppdww tr, #xjuxeppdww td, #xjuxeppdww th {
+  border-style: none;
+}
+
+#xjuxeppdww p {
+  margin: 0;
+  padding: 0;
+}
+
+#xjuxeppdww .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xjuxeppdww .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xjuxeppdww .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xjuxeppdww .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xjuxeppdww .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xjuxeppdww .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xjuxeppdww .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xjuxeppdww .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xjuxeppdww .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xjuxeppdww .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xjuxeppdww .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xjuxeppdww .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xjuxeppdww .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xjuxeppdww .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xjuxeppdww .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjuxeppdww .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xjuxeppdww .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xjuxeppdww .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xjuxeppdww .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjuxeppdww .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xjuxeppdww .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjuxeppdww .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xjuxeppdww .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjuxeppdww .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xjuxeppdww .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xjuxeppdww .gt_left {
+  text-align: left;
+}
+
+#xjuxeppdww .gt_center {
+  text-align: center;
+}
+
+#xjuxeppdww .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xjuxeppdww .gt_font_normal {
+  font-weight: normal;
+}
+
+#xjuxeppdww .gt_font_bold {
+  font-weight: bold;
+}
+
+#xjuxeppdww .gt_font_italic {
+  font-style: italic;
+}
+
+#xjuxeppdww .gt_super {
+  font-size: 65%;
+}
+
+#xjuxeppdww .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xjuxeppdww .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xjuxeppdww .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xjuxeppdww .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xjuxeppdww .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xjuxeppdww .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xjuxeppdww .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xjuxeppdww .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xjuxeppdww div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Característica</strong></th>
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Vaginal</strong><br>
+N = 8.943<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Cesáreo</strong><br>
+N = 18.036<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Total</strong><br>
+N = 26.979<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Peso ao nascer (g)</td>
+<td class="gt_row gt_center" headers="stat_1">3.189 (544)</td>
+<td class="gt_row gt_center" headers="stat_2">3.270 (543)</td>
+<td class="gt_row gt_center" headers="stat_0">3.244 (545)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Idade da mãe (anos)</td>
+<td class="gt_row gt_center" headers="stat_1">24 (6)</td>
+<td class="gt_row gt_center" headers="stat_2">27 (6)</td>
+<td class="gt_row gt_center" headers="stat_0">26 (6)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Escolaridade da mãe</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Nenhuma</td>
+<td class="gt_row gt_center" headers="stat_1">21 (0,2%)</td>
+<td class="gt_row gt_center" headers="stat_2">19 (0,1%)</td>
+<td class="gt_row gt_center" headers="stat_0">40 (0,1%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1 a 3 anos</td>
+<td class="gt_row gt_center" headers="stat_1">242 (2,7%)</td>
+<td class="gt_row gt_center" headers="stat_2">273 (1,5%)</td>
+<td class="gt_row gt_center" headers="stat_0">515 (1,9%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4 a 7 anos</td>
+<td class="gt_row gt_center" headers="stat_1">2.150 (24%)</td>
+<td class="gt_row gt_center" headers="stat_2">2.606 (15%)</td>
+<td class="gt_row gt_center" headers="stat_0">4.756 (18%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;8 a 11 anos</td>
+<td class="gt_row gt_center" headers="stat_1">5.399 (61%)</td>
+<td class="gt_row gt_center" headers="stat_2">10.208 (57%)</td>
+<td class="gt_row gt_center" headers="stat_0">15.607 (59%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;12 anos ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">1.051 (12%)</td>
+<td class="gt_row gt_center" headers="stat_2">4.698 (26%)</td>
+<td class="gt_row gt_center" headers="stat_0">5.749 (22%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">80</td>
+<td class="gt_row gt_center" headers="stat_2">232</td>
+<td class="gt_row gt_center" headers="stat_0">312</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Consultas de pré-natal</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Nenhuma</td>
+<td class="gt_row gt_center" headers="stat_1">400 (4,5%)</td>
+<td class="gt_row gt_center" headers="stat_2">571 (3,2%)</td>
+<td class="gt_row gt_center" headers="stat_0">971 (3,6%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1 a 3</td>
+<td class="gt_row gt_center" headers="stat_1">728 (8,2%)</td>
+<td class="gt_row gt_center" headers="stat_2">650 (3,6%)</td>
+<td class="gt_row gt_center" headers="stat_0">1.378 (5,1%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4 a 6</td>
+<td class="gt_row gt_center" headers="stat_1">2.393 (27%)</td>
+<td class="gt_row gt_center" headers="stat_2">3.587 (20%)</td>
+<td class="gt_row gt_center" headers="stat_0">5.980 (22%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7 ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">5.395 (61%)</td>
+<td class="gt_row gt_center" headers="stat_2">13.204 (73%)</td>
+<td class="gt_row gt_center" headers="stat_0">18.599 (69%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">27</td>
+<td class="gt_row gt_center" headers="stat_2">24</td>
+<td class="gt_row gt_center" headers="stat_0">51</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Faixa etária da mãe</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Menos de 20</td>
+<td class="gt_row gt_center" headers="stat_1">2.192 (25%)</td>
+<td class="gt_row gt_center" headers="stat_2">2.359 (13%)</td>
+<td class="gt_row gt_center" headers="stat_0">4.551 (17%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;20 a 34</td>
+<td class="gt_row gt_center" headers="stat_1">6.062 (68%)</td>
+<td class="gt_row gt_center" headers="stat_2">13.234 (73%)</td>
+<td class="gt_row gt_center" headers="stat_0">19.296 (72%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;35 ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">689 (7,7%)</td>
+<td class="gt_row gt_center" headers="stat_2">2.443 (14%)</td>
+<td class="gt_row gt_center" headers="stat_0">3.132 (12%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Sexo do recém-nascido</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Feminino</td>
+<td class="gt_row gt_center" headers="stat_1">4.372 (49%)</td>
+<td class="gt_row gt_center" headers="stat_2">8.737 (48%)</td>
+<td class="gt_row gt_center" headers="stat_0">13.109 (49%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Masculino</td>
+<td class="gt_row gt_center" headers="stat_1">4.570 (51%)</td>
+<td class="gt_row gt_center" headers="stat_2">9.296 (52%)</td>
+<td class="gt_row gt_center" headers="stat_0">13.866 (51%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">1</td>
+<td class="gt_row gt_center" headers="stat_2">3</td>
+<td class="gt_row gt_center" headers="stat_0">4</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Média (Desvio Padrão); n (%)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>A função <code>add_overall()</code> acrescenta uma coluna com o total, e <code>modify_header()</code> muda o título da primeira coluna. Os registros sem informação aparecem como uma linha à parte em cada variável, o que permite ao leitor avaliar a completude.</p>
+<p>Para levar a tabela a um documento do Word, convertemos o resultado para o formato do pacote <code>flextable</code> e o salvamos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tabela_1 <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_flex_table</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  flextable<span class="sc">::</span><span class="fu">save_as_docx</span>(<span class="at">path =</span> <span class="fu">here</span>(<span class="st">"resultados"</span>, <span class="st">"tabelas"</span>, <span class="st">"tabela_1.docx"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em um documento Quarto renderizado para Word, a tabela é inserida diretamente, sem necessidade desse passo.</p>
 </section>
 <section id="sec-caso-11" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="sec-caso-11"><span class="header-section-number">11.8</span> Estudo de caso: características maternas e do recém-nascido segundo tipo de parto</h2>
-<p>O estudante produz a tabela descritiva das características maternas (idade, escolaridade, número de consultas de pré-natal) e do recém-nascido (sexo, peso, idade gestacional) segundo o tipo de parto e redige um parágrafo de resultados com base nela.</p>
+<h2 data-number="11.8" class="anchored" data-anchor-id="sec-caso-11"><span class="header-section-number">11.8</span> Estudo de caso: características das mães e dos recém-nascidos segundo o tipo de parto</h2>
+<p>A tabela construída na seção anterior é o estudo de caso deste capítulo. Vamos lê-la como faríamos em um artigo e redigir o parágrafo de resultados correspondente.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="qkpkfbswwo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qkpkfbswwo table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#qkpkfbswwo thead, #qkpkfbswwo tbody, #qkpkfbswwo tfoot, #qkpkfbswwo tr, #qkpkfbswwo td, #qkpkfbswwo th {
+  border-style: none;
+}
+
+#qkpkfbswwo p {
+  margin: 0;
+  padding: 0;
+}
+
+#qkpkfbswwo .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qkpkfbswwo .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qkpkfbswwo .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qkpkfbswwo .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qkpkfbswwo .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qkpkfbswwo .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qkpkfbswwo .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qkpkfbswwo .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qkpkfbswwo .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qkpkfbswwo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qkpkfbswwo .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qkpkfbswwo .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qkpkfbswwo .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qkpkfbswwo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qkpkfbswwo .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkpkfbswwo .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qkpkfbswwo .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qkpkfbswwo .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qkpkfbswwo .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkpkfbswwo .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qkpkfbswwo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkpkfbswwo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qkpkfbswwo .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkpkfbswwo .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qkpkfbswwo .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qkpkfbswwo .gt_left {
+  text-align: left;
+}
+
+#qkpkfbswwo .gt_center {
+  text-align: center;
+}
+
+#qkpkfbswwo .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qkpkfbswwo .gt_font_normal {
+  font-weight: normal;
+}
+
+#qkpkfbswwo .gt_font_bold {
+  font-weight: bold;
+}
+
+#qkpkfbswwo .gt_font_italic {
+  font-style: italic;
+}
+
+#qkpkfbswwo .gt_super {
+  font-size: 65%;
+}
+
+#qkpkfbswwo .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#qkpkfbswwo .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qkpkfbswwo .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qkpkfbswwo .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qkpkfbswwo .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qkpkfbswwo .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qkpkfbswwo .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#qkpkfbswwo .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qkpkfbswwo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Característica</strong></th>
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Vaginal</strong><br>
+N = 8.943<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Cesáreo</strong><br>
+N = 18.036<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_0" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Total</strong><br>
+N = 26.979<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Peso ao nascer (g)</td>
+<td class="gt_row gt_center" headers="stat_1">3.189 (544)</td>
+<td class="gt_row gt_center" headers="stat_2">3.270 (543)</td>
+<td class="gt_row gt_center" headers="stat_0">3.244 (545)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Idade da mãe (anos)</td>
+<td class="gt_row gt_center" headers="stat_1">24 (6)</td>
+<td class="gt_row gt_center" headers="stat_2">27 (6)</td>
+<td class="gt_row gt_center" headers="stat_0">26 (6)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Escolaridade da mãe</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Nenhuma</td>
+<td class="gt_row gt_center" headers="stat_1">21 (0,2%)</td>
+<td class="gt_row gt_center" headers="stat_2">19 (0,1%)</td>
+<td class="gt_row gt_center" headers="stat_0">40 (0,1%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1 a 3 anos</td>
+<td class="gt_row gt_center" headers="stat_1">242 (2,7%)</td>
+<td class="gt_row gt_center" headers="stat_2">273 (1,5%)</td>
+<td class="gt_row gt_center" headers="stat_0">515 (1,9%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4 a 7 anos</td>
+<td class="gt_row gt_center" headers="stat_1">2.150 (24%)</td>
+<td class="gt_row gt_center" headers="stat_2">2.606 (15%)</td>
+<td class="gt_row gt_center" headers="stat_0">4.756 (18%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;8 a 11 anos</td>
+<td class="gt_row gt_center" headers="stat_1">5.399 (61%)</td>
+<td class="gt_row gt_center" headers="stat_2">10.208 (57%)</td>
+<td class="gt_row gt_center" headers="stat_0">15.607 (59%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;12 anos ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">1.051 (12%)</td>
+<td class="gt_row gt_center" headers="stat_2">4.698 (26%)</td>
+<td class="gt_row gt_center" headers="stat_0">5.749 (22%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">80</td>
+<td class="gt_row gt_center" headers="stat_2">232</td>
+<td class="gt_row gt_center" headers="stat_0">312</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Consultas de pré-natal</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Nenhuma</td>
+<td class="gt_row gt_center" headers="stat_1">400 (4,5%)</td>
+<td class="gt_row gt_center" headers="stat_2">571 (3,2%)</td>
+<td class="gt_row gt_center" headers="stat_0">971 (3,6%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1 a 3</td>
+<td class="gt_row gt_center" headers="stat_1">728 (8,2%)</td>
+<td class="gt_row gt_center" headers="stat_2">650 (3,6%)</td>
+<td class="gt_row gt_center" headers="stat_0">1.378 (5,1%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4 a 6</td>
+<td class="gt_row gt_center" headers="stat_1">2.393 (27%)</td>
+<td class="gt_row gt_center" headers="stat_2">3.587 (20%)</td>
+<td class="gt_row gt_center" headers="stat_0">5.980 (22%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7 ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">5.395 (61%)</td>
+<td class="gt_row gt_center" headers="stat_2">13.204 (73%)</td>
+<td class="gt_row gt_center" headers="stat_0">18.599 (69%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">27</td>
+<td class="gt_row gt_center" headers="stat_2">24</td>
+<td class="gt_row gt_center" headers="stat_0">51</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Faixa etária da mãe</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Menos de 20</td>
+<td class="gt_row gt_center" headers="stat_1">2.192 (25%)</td>
+<td class="gt_row gt_center" headers="stat_2">2.359 (13%)</td>
+<td class="gt_row gt_center" headers="stat_0">4.551 (17%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;20 a 34</td>
+<td class="gt_row gt_center" headers="stat_1">6.062 (68%)</td>
+<td class="gt_row gt_center" headers="stat_2">13.234 (73%)</td>
+<td class="gt_row gt_center" headers="stat_0">19.296 (72%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;35 ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">689 (7,7%)</td>
+<td class="gt_row gt_center" headers="stat_2">2.443 (14%)</td>
+<td class="gt_row gt_center" headers="stat_0">3.132 (12%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Sexo do recém-nascido</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_0"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Feminino</td>
+<td class="gt_row gt_center" headers="stat_1">4.372 (49%)</td>
+<td class="gt_row gt_center" headers="stat_2">8.737 (48%)</td>
+<td class="gt_row gt_center" headers="stat_0">13.109 (49%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Masculino</td>
+<td class="gt_row gt_center" headers="stat_1">4.570 (51%)</td>
+<td class="gt_row gt_center" headers="stat_2">9.296 (52%)</td>
+<td class="gt_row gt_center" headers="stat_0">13.866 (51%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">1</td>
+<td class="gt_row gt_center" headers="stat_2">3</td>
+<td class="gt_row gt_center" headers="stat_0">4</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Média (Desvio Padrão); n (%)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>Um parágrafo de resultados baseado nessa tabela poderia ser escrito assim:</p>
+<blockquote class="blockquote">
+<p>Entre os 26.979 nascidos vivos de mães residentes em Rondônia em 2019 com informação sobre o tipo de parto, 66,9% nasceram por cesariana. As mães que tiveram parto cesáreo eram, em média, mais velhas (26,9 anos, contra 24,4 anos no parto vaginal) e tinham escolaridade mais alta: 26,4% tinham 12 anos ou mais de estudo, contra 11,9% entre as que tiveram parto vaginal.</p>
+</blockquote>
+<p>Todos os números do parágrafo foram inseridos com código <em>inline</em>, como vimos no <a href="04-quarto.html" class="quarto-xref"><span>Capítulo 4</span></a>, e se atualizam se os dados mudarem.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -453,17 +2553,44 @@ Saúde Pública em foco
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Prevê-se uma caixa sobre a leitura crítica de tabelas descritivas: o que os percentuais por coluna permitem e não permitem concluir, e por que a comparação entre grupos ainda não é uma medida de associação.</p>
+<p>Uma tabela descritiva mostra diferenças entre grupos, mas não diz por que elas existem. As mães que tiveram cesariana eram mais velhas e mais escolarizadas, mas isso não significa que a idade ou a escolaridade, por si mesmas, levem à cesariana. Fatores como o tipo de serviço em que o parto ocorreu (público ou privado), a disponibilidade de profissionais e as preferências das gestantes e dos médicos estão ligados a essas características e ao tipo de parto ao mesmo tempo. Separar essas influências exige delineamentos e métodos analíticos que vão além da descrição.</p>
 </div>
 </div>
 </section>
 <section id="sec-ex-11" class="level2" data-number="11.9">
 <h2 data-number="11.9" class="anchored" data-anchor-id="sec-ex-11"><span class="header-section-number">11.9</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem tabelas de frequências e medidas resumo de variáveis isoladas. Os de aplicação envolvem a descrição dos óbitos infantis segundo componente (neonatal e pós-neonatal) e características selecionadas. O desafio solicita uma tabela descritiva completa, exportada para Word, com um parágrafo interpretativo.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Classifique cada variável da base <code>nascidos</code> como qualitativa nominal, qualitativa ordinal, quantitativa discreta ou quantitativa contínua.</p></li>
+<li><p>Construa a tabela de frequências da raça/cor da mãe com <code>tabyl()</code>, com totais e percentuais formatados. Qual a diferença entre as colunas <code>percent</code> e <code>valid_percent</code>?</p></li>
+<li><p>Calcule a média, a mediana, o desvio-padrão e o intervalo interquartil da idade gestacional em semanas. A distribuição parece simétrica ou assimétrica? Confirme com um histograma.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="4" type="1">
+<li><p>Construa uma tabela de dupla entrada entre a escolaridade da mãe e o número de consultas de pré-natal, com percentuais na direção que permita comparar as mães segundo a escolaridade. Escreva duas frases interpretando o resultado.</p></li>
+<li><p>Use <code>tbl_summary()</code> para descrever as características das mães e dos recém-nascidos segundo a ocorrência de baixo peso ao nascer. Apresente média e desvio-padrão para as variáveis contínuas.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="6" type="1">
+<li><p>Compare a média e a mediana do peso ao nascer entre os nascimentos prematuros e a termo. Em qual dos grupos a diferença entre média e mediana é maior? Explique o motivo com base na forma das distribuições.</p></li>
+<li><p>Exporte a tabela do exercício 5 para o Word e formate-a como seria apresentada em um artigo, com título, notas de rodapé explicando as estatísticas e a fonte dos dados.</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-11" class="level2" data-number="11.10">
 <h2 data-number="11.10" class="anchored" data-anchor-id="sec-sintese-11"><span class="header-section-number">11.10</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>A descrição dos dados depende do tipo das variáveis. Variáveis qualitativas são resumidas em tabelas de frequências, construídas com <code>table()</code>, <code>count()</code> ou <code>tabyl()</code>, e as ordinais podem incluir percentuais acumulados. Em tabelas de dupla entrada, os percentuais devem ser calculados dentro das categorias que definem os grupos a comparar. Variáveis quantitativas são resumidas por medidas de tendência central (média, mediana, moda), de posição (quartis e percentis) e de dispersão (amplitude, variância, desvio-padrão, intervalo interquartil e coeficiente de variação). Média e desvio-padrão são adequados a distribuições simétricas; mediana e intervalo interquartil, a distribuições assimétricas. O pacote <code>gtsummary</code> produz a tabela descritiva usada em artigos, que pode ser exportada para o Word com o <code>flextable</code>.</p>
+<div id="tbl-sintese-11" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;11.2: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-11-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -489,35 +2616,44 @@ Saúde Pública em foco
 <td style="text-align: left;">Contagens em formato de tabela de dados</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>tabyl()</code>, <code>adorn_totals()</code>, <code>adorn_percentages()</code>, <code>adorn_pct_formatting()</code></td>
+<td style="text-align: left;"><code>tabyl()</code>, <code>adorn_totals()</code>, <code>adorn_percentages()</code>, <code>adorn_pct_formatting()</code>, <code>adorn_ns()</code></td>
 <td style="text-align: left;">janitor</td>
 <td style="text-align: left;">Tabelas de frequências formatadas</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><code>cumsum()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Soma acumulada</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><code>mean()</code>, <code>median()</code>, <code>quantile()</code></td>
 <td style="text-align: left;">base, stats</td>
 <td style="text-align: left;">Tendência central e posição</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>range()</code>, <code>var()</code>, <code>sd()</code>, <code>IQR()</code></td>
-<td style="text-align: left;">base, stats</td>
+<tr class="even">
+<td style="text-align: left;"><code>var()</code>, <code>sd()</code>, <code>IQR()</code></td>
+<td style="text-align: left;">stats</td>
 <td style="text-align: left;">Dispersão</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>tbl_summary()</code>, <code>add_overall()</code>, <code>as_flex_table()</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>tbl_summary()</code>, <code>add_overall()</code>, <code>modify_header()</code></td>
 <td style="text-align: left;">gtsummary</td>
 <td style="text-align: left;">Tabela descritiva para publicação</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>save_as_docx()</code></td>
-<td style="text-align: left;">flextable</td>
-<td style="text-align: left;">Exportar tabelas para Word</td>
+<tr class="even">
+<td style="text-align: left;"><code>as_flex_table()</code>, <code>save_as_docx()</code></td>
+<td style="text-align: left;">gtsummary, flextable</td>
+<td style="text-align: left;">Exportar tabelas para o Word</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-11" class="level2" data-number="11.11">
 <h2 data-number="11.11" class="anchored" data-anchor-id="sec-mais-11"><span class="header-section-number">11.11</span> Para saber mais</h2>
+<p>O capítulo 17 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> compara as diferentes formas de construir tabelas descritivas (com <code>janitor</code>, <code>dplyr</code>, <code>gtsummary</code> e o R base), e o capítulo 29 mostra como formatar tabelas para apresentação com o <code>flextable</code>. Bougioukas <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span> apresenta, nos capítulos 12 e 15, os tipos de variáveis e as medidas descritivas com exemplos médicos e ótimas ilustrações. Para os fundamentos estatísticos, o livro de <span class="citation" data-cites="bussab2002estatistica">BUSSAB; MORETTIN (<a href="../references.html#ref-bussab2002estatistica" role="doc-biblioref">2002</a>)</span>, da bibliografia da disciplina, traz uma discussão detalhada das medidas resumo.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -533,24 +2669,24 @@ Saúde Pública em foco
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
+<td style="text-align: left;">17. Tabelas descritivas; 29. Tabelas para apresentação</td>
+<td style="text-align: left;">Pacote janitor; Pacote dplyr; Pacote gtsummary; Pacote R base</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
+<td style="text-align: left;">12. Introduction to Statistics; 15. Descriptive Statistics</td>
+<td style="text-align: left;">Summarizing categorical data; Measures of central location; Measures of dispersion</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">13. Números</td>
 <td style="text-align: left;">Sumarização numérica</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
-<td style="text-align: left;">17. Tabelas descritivas; 29. Tabelas para apresentação</td>
-<td style="text-align: left;">Pacote janitor; Pacote dplyr; Pacote gtsummary; Pacote R base; Básico do flextable</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
-<td style="text-align: left;">12. Introduction to Statistics; 15. Descriptive Statistics</td>
-<td style="text-align: left;">Summarizing Categorical Data; Summarizing Numerical Data; Measures of Central Location; Measures of Dispersion</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Estatística básica <span class="citation" data-cites="bussab2002estatistica">(<a href="../references.html#ref-bussab2002estatistica" role="doc-biblioref">BUSSAB; MORETTIN, 2002</a>)</span></td>
 <td style="text-align: left;">—</td>
-<td style="text-align: left;">Capítulos dedicados à análise exploratória de dados (bibliografia da disciplina)</td>
+<td style="text-align: left;">Capítulos dedicados à análise exploratória de dados</td>
 </tr>
 </tbody>
 </table>
@@ -988,7 +3124,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

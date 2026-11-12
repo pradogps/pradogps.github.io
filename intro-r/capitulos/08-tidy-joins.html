@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -352,10 +387,22 @@ div.csl-indent {
   <li><a href="#sec-pivot-wider" id="toc-sec-pivot-wider" class="nav-link" data-scroll-target="#sec-pivot-wider"><span class="header-section-number">8.3</span> Do formato longo para o largo</a></li>
   <li><a href="#sec-separate" id="toc-sec-separate" class="nav-link" data-scroll-target="#sec-separate"><span class="header-section-number">8.4</span> Separando e unindo colunas</a></li>
   <li><a href="#sec-bind-rows" id="toc-sec-bind-rows" class="nav-link" data-scroll-target="#sec-bind-rows"><span class="header-section-number">8.5</span> Empilhando tabelas</a></li>
-  <li><a href="#sec-joins" id="toc-sec-joins" class="nav-link" data-scroll-target="#sec-joins"><span class="header-section-number">8.6</span> Combinando tabelas por chaves</a></li>
-  <li><a href="#sec-chaves-brasil" id="toc-sec-chaves-brasil" class="nav-link" data-scroll-target="#sec-chaves-brasil"><span class="header-section-number">8.7</span> Chaves em dados de saúde no Brasil</a></li>
-  <li><a href="#sec-caso-08" id="toc-sec-caso-08" class="nav-link" data-scroll-target="#sec-caso-08"><span class="header-section-number">8.8</span> Estudo de caso: taxa de mortalidade infantil por município</a></li>
-  <li><a href="#sec-ex-08" id="toc-sec-ex-08" class="nav-link" data-scroll-target="#sec-ex-08"><span class="header-section-number">8.9</span> Exercícios</a></li>
+  <li><a href="#sec-joins" id="toc-sec-joins" class="nav-link" data-scroll-target="#sec-joins"><span class="header-section-number">8.6</span> Combinando tabelas por chaves</a>
+  <ul class="collapse">
+  <li><a href="#sec-chaves" id="toc-sec-chaves" class="nav-link" data-scroll-target="#sec-chaves">Chaves</a></li>
+  <li><a href="#sec-tipos-join" id="toc-sec-tipos-join" class="nav-link" data-scroll-target="#sec-tipos-join">Tipos de junção</a></li>
+  </ul></li>
+  <li><a href="#sec-chaves-brasil" id="toc-sec-chaves-brasil" class="nav-link" data-scroll-target="#sec-chaves-brasil"><span class="header-section-number">8.7</span> Chaves em dados de saúde no Brasil</a>
+  <ul class="collapse">
+  <li><a href="#sec-conferindo-join" id="toc-sec-conferindo-join" class="nav-link" data-scroll-target="#sec-conferindo-join">Conferindo o resultado de uma junção</a></li>
+  </ul></li>
+  <li><a href="#sec-caso-08" id="toc-sec-caso-08" class="nav-link" data-scroll-target="#sec-caso-08"><span class="header-section-number">8.8</span> Estudo de caso: natalidade e fecundidade nos municípios de Rondônia</a></li>
+  <li><a href="#sec-ex-08" id="toc-sec-ex-08" class="nav-link" data-scroll-target="#sec-ex-08"><span class="header-section-number">8.9</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-08" id="toc-sec-sintese-08" class="nav-link" data-scroll-target="#sec-sintese-08"><span class="header-section-number">8.10</span> Síntese</a></li>
   <li><a href="#sec-mais-08" id="toc-sec-mais-08" class="nav-link" data-scroll-target="#sec-mais-08"><span class="header-section-number">8.11</span> Para saber mais</a></li>
   </ul>
@@ -383,21 +430,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 4 · <strong>Pré-requisitos:</strong> <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a> · <strong>Pacotes:</strong> <code>tidyr</code>, <code>dplyr</code></p>
+<p><strong>Encontro previsto:</strong> 4 · <strong>Pré-requisitos:</strong> <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a> · <strong>Pacotes:</strong> <code>tidyr</code> e <code>dplyr</code> (carregados com o <code>tidyverse</code>), <code>readxl</code>, <code>here</code></p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -409,48 +443,505 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar os princípios de dados organizados (<em>tidy data</em>); converter tabelas entre os formatos longo e largo, reconhecendo a utilidade de cada um; separar e unir colunas; empilhar tabelas com a mesma estrutura; combinar tabelas por meio de chaves, escolhendo o tipo de junção adequado; verificar o resultado de uma junção quanto a registros sem correspondência e a duplicações; e identificar problemas de chaves comuns em dados brasileiros de saúde.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar o que são dados organizados (<em>tidy data</em>); converter tabelas entre os formatos longo e largo e reconhecer quando cada um é útil; separar e unir colunas; empilhar tabelas com a mesma estrutura; combinar tabelas por meio de chaves, escolhendo o tipo de junção adequado; conferir o resultado de uma junção; e reconhecer problemas de chaves comuns nos dados de saúde brasileiros.</p>
 </div>
+</div>
+<p>Até aqui, cada análise usou uma única tabela. Mas muitos indicadores de saúde exigem informações que estão em fontes diferentes. A taxa de natalidade, por exemplo, precisa do número de nascidos vivos, que vem do SINASC, e da população, que vem das estimativas populacionais. Para combinar essas fontes, as tabelas precisam estar bem organizadas e precisam ter uma coluna em comum. Este capítulo trata das duas coisas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-tidy" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="sec-tidy"><span class="header-section-number">8.1</span> O que são dados organizados</h2>
-<p>Apresenta os três princípios de dados organizados (cada variável em uma coluna, cada observação em uma linha, cada valor em uma célula) <span class="citation" data-cites="wickham2014tidy">(<a href="../references.html#ref-wickham2014tidy" role="doc-biblioref">WICKHAM, 2014</a>)</span> e mostra por que as tabelas do TabNet, com anos ou faixas etárias nas colunas, precisam ser reorganizadas antes da análise.</p>
+<p>Os mesmos dados podem ser dispostos em uma tabela de várias formas. Observe a planilha com a população dos municípios de Rondônia, importada no <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>populacao_anos <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_ro_2015_2024.xlsx"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>populacao_anos</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 52 × 12</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    cod_municipio municipio      `2015` `2016` `2017` `2018` `2019` `2020` `2021`</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 1100015       Alta Floresta…  24540  24396  24238  24068  23910  23752  23546</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 1100379       Alto Alegre d…  12983  12927  12864  12790  12723  12658  12569</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 1100403       Alto Paraíso    17696  17712  17718  17704  17697  17680  17640</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 1100346       Alvorada D'Oe…  16223  15964  15699  15436  15187  14938  14657</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 1100023       Ariquemes       98956 100316 101559 102718 103895 105044 105986</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 1100452       Buritis         32969  32810  32606  32368  32152  31915  31633</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 1100031       Cabixi           6293   6235   6186   6117   6059   5995   5922</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 1100601       Cacaulândia      5347   5218   5090   4967   4854   4745   4620</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 1100049       Cacoal          86910  88323  89662  90912  92203  93443  94502</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 1100700       Campo Novo de…  11709  11412  11110  10805  10514  10241   9952</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 42 more rows</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 3 more variables: `2022` &lt;dbl&gt;, `2023` &lt;dbl&gt;, `2024` &lt;dbl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cada linha é um município, e cada ano está em uma coluna. É um formato confortável para ler na tela, mas pouco prático para analisar. Como calcular, por exemplo, a população média de cada município no período, ou fazer um gráfico da população ao longo do tempo? A informação “ano” está espalhada nos nomes das colunas, e não em uma variável.</p>
+<p>O conceito de <strong>dados organizados</strong> (<em>tidy data</em>), formalizado por <span class="citation" data-cites="wickham2014tidy">WICKHAM (<a href="../references.html#ref-wickham2014tidy" role="doc-biblioref">2014</a>)</span>, propõe três regras simples. Cada variável fica em uma coluna. Cada observação fica em uma linha. Cada valor fica em uma célula. Na planilha acima, há três variáveis (município, ano e população), mas o ano não ocupa uma coluna própria. Organizá-la significa transformá-la em uma tabela com uma linha para cada combinação de município e ano. As ferramentas do tidyverse, incluindo o <code>ggplot2</code>, foram pensadas para trabalhar com dados nesse formato.</p>
 </section>
 <section id="sec-pivot-longer" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="sec-pivot-longer"><span class="header-section-number">8.2</span> Do formato largo para o longo</h2>
-<p>Apresenta <code>pivot_longer()</code> e seus argumentos principais (<code>cols</code>, <code>names_to</code>, <code>values_to</code>, <code>names_prefix</code>, <code>names_transform</code>), com uma tabela de cobertura vacinal por município e ano.</p>
+<p>A função <code>pivot_longer()</code>, do pacote <code>tidyr</code>, transforma colunas em linhas. Ela precisa de três informações: quais colunas serão empilhadas (<code>cols</code>), o nome da nova coluna que vai receber os antigos nomes de coluna (<code>names_to</code>) e o nome da coluna que vai receber os valores (<code>values_to</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>populacao_longa <span class="ot">&lt;-</span> populacao_anos <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="st">`</span><span class="at">2015</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2024</span><span class="st">`</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"ano"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"populacao"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>populacao_longa</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 520 × 4</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    cod_municipio municipio             ano   populacao</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;         &lt;chr&gt;                 &lt;chr&gt;     &lt;dbl&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 1100015       Alta Floresta D'Oeste 2015      24540</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 1100015       Alta Floresta D'Oeste 2016      24396</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 1100015       Alta Floresta D'Oeste 2017      24238</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 1100015       Alta Floresta D'Oeste 2018      24068</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 1100015       Alta Floresta D'Oeste 2019      23910</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 1100015       Alta Floresta D'Oeste 2020      23752</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 1100015       Alta Floresta D'Oeste 2021      23546</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 1100015       Alta Floresta D'Oeste 2022      23309</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 1100015       Alta Floresta D'Oeste 2023      23081</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 1100015       Alta Floresta D'Oeste 2024      22853</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 510 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os nomes das colunas começam com números, e por isso foram escritos entre crases. A tabela passou de 52 linhas e 12 colunas para 520 linhas e 4 colunas, uma para cada município em cada ano. Repare, porém, que a nova coluna <code>ano</code> é do tipo texto, porque veio dos nomes das colunas. O argumento <code>names_transform</code> converte o tipo no próprio <code>pivot_longer()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>populacao_longa <span class="ot">&lt;-</span> populacao_anos <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="st">`</span><span class="at">2015</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2024</span><span class="st">`</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"ano"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"populacao"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_transform =</span> <span class="fu">list</span>(<span class="at">ano =</span> as.integer)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com os dados organizados, perguntas que antes eram difíceis ficam simples. Por exemplo, a variação percentual da população de cada município entre 2015 e 2024.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>populacao_longa <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(municipio) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">pop_2015 =</span> populacao[ano <span class="sc">==</span> <span class="dv">2015</span>],</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">pop_2024 =</span> populacao[ano <span class="sc">==</span> <span class="dv">2024</span>],</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">variacao_perc =</span> (pop_2024 <span class="sc">/</span> pop_2015 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(variacao_perc)) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   municipio          pop_2015 pop_2024 variacao_perc</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                 &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Vilhena               88151   108528          23.1</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Nova Mamoré           25003    28496          14.0</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Cacoal                86910    97637          12.3</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Rolim de Moura        55815    62559          12.1</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Candeias do Jamari    21769    24163          11.0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-pivot-wider" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="sec-pivot-wider"><span class="header-section-number">8.3</span> Do formato longo para o largo</h2>
-<p>Apresenta <code>pivot_wider()</code> (<code>names_from</code>, <code>values_from</code>, <code>values_fill</code>) e discute seu uso principal: a produção de tabelas de apresentação.</p>
+<p>O caminho inverso é feito com <code>pivot_wider()</code>, que espalha os valores de uma coluna em várias colunas. Ele é usado principalmente para montar tabelas de apresentação, que ficam mais fáceis de ler no formato largo. Os argumentos principais são <code>names_from</code>, a coluna cujos valores viram nomes de colunas, e <code>values_from</code>, a coluna cujos valores preenchem a tabela.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(parto)) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(faixa_idade_mae, parto) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> parto, <span class="at">values_from =</span> n)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   faixa_idade_mae Vaginal Cesáreo</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;             &lt;int&gt;   &lt;int&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Menos de 20        2192    2359</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20 a 34            6062   13234</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 35 ou mais          689    2443</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O resultado é uma tabela de dupla entrada, com as faixas de idade nas linhas e os tipos de parto nas colunas. Quando alguma combinação não existe nos dados, a célula correspondente fica com <code>NA</code>; o argumento <code>values_fill = 0</code> permite preenchê-la com zero, o que costuma ser o correto para contagens.</p>
 </section>
 <section id="sec-separate" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="sec-separate"><span class="header-section-number">8.4</span> Separando e unindo colunas</h2>
-<p>Apresenta <code>separate_wider_delim()</code> e <code>unite()</code>. O exemplo é a coluna de município das tabulações do TabNet, que reúne código e nome em um único campo.</p>
+<p>As tabelas exportadas pelo TabNet trazem o código e o nome do município em uma única coluna, como <code>110001 Alta Floresta D'Oeste</code>. Para combinar essa tabela com outras, precisamos do código em uma coluna própria. A função <code>separate_wider_delim()</code> divide uma coluna em várias a partir de um delimitador.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>populacao_sexo <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"tabnet_populacao_ro_2019.csv"</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"latin1"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">4</span>, <span class="at">n_max =</span> <span class="dv">52</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>populacao_sexo <span class="ot">&lt;-</span> populacao_sexo <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> Município,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">delim =</span> <span class="st">" "</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"codigo"</span>, <span class="st">"nome"</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">too_many =</span> <span class="st">"merge"</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>populacao_sexo</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 52 × 5</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    codigo nome                  Masculino Feminino  Total</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;                     &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 110001 Alta Floresta D'Oeste     12239    11671  23910</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 110002 Ariquemes                 52140    51755 103895</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 110003 Cabixi                     3091     2968   6059</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 110004 Cacoal                    45744    46459  92203</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 110005 Cerejeiras                 8662     8622  17284</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 110006 Colorado do Oeste          8881     8821  17702</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 110007 Corumbiara                 4436     3976   8412</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 110008 Costa Marques              7335     6646  13981</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 110009 Espigão D'Oeste           16246    15764  32010</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 110010 Guajará-Mirim             22176    21665  43841</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 42 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O delimitador é o espaço. Como os nomes dos municípios também têm espaços, usamos <code>too_many = "merge"</code>, que divide a coluna apenas no primeiro espaço e mantém o resto junto. A operação inversa, juntar colunas em uma só, é feita com <code>unite()</code>.</p>
 </section>
 <section id="sec-bind-rows" class="level2" data-number="8.5">
 <h2 data-number="8.5" class="anchored" data-anchor-id="sec-bind-rows"><span class="header-section-number">8.5</span> Empilhando tabelas</h2>
-<p>Apresenta <code>bind_rows()</code>, inclusive com o argumento <code>.id</code>, para reunir arquivos de anos ou unidades da federação diferentes.</p>
+<p>Quando duas tabelas têm as mesmas colunas e queremos colocar uma embaixo da outra, usamos <code>bind_rows()</code>. É o que acontece, por exemplo, quando os dados de cada ano ou de cada estado chegam em arquivos separados. O argumento <code>.id</code> cria uma coluna que identifica a origem de cada linha.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>populacao <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_ro_2019.csv"</span>),</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">cod_municipio =</span> <span class="fu">col_character</span>()))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>feminina <span class="ot">&lt;-</span> populacao <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo <span class="sc">==</span> <span class="st">"Feminino"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>sexo)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>masculina <span class="ot">&lt;-</span> populacao <span class="sc">|&gt;</span> <span class="fu">filter</span>(sexo <span class="sc">==</span> <span class="st">"Masculino"</span>) <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>sexo)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(<span class="at">Feminino =</span> feminina, <span class="at">Masculino =</span> masculina, <span class="at">.id =</span> <span class="st">"sexo"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(sexo)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sexo          n</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;int&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Feminino    884</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Masculino   884</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O exemplo é um pouco artificial, porque separamos uma tabela só para juntá-la de novo, mas mostra a lógica. As colunas são combinadas pelo nome, de modo que a ordem delas em cada tabela não importa.</p>
 </section>
 <section id="sec-joins" class="level2" data-number="8.6">
 <h2 data-number="8.6" class="anchored" data-anchor-id="sec-joins"><span class="header-section-number">8.6</span> Combinando tabelas por chaves</h2>
-<p>Define chave primária e chave estrangeira e apresenta as junções de mutação (<code>left_join()</code>, <code>inner_join()</code>, <code>right_join()</code>, <code>full_join()</code>) e de filtragem (<code>semi_join()</code>, <code>anti_join()</code>), com a especificação das chaves por <code>join_by()</code>. Propõe uma rotina de verificação: contar linhas antes e depois da junção, usar <code>anti_join()</code> para encontrar registros sem correspondência e atentar para os avisos de relações muitos-para-muitos.</p>
+<section id="sec-chaves" class="level3">
+<h3 class="anchored" data-anchor-id="sec-chaves">Chaves</h3>
+<p>Para combinar duas tabelas lado a lado, precisamos de uma ou mais colunas que identifiquem, nas duas tabelas, a mesma unidade. Essas colunas são chamadas de <strong>chaves</strong>. Em dados de saúde, as chaves mais comuns são o código do município, o código do estabelecimento de saúde e, em bases com identificação, o número do registro. Uma boa chave identifica cada linha de forma única em pelo menos uma das tabelas.</p>
+<p>Vamos preparar as duas tabelas que queremos combinar. A primeira tem o número de nascidos vivos por município, calculado a partir do SINASC.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nv_municipio <span class="ot">&lt;-</span> nascidos <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(codmunres, munresnome, <span class="at">name =</span> <span class="st">"nascidos_vivos"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>nv_municipio</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 53 × 3</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    codmunres munresnome              nascidos_vivos</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;                            &lt;int&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 110000    Município ignorado - RO              1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 110001    Alta Floresta D'Oeste              367</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 110002    Ariquemes                         1729</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 110003    Cabixi                              80</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 110004    Cacoal                            1374</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 110005    Cerejeiras                         237</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 110006    Colorado do Oeste                  214</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 110007    Corumbiara                         127</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 110008    Costa Marques                      233</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 110009    Espigão D'Oeste                    450</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 43 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A segunda tem a população total e a população feminina de 15 a 49 anos de cada município, calculadas a partir das estimativas populacionais.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pop_municipio <span class="ot">&lt;-</span> populacao <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cod_municipio) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mulheres_15_49 =</span> <span class="fu">sum</span>(populacao[sexo <span class="sc">==</span> <span class="st">"Feminino"</span> <span class="sc">&amp;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                                   faixa_etaria <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"15 a 19 anos"</span>, <span class="st">"20 a 24 anos"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                                                       <span class="st">"25 a 29 anos"</span>, <span class="st">"30 a 34 anos"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                                                       <span class="st">"35 a 39 anos"</span>, <span class="st">"40 a 44 anos"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                                                       <span class="st">"45 a 49 anos"</span>)]),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">populacao =</span> <span class="fu">sum</span>(populacao)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>pop_municipio</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 52 × 3</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    cod_municipio mulheres_15_49 populacao</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 1100015                 6374     23910</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 1100023                29807    103895</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 1100031                 1453      6059</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 1100049                26391     92203</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 1100056                 4661     17284</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 1100064                 4627     17702</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 1100072                 2198      8412</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 1100080                 3600     13981</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 1100098                 8755     32010</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 1100106                11465     43841</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 42 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A ordem das duas linhas dentro do <code>summarise()</code> não é um detalhe. As medidas são calculadas em sequência, e uma medida criada pode ser usada pelas seguintes. Se <code>populacao = sum(populacao)</code> viesse primeiro, a coluna <code>populacao</code> seria substituída pelo total do município, e o cálculo das mulheres de 15 a 49 anos passaria a usar esse total, e não os valores por sexo e faixa etária. O resultado estaria errado sem nenhum aviso. Por isso, quando uma medida reutiliza o nome de uma coluna, ela deve vir por último, ou receber outro nome, como <code>pop_total</code>.</p>
+</section>
+<section id="sec-tipos-join" class="level3">
+<h3 class="anchored" data-anchor-id="sec-tipos-join">Tipos de junção</h3>
+<p>O <code>dplyr</code> oferece quatro funções de junção que acrescentam colunas de uma tabela a outra. Elas diferem no que fazem com as linhas que não encontram correspondência.</p>
+<div id="tbl-joins" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-joins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;8.1: Junções de mutação do <code>dplyr</code>.
+</figcaption>
+<div aria-describedby="tbl-joins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Função</th>
+<th style="text-align: left;">Linhas mantidas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>left_join(x, y)</code></td>
+<td style="text-align: left;">Todas as linhas de <code>x</code>; as de <code>y</code> que não encontram par são descartadas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>right_join(x, y)</code></td>
+<td style="text-align: left;">Todas as linhas de <code>y</code>; as de <code>x</code> sem par são descartadas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>inner_join(x, y)</code></td>
+<td style="text-align: left;">Apenas as linhas que existem nas duas tabelas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>full_join(x, y)</code></td>
+<td style="text-align: left;">Todas as linhas das duas tabelas</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>A mais usada é <code>left_join()</code>, porque preserva a tabela principal da análise. As colunas que servem de chave são informadas no argumento <code>by</code>, com a função <code>join_by()</code>. Quando as chaves têm nomes diferentes nas duas tabelas, a correspondência é escrita com <code>==</code>.</p>
+<p>Vamos tentar combinar as duas tabelas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nv_municipio <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pop_municipio, <span class="at">by =</span> <span class="fu">join_by</span>(codmunres <span class="sc">==</span> cod_municipio))</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 53 × 5</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    codmunres munresnome              nascidos_vivos mulheres_15_49 populacao</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;                            &lt;int&gt;          &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 110000    Município ignorado - RO              1             NA        NA</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 110001    Alta Floresta D'Oeste              367             NA        NA</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 110002    Ariquemes                         1729             NA        NA</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 110003    Cabixi                              80             NA        NA</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 110004    Cacoal                            1374             NA        NA</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 110005    Cerejeiras                         237             NA        NA</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 110006    Colorado do Oeste                  214             NA        NA</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 110007    Corumbiara                         127             NA        NA</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 110008    Costa Marques                      233             NA        NA</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 110009    Espigão D'Oeste                    450             NA        NA</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 43 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A junção foi feita, mas a população veio toda como <code>NA</code>. Nenhum município encontrou correspondência. O motivo está na próxima seção.</p>
+</section>
 </section>
 <section id="sec-chaves-brasil" class="level2" data-number="8.7">
 <h2 data-number="8.7" class="anchored" data-anchor-id="sec-chaves-brasil"><span class="header-section-number">8.7</span> Chaves em dados de saúde no Brasil</h2>
-<p>Discute problemas frequentes na combinação de bases nacionais: o código de município com seis dígitos usado em muitos arquivos do DATASUS e o código com sete dígitos do IBGE, a diferença de tipo (número ou texto) entre colunas que deveriam ser iguais e a grafia variável de nomes de municípios, razão pela qual nomes não devem ser usados como chave.</p>
+<p>Compare os códigos das duas tabelas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nv_municipio<span class="sc">$</span>codmunres, <span class="dv">3</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "110000" "110001" "110002"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pop_municipio<span class="sc">$</span>cod_municipio, <span class="dv">3</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "1100015" "1100023" "1100031"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O SINASC usa o código do município com <strong>seis dígitos</strong>, enquanto as estimativas populacionais usam o código com <strong>sete dígitos</strong>, definido pelo IBGE. O sétimo dígito é um dígito verificador. Essa diferença é uma das armadilhas mais comuns na combinação de bases de saúde brasileiras: muitos arquivos do DATASUS usam o código de seis dígitos, e a maior parte das bases do IBGE usa o de sete. A solução é criar, na tabela de população, uma coluna com os seis primeiros dígitos, usando <code>str_sub()</code> do pacote <code>stringr</code> (que será apresentado no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pop_municipio <span class="ot">&lt;-</span> pop_municipio <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">codmun6 =</span> <span class="fu">str_sub</span>(cod_municipio, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">6</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>indicadores <span class="ot">&lt;-</span> nv_municipio <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(pop_municipio, <span class="at">by =</span> <span class="fu">join_by</span>(codmunres <span class="sc">==</span> codmun6))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>indicadores</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 53 × 6</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    codmunres munresnome    nascidos_vivos cod_municipio mulheres_15_49 populacao</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;                  &lt;int&gt; &lt;chr&gt;                  &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 110000    Município ig…              1 &lt;NA&gt;                      NA        NA</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 110001    Alta Florest…            367 1100015                 6374     23910</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 110002    Ariquemes               1729 1100023                29807    103895</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 110003    Cabixi                    80 1100031                 1453      6059</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 110004    Cacoal                  1374 1100049                26391     92203</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 110005    Cerejeiras               237 1100056                 4661     17284</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 110006    Colorado do …            214 1100064                 4627     17702</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 110007    Corumbiara               127 1100072                 2198      8412</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 110008    Costa Marques            233 1100080                 3600     13981</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 110009    Espigão D'Oe…            450 1100098                 8755     32010</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 43 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora a combinação funcionou. Outros problemas frequentes com chaves são a diferença de tipo (o código guardado como número em uma tabela e como texto na outra, o que faz o <code>dplyr</code> interromper a junção com um erro) e o uso de nomes como chave. Nomes de municípios não devem ser usados para combinar tabelas, porque a grafia varia entre fontes, com e sem acentos, com abreviações ou com apóstrofos diferentes, como em “Alta Floresta D’Oeste”.</p>
+<section id="sec-conferindo-join" class="level3">
+<h3 class="anchored" data-anchor-id="sec-conferindo-join">Conferindo o resultado de uma junção</h3>
+<p>Toda junção deve ser conferida. Três perguntas ajudam. O número de linhas mudou? Se a tabela de destino tem mais linhas depois da junção, alguma chave estava repetida na outra tabela, e os registros foram duplicados. Há linhas sem correspondência? E, se há, por quê?</p>
+<p>As <strong>junções de filtragem</strong> ajudam a responder à segunda pergunta. A função <code>anti_join()</code> devolve as linhas da primeira tabela que <strong>não</strong> têm par na segunda, e <code>semi_join()</code> devolve as que têm.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(nv_municipio)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 53</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(indicadores)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 53</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>nv_municipio <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(pop_municipio, <span class="at">by =</span> <span class="fu">join_by</span>(codmunres <span class="sc">==</span> codmun6))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   codmunres munresnome              nascidos_vivos</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;chr&gt;                            &lt;int&gt;</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 110000    Município ignorado - RO              1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O número de linhas se manteve, e apenas um registro ficou sem correspondência: o código <code>110000</code>, de residência ignorada, que de fato não tem população associada. A junção está correta.</p>
+</section>
 </section>
 <section id="sec-caso-08" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="sec-caso-08"><span class="header-section-number">8.8</span> Estudo de caso: taxa de mortalidade infantil por município</h2>
-<p>O estudante agrega os óbitos de menores de um ano do SIM e os nascidos vivos do SINASC por município de residência, combina as duas tabelas e calcula a taxa de mortalidade infantil por mil nascidos vivos. Em seguida, reorganiza uma tabela de cobertura vacinal do formato largo para o longo e a combina com estimativas populacionais.</p>
+<h2 data-number="8.8" class="anchored" data-anchor-id="sec-caso-08"><span class="header-section-number">8.8</span> Estudo de caso: natalidade e fecundidade nos municípios de Rondônia</h2>
+<p>Com as duas tabelas combinadas, podemos calcular dois indicadores demográficos clássicos. A <strong>taxa bruta de natalidade</strong> é o número de nascidos vivos dividido pela população total, multiplicado por mil. A <strong>taxa de fecundidade geral</strong> é o número de nascidos vivos dividido pelo número de mulheres de 15 a 49 anos, também multiplicado por mil. A segunda é mais específica, porque relaciona os nascimentos apenas às mulheres em idade reprodutiva.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>indicadores <span class="ot">&lt;-</span> indicadores <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(codmunres <span class="sc">!=</span> <span class="st">"110000"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">taxa_natalidade =</span> nascidos_vivos <span class="sc">/</span> populacao <span class="sc">*</span> <span class="dv">1000</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">taxa_fecundidade_geral =</span> nascidos_vivos <span class="sc">/</span> mulheres_15_49 <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>indicadores <span class="sc">|&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(munresnome, nascidos_vivos, populacao, taxa_natalidade, taxa_fecundidade_geral) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(taxa_fecundidade_geral)) <span class="sc">|&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">6</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 5</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   munresnome     nascidos_vivos populacao taxa_natalidade taxa_fecundidade_geral</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                   &lt;int&gt;     &lt;dbl&gt;           &lt;dbl&gt;                  &lt;dbl&gt;</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Guajará-Mirim             781     43841            17.8                   68.1</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Pimenteiras d…             40      2346            17.1                   67.1</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Buritis                   583     32152            18.1                   66.3</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Costa Marques             233     13981            16.7                   64.7</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 São Francisco…            303     17379            17.4                   64.2</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Campo Novo de…            166     10514            15.8                   62.3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para o estado como um todo, somamos numeradores e denominadores, como aprendemos no capítulo anterior. Os nascimentos com residência ignorada são de mães residentes em Rondônia e, por isso, entram no numerador estadual.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">nascidos_vivos =</span> <span class="fu">nrow</span>(nascidos),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">populacao =</span> <span class="fu">sum</span>(pop_municipio<span class="sc">$</span>populacao),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mulheres_15_49 =</span> <span class="fu">sum</span>(pop_municipio<span class="sc">$</span>mulheres_15_49)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">taxa_natalidade =</span> nascidos_vivos <span class="sc">/</span> populacao <span class="sc">*</span> <span class="dv">1000</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">taxa_fecundidade_geral =</span> nascidos_vivos <span class="sc">/</span> mulheres_15_49 <span class="sc">*</span> <span class="dv">1000</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 5</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   nascidos_vivos populacao mulheres_15_49 taxa_natalidade taxa_fecundidade_geral</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            &lt;int&gt;     &lt;dbl&gt;          &lt;dbl&gt;           &lt;dbl&gt;                  &lt;dbl&gt;</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          27028   1712560         475419            15.8                   56.9</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por fim, uma tabela de apresentação dos municípios mais populosos, com os indicadores arredondados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>indicadores <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(populacao, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    Município <span class="ot">=</span> munresnome,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Nascidos vivos</span><span class="st">`</span> <span class="ot">=</span> nascidos_vivos,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Taxa de natalidade (por mil hab.)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(taxa_natalidade, <span class="dv">1</span>),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Taxa de fecundidade geral (por mil mulheres de 15 a 49 anos)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(taxa_fecundidade_geral, <span class="dv">1</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 12%">
+<col style="width: 27%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Município</th>
+<th style="text-align: right;">Nascidos vivos</th>
+<th style="text-align: right;">Taxa de natalidade (por mil hab.)</th>
+<th style="text-align: right;">Taxa de fecundidade geral (por mil mulheres de 15 a 49 anos)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Porto Velho</td>
+<td style="text-align: right;">8437</td>
+<td style="text-align: right;">17.1</td>
+<td style="text-align: right;">59.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ji-Paraná</td>
+<td style="text-align: right;">2182</td>
+<td style="text-align: right;">16.3</td>
+<td style="text-align: right;">57.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ariquemes</td>
+<td style="text-align: right;">1729</td>
+<td style="text-align: right;">16.6</td>
+<td style="text-align: right;">58.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vilhena</td>
+<td style="text-align: right;">1590</td>
+<td style="text-align: right;">16.2</td>
+<td style="text-align: right;">56.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cacoal</td>
+<td style="text-align: right;">1374</td>
+<td style="text-align: right;">14.9</td>
+<td style="text-align: right;">52.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>A função <code>transmute()</code> funciona como <code>mutate()</code>, mas mantém apenas as colunas criadas. Os nomes entre crases permitem usar espaços e acentos nos títulos das colunas, o que é aceitável em tabelas de apresentação, mas deve ser evitado nas colunas usadas para análise.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Saúde Pública em foco
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A qualidade de um indicador depende da qualidade do numerador e do denominador. Onde parte dos nascimentos não é registrada no SINASC, as taxas calculadas diretamente dos dados subestimam a realidade, e por isso a cobertura do sistema em cada local deve ser considerada antes de comparar indicadores. As estimativas populacionais, por sua vez, são projeções revisadas periodicamente, sobretudo depois de cada censo. Ao comparar indicadores de anos diferentes, convém verificar se as populações usadas vêm da mesma série de estimativas.</p>
+</div>
+</div>
 </section>
 <section id="sec-ex-08" class="level2" data-number="8.9">
 <h2 data-number="8.9" class="anchored" data-anchor-id="sec-ex-08"><span class="header-section-number">8.9</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem conversões simples entre formatos. Os de aplicação envolvem a combinação de casos notificados de dengue com a população dos municípios para calcular coeficientes de incidência. O desafio apresenta duas bases com códigos de município em formatos distintos e pede que o estudante diagnostique e corrija o problema antes da junção.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Transforme a tabela <code>populacao_anos</code> para o formato longo e calcule a população total de Rondônia em cada ano.</p></li>
+<li><p>A partir da base <code>nascidos</code>, construa uma tabela com o número de nascimentos por mês (nas linhas) e por sexo (nas colunas), usando <code>count()</code> e <code>pivot_wider()</code>.</p></li>
+<li><p>Use <code>anti_join()</code> para listar os municípios da tabela de população que não aparecem na tabela de nascidos vivos. Há algum? Interprete o resultado.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="4" type="1">
+<li><p>Combine a tabela <code>indicadores_municipio</code>, construída no <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a> (com a proporção de baixo peso por município), com a tabela de população, e verifique se os municípios mais populosos têm proporções de baixo peso maiores ou menores que os demais.</p></li>
+<li><p>Usando a tabela de população por faixa etária, calcule para cada município a proporção da população com 60 anos ou mais. Combine essa informação com a taxa de natalidade e descreva a relação entre os dois indicadores.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="6" type="1">
+<li>Em seu computador, obtenha os óbitos de residentes em Rondônia em 2019 com o <code>microdatasus</code> ou com o <code>healthbR</code>, conforme o código abaixo. Selecione os óbitos de menores de um ano, conte-os por município de residência, combine com os nascidos vivos e calcule a taxa de mortalidade infantil por mil nascidos vivos. Discuta os problemas de instabilidade nos municípios pequenos.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microdatasus)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>sim_bruto <span class="ot">&lt;-</span> <span class="fu">fetch_datasus</span>(<span class="at">year_start =</span> <span class="dv">2019</span>, <span class="at">year_end =</span> <span class="dv">2019</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">uf =</span> <span class="st">"RO"</span>, <span class="at">information_system =</span> <span class="st">"SIM-DO"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">process_sim</span>(sim_bruto)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># As variáveis IDADEminutos, IDADEhoras, IDADEdias, IDADEmeses e IDADEanos,</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># criadas por process_sim(), permitem identificar os menores de um ano.</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="7" type="1">
+<li>Explique por que uma junção pode aumentar o número de linhas da tabela de destino. Construa um pequeno exemplo, com duas tabelas fictícias, em que isso acontece, e mostre como identificar o problema.</li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-08" class="level2" data-number="8.10">
 <h2 data-number="8.10" class="anchored" data-anchor-id="sec-sintese-08"><span class="header-section-number">8.10</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>Dados organizados seguem três regras: cada variável em uma coluna, cada observação em uma linha e cada valor em uma célula. A função <code>pivot_longer()</code> transforma tabelas largas, com variáveis espalhadas nos nomes das colunas, em tabelas longas, adequadas à análise; <code>pivot_wider()</code> faz o caminho inverso, útil para tabelas de apresentação. A função <code>separate_wider_delim()</code> divide uma coluna em várias, e <code>bind_rows()</code> empilha tabelas. As junções combinam tabelas por meio de chaves: <code>left_join()</code>, <code>inner_join()</code>, <code>right_join()</code> e <code>full_join()</code> acrescentam colunas, enquanto <code>semi_join()</code> e <code>anti_join()</code> filtram linhas. No Brasil, a diferença entre o código de município com seis dígitos, usado pelo DATASUS, e com sete dígitos, usado pelo IBGE, é a armadilha mais comum. Toda junção deve ser conferida quanto ao número de linhas e às linhas sem correspondência.</p>
+<div id="tbl-sintese-08" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;8.2: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-08-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -468,7 +959,7 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;"><code>pivot_longer()</code>, <code>pivot_wider()</code></td>
 <td style="text-align: left;">tidyr</td>
-<td style="text-align: left;">Converter entre formatos longo e largo</td>
+<td style="text-align: left;">Converter entre os formatos longo e largo</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>separate_wider_delim()</code>, <code>unite()</code></td>
@@ -481,7 +972,7 @@ Objetivos de aprendizagem
 <td style="text-align: left;">Empilhar tabelas</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>left_join()</code>, <code>inner_join()</code>, <code>right_join()</code>, <code>full_join()</code></td>
+<td style="text-align: left;"><code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code>, <code>full_join()</code></td>
 <td style="text-align: left;">dplyr</td>
 <td style="text-align: left;">Junções de mutação</td>
 </tr>
@@ -493,18 +984,27 @@ Objetivos de aprendizagem
 <tr class="even">
 <td style="text-align: left;"><code>join_by()</code></td>
 <td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">Especificar as chaves</td>
+<td style="text-align: left;">Especificar as chaves da junção</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><code>transmute()</code></td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Criar colunas mantendo apenas as novas</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><code>str_sub()</code></td>
 <td style="text-align: left;">stringr</td>
-<td style="text-align: left;">Ajustar códigos (antecipação do <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>)</td>
+<td style="text-align: left;">Extrair parte de um texto</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-08" class="level2" data-number="8.11">
 <h2 data-number="8.11" class="anchored" data-anchor-id="sec-mais-08"><span class="header-section-number">8.11</span> Para saber mais</h2>
+<p>O artigo de <span class="citation" data-cites="wickham2014tidy">WICKHAM (<a href="../references.html#ref-wickham2014tidy" role="doc-biblioref">2014</a>)</span> é a referência original sobre dados organizados e continua sendo uma leitura clara e útil. O capítulo 5 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> trata da reorganização de tabelas, e o capítulo 19, das junções, com uma explicação visual de como cada tipo funciona. O <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> dedica o capítulo 12 à pivotagem e o capítulo 14 às junções, com exemplos de vigilância. Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> trata das bases relacionais no capítulo 6 e dos dados organizados no capítulo 7.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -522,12 +1022,12 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">5. Organização de dados; 19. Uniões</td>
-<td style="text-align: left;">Dados organizados; Alongando os dados; Transformando os dados para o formato largo; Chaves; Uniões básicas; Como as uniões funcionam?</td>
+<td style="text-align: left;">Dados organizados; Alongando os dados; Chaves; Uniões básicas</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">12. Pivoteando dados; 14. Juntando dados</td>
-<td style="text-align: left;">Largo-para-longo; Longo-para-largo; Joins com <strong>dplyr</strong>; Anexando (binding) e alinhando</td>
+<td style="text-align: left;">Largo-para-longo; Longo-para-largo; Joins com <strong>dplyr</strong>; Anexando (binding)</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
@@ -975,7 +1475,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

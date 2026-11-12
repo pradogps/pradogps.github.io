@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -350,11 +385,30 @@ div.csl-indent {
   <li><a href="#sec-gramatica-dplyr" id="toc-sec-gramatica-dplyr" class="nav-link active" data-scroll-target="#sec-gramatica-dplyr"><span class="header-section-number">6.1</span> A gramática da transformação de dados</a></li>
   <li><a href="#sec-pipe" id="toc-sec-pipe" class="nav-link" data-scroll-target="#sec-pipe"><span class="header-section-number">6.2</span> O operador <em>pipe</em></a></li>
   <li><a href="#sec-colunas" id="toc-sec-colunas" class="nav-link" data-scroll-target="#sec-colunas"><span class="header-section-number">6.3</span> Operações sobre colunas</a></li>
-  <li><a href="#sec-linhas" id="toc-sec-linhas" class="nav-link" data-scroll-target="#sec-linhas"><span class="header-section-number">6.4</span> Operações sobre linhas</a></li>
-  <li><a href="#sec-mutate" id="toc-sec-mutate" class="nav-link" data-scroll-target="#sec-mutate"><span class="header-section-number">6.5</span> Criação e modificação de variáveis</a></li>
+  <li><a href="#sec-linhas" id="toc-sec-linhas" class="nav-link" data-scroll-target="#sec-linhas"><span class="header-section-number">6.4</span> Operações sobre linhas</a>
+  <ul class="collapse">
+  <li><a href="#sec-filter" id="toc-sec-filter" class="nav-link" data-scroll-target="#sec-filter">Filtrando linhas</a></li>
+  <li><a href="#sec-arrange" id="toc-sec-arrange" class="nav-link" data-scroll-target="#sec-arrange">Ordenando linhas</a></li>
+  <li><a href="#sec-distinct" id="toc-sec-distinct" class="nav-link" data-scroll-target="#sec-distinct">Removendo duplicatas e selecionando linhas por posição</a></li>
+  </ul></li>
+  <li><a href="#sec-mutate" id="toc-sec-mutate" class="nav-link" data-scroll-target="#sec-mutate"><span class="header-section-number">6.5</span> Criação e modificação de variáveis</a>
+  <ul class="collapse">
+  <li><a href="#sec-mutate-basico" id="toc-sec-mutate-basico" class="nav-link" data-scroll-target="#sec-mutate-basico">A função <code>mutate()</code></a></li>
+  <li><a href="#sec-condicionais-mutate" id="toc-sec-condicionais-mutate" class="nav-link" data-scroll-target="#sec-condicionais-mutate">Transformações condicionais</a></li>
+  <li><a href="#sec-cut" id="toc-sec-cut" class="nav-link" data-scroll-target="#sec-cut">Faixas de valores</a></li>
+  <li><a href="#sec-na-if" id="toc-sec-na-if" class="nav-link" data-scroll-target="#sec-na-if">Códigos de ignorado</a></li>
+  </ul></li>
   <li><a href="#sec-boas-praticas-dplyr" id="toc-sec-boas-praticas-dplyr" class="nav-link" data-scroll-target="#sec-boas-praticas-dplyr"><span class="header-section-number">6.6</span> Boas práticas na transformação de dados</a></li>
-  <li><a href="#sec-caso-06" id="toc-sec-caso-06" class="nav-link" data-scroll-target="#sec-caso-06"><span class="header-section-number">6.7</span> Estudo de caso: construindo variáveis de interesse no SINASC</a></li>
-  <li><a href="#sec-ex-06" id="toc-sec-ex-06" class="nav-link" data-scroll-target="#sec-ex-06"><span class="header-section-number">6.8</span> Exercícios</a></li>
+  <li><a href="#sec-caso-06" id="toc-sec-caso-06" class="nav-link" data-scroll-target="#sec-caso-06"><span class="header-section-number">6.7</span> Estudo de caso: construindo variáveis de interesse no SINASC</a>
+  <ul class="collapse">
+  <li><a href="#sec-script-preparo" id="toc-sec-script-preparo" class="nav-link" data-scroll-target="#sec-script-preparo">Guardando a preparação em um script</a></li>
+  </ul></li>
+  <li><a href="#sec-ex-06" id="toc-sec-ex-06" class="nav-link" data-scroll-target="#sec-ex-06"><span class="header-section-number">6.8</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-06" id="toc-sec-sintese-06" class="nav-link" data-scroll-target="#sec-sintese-06"><span class="header-section-number">6.9</span> Síntese</a></li>
   <li><a href="#sec-mais-06" id="toc-sec-mais-06" class="nav-link" data-scroll-target="#sec-mais-06"><span class="header-section-number">6.10</span> Para saber mais</a></li>
   </ul>
@@ -382,21 +436,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 3 · <strong>Pré-requisitos:</strong> <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a> e <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a> · <strong>Pacotes:</strong> <code>dplyr</code> (via <code>tidyverse</code>)</p>
+<p><strong>Encontro previsto:</strong> 3 · <strong>Pré-requisitos:</strong> <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a> e <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a> · <strong>Pacotes:</strong> <code>dplyr</code> (carregado com o <code>tidyverse</code>), <code>here</code>, <code>janitor</code></p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -408,36 +449,418 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar a lógica comum aos verbos do <code>dplyr</code>, que recebem uma tabela e devolvem uma tabela; encadear operações com o operador <em>pipe</em>; selecionar, renomear e reordenar colunas; filtrar linhas segundo uma ou mais condições e ordená-las; remover registros duplicados; criar e modificar variáveis, inclusive por meio de regras condicionais e de categorização de variáveis contínuas; e converter códigos de “ignorado” em valores ausentes.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar a lógica comum às funções do <code>dplyr</code>, que recebem uma tabela e devolvem outra tabela; encadear operações com o operador <em>pipe</em>; selecionar, renomear e reordenar colunas; filtrar e ordenar linhas; remover registros duplicados; criar e modificar variáveis, inclusive com regras condicionais e faixas de valores; e transformar códigos de “ignorado” em valores ausentes.</p>
 </div>
+</div>
+<p>Os dados raramente chegam prontos para a análise. Quase sempre é preciso escolher as variáveis de interesse, restringir os registros a uma população, criar novas variáveis a partir das existentes e corrigir códigos. O pacote <code>dplyr</code> foi criado para tornar essas tarefas simples e legíveis. Neste capítulo, vamos usá-lo para preparar a base de nascidos vivos importada no capítulo anterior.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sinasc <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"sinasc_ro_2019.csv"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"latin1"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">CODMUNRES =</span> <span class="fu">col_character</span>(), <span class="at">DTNASC =</span> <span class="fu">col_character</span>())</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-gramatica-dplyr" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="sec-gramatica-dplyr"><span class="header-section-number">6.1</span> A gramática da transformação de dados</h2>
-<p>Apresenta o tidyverse como coleção de pacotes com filosofia comum <span class="citation" data-cites="wickham2019tidyverse">(<a href="../references.html#ref-wickham2019tidyverse" role="doc-biblioref">WICKHAM et al., 2019</a>)</span> e o <code>dplyr</code> como gramática para transformar tabelas, na qual cada verbo executa uma operação bem definida sobre linhas ou colunas.</p>
+<p>O <code>dplyr</code> faz parte do tidyverse, uma coleção de pacotes que compartilham a mesma forma de organizar os dados e de nomear as funções <span class="citation" data-cites="wickham2019tidyverse">(<a href="../references.html#ref-wickham2019tidyverse" role="doc-biblioref">WICKHAM et al., 2019</a>)</span>. Suas principais funções são chamadas de <strong>verbos</strong>, porque cada uma faz uma ação bem definida sobre uma tabela. Todos os verbos seguem a mesma lógica. O primeiro argumento é sempre a tabela de dados. Os argumentos seguintes dizem o que fazer, usando os nomes das colunas sem aspas e sem cifrão. O resultado é sempre uma nova tabela, e a original não é alterada.</p>
+<p>Os verbos se dividem conforme o que afetam. Alguns trabalham sobre as <strong>colunas</strong>: <code>select()</code> escolhe colunas, <code>rename()</code> muda nomes, <code>relocate()</code> muda a ordem e <code>mutate()</code> cria ou altera colunas. Outros trabalham sobre as <strong>linhas</strong>: <code>filter()</code> escolhe linhas que atendem a uma condição, <code>arrange()</code> ordena e <code>distinct()</code> remove repetições. No próximo capítulo veremos os verbos que trabalham sobre <strong>grupos</strong> de linhas.</p>
 </section>
 <section id="sec-pipe" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="sec-pipe"><span class="header-section-number">6.2</span> O operador <em>pipe</em></h2>
-<p>Introduz o <em>pipe</em> nativo (<code>|&gt;</code>) como forma de encadear operações, lido como “e então”, e compara uma sequência de chamadas aninhadas com a mesma sequência escrita com <em>pipe</em>. Apresenta também o <em>pipe</em> do pacote <code>magrittr</code> (<code>%&gt;%</code>), ainda muito presente em materiais de referência, e o atalho de teclado do RStudio.</p>
+<p>Em uma análise real, aplicamos vários verbos em sequência. Imagine que queremos as colunas de peso e de idade gestacional apenas dos nascimentos por parto vaginal, ordenados do menor para o maior peso. Sem nenhum recurso especial, teríamos de aninhar as funções umas dentro das outras.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(<span class="fu">filter</span>(sinasc, parto <span class="sc">==</span> <span class="st">"Vaginal"</span>), peso, semagestac), peso)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O código funciona, mas é difícil de ler, porque precisa ser lido de dentro para fora. O operador <strong><em>pipe</em></strong>, escrito <code>|&gt;</code>, resolve o problema. Ele pega o resultado do que está à sua esquerda e o passa como primeiro argumento da função à sua direita. A mesma operação fica assim.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(parto <span class="sc">==</span> <span class="st">"Vaginal"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(peso, semagestac) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(peso)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8,943 × 2</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     peso semagestac</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1   285         38</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2   295         38</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3   320         21</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4   335         41</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5   350         25</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6   370         39</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7   380         41</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8   404         35</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9   425         21</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10   430         22</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 8,933 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora o código pode ser lido de cima para baixo, como uma receita. Uma boa forma de ler o <code>|&gt;</code> em voz alta é “e então”. Pegue a base <code>sinasc</code>, e então filtre os partos vaginais, e então selecione o peso e a idade gestacional, e então ordene pelo peso.</p>
+<p>O <code>|&gt;</code> faz parte do próprio R desde a versão 4.1. Em muitos materiais, inclusive em algumas das obras de referência deste livro, aparece outro operador, <code>%&gt;%</code>, do pacote <code>magrittr</code>, que faz praticamente a mesma coisa. Os dois podem ser usados indistintamente nos exemplos deste livro. No RStudio, o atalho <em>Ctrl + Shift + M</em> (<em>Cmd + Shift + M</em> no macOS) digita o <em>pipe</em>; se a opção recomendada no <a href="01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a> estiver marcada, será digitado o <code>|&gt;</code>.</p>
 </section>
 <section id="sec-colunas" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="sec-colunas"><span class="header-section-number">6.3</span> Operações sobre colunas</h2>
-<p>Apresenta <code>select()</code>, <code>rename()</code> e <code>relocate()</code> e as funções auxiliares de seleção (<code>starts_with()</code>, <code>ends_with()</code>, <code>contains()</code>, <code>where()</code>), com exemplos em bases do SINASC e do SIM, que têm dezenas de colunas das quais apenas algumas interessam a cada análise.</p>
+<p>As bases do DATASUS costumam ter dezenas de colunas, e cada análise usa apenas algumas. A função <code>select()</code> escolhe as colunas desejadas, na ordem em que forem informadas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(munresnome, dtnasc, peso, parto)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 27,028 × 4</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    munresnome              dtnasc    peso parto  </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                   &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Alta Floresta D'Oeste   19022019  3685 Cesáreo</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Alta Floresta D'Oeste   21022019  3055 Cesáreo</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Alta Floresta D'Oeste   25022019  3460 Cesáreo</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Alto Alegre dos Parecis 20032019  2982 Cesáreo</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Alta Floresta D'Oeste   23032019  3310 Cesáreo</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Alta Floresta D'Oeste   27032019  2740 Cesáreo</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Novo Horizonte do Oeste 01042019  3158 Cesáreo</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Alta Floresta D'Oeste   01042019  3192 Cesáreo</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Alta Floresta D'Oeste   28022019  3570 Cesáreo</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Alta Floresta D'Oeste   11032019  3900 Cesáreo</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 27,018 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Também é possível excluir colunas com o sinal de menos e selecionar intervalos de colunas vizinhas com dois-pontos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">-</span>locnasc, <span class="sc">-</span>qtdfilvivo)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span> <span class="fu">select</span>(sexo<span class="sc">:</span>idademae)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para bases com muitas variáveis, existem funções auxiliares que selecionam colunas pelo nome ou pelo tipo. As mais úteis são <code>starts_with()</code>, <code>ends_with()</code> e <code>contains()</code>, que procuram um trecho no nome da coluna, e <code>where()</code>, que seleciona colunas que satisfazem uma condição, como ser numérica.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"apgar"</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 27,028 × 2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    apgar1 apgar5</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1      9     10</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2      8      9</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3      8     10</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4      9     10</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5      8     10</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6      9     10</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7      9     10</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8      9     10</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9      8      9</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10      9     10</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 27,018 more rows</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 27,028 × 9</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     peso idademae estcivmae semagestac consultas apgar1 apgar5 qtdfilvivo</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1  3685       19         5         39         4      9     10          0</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2  3055       29         2         38         4      8      9          1</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3  3460       37         9         40         4      8     10          2</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4  2982       30         5         38         3      9     10          0</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5  3310       30         2         38         4      8     10          1</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6  2740       33         5         38         4      9     10          2</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7  3158       37         1         38         4      9     10          1</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8  3192       27         2         39         4      9     10          0</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9  3570       20         5         39         3      8      9          0</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10  3900       30         2         39         4      9     10          1</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 27,018 more rows</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 1 more variable: locnasc &lt;dbl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>rename()</code> muda o nome de uma coluna, no formato <code>novo_nome = nome_antigo</code>, e <code>relocate()</code> muda sua posição.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">municipio =</span> munresnome, <span class="at">idade_mae =</span> idademae) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(peso, <span class="at">.before =</span> municipio) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 18</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   codmunres  peso municipio      dtnasc sexo  idade_mae escmae estcivmae racacor</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 110001     3685 Alta Floresta… 19022… Masc…        19 8 a 1…         5 Branca </span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 110001     3055 Alta Floresta… 21022… Femi…        29 8 a 1…         2 Branca </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 110001     3460 Alta Floresta… 25022… Femi…        37 8 a 1…         9 Branca </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 9 more variables: gestacao &lt;chr&gt;, semagestac &lt;dbl&gt;, gravidez &lt;chr&gt;,</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   parto &lt;chr&gt;, consultas &lt;dbl&gt;, apgar1 &lt;dbl&gt;, apgar5 &lt;dbl&gt;, qtdfilvivo &lt;dbl&gt;,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   locnasc &lt;dbl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-linhas" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="sec-linhas"><span class="header-section-number">6.4</span> Operações sobre linhas</h2>
-<p>Apresenta <code>filter()</code> com condições simples e combinadas, <code>%in%</code>, <code>between()</code> e <code>is.na()</code>; <code>arrange()</code> e <code>desc()</code> para ordenação; <code>distinct()</code> para remover duplicatas; e as funções <code>slice_*()</code> para selecionar linhas por posição ou por valores extremos. Retoma os operadores lógicos do <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a>.</p>
+<section id="sec-filter" class="level3">
+<h3 class="anchored" data-anchor-id="sec-filter">Filtrando linhas</h3>
+<p>A função <code>filter()</code> mantém apenas as linhas em que a condição informada é verdadeira. As condições são escritas com os operadores relacionais e lógicos do <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(idademae <span class="sc">&lt;</span> <span class="dv">20</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4,558 × 18</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    codmunres munresnome     dtnasc sexo   peso idademae escmae estcivmae racacor</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;  </span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 110001    Alta Floresta… 19022… Masc…  3685       19 8 a 1…         5 Branca </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 110001    Alta Floresta… 28032… Femi…  2995       18 1 a 3…         5 Parda  </span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 110001    Alta Floresta… 17042… Masc…  3180       19 12 an…         1 Branca </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 110001    Alta Floresta… 10042… Masc…  2685       18 4 a 7…         2 Branca </span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 110001    Alta Floresta… 10042… Masc…  3785       19 8 a 1…         5 Indíge…</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 110001    Alta Floresta… 23042… Femi…  3980       18 4 a 7…         1 &lt;NA&gt;   </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 110001    Alta Floresta… 24042… Femi…  2830       18 8 a 1…         5 Indíge…</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 110001    Alta Floresta… 28052… Masc…  4245       14 4 a 7…         1 Parda  </span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 110001    Alta Floresta… 02052… Masc…  2925       17 4 a 7…         5 Indíge…</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 110001    Alta Floresta… 16052… Masc…  3310       19 8 a 1…         1 Parda  </span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 4,548 more rows</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 9 more variables: gestacao &lt;chr&gt;, semagestac &lt;dbl&gt;, gravidez &lt;chr&gt;,</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   parto &lt;chr&gt;, consultas &lt;dbl&gt;, apgar1 &lt;dbl&gt;, apgar5 &lt;dbl&gt;, qtdfilvivo &lt;dbl&gt;,</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   locnasc &lt;dbl&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dos 27.028 nascimentos, 4.558 foram de mães com menos de 20 anos. Várias condições podem ser combinadas. Separar as condições por vírgula equivale a ligá-las com <code>&amp;</code>, ou seja, todas precisam ser verdadeiras.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(idademae <span class="sc">&lt;</span> <span class="dv">20</span>, parto <span class="sc">==</span> <span class="st">"Cesáreo"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2359</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para condições do tipo “ou”, usamos <code>|</code>. Para verificar se um valor pertence a uma lista, usamos <code>%in%</code>. E a função <code>between()</code> simplifica condições de intervalo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span> <span class="fu">filter</span>(munresnome <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Porto Velho"</span>, <span class="st">"Ji-Paraná"</span>, <span class="st">"Ariquemes"</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">between</span>(semagestac, <span class="dv">32</span>, <span class="dv">36</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-warning callout-titled" title="Filtros e valores ausentes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Filtros e valores ausentes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A função <code>filter()</code> só mantém as linhas em que a condição é <code>TRUE</code>. Linhas em que a condição resulta em <code>NA</code>, porque a variável está ausente, são descartadas sem aviso. Por exemplo, <code>filter(semagestac &lt; 37)</code> deixa de fora tanto os nascimentos a termo quanto os 1.238 nascimentos sem informação de idade gestacional. Quando os ausentes importam, é preciso tratá-los explicitamente com <code>is.na()</code>, como em <code>filter(semagestac &lt; 37 | is.na(semagestac))</code>.</p>
+</div>
+</div>
+</section>
+<section id="sec-arrange" class="level3">
+<h3 class="anchored" data-anchor-id="sec-arrange">Ordenando linhas</h3>
+<p>A função <code>arrange()</code> ordena as linhas pelos valores de uma ou mais colunas, em ordem crescente. Para ordem decrescente, usamos <code>desc()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(munresnome, peso, semagestac) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(peso)) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   munresnome       peso semagestac</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;           &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Espigão D'Oeste  5985         38</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Rolim de Moura   5720         37</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Ji-Paraná        5480         39</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Cacoal           5470         37</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Jaru             5190         39</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sec-distinct" class="level3">
+<h3 class="anchored" data-anchor-id="sec-distinct">Removendo duplicatas e selecionando linhas por posição</h3>
+<p>A função <code>distinct()</code> mantém apenas as combinações únicas das colunas informadas. É útil, por exemplo, para obter a lista de municípios presentes na base.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(codmunres, munresnome) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(munresnome)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 53 × 2</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    codmunres munresnome             </span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt;                  </span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 110001    Alta Floresta D'Oeste  </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 110037    Alto Alegre dos Parecis</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 110040    Alto Paraíso           </span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 110034    Alvorada D'Oeste       </span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 110002    Ariquemes              </span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 110045    Buritis                </span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 110003    Cabixi                 </span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 110060    Cacaulândia            </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 110004    Cacoal                 </span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 110070    Campo Novo de Rondônia </span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 43 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As funções da família <code>slice_*()</code> selecionam linhas pela posição ou pelos valores extremos. A função <code>slice_head()</code> pega as primeiras linhas, e <code>slice_max()</code> e <code>slice_min()</code> pegam as linhas com os maiores ou menores valores de uma variável.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(peso, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(munresnome, peso, semagestac)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   munresnome           peso semagestac</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Colorado do Oeste     258         38</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ouro Preto do Oeste   285         38</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Ji-Paraná             292         39</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="sec-mutate" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="sec-mutate"><span class="header-section-number">6.5</span> Criação e modificação de variáveis</h2>
-<p>Apresenta <code>mutate()</code> para criar variáveis a partir de operações aritméticas, <code>if_else()</code> para regras com duas alternativas, <code>case_when()</code> para regras com várias alternativas e <code>cut()</code> para categorizar variáveis contínuas em faixas. Mostra o uso de <code>na_if()</code> para converter códigos de “ignorado” em <code>NA</code>, sempre a partir do dicionário de dados.</p>
+<section id="sec-mutate-basico" class="level3">
+<h3 class="anchored" data-anchor-id="sec-mutate-basico">A função <code>mutate()</code></h3>
+<p>A função <code>mutate()</code> cria novas colunas ou modifica as existentes, sempre a partir de cálculos com as outras colunas. Vamos criar o peso em quilogramas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">peso_kg =</span> peso <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(peso, peso_kg) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    peso peso_kg</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  3685    3.68</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  3055    3.06</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  3460    3.46</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Uma coluna criada com uma comparação vira uma variável lógica, com <code>TRUE</code> e <code>FALSE</code>. É a forma mais simples de criar indicadores, como o de baixo peso ao nascer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">baixo_peso =</span> peso <span class="sc">&lt;</span> <span class="dv">2500</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(baixo_peso)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 2</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   baixo_peso     n</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;lgl&gt;      &lt;int&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 FALSE      25142</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 TRUE        1886</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sec-condicionais-mutate" class="level3">
+<h3 class="anchored" data-anchor-id="sec-condicionais-mutate">Transformações condicionais</h3>
+<p>Quando a nova variável depende de uma condição com duas alternativas, usamos <code>if_else()</code>. O primeiro argumento é a condição, o segundo é o valor quando ela é verdadeira e o terceiro, o valor quando é falsa.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tipo_gravidez =</span> <span class="fu">if_else</span>(gravidez <span class="sc">==</span> <span class="st">"Única"</span>, <span class="st">"Única"</span>, <span class="st">"Múltipla"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tipo_gravidez)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   tipo_gravidez     n</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;         &lt;int&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Múltipla        497</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Única         26452</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 &lt;NA&gt;             79</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Repare que os registros com <code>gravidez</code> ausente continuam ausentes, porque a condição não pode ser avaliada para eles.</p>
+<p>Quando há mais de duas alternativas, a função <code>case_when()</code> é mais adequada. Ela recebe uma sequência de pares no formato <code>condição ~ valor</code>, avaliados em ordem. O primeiro par verdadeiro define o valor; o argumento <code>.default</code> indica o valor para os casos que não se encaixam em nenhuma condição.</p>
+<p>A variável <code>consultas</code>, por exemplo, registra o número de consultas de pré-natal em códigos. No dicionário do SINASC, 1 significa nenhuma consulta, 2 significa de 1 a 3, 3 significa de 4 a 6, 4 significa 7 ou mais e 9 significa ignorado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">consultas_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>      consultas <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Nenhuma"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      consultas <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"1 a 3"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>      consultas <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"4 a 6"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>      consultas <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"7 ou mais"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="cn">NA</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(consultas, consultas_cat)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   consultas consultas_cat     n</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;chr&gt;         &lt;int&gt;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         1 Nenhuma         986</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         2 1 a 3          1379</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3         3 4 a 6          5988</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4         4 7 ou mais     18624</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5         9 &lt;NA&gt;             51</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sec-cut" class="level3">
+<h3 class="anchored" data-anchor-id="sec-cut">Faixas de valores</h3>
+<p>Variáveis contínuas, como a idade, muitas vezes são agrupadas em faixas. A função <code>cut()</code>, do R base, faz isso a partir de pontos de corte (<code>breaks</code>) e rótulos (<code>labels</code>). Por padrão, cada intervalo inclui o limite superior e exclui o inferior.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">faixa_idade_mae =</span> <span class="fu">cut</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>      idademae,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">19</span>, <span class="dv">34</span>, <span class="cn">Inf</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Menos de 20"</span>, <span class="st">"20 a 34"</span>, <span class="st">"35 ou mais"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(faixa_idade_mae)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   faixa_idade_mae     n</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Menos de 20      4558</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20 a 34         19327</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 35 ou mais       3143</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os cortes acima formam os intervalos até 19 anos, de 20 a 34 anos e de 35 anos ou mais, faixas muito usadas em saúde materno-infantil por corresponderem às mães adolescentes e às gestações em idade materna avançada. Os valores <code>-Inf</code> e <code>Inf</code> garantem que nenhuma idade fique de fora.</p>
+</section>
+<section id="sec-na-if" class="level3">
+<h3 class="anchored" data-anchor-id="sec-na-if">Códigos de ignorado</h3>
+<p>Como vimos no <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a>, os sistemas de informação registram a falta de informação com códigos, como o 9. Se esses códigos não forem convertidos em <code>NA</code>, entram nos cálculos como se fossem valores reais. A função <code>na_if()</code> substitui um valor específico por <code>NA</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sinasc <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">consultas =</span> <span class="fu">na_if</span>(consultas, <span class="dv">9</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(consultas)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 2</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   consultas     n</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         1   986</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2         2  1379</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3         3  5988</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4         4 18624</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5        NA    51</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os 51 registros com código 9 passaram a ser tratados como ausentes. A decisão de converter um código em <code>NA</code> deve sempre se basear no dicionário de dados, porque o mesmo número pode ter significados diferentes em variáveis diferentes.</p>
+</section>
 </section>
 <section id="sec-boas-praticas-dplyr" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="sec-boas-praticas-dplyr"><span class="header-section-number">6.6</span> Boas práticas na transformação de dados</h2>
-<p>Discute a preservação dos dados brutos, a criação de novas variáveis em vez da sobrescrita das originais, a nomeação consistente e a legibilidade de sequências longas de operações.</p>
+<p>Algumas recomendações tornam o trabalho com o <code>dplyr</code> mais seguro. A primeira é não sobrescrever a base original enquanto se testam transformações. Crie as novas variáveis, confira o resultado com <code>count()</code> ou <code>summary()</code> e só depois guarde a base transformada em um objeto. A segunda é preferir criar novas variáveis a modificar as existentes, mantendo a original para conferência, como fizemos com <code>consultas</code> e <code>consultas_cat</code>. A terceira é quebrar sequências longas em etapas com nomes claros, cada uma com um comentário explicando o objetivo. A quarta é registrar as definições operacionais, como os pontos de corte usados, que condicionam a comparação com outros estudos.</p>
 </section>
 <section id="sec-caso-06" class="level2" data-number="6.7">
 <h2 data-number="6.7" class="anchored" data-anchor-id="sec-caso-06"><span class="header-section-number">6.7</span> Estudo de caso: construindo variáveis de interesse no SINASC</h2>
-<p>A partir do extrato salvo no <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>, o estudante seleciona as variáveis de interesse, restringe a análise aos nascidos vivos de mães residentes na área de estudo e cria as variáveis baixo peso ao nascer (inferior a 2.500 g), prematuridade (idade gestacional inferior a 37 semanas), mãe adolescente (idade inferior a 20 anos) e realização de sete ou mais consultas de pré-natal, tratando adequadamente os registros com informação ignorada.</p>
+<p>Vamos agora reunir as transformações em uma única sequência, criando a base que será usada nos próximos capítulos. O objetivo é preparar variáveis para estudar o baixo peso ao nascer e sua relação com características maternas e da gestação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="ot">&lt;-</span> sinasc <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># variáveis de interesse</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(codmunres, munresnome, dtnasc, sexo, peso, idademae, escmae,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>         racacor, gestacao, semagestac, gravidez, parto, consultas, apgar5) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># códigos de ignorado</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">consultas =</span> <span class="fu">na_if</span>(consultas, <span class="dv">9</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># novas variáveis</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">baixo_peso =</span> peso <span class="sc">&lt;</span> <span class="dv">2500</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">prematuro =</span> semagestac <span class="sc">&lt;</span> <span class="dv">37</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">mae_adolescente =</span> idademae <span class="sc">&lt;</span> <span class="dv">20</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">pre_natal_7mais =</span> consultas <span class="sc">==</span> <span class="dv">4</span>,</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">faixa_idade_mae =</span> <span class="fu">cut</span>(idademae,</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>                          <span class="at">breaks =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="cn">Inf</span>, <span class="dv">19</span>, <span class="dv">34</span>, <span class="cn">Inf</span>),</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Menos de 20"</span>, <span class="st">"20 a 34"</span>, <span class="st">"35 ou mais"</span>)),</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">consultas_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>      consultas <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Nenhuma"</span>,</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>      consultas <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"1 a 3"</span>,</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>      consultas <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"4 a 6"</span>,</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>      consultas <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"7 ou mais"</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(nascidos)</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 27,028</span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 20</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ codmunres       &lt;chr&gt; "110001", "110001", "110001", "110037", "110001", "110…</span></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ munresnome      &lt;chr&gt; "Alta Floresta D'Oeste", "Alta Floresta D'Oeste", "Alt…</span></span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ dtnasc          &lt;chr&gt; "19022019", "21022019", "25022019", "20032019", "23032…</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ sexo            &lt;chr&gt; "Masculino", "Feminino", "Feminino", "Feminino", "Femi…</span></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ peso            &lt;dbl&gt; 3685, 3055, 3460, 2982, 3310, 2740, 3158, 3192, 3570, …</span></span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ idademae        &lt;dbl&gt; 19, 29, 37, 30, 30, 33, 37, 27, 20, 30, 31, 21, 21, 18…</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ escmae          &lt;chr&gt; "8 a 11 anos", "8 a 11 anos", "8 a 11 anos", "12 anos …</span></span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ racacor         &lt;chr&gt; "Branca", "Branca", "Branca", "Parda", "Parda", "Branc…</span></span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ gestacao        &lt;chr&gt; "37 a 41 semanas", "37 a 41 semanas", "37 a 41 semanas…</span></span>
+<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ semagestac      &lt;dbl&gt; 39, 38, 40, 38, 38, 38, 38, 39, 39, 39, 40, 38, 41, 39…</span></span>
+<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ gravidez        &lt;chr&gt; "Única", "Única", "Única", "Única", "Única", "Única", …</span></span>
+<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ parto           &lt;chr&gt; "Cesáreo", "Cesáreo", "Cesáreo", "Cesáreo", "Cesáreo",…</span></span>
+<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ consultas       &lt;dbl&gt; 4, 4, 4, 3, 4, 4, 4, 4, 3, 4, 4, 3, 4, 3, 4, 3, 4, 3, …</span></span>
+<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ apgar5          &lt;dbl&gt; 10, 9, 10, 10, 10, 10, 10, 10, 9, 10, 9, 10, 9, 9, 7, …</span></span>
+<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ baixo_peso      &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…</span></span>
+<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ prematuro       &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…</span></span>
+<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mae_adolescente &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE,…</span></span>
+<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ pre_natal_7mais &lt;lgl&gt; TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE…</span></span>
+<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ faixa_idade_mae &lt;fct&gt; Menos de 20, 20 a 34, 35 ou mais, 20 a 34, 20 a 34, 20…</span></span>
+<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ consultas_cat   &lt;chr&gt; "7 ou mais", "7 ou mais", "7 ou mais", "4 a 6", "7 ou …</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com a base pronta, podemos responder a uma primeira pergunta. Qual a proporção de baixo peso entre os filhos de mães adolescentes e entre os filhos das demais mães? Por enquanto, vamos responder com o que já conhecemos, filtrando cada grupo e tirando a média de uma variável lógica, que dá a proporção de <code>TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mae_adolescente) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(baixo_peso) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8.446687</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>mae_adolescente) <span class="sc">|&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(baixo_peso) <span class="sc">|&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>() <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6.680018</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>pull()</code> extrai uma coluna como vetor, para que possamos aplicar <code>mean()</code>. A proporção de baixo peso foi de 8,4% entre os filhos de mães adolescentes e de 6,7% entre os filhos das demais mães. Fazer essa comparação para muitos grupos, um de cada vez, seria trabalhoso. No próximo capítulo, veremos como calcular indicadores para todos os grupos de uma só vez.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -448,17 +871,53 @@ Saúde Pública em foco
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Prevê-se uma caixa sobre a importância de documentar as definições operacionais das variáveis (pontos de corte, tratamento dos ignorados), que condicionam a comparabilidade dos indicadores entre estudos.</p>
+<p>As variáveis criadas neste estudo de caso correspondem a definições operacionais consagradas: baixo peso ao nascer como peso inferior a 2.500 gramas, prematuridade como idade gestacional inferior a 37 semanas completas e mãe adolescente como idade inferior a 20 anos. Ao relatar resultados, essas definições, assim como o tratamento dado aos registros com informação ignorada, devem ser descritas na seção de métodos. Pequenas diferenças de definição, como incluir ou não os registros ignorados no denominador, podem mudar os indicadores o suficiente para tornar duas análises incomparáveis.</p>
 </div>
 </div>
+<section id="sec-script-preparo" class="level3">
+<h3 class="anchored" data-anchor-id="sec-script-preparo">Guardando a preparação em um script</h3>
+<p>Como essa preparação será usada em vários capítulos, ela foi reunida em um script, <code>scripts/preparar-sinasc.R</code>, que importa o arquivo, padroniza os nomes, trata os códigos de ignorado e cria as variáveis acima (e algumas outras que serão explicadas nos próximos capítulos). A partir do próximo capítulo, basta executá-lo com a função <code>source()</code> para ter a base <code>nascidos</code> pronta.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Essa é uma prática comum em projetos de análise. A preparação dos dados fica em um único lugar e, se for preciso corrigir algo, a correção vale para todas as análises que dependem dela.</p>
+</section>
 </section>
 <section id="sec-ex-06" class="level2" data-number="6.8">
 <h2 data-number="6.8" class="anchored" data-anchor-id="sec-ex-06"><span class="header-section-number">6.8</span> Exercícios</h2>
-<p>Os exercícios de fixação retomam cada verbo isoladamente. Os de aplicação usam uma base de óbitos para selecionar óbitos infantis e criar faixas etárias. O desafio propõe classificar os nascidos vivos em categorias de peso ao nascer (muito baixo peso, baixo peso, peso adequado e macrossomia) e justificar os pontos de corte com base na literatura.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Selecione, da base <code>sinasc</code>, apenas as colunas de município de residência, peso e Apgar no quinto minuto (<code>apgar5</code>), e ordene os registros do menor para o maior Apgar.</p></li>
+<li><p>Quantos nascimentos ocorreram em Porto Velho? E quantos em Porto Velho com peso inferior a 1.500 gramas (muito baixo peso)?</p></li>
+<li><p>Crie a variável <code>peso_cat</code> com as categorias “Menos de 2.500 g”, “2.500 a 3.999 g” e “4.000 g ou mais”, usando <code>case_when()</code>. Confira o resultado com <code>count()</code>.</p></li>
+<li><p>Explique por que <code>filter(sinasc, semagestac &lt; 37)</code> e <code>filter(sinasc, !(semagestac &gt;= 37))</code> retornam o mesmo número de linhas, e por que nenhuma das duas inclui os registros sem idade gestacional.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="5" type="1">
+<li><p>Usando a base <code>nascidos</code>, calcule a proporção de prematuridade entre os nascimentos por parto cesáreo e por parto vaginal. Como os registros sem idade gestacional afetam o cálculo? Mostre o resultado com e sem <code>na.rm = TRUE</code>.</p></li>
+<li><p>Crie a variável <code>escolaridade_baixa</code>, verdadeira quando a escolaridade da mãe for “Nenhuma”, “1 a 3 anos” ou “4 a 7 anos”, usando <code>%in%</code>. Calcule a proporção de baixo peso entre as mães com e sem escolaridade baixa.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="7" type="1">
+<li><p>Classifique os nascidos vivos em muito baixo peso (menos de 1.500 g), baixo peso (1.500 a 2.499 g), peso adequado (2.500 a 3.999 g) e macrossomia (4.000 g ou mais). Pesquise na literatura a origem desses pontos de corte e discuta se faz sentido usá-los independentemente da idade gestacional.</p></li>
+<li><p>A variável <code>gestacao</code> traz a idade gestacional em faixas, e a variável <code>semagestac</code> traz a idade em semanas. Crie, a partir de <code>semagestac</code>, uma variável com as mesmas faixas de <code>gestacao</code> e compare as duas com <code>count()</code>. Os resultados coincidem? Que explicações são possíveis para eventuais diferenças?</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-06" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="sec-sintese-06"><span class="header-section-number">6.9</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>O <code>dplyr</code> organiza a transformação de dados em verbos, cada um com uma tarefa. Sobre as colunas, <code>select()</code> escolhe, <code>rename()</code> renomeia, <code>relocate()</code> reordena e <code>mutate()</code> cria ou modifica. Sobre as linhas, <code>filter()</code> escolhe as que atendem a uma condição, <code>arrange()</code> ordena, <code>distinct()</code> remove repetições e <code>slice_*()</code> seleciona por posição ou por valores extremos. O operador <em>pipe</em> (<code>|&gt;</code>) encadeia os verbos em uma sequência que pode ser lida de cima para baixo. Novas variáveis podem ser criadas com comparações, com <code>if_else()</code> e <code>case_when()</code> para regras condicionais e com <code>cut()</code> para faixas de valores. Os códigos de ignorado devem ser convertidos em <code>NA</code> com <code>na_if()</code>, sempre com base no dicionário de dados.</p>
+<div id="tbl-sintese-06" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-06-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;6.1: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-06-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -474,65 +933,74 @@ Saúde Pública em foco
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>library(tidyverse)</code></td>
-<td style="text-align: left;">tidyverse</td>
-<td style="text-align: left;">Carregar os pacotes principais do tidyverse</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;"><code>\|&gt;</code>, <code>%&gt;%</code></td>
 <td style="text-align: left;">base, magrittr</td>
 <td style="text-align: left;">Encadear operações</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>select()</code>, <code>rename()</code>, <code>relocate()</code></td>
 <td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">Operações sobre colunas</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>starts_with()</code>, <code>contains()</code>, <code>where()</code></td>
-<td style="text-align: left;">tidyselect</td>
-<td style="text-align: left;">Auxiliares de seleção</td>
+<td style="text-align: left;">Escolher, renomear e reordenar colunas</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;"><code>starts_with()</code>, <code>ends_with()</code>, <code>contains()</code>, <code>where()</code></td>
+<td style="text-align: left;">tidyselect</td>
+<td style="text-align: left;">Auxiliares de seleção de colunas</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;"><code>filter()</code>, <code>between()</code></td>
 <td style="text-align: left;">dplyr</td>
 <td style="text-align: left;">Filtrar linhas</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>arrange()</code>, <code>desc()</code></td>
 <td style="text-align: left;">dplyr</td>
 <td style="text-align: left;">Ordenar linhas</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>distinct()</code>, <code>slice_head()</code>, <code>slice_max()</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>distinct()</code>, <code>slice_head()</code>, <code>slice_max()</code>, <code>slice_min()</code></td>
 <td style="text-align: left;">dplyr</td>
 <td style="text-align: left;">Remover duplicatas e selecionar linhas</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>mutate()</code></td>
 <td style="text-align: left;">dplyr</td>
 <td style="text-align: left;">Criar e modificar variáveis</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>if_else()</code>, <code>case_when()</code></td>
 <td style="text-align: left;">dplyr</td>
 <td style="text-align: left;">Transformações condicionais</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>na_if()</code></td>
-<td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">Converter códigos em <code>NA</code></td>
-</tr>
 <tr class="odd">
 <td style="text-align: left;"><code>cut()</code></td>
 <td style="text-align: left;">base</td>
-<td style="text-align: left;">Categorizar variáveis contínuas</td>
+<td style="text-align: left;">Agrupar valores contínuos em faixas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>na_if()</code></td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Converter um código em <code>NA</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>count()</code>, <code>pull()</code></td>
+<td style="text-align: left;">dplyr</td>
+<td style="text-align: left;">Contar categorias e extrair uma coluna</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>source()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Executar um script</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-06" class="level2" data-number="6.10">
 <h2 data-number="6.10" class="anchored" data-anchor-id="sec-mais-06"><span class="header-section-number">6.10</span> Para saber mais</h2>
+<p>O capítulo 3 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> apresenta os verbos do <code>dplyr</code> com uma base de voos, e os capítulos 12 e 13 tratam de variáveis lógicas e numéricas, incluindo <code>if_else()</code>, <code>case_when()</code> e <code>cut()</code>. O capítulo 8 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> mostra um fluxo completo de limpeza de uma base de surto, com recodificação, criação de faixas etárias e filtragem, e é uma leitura muito recomendada para quem trabalha com vigilância. Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> apresenta o tidyverse no capítulo 3 e os verbos do <code>dplyr</code> no capítulo 5.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -550,17 +1018,17 @@ Saúde Pública em foco
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">3. Transformação de dados; 12. Vetores lógicos; 13. Números</td>
-<td style="text-align: left;">Linhas; Colunas; O pipe; Transformações condicionais; Transformações gerais</td>
+<td style="text-align: left;">Linhas; Colunas; O pipe; Transformações condicionais</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">8. Limpeza de dados e principais funções</td>
-<td style="text-align: left;">Nomes de colunas; Selecionar ou reordenar colunas; Criação de coluna e transformação; Re-codificar valores; Categorias numéricas; Filtrar linhas</td>
+<td style="text-align: left;">Selecionar ou reordenar colunas; Criação de coluna e transformação; Re-codificar valores; Categorias numéricas; Filtrar linhas</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
 <td style="text-align: left;">3. Introduzindo o universo do <code>tidyverse</code>; 5. Transformando dados com <code>dplyr</code></td>
-<td style="text-align: left;">Operador <em>pipe</em>; <code>select()</code>; <code>filter()</code>; <code>arrange()</code>; <code>mutate()</code>; <code>distinct()</code></td>
+<td style="text-align: left;">Operador <em>pipe</em>; <code>select()</code>; <code>filter()</code>; <code>arrange()</code>; <code>mutate()</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
@@ -1006,7 +1474,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

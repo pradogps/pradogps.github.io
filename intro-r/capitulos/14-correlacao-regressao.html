@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -90,6 +125,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -348,17 +412,27 @@ div.csl-indent {
    
   <ul>
   <li><a href="#sec-relacoes-quantitativas" id="toc-sec-relacoes-quantitativas" class="nav-link active" data-scroll-target="#sec-relacoes-quantitativas"><span class="header-section-number">14.1</span> Relações entre variáveis quantitativas</a></li>
-  <li><a href="#sec-correlacao" id="toc-sec-correlacao" class="nav-link" data-scroll-target="#sec-correlacao"><span class="header-section-number">14.2</span> Coeficientes de correlação</a></li>
-  <li><a href="#sec-falacia-ecologica" id="toc-sec-falacia-ecologica" class="nav-link" data-scroll-target="#sec-falacia-ecologica"><span class="header-section-number">14.3</span> Correlação, causalidade e falácia ecológica</a></li>
-  <li><a href="#sec-modelo-linear" id="toc-sec-modelo-linear" class="nav-link" data-scroll-target="#sec-modelo-linear"><span class="header-section-number">14.4</span> O modelo de regressão linear simples</a></li>
-  <li><a href="#sec-interpretacao-coeficientes" id="toc-sec-interpretacao-coeficientes" class="nav-link" data-scroll-target="#sec-interpretacao-coeficientes"><span class="header-section-number">14.5</span> Interpretação dos coeficientes e inferência</a></li>
-  <li><a href="#sec-predicao" id="toc-sec-predicao" class="nav-link" data-scroll-target="#sec-predicao"><span class="header-section-number">14.6</span> Predição</a></li>
-  <li><a href="#sec-diagnostico" id="toc-sec-diagnostico" class="nav-link" data-scroll-target="#sec-diagnostico"><span class="header-section-number">14.7</span> Diagnóstico do modelo</a></li>
-  <li><a href="#sec-resultados-regressao" id="toc-sec-resultados-regressao" class="nav-link" data-scroll-target="#sec-resultados-regressao"><span class="header-section-number">14.8</span> Organizando os resultados</a></li>
-  <li><a href="#sec-caso-14" id="toc-sec-caso-14" class="nav-link" data-scroll-target="#sec-caso-14"><span class="header-section-number">14.9</span> Estudo de caso: peso ao nascer e idade gestacional</a></li>
-  <li><a href="#sec-ex-14" id="toc-sec-ex-14" class="nav-link" data-scroll-target="#sec-ex-14"><span class="header-section-number">14.10</span> Exercícios</a></li>
-  <li><a href="#sec-sintese-14" id="toc-sec-sintese-14" class="nav-link" data-scroll-target="#sec-sintese-14"><span class="header-section-number">14.11</span> Síntese</a></li>
-  <li><a href="#sec-mais-14" id="toc-sec-mais-14" class="nav-link" data-scroll-target="#sec-mais-14"><span class="header-section-number">14.12</span> Para saber mais</a></li>
+  <li><a href="#sec-correlacao" id="toc-sec-correlacao" class="nav-link" data-scroll-target="#sec-correlacao"><span class="header-section-number">14.2</span> Coeficientes de correlação</a>
+  <ul class="collapse">
+  <li><a href="#correlação-não-é-causalidade" id="toc-correlação-não-é-causalidade" class="nav-link" data-scroll-target="#correlação-não-é-causalidade">Correlação não é causalidade</a></li>
+  </ul></li>
+  <li><a href="#sec-regressao-simples" id="toc-sec-regressao-simples" class="nav-link" data-scroll-target="#sec-regressao-simples"><span class="header-section-number">14.3</span> Regressão linear simples</a>
+  <ul class="collapse">
+  <li><a href="#variável-explicativa-categórica" id="toc-variável-explicativa-categórica" class="nav-link" data-scroll-target="#variável-explicativa-categórica">Variável explicativa categórica</a></li>
+  <li><a href="#um-passo-além-mais-de-uma-variável-explicativa" id="toc-um-passo-além-mais-de-uma-variável-explicativa" class="nav-link" data-scroll-target="#um-passo-além-mais-de-uma-variável-explicativa">Um passo além: mais de uma variável explicativa</a></li>
+  </ul></li>
+  <li><a href="#sec-predicoes" id="toc-sec-predicoes" class="nav-link" data-scroll-target="#sec-predicoes"><span class="header-section-number">14.4</span> Predições e intervalos</a></li>
+  <li><a href="#sec-pressupostos-regressao" id="toc-sec-pressupostos-regressao" class="nav-link" data-scroll-target="#sec-pressupostos-regressao"><span class="header-section-number">14.5</span> Avaliação dos pressupostos</a></li>
+  <li><a href="#sec-tabelas-regressao" id="toc-sec-tabelas-regressao" class="nav-link" data-scroll-target="#sec-tabelas-regressao"><span class="header-section-number">14.6</span> Resultados em tabelas</a></li>
+  <li><a href="#sec-caso-14" id="toc-sec-caso-14" class="nav-link" data-scroll-target="#sec-caso-14"><span class="header-section-number">14.7</span> Estudo de caso: cesárea e pré-natal nos municípios</a></li>
+  <li><a href="#sec-ex-14" id="toc-sec-ex-14" class="nav-link" data-scroll-target="#sec-ex-14"><span class="header-section-number">14.8</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
+  <li><a href="#sec-sintese-14" id="toc-sec-sintese-14" class="nav-link" data-scroll-target="#sec-sintese-14"><span class="header-section-number">14.9</span> Síntese</a></li>
+  <li><a href="#sec-mais-14" id="toc-sec-mais-14" class="nav-link" data-scroll-target="#sec-mais-14"><span class="header-section-number">14.10</span> Para saber mais</a></li>
   </ul>
 </nav>
     </div>
@@ -384,19 +458,6 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
 <p><strong>Encontro previsto:</strong> 7 · <strong>Pré-requisitos:</strong> <a href="13-comparacao-medias.html" class="quarto-xref"><span>Capítulo 13</span></a> · <strong>Pacotes:</strong> R base (<code>stats</code>), <code>ggplot2</code>, <code>broom</code>, <code>gtsummary</code></p>
 </div>
@@ -413,62 +474,810 @@ Objetivos de aprendizagem
 <p>Ao final deste capítulo, espera-se que o estudante seja capaz de explorar graficamente a relação entre duas variáveis quantitativas; calcular, testar e interpretar os coeficientes de correlação de Pearson e de Spearman; distinguir correlação de causalidade e reconhecer a falácia ecológica; ajustar um modelo de regressão linear simples e interpretar intercepto, coeficiente angular, coeficiente de determinação e intervalos de confiança; obter predições com intervalos; e avaliar os pressupostos do modelo por meio dos resíduos.</p>
 </div>
 </div>
+<p>No capítulo anterior, comparamos uma variável quantitativa entre grupos. Agora, as duas variáveis são quantitativas, e a pergunta é como uma se relaciona com a outra. Quanto o peso ao nascer aumenta, em média, a cada semana a mais de gestação? Municípios com mais pré-natal adequado têm também mais cesáreas? A correlação mede a força dessas relações, e a regressão linear descreve como uma variável muda em função da outra.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="sec-relacoes-quantitativas" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="sec-relacoes-quantitativas"><span class="header-section-number">14.1</span> Relações entre variáveis quantitativas</h2>
-<p>Retoma o gráfico de dispersão do <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a> e o uso de <code>geom_smooth()</code> para visualizar a forma da relação antes de qualquer medida numérica.</p>
+<p>O primeiro passo é sempre o gráfico de dispersão. Ele mostra a direção da relação (os valores crescem juntos ou um cresce enquanto o outro diminui), sua forma (reta, curva ou nenhuma) e sua força (os pontos estão próximos de uma linha ou muito espalhados). Ele também revela valores extremos que podem distorcer as medidas numéricas, como vimos no exemplo de Anscombe, no <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos_analise, <span class="fu">aes</span>(<span class="at">x =</span> semagestac, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">color =</span> <span class="st">"#b5401f"</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Idade gestacional (semanas)"</span>, <span class="at">y =</span> <span class="st">"Peso ao nascer (g)"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-dispersao-ig" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão do peso ao nascer contra a idade gestacional, entre cerca de 20 e 45 semanas. A curva suavizada fica baixa e plana até cerca de 26 semanas, sobe de forma acentuada até cerca de 40 semanas e depois fica praticamente plana, com leve queda. A reta de regressão sobe de forma constante e se afasta da curva nos extremos.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dispersao-ig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="14-correlacao-regressao_files/figure-html/fig-dispersao-ig-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão do peso ao nascer contra a idade gestacional, entre cerca de 20 e 45 semanas. A curva suavizada fica baixa e plana até cerca de 26 semanas, sobe de forma acentuada até cerca de 40 semanas e depois fica praticamente plana, com leve queda. A reta de regressão sobe de forma constante e se afasta da curva nos extremos." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dispersao-ig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14.1: Peso ao nascer segundo a idade gestacional, com curva suavizada (vermelha) e reta de regressão (preta).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A curva suavizada, feita por <code>geom_smooth()</code> sem argumentos, acompanha os dados sem impor uma forma. Já a reta, obtida com <code>method = "lm"</code>, é a que melhor se ajusta aos pontos segundo o critério que veremos adiante. A comparação das duas mostra que a relação é crescente, mas não é uma reta em toda a faixa: o peso aumenta rapidamente entre cerca de 28 e 40 semanas e depois praticamente se estabiliza. Essa observação vai orientar o ajuste do modelo.</p>
 </section>
 <section id="sec-correlacao" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="sec-correlacao"><span class="header-section-number">14.2</span> Coeficientes de correlação</h2>
-<p>Apresenta os coeficientes de Pearson e de Spearman (<code>cor()</code>, <code>cor.test()</code>), seus pressupostos e interpretação, e a matriz de correlações com tratamento de valores ausentes (<code>use = "complete.obs"</code>).</p>
-</section>
-<section id="sec-falacia-ecologica" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="sec-falacia-ecologica"><span class="header-section-number">14.3</span> Correlação, causalidade e falácia ecológica</h2>
-<p>Discute por que uma correlação não estabelece relação causal e por que associações observadas entre médias ou proporções de municípios não podem ser transferidas para indivíduos.</p>
-</section>
-<section id="sec-modelo-linear" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="sec-modelo-linear"><span class="header-section-number">14.4</span> O modelo de regressão linear simples</h2>
-<p>Apresenta o modelo, o método de mínimos quadrados e o ajuste com <code>lm(y ~ x, data = ...)</code>, explicando a sintaxe de fórmula do R, que reaparece em <code>t.test()</code> e <code>aov()</code>.</p>
-</section>
-<section id="sec-interpretacao-coeficientes" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="sec-interpretacao-coeficientes"><span class="header-section-number">14.5</span> Interpretação dos coeficientes e inferência</h2>
-<p>Mostra a leitura de <code>summary()</code>, os intervalos de confiança dos coeficientes (<code>confint()</code>) e o coeficiente de determinação, além da centralização da variável explicativa para que o intercepto tenha interpretação útil.</p>
-</section>
-<section id="sec-predicao" class="level2" data-number="14.6">
-<h2 data-number="14.6" class="anchored" data-anchor-id="sec-predicao"><span class="header-section-number">14.6</span> Predição</h2>
-<p>Apresenta <code>predict()</code> com os argumentos <code>newdata</code> e <code>interval</code>, distinguindo o intervalo de confiança para a média do intervalo de predição para uma nova observação.</p>
-</section>
-<section id="sec-diagnostico" class="level2" data-number="14.7">
-<h2 data-number="14.7" class="anchored" data-anchor-id="sec-diagnostico"><span class="header-section-number">14.7</span> Diagnóstico do modelo</h2>
-<p>Mostra os gráficos de resíduos contra valores ajustados, o gráfico quantil-quantil dos resíduos e a identificação de pontos influentes, com <code>plot()</code> aplicado ao modelo e com <code>broom::augment()</code> seguido de <code>ggplot2</code>.</p>
-</section>
-<section id="sec-resultados-regressao" class="level2" data-number="14.8">
-<h2 data-number="14.8" class="anchored" data-anchor-id="sec-resultados-regressao"><span class="header-section-number">14.8</span> Organizando os resultados</h2>
-<p>Apresenta <code>broom::tidy()</code>, <code>broom::glance()</code> e <code>gtsummary::tbl_regression()</code> para tabular os resultados e um modelo de redação.</p>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Para aprofundar">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>O <strong>coeficiente de correlação de Pearson</strong> (<span class="math inline">\(r\)</span>) mede a força da relação <em>linear</em> entre duas variáveis. Ele varia de -1 a 1. Valores próximos de 1 indicam relação linear crescente forte, valores próximos de -1 indicam relação linear decrescente forte, e valores próximos de zero indicam ausência de relação linear, o que não exclui outros tipos de relação, como uma curva em forma de U.</p>
+<p>O <strong>coeficiente de correlação de Spearman</strong> (<span class="math inline">\(\rho\)</span>) é calculado da mesma forma, mas usando as posições (postos) dos valores ordenados, e não os próprios valores. Ele mede se as duas variáveis crescem juntas, mesmo que não em linha reta, e é menos sensível a valores extremos.</p>
+<p>No R, os dois são calculados com <code>cor()</code>. O argumento <code>use = "complete.obs"</code> exclui os registros com valores ausentes, e <code>method</code> escolhe o coeficiente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(nascidos_analise<span class="sc">$</span>peso, nascidos_analise<span class="sc">$</span>semagestac, <span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4815687</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(nascidos_analise<span class="sc">$</span>peso, nascidos_analise<span class="sc">$</span>semagestac, <span class="at">use =</span> <span class="st">"complete.obs"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.3396929</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Para aprofundar
+<p>A correlação de Pearson é moderada e positiva. A de Spearman é menor, o que pode surpreender. A explicação está no gráfico: a maior parte dos nascimentos se concentra entre 37 e 41 semanas, faixa em que o peso quase não muda com a idade gestacional. O coeficiente de Spearman dá o mesmo peso a todas as posições, e por isso é muito influenciado por essa faixa. O de Pearson, por outro lado, é muito influenciado pelos poucos prematuros extremos, com valores distantes da média. Esse exemplo mostra que um único número não substitui o gráfico.</p>
+<p>A função <code>cor.test()</code> testa a hipótese nula de correlação igual a zero e dá o intervalo de confiança para o coeficiente de Pearson. Vamos usá-la para a relação entre o peso ao nascer e a idade da mãe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> peso <span class="sc">+</span> idademae, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Pearson's product-moment correlation</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  peso and idademae</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = 7.7967, df = 27026, p-value = 6.582e-15</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true correlation is not equal to 0</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.03547133 0.05926159</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        cor </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.04737318</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A correlação é estatisticamente diferente de zero, mas muito fraca, abaixo de 0,1. É mais um caso em que o tamanho da amostra torna significativa uma relação de pouca importância prática. Não há regras universais para classificar a força de uma correlação, mas valores abaixo de 0,3 costumam ser considerados fracos, e acima de 0,7, fortes.</p>
+<section id="correlação-não-é-causalidade" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="correlação-não-é-causalidade">Correlação não é causalidade</h3>
+<p>Uma correlação entre duas variáveis pode surgir porque uma causa a outra, porque as duas dependem de uma terceira variável, ou simplesmente por acaso. Vamos calcular, para cada município, a proporção de partos cesáreos e a proporção de nascidos vivos cujas mães fizeram sete ou mais consultas de pré-natal. Para evitar proporções muito instáveis, mantemos apenas os municípios com pelo menos 50 nascimentos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>municipios <span class="ot">&lt;-</span> nascidos_analise <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(parto), <span class="sc">!</span><span class="fu">is.na</span>(consultas)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(munresnome) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">nascimentos =</span> <span class="fu">n</span>(),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_cesarea =</span> <span class="fu">mean</span>(parto <span class="sc">==</span> <span class="st">"Cesáreo"</span>) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_pre_natal =</span> <span class="fu">mean</span>(pre_natal_7mais) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nascimentos <span class="sc">&gt;=</span> <span class="dv">50</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(<span class="sc">~</span> perc_cesarea <span class="sc">+</span> perc_pre_natal, <span class="at">data =</span> municipios)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Pearson's product-moment correlation</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  perc_cesarea and perc_pre_natal</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = 4.3513, df = 46, p-value = 7.457e-05</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true correlation is not equal to 0</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.3022248 0.7144987</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       cor </span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.5399893</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(municipios, <span class="fu">aes</span>(<span class="at">x =</span> perc_pre_natal, <span class="at">y =</span> perc_cesarea)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> nascimentos), <span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"#ff6347"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Nascidos com 7 ou mais consultas de pré-natal (%)"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Partos cesáreos (%)"</span>, <span class="at">size =</span> <span class="st">"Nascimentos"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-ecologica" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão com um ponto por município. A proporção de cesáreas, no eixo vertical, aumenta com a proporção de nascidos com sete ou mais consultas de pré-natal, no eixo horizontal. Os pontos se espalham em torno de uma reta crescente, com bastante dispersão.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecologica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="14-correlacao-regressao_files/figure-html/fig-ecologica-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão com um ponto por município. A proporção de cesáreas, no eixo vertical, aumenta com a proporção de nascidos com sete ou mais consultas de pré-natal, no eixo horizontal. Os pontos se espalham em torno de uma reta crescente, com bastante dispersão." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecologica-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14.2: Proporção de partos cesáreos e de nascidos vivos com sete ou mais consultas de pré-natal nos municípios de Rondônia, 2019.
+</figcaption>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>A regressão múltipla e os modelos lineares generalizados ultrapassam o escopo da disciplina; o capítulo 19 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> oferece um ponto de partida.</p>
+</div>
+<p>A correlação entre os municípios é positiva e moderada, de 0,54. Seria um erro, porém, concluir que o pré-natal leva à cesárea, ou que cada mãe que faz mais consultas tem mais chance de cesárea na mesma proporção. Os municípios diferem em muitas características ao mesmo tempo, como a oferta de serviços de saúde, a renda e a proporção de partos em hospitais privados, e essas características podem explicar as duas proporções. Além disso, uma relação observada entre grupos não precisa se repetir entre os indivíduos. Tirar conclusões sobre indivíduos a partir de dados agregados é conhecido como <strong>falácia ecológica</strong>, um cuidado sempre presente em análises com dados por município, estado ou país.</p>
+</section>
+</section>
+<section id="sec-regressao-simples" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="sec-regressao-simples"><span class="header-section-number">14.3</span> Regressão linear simples</h2>
+<p>A <strong>regressão linear simples</strong> descreve a relação entre uma variável resposta (<span class="math inline">\(Y\)</span>) e uma variável explicativa (<span class="math inline">\(X\)</span>) por meio de uma reta:</p>
+<p><span class="math display">\[
+Y = \beta_0 + \beta_1 X + \varepsilon
+\]</span></p>
+<p>O <strong>intercepto</strong> (<span class="math inline">\(\beta_0\)</span>) é o valor médio de <span class="math inline">\(Y\)</span> quando <span class="math inline">\(X\)</span> é zero. O <strong>coeficiente angular</strong> (<span class="math inline">\(\beta_1\)</span>) é a mudança média em <span class="math inline">\(Y\)</span> para cada aumento de uma unidade em <span class="math inline">\(X\)</span>, e é em geral a quantidade de maior interesse. O termo <span class="math inline">\(\varepsilon\)</span> representa o erro, isto é, o quanto cada observação se afasta da reta. Os coeficientes são estimados pelo método dos <strong>mínimos quadrados</strong>, que escolhe a reta que torna mínima a soma dos quadrados das distâncias verticais entre os pontos e a reta.</p>
+<p>Como vimos no gráfico, a relação entre peso e idade gestacional não é uma reta em toda a faixa. Uma forma simples de lidar com isso é restringir o modelo à faixa em que a relação é aproximadamente linear. Vamos ajustar o modelo para os nascimentos com 28 a 40 semanas de gestação, usando a função <code>lm()</code> (de <em>linear model</em>), com a mesma notação de fórmula dos testes do capítulo anterior.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>faixa_linear <span class="ot">&lt;-</span> nascidos_analise <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(semagestac, <span class="dv">28</span>, <span class="dv">40</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(peso <span class="sc">~</span> semagestac, <span class="at">data =</span> faixa_linear)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lm(formula = peso ~ semagestac, data = faixa_linear)</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -3042.16  -289.16   -11.89   288.11  2798.57 </span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) -2427.414     71.190  -34.10   &lt;2e-16 ***</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; semagestac    147.733      1.857   79.56   &lt;2e-16 ***</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 467.6 on 23061 degrees of freedom</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.2153, Adjusted R-squared:  0.2153 </span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F-statistic:  6329 on 1 and 23061 DF,  p-value: &lt; 2.2e-16</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A saída de <code>summary()</code> traz, na tabela <code>Coefficients</code>, a estimativa de cada coeficiente, seu erro padrão, a estatística t e o valor-p do teste da hipótese de que o coeficiente é zero. O coeficiente da idade gestacional indica que, nessa faixa, o peso ao nascer aumenta, em média, 148 gramas a cada semana a mais de gestação. O intercepto, negativo, seria o peso médio com zero semanas, o que não faz sentido. Ele é necessário para posicionar a reta, mas só deve ser interpretado quando <span class="math inline">\(X\)</span> igual a zero é um valor possível e está dentro da faixa dos dados.</p>
+<p>As funções <code>coef()</code> e <code>confint()</code> extraem os coeficientes e seus intervalos de confiança.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(modelo)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  semagestac </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -2427.4142    147.7327</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(modelo)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                  2.5 %     97.5 %</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept) -2566.9506 -2287.8777</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; semagestac    144.0928   151.3725</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O <strong>coeficiente de determinação</strong> (<span class="math inline">\(R^2\)</span>), que aparece como <code>Multiple R-squared</code> na saída, é a proporção da variabilidade de <span class="math inline">\(Y\)</span> explicada pelo modelo. Aqui, a idade gestacional explica cerca de 22% da variabilidade do peso ao nascer na faixa analisada. Na regressão simples, o <span class="math inline">\(R^2\)</span> é igual ao quadrado da correlação de Pearson. O restante da variabilidade se deve a outros fatores, como o sexo, as características da mãe e a própria variação biológica.</p>
+<section id="variável-explicativa-categórica" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="variável-explicativa-categórica">Variável explicativa categórica</h3>
+<p>A variável explicativa também pode ser categórica. Com uma variável de duas categorias, como o sexo, o R cria automaticamente uma variável indicadora, que vale 1 para a segunda categoria (masculino) e 0 para a primeira (feminino, a categoria de referência).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(peso <span class="sc">~</span> sexo, <span class="at">data =</span> nascidos_analise) <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                Estimate Std. Error  t value    Pr(&gt;|t|)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)   3182.1782   4.723370 673.7093 0.00000e+00</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sexoMasculino  118.9089   6.589284  18.0458 2.26659e-72</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O intercepto é o peso médio das meninas, e o coeficiente <code>sexoMasculino</code> é a diferença de médias entre meninos e meninas, o mesmo valor obtido com o teste t no <a href="13-comparacao-medias.html" class="quarto-xref"><span>Capítulo 13</span></a>. A regressão linear e o teste t de Student são, na verdade, o mesmo procedimento visto de formas diferentes.</p>
+</section>
+<section id="um-passo-além-mais-de-uma-variável-explicativa" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="um-passo-além-mais-de-uma-variável-explicativa">Um passo além: mais de uma variável explicativa</h3>
+<p>O modelo pode incluir várias variáveis explicativas ao mesmo tempo, o que é chamado de <strong>regressão linear múltipla</strong>. Cada coeficiente passa a representar o efeito de uma variável mantidas as demais constantes, o que permite controlar o efeito de variáveis de confusão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>modelo_multiplo <span class="ot">&lt;-</span> <span class="fu">lm</span>(peso <span class="sc">~</span> semagestac <span class="sc">+</span> sexo, <span class="at">data =</span> faixa_linear)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(modelo_multiplo)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   (Intercept)    semagestac sexoMasculino </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    -2511.0170      148.2373      124.8404</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para recém-nascidos com a mesma idade gestacional, os meninos pesam, em média, 125 gramas a mais. A regressão múltipla e a regressão logística, usada quando a resposta é binária, são temas de disciplinas de análise de dados e estão fora do escopo deste livro, mas o capítulo 19 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> é um bom ponto de partida.</p>
+</section>
+</section>
+<section id="sec-predicoes" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="sec-predicoes"><span class="header-section-number">14.4</span> Predições e intervalos</h2>
+<p>O modelo pode ser usado para estimar o peso médio esperado para uma dada idade gestacional. A função <code>predict()</code> recebe o modelo e uma tabela com os valores da variável explicativa. Há dois tipos de intervalo. O <strong>intervalo de confiança</strong> (<code>interval = "confidence"</code>) refere-se ao peso médio de todos os recém-nascidos com aquela idade gestacional. O <strong>intervalo de predição</strong> (<code>interval = "prediction"</code>) refere-se ao peso de um recém-nascido individual, e é muito mais largo, porque inclui a variação entre indivíduos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>novos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">semagestac =</span> <span class="fu">c</span>(<span class="dv">32</span>, <span class="dv">36</span>, <span class="dv">39</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        fit      lwr      upr</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2300.032 2276.320 2323.744</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2890.963 2880.642 2901.283</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 3334.161 3327.610 3340.712</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modelo, <span class="at">newdata =</span> novos, <span class="at">interval =</span> <span class="st">"prediction"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        fit      lwr      upr</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2300.032 1383.170 3216.894</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2890.963 1974.349 3807.576</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 3334.161 2417.582 4250.739</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para 36 semanas, o peso médio estimado é de 2891 gramas, com intervalo de confiança estreito. Mas um recém-nascido individual com 36 semanas pode ter peso bem diferente da média, como mostra o intervalo de predição, que vai de cerca de 2.000 a 3.800 gramas. As predições só devem ser feitas dentro da faixa de valores usada para ajustar o modelo. Fora dela, nada garante que a relação continue linear, e já sabemos que, depois de 40 semanas, ela não continua.</p>
+</section>
+<section id="sec-pressupostos-regressao" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="sec-pressupostos-regressao"><span class="header-section-number">14.5</span> Avaliação dos pressupostos</h2>
+<p>O modelo de regressão linear supõe que a relação entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> é linear, que os erros são independentes, que têm variância constante ao longo dos valores de <span class="math inline">\(X\)</span> e, para a validade dos testes e intervalos em amostras pequenas, que têm distribuição normal. Esses pressupostos são verificados com os <strong>resíduos</strong>, as diferenças entre os valores observados e os ajustados pelo modelo. A função <code>plot()</code> aplicada a um modelo <code>lm</code> produz quatro gráficos de diagnóstico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-diagnostico" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Quatro gráficos de diagnóstico. No gráfico de resíduos contra valores ajustados, os pontos formam faixas verticais, uma por semana, em torno de zero. No gráfico quantil-quantil, os pontos seguem a reta na parte central e se afastam nas duas caudas, sobretudo na inferior. No gráfico de escala e locação, a linha vermelha desce da esquerda para a direita, indicando maior dispersão dos resíduos nos menores valores ajustados. O gráfico de alavancagem não mostra pontos além das linhas da distância de Cook.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagnostico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="14-correlacao-regressao_files/figure-html/fig-diagnostico-1.png" class="img-fluid figure-img" alt="Quatro gráficos de diagnóstico. No gráfico de resíduos contra valores ajustados, os pontos formam faixas verticais, uma por semana, em torno de zero. No gráfico quantil-quantil, os pontos seguem a reta na parte central e se afastam nas duas caudas, sobretudo na inferior. No gráfico de escala e locação, a linha vermelha desce da esquerda para a direita, indicando maior dispersão dos resíduos nos menores valores ajustados. O gráfico de alavancagem não mostra pontos além das linhas da distância de Cook." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagnostico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;14.3: Gráficos de diagnóstico do modelo de regressão do peso ao nascer segundo a idade gestacional.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O primeiro gráfico (resíduos contra valores ajustados) verifica a linearidade e a variância constante: os resíduos devem se distribuir em torno de zero, sem padrão e com dispersão parecida ao longo do eixo horizontal. Como a idade gestacional é registrada em semanas inteiras, os pontos formam faixas verticais, o que é esperado. O segundo (quantil-quantil) verifica a normalidade dos resíduos. O terceiro é outra forma de examinar a variância constante, e o quarto identifica observações com grande influência sobre o ajuste.</p>
+<p>Neste caso, dois pontos merecem atenção. As caudas do gráfico quantil-quantil se afastam da reta, sobretudo a inferior, o que indica mais valores extremos do que a distribuição normal preveria. E, no terceiro gráfico, a linha vermelha desce, mostrando que a dispersão dos resíduos é maior entre os prematuros, que têm os menores valores ajustados. A variância, portanto, não é constante. Com uma amostra deste tamanho, essas violações têm pouco efeito sobre a estimativa do coeficiente, mas os erros padrões e os intervalos de predição devem ser lidos com cautela. Em análises para publicação, haveria alternativas, como erros padrões robustos ou modelos que permitem variância diferente entre os grupos, que estão além deste livro. O mais importante é saber ler os gráficos e reconhecer quando o modelo simples não descreve bem os dados.</p>
+</section>
+<section id="sec-tabelas-regressao" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="sec-tabelas-regressao"><span class="header-section-number">14.6</span> Resultados em tabelas</h2>
+<p>Assim como nos testes, o pacote <code>broom</code> organiza os resultados do modelo em tabelas. A função <code>tidy()</code> traz os coeficientes, <code>glance()</code> traz as medidas de ajuste do modelo como um todo, e <code>augment()</code> acrescenta aos dados os valores ajustados e os resíduos de cada observação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(modelo, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 7</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   term        estimate std.error statistic   p.value conf.low conf.high</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 (Intercept)   -2427.     71.2      -34.1 1.17e-248   -2567.    -2288.</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 semagestac      148.      1.86      79.6 0             144.      151.</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">glance</span>(modelo) <span class="sc">|&gt;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(r.squared, sigma, nobs)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   r.squared sigma  nobs</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0.215  468. 23063</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para publicação, a função <code>tbl_regression()</code>, do <code>gtsummary</code>, produz uma tabela formatada com os coeficientes e seus intervalos de confiança.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">theme_gtsummary_language</span>(<span class="at">language =</span> <span class="st">"pt"</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>modelo_multiplo <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_regression</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(semagestac <span class="sc">~</span> <span class="st">"Idade gestacional (semanas)"</span>, sexo <span class="sc">~</span> <span class="st">"Sexo"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="pljrebtdxh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pljrebtdxh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pljrebtdxh thead, #pljrebtdxh tbody, #pljrebtdxh tfoot, #pljrebtdxh tr, #pljrebtdxh td, #pljrebtdxh th {
+  border-style: none;
+}
+
+#pljrebtdxh p {
+  margin: 0;
+  padding: 0;
+}
+
+#pljrebtdxh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pljrebtdxh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pljrebtdxh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pljrebtdxh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pljrebtdxh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pljrebtdxh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pljrebtdxh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pljrebtdxh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pljrebtdxh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pljrebtdxh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pljrebtdxh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pljrebtdxh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pljrebtdxh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pljrebtdxh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pljrebtdxh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pljrebtdxh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pljrebtdxh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pljrebtdxh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pljrebtdxh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pljrebtdxh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pljrebtdxh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pljrebtdxh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pljrebtdxh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pljrebtdxh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pljrebtdxh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pljrebtdxh .gt_left {
+  text-align: left;
+}
+
+#pljrebtdxh .gt_center {
+  text-align: center;
+}
+
+#pljrebtdxh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pljrebtdxh .gt_font_normal {
+  font-weight: normal;
+}
+
+#pljrebtdxh .gt_font_bold {
+  font-weight: bold;
+}
+
+#pljrebtdxh .gt_font_italic {
+  font-style: italic;
+}
+
+#pljrebtdxh .gt_super {
+  font-size: 65%;
+}
+
+#pljrebtdxh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pljrebtdxh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pljrebtdxh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pljrebtdxh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pljrebtdxh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pljrebtdxh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pljrebtdxh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#pljrebtdxh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pljrebtdxh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Características</strong></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Beta</strong></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% IC</strong></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Valor-p</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Idade gestacional (semanas)</td>
+<td class="gt_row gt_center" headers="estimate">148</td>
+<td class="gt_row gt_center" headers="conf.low">145 – 152</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0,001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Sexo</td>
+<td class="gt_row gt_center" headers="estimate"><br>
+</td>
+<td class="gt_row gt_center" headers="conf.low"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Feminino</td>
+<td class="gt_row gt_center" headers="estimate">—</td>
+<td class="gt_row gt_center" headers="conf.low">—</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Masculino</td>
+<td class="gt_row gt_center" headers="estimate">125</td>
+<td class="gt_row gt_center" headers="conf.low">113 – 137</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0,001</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Abreviação: IC = Intervalo de Confiança</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
 </div>
 </div>
 </section>
-<section id="sec-caso-14" class="level2" data-number="14.9">
-<h2 data-number="14.9" class="anchored" data-anchor-id="sec-caso-14"><span class="header-section-number">14.9</span> Estudo de caso: peso ao nascer e idade gestacional</h2>
-<p>No nível individual, o estudante ajusta a regressão do peso ao nascer segundo a idade gestacional e examina, pelos resíduos, se a relação é aproximadamente linear em toda a amplitude observada. No nível ecológico, examina a correlação entre a proporção de pré-natal com sete ou mais consultas e a proporção de baixo peso nos municípios, discutindo os limites dessa análise.</p>
+<section id="sec-caso-14" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="sec-caso-14"><span class="header-section-number">14.7</span> Estudo de caso: cesárea e pré-natal nos municípios</h2>
+<p>Retomando os dados municipais, vamos ajustar o modelo de regressão da proporção de cesáreas em função da proporção de nascidos com sete ou mais consultas de pré-natal.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>modelo_municipios <span class="ot">&lt;-</span> <span class="fu">lm</span>(perc_cesarea <span class="sc">~</span> perc_pre_natal, <span class="at">data =</span> municipios)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(modelo_municipios, <span class="at">conf.int =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 7</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   term           estimate std.error statistic   p.value conf.low conf.high</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 (Intercept)      21.6      11.9        1.81 0.0762      -2.37     45.6  </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 perc_pre_natal    0.674     0.155      4.35 0.0000746    0.362     0.986</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">glance</span>(modelo_municipios) <span class="sc">|&gt;</span> <span class="fu">select</span>(r.squared, nobs)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   r.squared  nobs</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0.292    48</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Entre os 48 municípios, cada ponto percentual a mais na proporção de nascidos com pré-natal adequado se associa, em média, a 0,67 ponto percentual a mais na proporção de cesáreas. O modelo explica cerca de 29% da variação da proporção de cesáreas entre os municípios. Como discutimos, essa é uma associação entre municípios, que provavelmente reflete diferenças no acesso e na organização dos serviços de saúde. Ela não permite afirmar que o pré-natal causa cesáreas, nem que a relação se repete entre as mães. Uma análise individual, com as mães como unidade, e que considerasse outras variáveis, seria necessária para avançar nessa pergunta.</p>
 </section>
-<section id="sec-ex-14" class="level2" data-number="14.10">
-<h2 data-number="14.10" class="anchored" data-anchor-id="sec-ex-14"><span class="header-section-number">14.10</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem o cálculo de correlações e o ajuste de modelos em dados fornecidos. Os de aplicação envolvem a relação entre indicadores municipais calculados nos capítulos anteriores, como a proporção de partos cesáreos e a proporção de mães com doze anos ou mais de estudo. O desafio propõe comparar os coeficientes de Pearson e de Spearman em dados com valores extremos e explicar as diferenças.</p>
+<section id="sec-ex-14" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="sec-ex-14"><span class="header-section-number">14.8</span> Exercícios</h2>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Calcule as correlações de Pearson e de Spearman entre o peso ao nascer e o índice de Apgar no quinto minuto. Faça o gráfico de dispersão e explique por que os dois coeficientes diferem.</p></li>
+<li><p>Ajuste o modelo de regressão do peso ao nascer em função da idade gestacional usando apenas os nascimentos de 37 a 41 semanas. Compare o coeficiente com o obtido no capítulo e explique a diferença com base no gráfico da <a href="#sec-relacoes-quantitativas" class="quarto-xref"><span>Seção 14.1</span></a>.</p></li>
+<li><p>Use o modelo ajustado no capítulo para obter o peso médio esperado e o intervalo de predição para 30 semanas de gestação.</p></li>
+</ol>
 </section>
-<section id="sec-sintese-14" class="level2" data-number="14.11">
-<h2 data-number="14.11" class="anchored" data-anchor-id="sec-sintese-14"><span class="header-section-number">14.11</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="4" type="1">
+<li><p>Calcule, para cada município com pelo menos 50 nascimentos, a proporção de partos cesáreos e a proporção de mães com doze anos ou mais de estudo. Faça o gráfico de dispersão, calcule a correlação e ajuste o modelo de regressão. Discuta os resultados à luz da falácia ecológica.</p></li>
+<li><p>Na base <code>opt</code>, do pacote <code>medicaldata</code>, ajuste o modelo do peso ao nascer (<code>Birthweight</code>) em função da idade gestacional no parto (<code>GA.at.outcome</code>, registrada em dias). Converta a idade gestacional para semanas antes do ajuste e interprete o coeficiente. Avalie os resíduos.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="6" type="1">
+<li>Construa um pequeno conjunto de dados fictícios, com 20 observações, em que as correlações de Pearson e de Spearman sejam muito diferentes por causa de um único valor extremo. Mostre o gráfico e os dois coeficientes com e sem esse valor.</li>
+</ol>
+</section>
+</section>
+<section id="sec-sintese-14" class="level2" data-number="14.9">
+<h2 data-number="14.9" class="anchored" data-anchor-id="sec-sintese-14"><span class="header-section-number">14.9</span> Síntese</h2>
+<p>A relação entre duas variáveis quantitativas deve ser examinada primeiro no gráfico de dispersão, que revela a direção, a forma e a força da relação e a presença de valores extremos. O coeficiente de Pearson mede a força da relação linear, e o de Spearman, baseado em postos, mede se as variáveis crescem juntas, mesmo fora de uma reta. Correlação não implica causalidade, e associações entre grupos não podem ser transferidas para indivíduos (falácia ecológica). A regressão linear simples descreve a relação por uma reta. O coeficiente angular indica a mudança média na resposta para cada unidade da variável explicativa, e o <span class="math inline">\(R^2\)</span>, a proporção da variabilidade explicada. Os intervalos de confiança referem-se à média, e os de predição, a observações individuais. Os pressupostos do modelo são avaliados com os gráficos de resíduos, e as predições só devem ser feitas dentro da faixa dos dados.</p>
+<div id="tbl-sintese-14" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;14.1: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-14-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -499,9 +1308,9 @@ Para aprofundar
 <td style="text-align: left;">Coeficientes e inferência</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>predict()</code>, <code>fitted()</code>, <code>residuals()</code></td>
+<td style="text-align: left;"><code>predict()</code></td>
 <td style="text-align: left;">stats</td>
-<td style="text-align: left;">Predições, valores ajustados e resíduos</td>
+<td style="text-align: left;">Predições com intervalos de confiança e de predição</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>plot()</code> (aplicado a <code>lm</code>)</td>
@@ -525,9 +1334,13 @@ Para aprofundar
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
-<section id="sec-mais-14" class="level2" data-number="14.12">
-<h2 data-number="14.12" class="anchored" data-anchor-id="sec-mais-14"><span class="header-section-number">14.12</span> Para saber mais</h2>
+<section id="sec-mais-14" class="level2" data-number="14.10">
+<h2 data-number="14.10" class="anchored" data-anchor-id="sec-mais-14"><span class="header-section-number">14.10</span> Para saber mais</h2>
+<p>O capítulo 18 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> apresenta as correlações, e o capítulo 19 trata da regressão linear e logística, simples e múltipla, com o <code>gtsummary</code>. A seção sobre padrões e modelos do capítulo 10 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> mostra como os modelos ajudam a revelar padrões nos dados. Para os fundamentos de correlação e regressão, os livros de <span class="citation" data-cites="bussab2002estatistica">BUSSAB; MORETTIN (<a href="../references.html#ref-bussab2002estatistica" role="doc-biblioref">2002</a>)</span> e <span class="citation" data-cites="magalhaes2002nocoes">MAGALHÃES; LIMA (<a href="../references.html#ref-magalhaes2002nocoes" role="doc-biblioref">2002</a>)</span>, da bibliografia da disciplina, e o capítulo 11 de <em>Statistics at Square One</em> <span class="citation" data-cites="swinscow1997square">(<a href="../references.html#ref-swinscow1997square" role="doc-biblioref">SWINSCOW; CAMPBELL, 1997</a>)</span> são boas leituras.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -545,7 +1358,7 @@ Para aprofundar
 <tr class="odd">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">18. Testes estatísticos simples; 19. Regressão simples e múltipla</td>
-<td style="text-align: left;">Correlações; Univariado</td>
+<td style="text-align: left;">Correlações; Regressão linear</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
@@ -553,14 +1366,14 @@ Para aprofundar
 <td style="text-align: left;">Padrões e modelos</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
-<td style="text-align: left;">Edição impressa</td>
-<td style="text-align: left;">Capítulos sobre correlação e regressão linear (numeração a identificar)</td>
+<td style="text-align: left;">Statistics at Square One <span class="citation" data-cites="swinscow1997square">(<a href="../references.html#ref-swinscow1997square" role="doc-biblioref">SWINSCOW; CAMPBELL, 1997</a>)</span></td>
+<td style="text-align: left;">11. Correlation and regression</td>
+<td style="text-align: left;">Correlação; regressão linear</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Estatística básica <span class="citation" data-cites="bussab2002estatistica">(<a href="../references.html#ref-bussab2002estatistica" role="doc-biblioref">BUSSAB; MORETTIN, 2002</a>)</span></td>
 <td style="text-align: left;">—</td>
-<td style="text-align: left;">Bibliografia da disciplina</td>
+<td style="text-align: left;">Correlação e regressão linear simples</td>
 </tr>
 </tbody>
 </table>
@@ -570,11 +1383,14 @@ Para aprofundar
 <div id="ref-batra2021epirhandbook" class="csl-entry" role="listitem">
 BATRA, N. et al. <strong><a href="https://doi.org/10.5281/zenodo.4752646">Manual de R para Epidemiologistas</a></strong>. [s.l.] Applied Epi, 2021.
 </div>
-<div id="ref-bougioukas2025medstats" class="csl-entry" role="listitem">
-BOUGIOUKAS, K. I. <strong><a href="https://practical-stats-med-r.netlify.app/">Practical Statistics in Medicine with R: understanding fundamental concepts through examples</a></strong>. [s.l: s.n.].
-</div>
 <div id="ref-bussab2002estatistica" class="csl-entry" role="listitem">
 BUSSAB, W. O.; MORETTIN, P. A. <strong>Estatística básica</strong>. 5. ed. São Paulo: Saraiva, 2002.
+</div>
+<div id="ref-magalhaes2002nocoes" class="csl-entry" role="listitem">
+MAGALHÃES, M. N.; LIMA, A. C. P. DE. <strong>Noções de probabilidade e estatística</strong>. São Paulo: Edusp, 2002.
+</div>
+<div id="ref-swinscow1997square" class="csl-entry" role="listitem">
+SWINSCOW, T. D. V.; CAMPBELL, M. J. <strong><a href="https://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one">Statistics at Square One</a></strong>. 9. ed. London: BMJ Publishing Group, 1997.
 </div>
 <div id="ref-wickham2023r4ds" class="csl-entry" role="listitem">
 WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4ds.hadley.nz/">R para Ciência de Dados</a></strong>. 2. ed. [s.l: s.n.].
@@ -998,7 +1814,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -90,6 +125,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -347,15 +411,24 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#sec-revisao-inferencia" id="toc-sec-revisao-inferencia" class="nav-link active" data-scroll-target="#sec-revisao-inferencia"><span class="header-section-number">13.1</span> Da descrição à inferência: revisão de conceitos</a></li>
+  <li><a href="#sec-revisao-inferencia" id="toc-sec-revisao-inferencia" class="nav-link active" data-scroll-target="#sec-revisao-inferencia"><span class="header-section-number">13.1</span> Da descrição à inferência: revisão de conceitos</a>
+  <ul class="collapse">
+  <li><a href="#intervalo-de-confiança" id="toc-intervalo-de-confiança" class="nav-link" data-scroll-target="#intervalo-de-confiança">Intervalo de confiança</a></li>
+  <li><a href="#teste-de-hipóteses-e-valor-p" id="toc-teste-de-hipóteses-e-valor-p" class="nav-link" data-scroll-target="#teste-de-hipóteses-e-valor-p">Teste de hipóteses e valor-p</a></li>
+  </ul></li>
   <li><a href="#sec-t-uma-amostra" id="toc-sec-t-uma-amostra" class="nav-link" data-scroll-target="#sec-t-uma-amostra"><span class="header-section-number">13.2</span> Teste t para uma média</a></li>
   <li><a href="#sec-t-duas-amostras" id="toc-sec-t-duas-amostras" class="nav-link" data-scroll-target="#sec-t-duas-amostras"><span class="header-section-number">13.3</span> Teste t para duas médias independentes</a></li>
   <li><a href="#sec-t-pareado" id="toc-sec-t-pareado" class="nav-link" data-scroll-target="#sec-t-pareado"><span class="header-section-number">13.4</span> Teste t pareado</a></li>
   <li><a href="#sec-anova" id="toc-sec-anova" class="nav-link" data-scroll-target="#sec-anova"><span class="header-section-number">13.5</span> Análise de variância com um fator</a></li>
   <li><a href="#sec-pressupostos" id="toc-sec-pressupostos" class="nav-link" data-scroll-target="#sec-pressupostos"><span class="header-section-number">13.6</span> Pressupostos e alternativas não paramétricas</a></li>
   <li><a href="#sec-relatando-testes" id="toc-sec-relatando-testes" class="nav-link" data-scroll-target="#sec-relatando-testes"><span class="header-section-number">13.7</span> Organizando e relatando resultados</a></li>
-  <li><a href="#sec-caso-13" id="toc-sec-caso-13" class="nav-link" data-scroll-target="#sec-caso-13"><span class="header-section-number">13.8</span> Estudo de caso: peso ao nascer segundo características maternas e do recém-nascido</a></li>
-  <li><a href="#sec-ex-13" id="toc-sec-ex-13" class="nav-link" data-scroll-target="#sec-ex-13"><span class="header-section-number">13.9</span> Exercícios</a></li>
+  <li><a href="#sec-caso-13" id="toc-sec-caso-13" class="nav-link" data-scroll-target="#sec-caso-13"><span class="header-section-number">13.8</span> Estudo de caso: peso ao nascer e tipo de parto</a></li>
+  <li><a href="#sec-ex-13" id="toc-sec-ex-13" class="nav-link" data-scroll-target="#sec-ex-13"><span class="header-section-number">13.9</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-13" id="toc-sec-sintese-13" class="nav-link" data-scroll-target="#sec-sintese-13"><span class="header-section-number">13.10</span> Síntese</a></li>
   <li><a href="#sec-mais-13" id="toc-sec-mais-13" class="nav-link" data-scroll-target="#sec-mais-13"><span class="header-section-number">13.11</span> Para saber mais</a></li>
   </ul>
@@ -383,21 +456,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 7 · <strong>Pré-requisitos:</strong> <a href="11-descritiva.html" class="quarto-xref"><span>Capítulo 11</span></a> e <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a> · <strong>Pacotes:</strong> R base (<code>stats</code>), <code>broom</code>, <code>gtsummary</code></p>
+<p><strong>Encontro previsto:</strong> 7 · <strong>Pré-requisitos:</strong> <a href="11-descritiva.html" class="quarto-xref"><span>Capítulo 11</span></a> e <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a> · <strong>Pacotes:</strong> R base (<code>stats</code>), <code>broom</code>, <code>gtsummary</code>, <code>medicaldata</code></p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -409,40 +469,952 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de revisar, em nível intuitivo e com apoio de simulações no R, os conceitos de população, amostra, distribuição amostral, erro padrão, intervalo de confiança, hipóteses e valor-p; executar e interpretar o teste t para uma média, para duas médias independentes (nas versões de Student e de Welch) e para dados pareados; executar uma análise de variância com um fator e comparações múltiplas; verificar os pressupostos desses procedimentos e reconhecer alternativas não paramétricas; e relatar os resultados com estimativas de efeito e intervalos de confiança, e não apenas com valores-p.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar, com apoio de simulações no R, os conceitos de população, amostra, distribuição amostral, erro padrão, intervalo de confiança, hipóteses e valor-p; executar e interpretar o teste t para uma média, para duas médias independentes (nas versões de Student e de Welch) e para dados pareados; executar uma análise de variância com um fator e comparações múltiplas; verificar os pressupostos desses procedimentos e reconhecer alternativas não paramétricas; e relatar os resultados com estimativas de efeito e intervalos de confiança, e não apenas com valores-p.</p>
 </div>
+</div>
+<p>Até aqui, descrevemos os dados que tínhamos em mãos. Muitas vezes, porém, queremos ir além: os dados vêm de uma amostra, e a pergunta é sobre a população de onde ela saiu. Este capítulo trata dessa passagem da descrição para a inferência, começando pelos conceitos e seguindo para os testes mais usados na comparação de médias. O foco está em executar os testes no R e, principalmente, em ler e relatar seus resultados de forma correta. A teoria estatística por trás de cada procedimento é tratada com mais profundidade nos livros de <span class="citation" data-cites="bussab2002estatistica">BUSSAB; MORETTIN (<a href="../references.html#ref-bussab2002estatistica" role="doc-biblioref">2002</a>)</span> e <span class="citation" data-cites="magalhaes2002nocoes">MAGALHÃES; LIMA (<a href="../references.html#ref-magalhaes2002nocoes" role="doc-biblioref">2002</a>)</span>, que fazem parte da bibliografia da disciplina.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(medicaldata)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-revisao-inferencia" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="sec-revisao-inferencia"><span class="header-section-number">13.1</span> Da descrição à inferência: revisão de conceitos</h2>
-<p>Usa simulações (<code>set.seed()</code>, <code>rnorm()</code>, <code>sample()</code>, <code>replicate()</code>) para ilustrar a variabilidade amostral, a distribuição amostral da média e o significado de um intervalo de confiança de 95%. Revisa a lógica do teste de hipóteses e a interpretação do valor-p, com referência à declaração da American Statistical Association sobre o tema <span class="citation" data-cites="wasserstein2016asa">(<a href="../references.html#ref-wasserstein2016asa" role="doc-biblioref">WASSERSTEIN; LAZAR, 2016</a>)</span>.</p>
+<p>A <strong>população</strong> é o conjunto de todas as unidades sobre as quais queremos tirar conclusões, e a <strong>amostra</strong> é a parte dela que efetivamente observamos. Um <strong>parâmetro</strong> é uma característica da população, como a média do peso ao nascer de todos os nascidos vivos, e uma <strong>estatística</strong> é a quantidade correspondente calculada na amostra. Na prática, quase nunca conhecemos o parâmetro, e usamos a estatística para estimá-lo.</p>
+<p>O SINASC de Rondônia em 2019 nos permite fazer um experimento que raramente é possível. Como temos todos os 27.028 nascimentos, podemos tratá-los como uma população, cuja média conhecemos, e sortear amostras dela para ver o que acontece com as estimativas. A função <code>sample()</code> sorteia elementos de um vetor, e <code>set.seed()</code> fixa o ponto de partida do sorteio, para que os resultados possam ser reproduzidos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>populacao <span class="ot">&lt;-</span> nascidos_analise<span class="sc">$</span>peso</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>media_pop <span class="ot">&lt;-</span> <span class="fu">mean</span>(populacao)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>media_pop</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3243.191</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2019</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>amostra <span class="ot">&lt;-</span> <span class="fu">sample</span>(populacao, <span class="at">size =</span> <span class="dv">100</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(amostra)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3327.92</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A média da amostra é parecida com a da população, mas não igual. Se sortearmos outra amostra, obteremos outro valor. Essa variação de uma amostra para outra é chamada de <strong>variabilidade amostral</strong>. A função <code>replicate()</code> repete uma operação muitas vezes, e podemos usá-la para sortear 5 mil amostras e guardar a média de cada uma.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2019</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>medias <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">5000</span>, <span class="fu">mean</span>(<span class="fu">sample</span>(populacao, <span class="at">size =</span> <span class="dv">100</span>)))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">tibble</span>(medias), <span class="fu">aes</span>(<span class="at">x =</span> medias)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">40</span>, <span class="at">fill =</span> <span class="st">"#ff6347"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> media_pop, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Média do peso na amostra (g)"</span>, <span class="at">y =</span> <span class="st">"Número de amostras"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-distribuicao-amostral" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Histograma em forma de sino das médias amostrais do peso ao nascer, centrado na média da população, de cerca de 3.243 gramas, com quase todos os valores entre 3.100 e 3.400 gramas.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-distribuicao-amostral-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="13-comparacao-medias_files/figure-html/fig-distribuicao-amostral-1.png" class="img-fluid figure-img" alt="Histograma em forma de sino das médias amostrais do peso ao nascer, centrado na média da população, de cerca de 3.243 gramas, com quase todos os valores entre 3.100 e 3.400 gramas." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-distribuicao-amostral-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;13.1: Distribuição das médias de 5 mil amostras de 100 nascimentos. A linha vertical indica a média da população.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O histograma mostra a <strong>distribuição amostral da média</strong>. Ela tem três características importantes. Está centrada na média da população, o que significa que a média amostral não erra sistematicamente para mais ou para menos. Tem forma de sino, próxima da normal, mesmo que o peso ao nascer não seja exatamente normal, como vimos no capítulo anterior; esse é o resultado conhecido como teorema central do limite. E sua dispersão é bem menor que a dos dados individuais. O desvio padrão da distribuição amostral é chamado de <strong>erro padrão</strong> e pode ser estimado, a partir de uma única amostra, dividindo o desvio padrão pela raiz quadrada do tamanho da amostra.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(medias)                  <span class="co"># erro padrão observado nas 5 mil amostras</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 54.69597</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(populacao) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">100</span>)   <span class="co"># erro padrão calculado pela fórmula</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 54.47541</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(amostra) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="dv">100</span>)     <span class="co"># erro padrão estimado com uma única amostra</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 49.04915</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os três valores são próximos. É isso que permite, com uma única amostra, dizer algo sobre a precisão da estimativa.</p>
+<section id="intervalo-de-confiança" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="intervalo-de-confiança">Intervalo de confiança</h3>
+<p>O <strong>intervalo de confiança</strong> de 95% para a média é construído, de forma aproximada, somando e subtraindo cerca de dois erros padrão da média amostral. A interpretação correta se refere ao procedimento: se repetíssemos a amostragem muitas vezes e calculássemos um intervalo em cada uma, cerca de 95% desses intervalos conteriam a média da população. Podemos verificar isso com uma simulação. A função <code>t.test()</code>, que veremos em detalhe adiante, calcula o intervalo, guardado no componente <code>conf.int</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2019</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>intervalos <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">50</span>, <span class="fu">t.test</span>(<span class="fu">sample</span>(populacao, <span class="at">size =</span> <span class="dv">100</span>))<span class="sc">$</span>conf.int)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>intervalos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">amostra =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">inferior =</span> intervalos[<span class="dv">1</span>, ],</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">superior =</span> intervalos[<span class="dv">2</span>, ],</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">contem =</span> inferior <span class="sc">&lt;=</span> media_pop <span class="sc">&amp;</span> media_pop <span class="sc">&lt;=</span> superior</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(intervalos, <span class="fu">aes</span>(<span class="at">y =</span> amostra, <span class="at">xmin =</span> inferior, <span class="at">xmax =</span> superior, <span class="at">color =</span> contem)) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="at">height =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> media_pop) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">TRUE</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"grey50"</span>, <span class="st">`</span><span class="at">FALSE</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"#b5401f"</span>),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">`</span><span class="at">TRUE</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"Contém a média"</span>, <span class="st">`</span><span class="at">FALSE</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"Não contém"</span>)) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Peso ao nascer (g)"</span>, <span class="at">y =</span> <span class="st">"Amostra"</span>, <span class="at">color =</span> <span class="cn">NULL</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(intervalos<span class="sc">$</span>contem)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.92</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-intervalos" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Cinquenta segmentos horizontais, cada um representando o intervalo de confiança de uma amostra. Quase todos cruzam a linha vertical da média da população e aparecem em cinza; os poucos que não a cruzam aparecem em vermelho.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-intervalos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="13-comparacao-medias_files/figure-html/fig-intervalos-1.png" class="img-fluid figure-img" alt="Cinquenta segmentos horizontais, cada um representando o intervalo de confiança de uma amostra. Quase todos cruzam a linha vertical da média da população e aparecem em cinza; os poucos que não a cruzam aparecem em vermelho." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intervalos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;13.2: Intervalos de confiança de 95% para a média do peso ao nascer, calculados em 50 amostras de 100 nascimentos. A linha vertical indica a média da população.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Neste conjunto de 50 amostras, 46 intervalos contêm a média da população. Com um número maior de repetições, a proporção se aproxima de 95%. Na prática, temos uma única amostra e não sabemos se o nosso intervalo é um dos que acertaram, mas sabemos que o procedimento acerta na grande maioria das vezes.</p>
+</section>
+<section id="teste-de-hipóteses-e-valor-p" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="teste-de-hipóteses-e-valor-p">Teste de hipóteses e valor-p</h3>
+<p>O teste de hipóteses parte de uma <strong>hipótese nula</strong> (<span class="math inline">\(H_0\)</span>), em geral a de que não há diferença ou efeito, e de uma <strong>hipótese alternativa</strong> (<span class="math inline">\(H_1\)</span>), a de que há. Calcula-se então uma <strong>estatística de teste</strong>, que mede o quanto os dados se afastam do que seria esperado se a hipótese nula fosse verdadeira. O <strong>valor-p</strong> é a probabilidade de observar um afastamento tão grande quanto o observado, ou maior, supondo que a hipótese nula seja verdadeira. Valores-p pequenos indicam que os dados são pouco compatíveis com a hipótese nula. Por convenção, usa-se com frequência o limite de 5% (o nível de significância, <span class="math inline">\(\alpha\)</span>), abaixo do qual se diz que o resultado é estatisticamente significativo.</p>
+<p>O valor-p é frequentemente mal interpretado. A declaração da American Statistical Association sobre o tema <span class="citation" data-cites="wasserstein2016asa">(<a href="../references.html#ref-wasserstein2016asa" role="doc-biblioref">WASSERSTEIN; LAZAR, 2016</a>)</span> lembra que ele não mede a probabilidade de a hipótese nula ser verdadeira, não mede o tamanho do efeito nem sua importância, e que conclusões científicas não devem se basear apenas em ele estar acima ou abaixo de um limite. Por isso, ao longo deste capítulo, os resultados serão sempre relatados com a estimativa do efeito e seu intervalo de confiança.</p>
+</section>
 </section>
 <section id="sec-t-uma-amostra" class="level2" data-number="13.2">
 <h2 data-number="13.2" class="anchored" data-anchor-id="sec-t-uma-amostra"><span class="header-section-number">13.2</span> Teste t para uma média</h2>
-<p>Apresenta <code>t.test(x, mu = ...)</code> e a interpretação do resultado, comparando a média do peso ao nascer da área de estudo a um valor de referência escolhido para fins didáticos.</p>
+<p>O teste t para uma média compara a média de uma amostra com um valor de referência. Como exemplo, vamos verificar se o peso médio dos nascidos de mães residentes em Guajará-Mirim difere da média do estado. Aqui, a média estadual é usada como valor de referência fixo, para fins didáticos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>guajara <span class="ot">&lt;-</span> nascidos_analise <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(munresnome <span class="sc">==</span> <span class="st">"Guajará-Mirim"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(guajara<span class="sc">$</span>peso, <span class="at">mu =</span> media_pop)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  One Sample t-test</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  guajara$peso</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = 2.625, df = 780, p-value = 0.008835</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean is not equal to 3243.191</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3255.776 3330.414</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean of x </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3293.095</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A saída traz a estatística t, os graus de liberdade (<code>df</code>), o valor-p, a hipótese alternativa, o intervalo de confiança de 95% para a média e a própria média. O peso médio em Guajará-Mirim foi de 3293 gramas, com intervalo de confiança de 3256 a 3330 gramas. Como o intervalo não inclui a média estadual, de 3243 gramas, e o valor-p é menor que 0,05, concluímos que a média do município é um pouco maior que a do estado. A diferença, de cerca de 50 gramas, é estatisticamente significativa, mas sua importância prática precisa ser julgada com conhecimento da área, um ponto que retomaremos no final do capítulo.</p>
 </section>
 <section id="sec-t-duas-amostras" class="level2" data-number="13.3">
 <h2 data-number="13.3" class="anchored" data-anchor-id="sec-t-duas-amostras"><span class="header-section-number">13.3</span> Teste t para duas médias independentes</h2>
-<p>Apresenta <code>t.test(y ~ grupo, data = ...)</code>, a diferença entre as versões com variâncias iguais (<code>var.equal = TRUE</code>) e de Welch, que é o padrão do R, e a leitura do intervalo de confiança para a diferença de médias, comparando o peso ao nascer segundo o sexo do recém-nascido.</p>
+<p>O uso mais comum do teste t é a comparação das médias de dois grupos independentes, isto é, grupos formados por unidades diferentes, sem relação entre si. A forma mais prática de usar <code>t.test()</code> nesse caso é com uma <strong>fórmula</strong>, <code>resposta ~ grupo</code>, que se lê “resposta em função do grupo”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(peso <span class="sc">~</span> sexo, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  peso by sexo</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -18.064, df = 27013, p-value &lt; 2.2e-16</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means between group Feminino and group Masculino is not equal to 0</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -131.8111 -106.0067</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  mean in group Feminino mean in group Masculino </span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                3182.178                3301.087</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O título da saída, <em>Welch Two Sample t-test</em>, indica que o R usou, por padrão, a versão de Welch do teste, que não supõe variâncias iguais nos dois grupos. A versão clássica, de Student, supõe variâncias iguais e é obtida com o argumento <code>var.equal = TRUE</code>. Como a versão de Welch funciona bem tanto com variâncias iguais quanto diferentes, ela é a escolha mais segura e deve ser mantida na maioria das situações.</p>
+<p>O intervalo de confiança refere-se à diferença entre as médias, na ordem dos níveis do fator: feminino menos masculino. Os meninos nasceram, em média, com 119 gramas a mais que as meninas, e o intervalo de confiança dessa diferença vai de 106 a 132 gramas.</p>
+<p>Um exemplo com dados de um ensaio clínico ajuda a ver o teste em outro contexto. O pacote <code>medicaldata</code> <span class="citation" data-cites="higgins2022medicaldata">(<a href="../references.html#ref-higgins2022medicaldata" role="doc-biblioref">HIGGINS, 2022</a>)</span> reúne bases de estudos médicos publicados, preparadas para o ensino. A base <code>opt</code> vem de um ensaio clínico randomizado que avaliou se o tratamento da doença periodontal durante a gravidez reduzia o risco de parto prematuro <span class="citation" data-cites="michalowicz2006opt">(<a href="../references.html#ref-michalowicz2006opt" role="doc-biblioref">MICHALOWICZ et al., 2006</a>)</span>, e foi organizada para o ensino por <span class="citation" data-cites="hyun2019opt">HYUN; HODGES; BREARLEY (<a href="../references.html#ref-hyun2019opt" role="doc-biblioref">2019</a>)</span>. As gestantes foram sorteadas para receber o tratamento durante a gestação (grupo <code>T</code>) ou depois do parto (grupo <code>C</code>, controle). Uma das variáveis de desfecho é o peso ao nascer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Birthweight <span class="sc">~</span> Group, <span class="at">data =</span> opt)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  Birthweight by Group</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -0.74548, df = 791.55, p-value = 0.4562</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means between group C and group T is not equal to 0</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -130.23405   58.54179</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean in group C mean in group T </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        3180.824        3216.670</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Nesse caso, o valor-p é alto e o intervalo de confiança para a diferença de médias inclui o zero. Os dados não mostram diferença no peso ao nascer entre os grupos. Note que isso não prova que o tratamento não tem nenhum efeito sobre o peso, mas indica que, se houver efeito, ele é provavelmente pequeno, dentro dos limites do intervalo.</p>
 </section>
 <section id="sec-t-pareado" class="level2" data-number="13.4">
 <h2 data-number="13.4" class="anchored" data-anchor-id="sec-t-pareado"><span class="header-section-number">13.4</span> Teste t pareado</h2>
-<p>Apresenta <code>t.test(..., paired = TRUE)</code> com dados fictícios de medidas antes e depois de uma intervenção, destacando que o pareamento decorre do delineamento e não dos dados. Embora não conste explicitamente na ementa, o tema é incluído por ser frequente em estudos de intervenção.</p>
+<p>Quando as duas medidas comparadas são feitas nas mesmas unidades, como antes e depois de uma intervenção, ou em pares formados de propósito, como irmãos ou casos e controles pareados, as observações não são independentes. Nesses casos, usa-se o <strong>teste t pareado</strong>, que analisa a diferença dentro de cada par. O pareamento vem do delineamento do estudo, e não dos dados. É preciso saber como os dados foram coletados para escolher entre o teste pareado e o teste para grupos independentes.</p>
+<p>Na base <code>opt</code>, a profundidade média de sondagem periodontal, em milímetros, foi medida no início do estudo (<code>BL.PD.avg</code>) e em uma visita posterior (<code>V5.PD.avg</code>). Vamos verificar se, entre as gestantes tratadas, houve mudança nessa medida.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tratadas <span class="ot">&lt;-</span> opt <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group <span class="sc">==</span> <span class="st">"T"</span>, <span class="sc">!</span><span class="fu">is.na</span>(BL.PD.avg), <span class="sc">!</span><span class="fu">is.na</span>(V5.PD.avg))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(tratadas<span class="sc">$</span>V5.PD.avg, tratadas<span class="sc">$</span>BL.PD.avg, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Paired t-test</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  tratadas$V5.PD.avg and tratadas$BL.PD.avg</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -17.012, df = 319, p-value &lt; 2.2e-16</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true mean difference is not equal to 0</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -0.4628757 -0.3669118</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean difference </span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      -0.4148938</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A diferença média, calculada como valor na visita posterior menos valor inicial, é negativa e seu intervalo de confiança não inclui o zero. Entre as 320 gestantes tratadas com as duas medidas, a profundidade de sondagem diminuiu, em média, 0,41 milímetro. O resultado indica melhora da condição periodontal após o tratamento. Repare que essa comparação, feita apenas no grupo tratado, não tem controle, e o efeito do tratamento seria mais bem avaliado comparando a mudança entre os dois grupos, o que fica como exercício.</p>
 </section>
 <section id="sec-anova" class="level2" data-number="13.5">
 <h2 data-number="13.5" class="anchored" data-anchor-id="sec-anova"><span class="header-section-number">13.5</span> Análise de variância com um fator</h2>
-<p>Apresenta <code>aov()</code> e <code>summary()</code>, a versão de Welch (<code>oneway.test()</code>) e as comparações múltiplas de Tukey (<code>TukeyHSD()</code>), comparando o peso ao nascer segundo a escolaridade materna.</p>
+<p>Para comparar as médias de três ou mais grupos, usa-se a <strong>análise de variância</strong> (ANOVA). Poderíamos fazer vários testes t, um para cada par de grupos, mas isso aumentaria a chance de encontrar alguma diferença significativa apenas por acaso. A ANOVA testa, de uma só vez, a hipótese nula de que todas as médias são iguais.</p>
+<p>Vamos comparar o peso ao nascer segundo a escolaridade da mãe. Antes do teste, é sempre bom olhar as médias e os desvios padrão de cada grupo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nascidos_analise <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(escmae)) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(escmae) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">media =</span> <span class="fu">mean</span>(peso), <span class="at">desvio_padrao =</span> <span class="fu">sd</span>(peso))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   escmae              n media desvio_padrao</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt; &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma            40 3086.          619.</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3 anos        516 3162.          607.</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 7 anos       4760 3227.          553.</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 8 a 11 anos     15633 3251.          533.</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 12 anos ou mais  5767 3248.          557.</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>aov()</code> ajusta o modelo, e <code>summary()</code> apresenta a tabela da análise de variância.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>modelo_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(peso <span class="sc">~</span> escmae, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_anova)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                Df    Sum Sq Mean Sq F value   Pr(&gt;F)    </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; escmae          4 6.655e+06 1663782   5.632 0.000158 ***</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals   26711 7.890e+09  295403                     </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 312 observations deleted due to missingness</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A tabela decompõe a variabilidade total do peso em duas partes: a variabilidade entre os grupos de escolaridade (<code>escmae</code>) e a variabilidade dentro dos grupos (<code>Residuals</code>). A estatística F é a razão entre as duas, ajustadas pelos graus de liberdade. O valor-p muito pequeno indica que pelo menos uma das médias difere das demais. A mensagem no final avisa que os registros sem escolaridade foram excluídos.</p>
+<p>Assim como no teste t, existe uma versão que não supõe variâncias iguais, obtida com <code>oneway.test()</code>. Ela é recomendada quando os grupos têm variâncias diferentes, como é o caso aqui (os desvios padrão vão de cerca de 530 a mais de 600 gramas).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(peso <span class="sc">~</span> escmae, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  One-way analysis of means (not assuming equal variances)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  peso and escmae</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F = 4.8004, num df = 4.00, denom df = 288.52, p-value = 0.0009191</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A ANOVA indica que há diferença, mas não diz entre quais grupos. Para isso, usam-se as <strong>comparações múltiplas</strong>, que comparam todos os pares de grupos controlando a chance de erro no conjunto das comparações. O método de Tukey é um dos mais usados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(modelo_anova)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Tukey multiple comparisons of means</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     95% family-wise confidence level</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Fit: aov(formula = peso ~ escmae, data = nascidos_analise)</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $escmae</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                                   diff          lwr       upr     p adj</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 a 3 anos-Nenhuma           76.709690 -166.6217047 320.04108 0.9114432</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 a 7 anos-Nenhuma          140.958824  -94.4391623 376.35681 0.4758608</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 a 11 anos-Nenhuma         165.034021  -69.6807942 399.74884 0.3076190</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 anos ou mais-Nenhuma     161.982339  -73.2443184 397.20900 0.3289767</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 a 7 anos-1 a 3 anos        64.249134   -4.4639854 132.96225 0.0798197</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 a 11 anos-1 a 3 anos       88.324331   21.9893822 154.65928 0.0026062</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 anos ou mais-1 a 3 anos   85.272649   17.1487812 153.39652 0.0057680</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 a 11 anos-4 a 7 anos       24.075197   -0.4680211  48.61842 0.0575848</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 anos ou mais-4 a 7 anos   21.023516   -8.0093200  50.05635 0.2780996</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 anos ou mais-8 a 11 anos  -3.051682  -25.8932724  19.78991 0.9962426</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Cada linha traz a diferença entre duas médias (<code>diff</code>), o intervalo de confiança ajustado (<code>lwr</code> e <code>upr</code>) e o valor-p ajustado (<code>p adj</code>). As diferenças significativas aparecem entre o grupo de 1 a 3 anos de estudo e os grupos de 8 a 11 anos e de 12 anos ou mais. O grupo sem escolaridade tem a menor média, mas, por ser muito pequeno, seus intervalos são largos e nenhuma comparação com ele é significativa. Esse é um bom exemplo de como o tamanho dos grupos afeta a precisão das estimativas.</p>
 </section>
 <section id="sec-pressupostos" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="sec-pressupostos"><span class="header-section-number">13.6</span> Pressupostos e alternativas não paramétricas</h2>
-<p>Retoma o <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a> para a verificação de normalidade dos resíduos e de homogeneidade de variâncias (<code>var.test()</code>, <code>bartlett.test()</code>) e apresenta os testes de Wilcoxon-Mann-Whitney (<code>wilcox.test()</code>) e de Kruskal-Wallis (<code>kruskal.test()</code>) como alternativas, explicitando que eles respondem a perguntas ligeiramente diferentes das dos testes de médias.</p>
+<p>Os testes t e a ANOVA supõem que as observações são independentes, que os dados de cada grupo (ou os resíduos do modelo) seguem distribuição aproximadamente normal e, nas versões clássicas, que as variâncias dos grupos são iguais. A verificação desses pressupostos segue o que vimos no <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>, com gráficos como ferramenta principal.</p>
+<p>Com amostras grandes, como as do SINASC, o teorema central do limite garante que as médias tenham distribuição aproximadamente normal, mesmo que os dados não sejam, e os testes t e a ANOVA funcionam bem. Com amostras pequenas, a forma da distribuição importa mais. O gráfico quantil-quantil dos resíduos do modelo é uma boa forma de verificá-la.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">residuals</span>(modelo_anova), <span class="at">main =</span> <span class="st">""</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(<span class="fu">residuals</span>(modelo_anova))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-residuos-anova" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico quantil-quantil dos resíduos. Os pontos seguem a reta na parte central e se afastam dela na cauda inferior, como no gráfico do peso ao nascer do capítulo anterior.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residuos-anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="13-comparacao-medias_files/figure-html/fig-residuos-anova-1.png" class="img-fluid figure-img" alt="Gráfico quantil-quantil dos resíduos. Os pontos seguem a reta na parte central e se afastam dela na cauda inferior, como no gráfico do peso ao nascer do capítulo anterior." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residuos-anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;13.3: Gráfico quantil-quantil dos resíduos da análise de variância do peso ao nascer segundo a escolaridade materna.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Para a igualdade de variâncias, há testes formais, como <code>var.test()</code>, que compara as variâncias de dois grupos, e <code>bartlett.test()</code>, para três ou mais grupos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(peso <span class="sc">~</span> sexo, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  F test to compare two variances</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  peso by sexo</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F = 0.92917, num df = 13137, denom df = 13885, p-value = 1.991e-05</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true ratio of variances is not equal to 1</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  0.8983500 0.9610589</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ratio of variances </span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          0.9291681</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(peso <span class="sc">~</span> escmae, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Bartlett test of homogeneity of variances</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  peso by escmae</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Bartlett's K-squared = 36.576, df = 4, p-value = 2.203e-07</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os dois testes rejeitam a igualdade de variâncias. Com dezenas de milhares de observações, porém, esses testes detectam diferenças muito pequenas. A razão entre as variâncias de meninas e meninos, por exemplo, é de 0,93, muito próxima de 1. O mais importante é a conclusão prática: na dúvida, usar as versões de Welch (<code>t.test()</code> com o padrão do R e <code>oneway.test()</code>), que não dependem desse pressuposto.</p>
+<p>Quando os dados são muito assimétricos, têm valores extremos importantes ou são ordinais, e a amostra é pequena, as <strong>alternativas não paramétricas</strong> são uma opção. Elas trabalham com as posições (postos) das observações ordenadas, e não com os valores, o que as torna menos sensíveis a valores extremos <span class="citation" data-cites="minitab2026naoparametricos">(<a href="../references.html#ref-minitab2026naoparametricos" role="doc-biblioref">MINITAB, 2026</a>)</span>. O teste de Wilcoxon-Mann-Whitney (<code>wilcox.test()</code>) é a alternativa ao teste t para dois grupos independentes, e o teste de Kruskal-Wallis (<code>kruskal.test()</code>) é a alternativa à ANOVA.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(peso <span class="sc">~</span> sexo, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Wilcoxon rank sum test with continuity correction</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  peso by sexo</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; W = 77953820, p-value &lt; 2.2e-16</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true location shift is not equal to 0</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(peso <span class="sc">~</span> escmae, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Kruskal-Wallis rank sum test</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  peso by escmae</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Kruskal-Wallis chi-squared = 14.021, df = 4, p-value = 0.007227</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As conclusões coincidem com as dos testes de médias. É importante saber, porém, que esses testes respondem a perguntas um pouco diferentes. Eles comparam as distribuições como um todo, verificando se os valores de um grupo tendem a ser maiores que os de outro, e não as médias. Por isso, o resultado deve ser relatado com medianas e intervalos interquartis, e não com médias. O teste de Wilcoxon também tem uma versão pareada, obtida com <code>paired = TRUE</code>.</p>
+<p>A escolha do teste depende do tipo de variável, do número de grupos, de os grupos serem independentes ou pareados e da forma da distribuição. O capítulo 13 de <em>Statistics at Square One</em> <span class="citation" data-cites="swinscow1997square">(<a href="../references.html#ref-swinscow1997square" role="doc-biblioref">SWINSCOW; CAMPBELL, 1997</a>)</span> traz um roteiro clássico para essa escolha, e a <a href="#tbl-escolha-teste" class="quarto-xref">Tabela&nbsp;<span>13.1</span></a> resume as situações tratadas neste livro.</p>
+<div id="tbl-escolha-teste" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-escolha-teste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;13.1: Escolha do teste segundo o tipo de comparação.
+</figcaption>
+<div aria-describedby="tbl-escolha-teste-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Situação</th>
+<th style="text-align: left;">Teste paramétrico</th>
+<th style="text-align: left;">Alternativa não paramétrica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Uma média e um valor de referência</td>
+<td style="text-align: left;"><code>t.test(x, mu = )</code></td>
+<td style="text-align: left;"><code>wilcox.test(x, mu = )</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dois grupos independentes</td>
+<td style="text-align: left;"><code>t.test(y ~ grupo)</code></td>
+<td style="text-align: left;"><code>wilcox.test(y ~ grupo)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Duas medidas pareadas</td>
+<td style="text-align: left;"><code>t.test(x, y, paired = TRUE)</code></td>
+<td style="text-align: left;"><code>wilcox.test(x, y, paired = TRUE)</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Três ou mais grupos independentes</td>
+<td style="text-align: left;"><code>aov()</code>, <code>oneway.test()</code></td>
+<td style="text-align: left;"><code>kruskal.test()</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Associação entre duas variáveis numéricas</td>
+<td style="text-align: left;"><code>cor.test()</code> (<a href="14-correlacao-regressao.html" class="quarto-xref"><span>Capítulo 14</span></a>)</td>
+<td style="text-align: left;"><code>cor.test(method = "spearman")</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Associação entre duas variáveis categóricas</td>
+<td style="text-align: left;"><code>chisq.test()</code> (<a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>)</td>
+<td style="text-align: left;"><code>fisher.test()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-relatando-testes" class="level2" data-number="13.7">
 <h2 data-number="13.7" class="anchored" data-anchor-id="sec-relatando-testes"><span class="header-section-number">13.7</span> Organizando e relatando resultados</h2>
-<p>Mostra como extrair os componentes do resultado de um teste, como transformá-lo em tabela com <code>broom::tidy()</code> e como incluir comparações em tabelas descritivas com <code>gtsummary::add_p()</code>. Apresenta um modelo de redação de resultados com estimativa, intervalo de confiança e valor-p.</p>
+<p>O resultado de <code>t.test()</code> é uma lista, e seus componentes podem ser acessados com <code>$</code>. Isso permite usar os valores no texto, com código inline, como fizemos nas seções anteriores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>teste_sexo <span class="ot">&lt;-</span> <span class="fu">t.test</span>(peso <span class="sc">~</span> sexo, <span class="at">data =</span> nascidos_analise)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(teste_sexo)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"   </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] "null.value"  "stderr"      "alternative" "method"      "data.name"</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>teste_sexo<span class="sc">$</span>conf.int</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] -131.8111 -106.0067</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; attr(,"conf.level")</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.95</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>teste_sexo<span class="sc">$</span>p.value</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.632753e-72</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>tidy()</code>, do pacote <code>broom</code>, transforma o resultado em uma tabela, o que facilita juntar os resultados de vários testes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(teste_sexo)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 10</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   estimate estimate1 estimate2 statistic  p.value parameter conf.low conf.high</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    -119.     3182.     3301.     -18.1 1.63e-72    27013.    -132.     -106.</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: method &lt;chr&gt;, alternative &lt;chr&gt;</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para tabelas de artigos, o pacote <code>gtsummary</code>, visto no <a href="11-descritiva.html" class="quarto-xref"><span>Capítulo 11</span></a>, acrescenta os testes a uma tabela descritiva com <code>add_p()</code>. Por padrão, ele usa o teste de Wilcoxon para variáveis numéricas e o qui-quadrado para categóricas, mas o teste pode ser escolhido com o argumento <code>test</code>. Com <code>add_difference()</code>, a tabela traz a diferença entre os grupos e seu intervalo de confiança.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gtsummary<span class="sc">::</span><span class="fu">theme_gtsummary_language</span>(<span class="at">language =</span> <span class="st">"pt"</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>nascidos_analise <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sexo, peso, idademae, semagestac) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">tbl_summary</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> sexo,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">statistic =</span> gtsummary<span class="sc">::</span><span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"{mean} ({sd})"</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(peso <span class="sc">~</span> <span class="st">"Peso ao nascer (g)"</span>, idademae <span class="sc">~</span> <span class="st">"Idade da mãe (anos)"</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                 semagestac <span class="sc">~</span> <span class="st">"Idade gestacional (semanas)"</span>),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing =</span> <span class="st">"no"</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  gtsummary<span class="sc">::</span><span class="fu">add_difference</span>(<span class="at">test =</span> gtsummary<span class="sc">::</span><span class="fu">all_continuous</span>() <span class="sc">~</span> <span class="st">"t.test"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="xscyjghgdj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xscyjghgdj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xscyjghgdj thead, #xscyjghgdj tbody, #xscyjghgdj tfoot, #xscyjghgdj tr, #xscyjghgdj td, #xscyjghgdj th {
+  border-style: none;
+}
+
+#xscyjghgdj p {
+  margin: 0;
+  padding: 0;
+}
+
+#xscyjghgdj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xscyjghgdj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xscyjghgdj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xscyjghgdj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xscyjghgdj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xscyjghgdj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xscyjghgdj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xscyjghgdj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xscyjghgdj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xscyjghgdj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xscyjghgdj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xscyjghgdj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xscyjghgdj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xscyjghgdj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xscyjghgdj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xscyjghgdj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xscyjghgdj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xscyjghgdj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xscyjghgdj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xscyjghgdj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xscyjghgdj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xscyjghgdj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xscyjghgdj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xscyjghgdj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xscyjghgdj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xscyjghgdj .gt_left {
+  text-align: left;
+}
+
+#xscyjghgdj .gt_center {
+  text-align: center;
+}
+
+#xscyjghgdj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xscyjghgdj .gt_font_normal {
+  font-weight: normal;
+}
+
+#xscyjghgdj .gt_font_bold {
+  font-weight: bold;
+}
+
+#xscyjghgdj .gt_font_italic {
+  font-style: italic;
+}
+
+#xscyjghgdj .gt_super {
+  font-size: 65%;
+}
+
+#xscyjghgdj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xscyjghgdj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xscyjghgdj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xscyjghgdj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xscyjghgdj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xscyjghgdj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xscyjghgdj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xscyjghgdj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xscyjghgdj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings header">
+<th id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Características</strong></th>
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Feminino</strong><br>
+N = 13.138<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Masculino</strong><br>
+N = 13.886<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="estimate" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Diferença</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+<th id="conf.low" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% IC</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+<th id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Valor-p</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Peso ao nascer (g)</td>
+<td class="gt_row gt_center" headers="stat_1">3.182 (531)</td>
+<td class="gt_row gt_center" headers="stat_2">3.301 (551)</td>
+<td class="gt_row gt_center" headers="estimate">-119</td>
+<td class="gt_row gt_center" headers="conf.low">-132 – -106</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0,001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Idade da mãe (anos)</td>
+<td class="gt_row gt_center" headers="stat_1">26 (6)</td>
+<td class="gt_row gt_center" headers="stat_2">26 (6)</td>
+<td class="gt_row gt_center" headers="estimate">0,14</td>
+<td class="gt_row gt_center" headers="conf.low">-0,02 – 0,29</td>
+<td class="gt_row gt_center" headers="p.value">0,082</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Idade gestacional (semanas)</td>
+<td class="gt_row gt_center" headers="stat_1">38,60 (1,99)</td>
+<td class="gt_row gt_center" headers="stat_2">38,55 (1,97)</td>
+<td class="gt_row gt_center" headers="estimate">0,05</td>
+<td class="gt_row gt_center" headers="conf.low">0,00 – 0,10</td>
+<td class="gt_row gt_center" headers="p.value">0,047</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Média (Desvio Padrão)</td>
+</tr>
+<tr class="gt_footnotes even">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Teste t com correção de Welch</td>
+</tr>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote">Abreviação: IC = Intervalo de Confiança</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>Na redação, o resultado deve trazer a estimativa, o intervalo de confiança e o valor-p, nessa ordem de importância. Um exemplo de redação para a comparação por sexo seria: “Os recém-nascidos do sexo masculino apresentaram peso médio 119 g maior que os do sexo feminino (IC 95%: 106 a 132 g; teste t de Welch, p &lt; 0,001)”. Valores-p muito pequenos são relatados como “p &lt; 0,001”, e não com todos os dígitos.</p>
 </section>
 <section id="sec-caso-13" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="sec-caso-13"><span class="header-section-number">13.8</span> Estudo de caso: peso ao nascer segundo características maternas e do recém-nascido</h2>
-<p>Com o extrato do SINASC explorado no <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>, o estudante compara o peso ao nascer segundo o sexo do recém-nascido, o tipo de parto e a escolaridade materna, verificando pressupostos e redigindo os resultados.</p>
+<h2 data-number="13.8" class="anchored" data-anchor-id="sec-caso-13"><span class="header-section-number">13.8</span> Estudo de caso: peso ao nascer e tipo de parto</h2>
+<p>O peso ao nascer difere entre partos vaginais e cesáreos? A pergunta parece simples, mas a idade gestacional interfere na comparação, já que tanto o peso quanto a via de parto dependem dela. Para tornar os grupos mais comparáveis, vamos restringir a análise aos nascimentos a termo, de 37 a 41 semanas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a_termo <span class="ot">&lt;-</span> nascidos_analise <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">between</span>(semagestac, <span class="dv">37</span>, <span class="dv">41</span>), <span class="sc">!</span><span class="fu">is.na</span>(parto))</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>a_termo <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(parto) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">media =</span> <span class="fu">mean</span>(peso), <span class="at">desvio_padrao =</span> <span class="fu">sd</span>(peso),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">mediana =</span> <span class="fu">median</span>(peso))</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 5</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   parto       n media desvio_padrao mediana</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;   &lt;int&gt; &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Vaginal  7353 3271.          433.    3265</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Cesáreo 15199 3336.          465.    3325</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>teste_parto <span class="ot">&lt;-</span> <span class="fu">t.test</span>(peso <span class="sc">~</span> parto, <span class="at">data =</span> a_termo)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>teste_parto</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Welch Two Sample t-test</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  peso by parto</span></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; t = -10.293, df = 15510, p-value &lt; 2.2e-16</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; alternative hypothesis: true difference in means between group Vaginal and group Cesáreo is not equal to 0</span></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95 percent confidence interval:</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  -77.15942 -52.47319</span></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sample estimates:</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; mean in group Vaginal mean in group Cesáreo </span></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              3270.785              3335.601</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Entre os nascimentos a termo, os recém-nascidos de parto cesáreo pesaram, em média, 65 gramas a mais que os de parto vaginal (IC 95%: 52 a 77 g). Esse resultado não significa que a cesárea aumenta o peso do recém-nascido. Uma explicação mais plausível é o caminho inverso: a suspeita de um bebê grande é uma das razões para indicar a cesárea. Além disso, outras características, como a idade e a escolaridade da mãe, se associam tanto à via de parto quanto ao peso. A comparação de médias descreve uma diferença, mas não identifica sua causa.</p>
 <div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -453,17 +1425,43 @@ Saúde Pública em foco
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Prevê-se uma caixa sobre significância estatística e relevância prática: com dezenas de milhares de nascimentos, diferenças de poucos gramas resultam em valores-p muito pequenos, sem necessariamente ter importância clínica ou sanitária.</p>
+<p><strong>Significância estatística e relevância prática.</strong> Com dezenas de milhares de nascimentos, diferenças muito pequenas resultam em valores-p minúsculos. A diferença de peso por escolaridade, por exemplo, é estatisticamente significativa, mas de poucas dezenas de gramas entre a maioria dos grupos. Se essa diferença tem importância clínica ou sanitária é uma questão que a estatística, sozinha, não responde. Por isso, a estimativa do efeito e seu intervalo de confiança dizem muito mais que o valor-p.&nbsp;Com amostras pequenas, acontece o contrário: diferenças importantes podem não alcançar significância, e um valor-p alto não deve ser lido como prova de que não há diferença.</p>
 </div>
 </div>
 </section>
 <section id="sec-ex-13" class="level2" data-number="13.9">
 <h2 data-number="13.9" class="anchored" data-anchor-id="sec-ex-13"><span class="header-section-number">13.9</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem a execução e a interpretação de cada teste em dados fornecidos. Os de aplicação envolvem a comparação da idade materna entre regiões. O desafio propõe um estudo de simulação para verificar a proporção de intervalos de confiança de 95% que contêm a média verdadeira.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Repita a simulação da distribuição amostral usando amostras de tamanho 25 e 400. O que acontece com o centro e com a dispersão das médias? Compare o erro padrão observado com o calculado pela fórmula.</p></li>
+<li><p>Usando a base <code>nascidos_analise</code>, compare a idade gestacional média entre recém-nascidos dos sexos feminino e masculino com o teste t de Welch. Interprete a estimativa e o intervalo de confiança.</p></li>
+<li><p>Compare a idade da mãe segundo o número de consultas de pré-natal (<code>consultas_cat</code>) com a ANOVA e com o teste de Kruskal-Wallis. Use <code>TukeyHSD()</code> para identificar quais grupos diferem.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="4" type="1">
+<li><p>Na base <code>opt</code>, calcule, para cada gestante com as duas medidas, a mudança na profundidade de sondagem (<code>V5.PD.avg - BL.PD.avg</code>). Compare essa mudança entre os grupos tratado e controle com o teste t para grupos independentes. Essa comparação responde melhor à pergunta sobre o efeito do tratamento do que o teste pareado feito apenas no grupo tratado? Por quê?</p></li>
+<li><p>Compare o peso ao nascer entre filhos de mães adolescentes e não adolescentes, restringindo aos nascimentos a termo. Redija o resultado no formato apresentado na <a href="#sec-relatando-testes" class="quarto-xref"><span>Seção 13.7</span></a>.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="6" type="1">
+<li>Faça um estudo de simulação para verificar a proporção de intervalos de confiança de 95% que contêm a média da população, usando mil amostras de tamanho 10, 30 e 100. Repita para uma variável muito assimétrica, como o número de casos novos diários de COVID-19 em um estado. Em que situações a cobertura se afasta de 95%?</li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-13" class="level2" data-number="13.10">
 <h2 data-number="13.10" class="anchored" data-anchor-id="sec-sintese-13"><span class="header-section-number">13.10</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>A inferência estatística usa uma amostra para tirar conclusões sobre a população. A média amostral varia de uma amostra para outra, e essa variação é descrita pelo erro padrão. O intervalo de confiança de 95% é construído por um procedimento que, em repetidas amostras, contém o parâmetro em cerca de 95% das vezes, e o valor-p mede a compatibilidade dos dados com a hipótese nula, sem medir o tamanho nem a importância do efeito. O teste t compara uma média com um valor de referência, duas médias de grupos independentes (de preferência na versão de Welch, padrão do R) ou duas medidas pareadas. A análise de variância compara três ou mais médias, e as comparações múltiplas de Tukey identificam quais grupos diferem. Os testes de Wilcoxon e de Kruskal-Wallis são alternativas que comparam distribuições, e não médias. Os resultados devem ser relatados com a estimativa, o intervalo de confiança e o valor-p.</p>
+<div id="tbl-sintese-13" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;13.2: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-13-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -479,14 +1477,14 @@ Saúde Pública em foco
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>set.seed()</code>, <code>rnorm()</code>, <code>sample()</code>, <code>replicate()</code></td>
-<td style="text-align: left;">base, stats</td>
-<td style="text-align: left;">Simulação</td>
+<td style="text-align: left;"><code>set.seed()</code>, <code>sample()</code>, <code>replicate()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Simulação e sorteio de amostras</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>t.test()</code></td>
 <td style="text-align: left;">stats</td>
-<td style="text-align: left;">Testes t para uma, duas médias e dados pareados</td>
+<td style="text-align: left;">Testes t para uma média, duas médias e dados pareados</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>aov()</code>, <code>summary()</code>, <code>TukeyHSD()</code></td>
@@ -499,30 +1497,39 @@ Saúde Pública em foco
 <td style="text-align: left;">Análise de variância de Welch</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>var.test()</code>, <code>bartlett.test()</code>, <code>shapiro.test()</code></td>
+<td style="text-align: left;"><code>var.test()</code>, <code>bartlett.test()</code></td>
 <td style="text-align: left;">stats</td>
-<td style="text-align: left;">Verificação de pressupostos</td>
+<td style="text-align: left;">Comparação de variâncias</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><code>qqnorm()</code>, <code>qqline()</code>, <code>residuals()</code></td>
+<td style="text-align: left;">stats</td>
+<td style="text-align: left;">Verificação da normalidade dos resíduos</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><code>wilcox.test()</code>, <code>kruskal.test()</code></td>
 <td style="text-align: left;">stats</td>
 <td style="text-align: left;">Alternativas não paramétricas</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>tidy()</code></td>
 <td style="text-align: left;">broom</td>
 <td style="text-align: left;">Resultados em formato de tabela</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>add_p()</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>add_p()</code>, <code>add_difference()</code></td>
 <td style="text-align: left;">gtsummary</td>
-<td style="text-align: left;">Testes em tabelas descritivas</td>
+<td style="text-align: left;">Testes e diferenças em tabelas descritivas</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-13" class="level2" data-number="13.11">
 <h2 data-number="13.11" class="anchored" data-anchor-id="sec-mais-13"><span class="header-section-number">13.11</span> Para saber mais</h2>
+<p>O capítulo 18 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> apresenta os mesmos testes no R base e com os pacotes <code>rstatix</code> e <code>gtsummary</code>. Na versão online de <em>Practical Statistics in Medicine with R</em> <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span>, os capítulos 12 a 14 revisam os conceitos de estatística, probabilidade e distribuições usados aqui; os testes estatísticos são tratados nos capítulos seguintes da edição impressa. O capítulo 13 de <em>Statistics at Square One</em> <span class="citation" data-cites="swinscow1997square">(<a href="../references.html#ref-swinscow1997square" role="doc-biblioref">SWINSCOW; CAMPBELL, 1997</a>)</span> é uma referência curta e clara para a escolha do teste, e o mesmo tema é discutido em português no vídeo <a href="https://www.youtube.com/live/EtV3_3aN884"><em>Como escolher o teste estatístico adequado? Uma discussão para te ajudar nessa decisão</em></a>. O texto de suporte do Minitab sobre métodos não paramétricos <span class="citation" data-cites="minitab2026naoparametricos">(<a href="../references.html#ref-minitab2026naoparametricos" role="doc-biblioref">MINITAB, 2026</a>)</span> explica, de forma acessível, quando eles são indicados. Para os conceitos de população, amostra e planos amostrais, o livro online <a href="https://amostragemcomr.github.io/livro/index.html">Amostragem com R</a> é uma boa continuação.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -545,21 +1552,25 @@ Saúde Pública em foco
 <tr class="even">
 <td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
 <td style="text-align: left;">12. Introduction to Statistics; 13. Basic Concepts of Probability; 14. Probability distributions</td>
-<td style="text-align: left;">Os capítulos sobre testes t e análise de variância constam da edição impressa (ver nota abaixo)</td>
+<td style="text-align: left;">Conceitos de amostragem e distribuição normal</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Noções de probabilidade e estatística <span class="citation" data-cites="magalhaes2002nocoes">(<a href="../references.html#ref-magalhaes2002nocoes" role="doc-biblioref">MAGALHÃES; LIMA, 2002</a>)</span></td>
-<td style="text-align: left;">—</td>
-<td style="text-align: left;">Bibliografia da disciplina</td>
+<td style="text-align: left;">Statistics at Square One <span class="citation" data-cites="swinscow1997square">(<a href="../references.html#ref-swinscow1997square" role="doc-biblioref">SWINSCOW; CAMPBELL, 1997</a>)</span></td>
+<td style="text-align: left;">13. Study design and choosing a statistical test</td>
+<td style="text-align: left;">Roteiro para a escolha do teste</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Noções de probabilidade e estatística <span class="citation" data-cites="magalhaes2002nocoes">(<a href="../references.html#ref-magalhaes2002nocoes" role="doc-biblioref">MAGALHÃES; LIMA, 2002</a>)</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Inferência para médias</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Estatística básica <span class="citation" data-cites="bussab2002estatistica">(<a href="../references.html#ref-bussab2002estatistica" role="doc-biblioref">BUSSAB; MORETTIN, 2002</a>)</span></td>
 <td style="text-align: left;">—</td>
-<td style="text-align: left;">Bibliografia da disciplina</td>
+<td style="text-align: left;">Inferência para duas populações; análise de variância</td>
 </tr>
 </tbody>
 </table>
-<p>O <em>R para Ciência de Dados</em> e o livro de Faria não tratam de inferência estatística. Na versão online de <em>Practical Statistics in Medicine with R</em> consultada em novembro de 2026, o sumário lista os capítulos 1 a 17, embora o prefácio informe que os capítulos 12 a 31 cobrem os testes estatísticos mais comuns; os capítulos correspondentes da edição impressa serão identificados na redação.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
@@ -572,8 +1583,23 @@ BOUGIOUKAS, K. I. <strong><a href="https://practical-stats-med-r.netlify.app/">P
 <div id="ref-bussab2002estatistica" class="csl-entry" role="listitem">
 BUSSAB, W. O.; MORETTIN, P. A. <strong>Estatística básica</strong>. 5. ed. São Paulo: Saraiva, 2002.
 </div>
+<div id="ref-higgins2022medicaldata" class="csl-entry" role="listitem">
+HIGGINS, P. <strong><a href="https://higgi13425.github.io/medicaldata/">medicaldata: Data Package for Medical Datasets</a></strong>. [s.l: s.n.].
+</div>
+<div id="ref-hyun2019opt" class="csl-entry" role="listitem">
+HYUN, M.; HODGES, J. S.; BREARLEY, A. M. <strong>Obstetrics and Periodontal Therapy Dataset</strong>TSHS Resources Portal, 2019. Disponível em: &lt;<a href="https://www.causeweb.org/tshs/obstetrics-and-periodontal-therapy/">https://www.causeweb.org/tshs/obstetrics-and-periodontal-therapy/</a>&gt;
+</div>
 <div id="ref-magalhaes2002nocoes" class="csl-entry" role="listitem">
 MAGALHÃES, M. N.; LIMA, A. C. P. DE. <strong>Noções de probabilidade e estatística</strong>. São Paulo: Edusp, 2002.
+</div>
+<div id="ref-michalowicz2006opt" class="csl-entry" role="listitem">
+MICHALOWICZ, B. S. et al. <a href="https://doi.org/10.1056/NEJMoa062249">Treatment of periodontal disease and the risk of preterm birth</a>. <strong>New England Journal of Medicine</strong>, v. 355, n. 18, p. 1885–1894, 2006.
+</div>
+<div id="ref-minitab2026naoparametricos" class="csl-entry" role="listitem">
+MINITAB. <strong>Compreendendo os métodos não paramétricos</strong>Suporte do Minitab, 2026. Disponível em: &lt;<a href="https://support.minitab.com/pt-br/minitab/help-and-how-to/statistics/nonparametrics/supporting-topics/understanding-nonparametric-methods/">https://support.minitab.com/pt-br/minitab/help-and-how-to/statistics/nonparametrics/supporting-topics/understanding-nonparametric-methods/</a>&gt;
+</div>
+<div id="ref-swinscow1997square" class="csl-entry" role="listitem">
+SWINSCOW, T. D. V.; CAMPBELL, M. J. <strong><a href="https://www.bmj.com/about-bmj/resources-readers/publications/statistics-square-one">Statistics at Square One</a></strong>. 9. ed. London: BMJ Publishing Group, 1997.
 </div>
 <div id="ref-wasserstein2016asa" class="csl-entry" role="listitem">
 WASSERSTEIN, R. L.; LAZAR, N. A. <a href="https://doi.org/10.1080/00031305.2016.1154108">The <span>ASA</span> statement on p-values: context, process, and purpose</a>. <strong>The American Statistician</strong>, v. 70, n. 2, p. 129–133, 2016.
@@ -997,7 +2023,7 @@ WASSERSTEIN, R. L.; LAZAR, N. A. <a href="https://doi.org/10.1080/00031305.2016.
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

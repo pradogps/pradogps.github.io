@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -322,8 +357,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#erro-aviso-e-mensagem" id="toc-erro-aviso-e-mensagem" class="nav-link active" data-scroll-target="#erro-aviso-e-mensagem">Erro, aviso e mensagem</a></li>
+  <li><a href="#erros-frequentes" id="toc-erros-frequentes" class="nav-link" data-scroll-target="#erros-frequentes">Erros frequentes</a></li>
+  <li><a href="#como-buscar-ajuda" id="toc-como-buscar-ajuda" class="nav-link" data-scroll-target="#como-buscar-ajuda">Como buscar ajuda</a></li>
+  <li><a href="#exemplo-mínimo-reprodutível" id="toc-exemplo-mínimo-reprodutível" class="nav-link" data-scroll-target="#exemplo-mínimo-reprodutível">Exemplo mínimo reprodutível</a></li>
+  <li><a href="#assistentes-de-inteligência-artificial" id="toc-assistentes-de-inteligência-artificial" class="nav-link" data-scroll-target="#assistentes-de-inteligência-artificial">Assistentes de inteligência artificial</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -347,22 +392,150 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Errar faz parte do trabalho com qualquer linguagem de programação, para iniciantes e para quem programa há anos. A diferença está em saber ler a mensagem de erro, encontrar a causa e, quando necessário, pedir ajuda de forma que outra pessoa consiga ajudar. Este apêndice reúne os erros mais comuns entre quem está começando, organizados pela etapa do trabalho em que costumam aparecer, e apresenta estratégias para buscar ajuda.</p>
+<section id="erro-aviso-e-mensagem" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="erro-aviso-e-mensagem">Erro, aviso e mensagem</h2>
+<p>O R se comunica de três formas. Um <strong>erro</strong> (<em>Error</em>) interrompe a execução: o comando não foi concluído e nenhum resultado foi produzido. Um <strong>aviso</strong> (<em>Warning</em>) indica que o comando foi executado, mas que algo pode não ter saído como esperado, e merece ser lido com atenção. Uma <strong>mensagem</strong> é apenas informativa, como as que aparecem ao carregar o <code>tidyverse</code> ou quando <code>read_csv()</code> informa os tipos das colunas. A primeira providência diante de um erro é ler a mensagem com calma, de preferência a última linha, que costuma dizer o que o R esperava e o que encontrou.</p>
+</section>
+<section id="erros-frequentes" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="erros-frequentes">Erros frequentes</h2>
+<div id="tbl-erros" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-erros-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;D.1: Erros e sintomas frequentes, suas causas e formas de correção.
+</figcaption>
+<div aria-describedby="tbl-erros-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Mensagem (ou sintoma)</th>
+<th style="text-align: left;">Causa provável</th>
+<th style="text-align: left;">Como corrigir</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>could not find function "..."</code></td>
+<td style="text-align: left;">O pacote da função não foi carregado, ou o nome está escrito errado</td>
+<td style="text-align: left;">Executar <code>library(pacote)</code> ou conferir a grafia, inclusive maiúsculas e minúsculas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>there is no package called '...'</code></td>
+<td style="text-align: left;">O pacote não está instalado</td>
+<td style="text-align: left;">Instalar com <code>install.packages("pacote")</code>, com o nome entre aspas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>object '...' not found</code></td>
+<td style="text-align: left;">O objeto não foi criado, o nome está errado ou a linha que o cria não foi executada</td>
+<td style="text-align: left;">Conferir a grafia e executar o código anterior; em documentos Quarto, lembrar que o documento roda em uma sessão nova</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>cannot open file '...': No such file or directory</code></td>
+<td style="text-align: left;">O caminho do arquivo está errado ou o projeto não está aberto</td>
+<td style="text-align: left;">Abrir o projeto do RStudio e usar <code>here("dados", "arquivo.csv")</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Acentos trocados por símbolos estranhos</td>
+<td style="text-align: left;">Codificação do arquivo diferente da indicada</td>
+<td style="text-align: left;">Usar <code>locale = locale(encoding = "latin1")</code> em <code>read_csv2()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Números lidos como texto, ou com valores errados</td>
+<td style="text-align: left;">Separador decimal ou de colunas incorreto</td>
+<td style="text-align: left;">Usar <code>read_csv2()</code> para arquivos com ponto e vírgula e vírgula decimal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Códigos de município perdem zeros ou viram números</td>
+<td style="text-align: left;">A coluna foi lida como número</td>
+<td style="text-align: left;">Indicar <code>col_types = cols(CODMUNRES = col_character())</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>unexpected symbol</code>, <code>unexpected ')'</code> ou <code>'}'</code></td>
+<td style="text-align: left;">Parênteses, aspas ou vírgulas faltando ou sobrando</td>
+<td style="text-align: left;">Conferir o comando com o realce de parênteses do RStudio</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">O console mostra <code>+</code> e não responde</td>
+<td style="text-align: left;">Um comando ficou incompleto, por exemplo, com parênteses ou aspas abertos</td>
+<td style="text-align: left;">Pressionar <em>Esc</em> e corrigir o comando</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>non-numeric argument to binary operator</code></td>
+<td style="text-align: left;">Operação matemática com texto</td>
+<td style="text-align: left;">Verificar o tipo da coluna com <code>class()</code> ou <code>glimpse()</code> e convertê-la</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Resultado <code>NA</code> em <code>mean()</code> ou <code>sum()</code></td>
+<td style="text-align: left;">Há valores ausentes no vetor</td>
+<td style="text-align: left;">Usar <code>na.rm = TRUE</code>, depois de verificar quantos são e por quê</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>`=`</code> em vez de <code>==</code> em <code>filter()</code></td>
+<td style="text-align: left;">Confusão entre atribuição e comparação</td>
+<td style="text-align: left;">Usar <code>==</code> para comparar</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Error in ggplot... object not found</code> dentro de <code>aes()</code></td>
+<td style="text-align: left;">Nome de coluna escrito errado</td>
+<td style="text-align: left;">Conferir os nomes com <code>names()</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>+</code> no começo da linha em um gráfico</td>
+<td style="text-align: left;">O <code>+</code> do <code>ggplot2</code> deve ficar no fim da linha anterior</td>
+<td style="text-align: left;">Mover o <code>+</code> para o fim da linha</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Can't combine ... &lt;character&gt; and ... &lt;double&gt;</code></td>
+<td style="text-align: left;">Tentativa de empilhar ou juntar colunas de tipos diferentes</td>
+<td style="text-align: left;">Converter as colunas para o mesmo tipo antes de <code>bind_rows()</code> ou do <em>join</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Junção com mais linhas do que o esperado</td>
+<td style="text-align: left;">A chave tem valores repetidos em uma das tabelas</td>
+<td style="text-align: left;">Verificar a unicidade da chave com <code>count()</code> seguido de <code>filter(n &gt; 1)</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">O documento Quarto não renderiza, mas o código funciona no console</td>
+<td style="text-align: left;">O código depende de algo feito só no console, como um objeto criado à mão ou um pacote carregado fora do documento</td>
+<td style="text-align: left;">Colocar no documento tudo o que ele usa, incluindo <code>library()</code>, e reiniciar o R antes de testar</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="callout-title-container flex-fill">
-Em elaboração
+</figure>
 </div>
+</section>
+<section id="como-buscar-ajuda" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="como-buscar-ajuda">Como buscar ajuda</h2>
+<p>A <strong>documentação</strong> de cada função é a primeira fonte de consulta. Ela é aberta com <code>?nome_da_funcao</code> ou <code>help(nome_da_funcao)</code> e traz a descrição dos argumentos, os detalhes do funcionamento e exemplos executáveis no final da página, que podem ser copiados para o console. Muitos pacotes também têm <strong>vinhetas</strong>, textos mais longos com exemplos de uso, listadas com <code>vignette(package = "nome_do_pacote")</code>. As folhas de referência (<em>cheatsheets</em>) da Posit, disponíveis no menu <em>Help</em> do RStudio, resumem em uma ou duas páginas as principais funções de pacotes como <code>dplyr</code>, <code>ggplot2</code> e <code>lubridate</code>.</p>
+<p>A <strong>busca na internet</strong> é muito eficiente quando se usa o texto da mensagem de erro, sem as partes específicas do seu código, como nomes de objetos, acompanhado do nome do pacote e da palavra “R”. Como a maior parte do conteúdo sobre R está em inglês, buscar a mensagem em inglês costuma trazer mais resultados. Para que as mensagens apareçam em inglês, pode-se executar <code>Sys.setenv(LANGUAGE = "en")</code> no início da sessão.</p>
+<p>Os <strong>fóruns</strong> reúnem perguntas e respostas sobre praticamente todos os problemas comuns. O Stack Overflow (<a href="https://stackoverflow.com/" class="uri">https://stackoverflow.com/</a>, com a etiqueta <code>r</code>) e o fórum da comunidade Posit (<a href="https://forum.posit.co/" class="uri">https://forum.posit.co/</a>) são os mais usados. Antes de perguntar, vale procurar se a dúvida já foi respondida.</p>
+</section>
+<section id="exemplo-mínimo-reprodutível" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="exemplo-mínimo-reprodutível">Exemplo mínimo reprodutível</h2>
+<p>Quem vai ajudar precisa conseguir reproduzir o problema no próprio computador. Por isso, uma boa pergunta traz um <strong>exemplo mínimo reprodutível</strong>: o menor trecho de código que, executado em uma sessão nova do R, mostra o problema. Ele deve conter os pacotes usados, um pequeno conjunto de dados (criado no próprio código ou de um pacote, como os do <code>medicaldata</code>) e o código que produz o erro, sem nada além disso. Muitas vezes, o próprio esforço de reduzir o problema ao mínimo já revela a sua causa.</p>
+<p>O pacote <code>reprex</code> facilita essa tarefa. Basta copiar o código para a área de transferência e executar <code>reprex::reprex()</code>. O pacote roda o código em uma sessão nova e devolve, já copiado, o código com os resultados e as mensagens, formatado para ser colado em um fórum.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reprex)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># copie o código abaixo e execute reprex() no console</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">municipio =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>), <span class="at">casos =</span> <span class="fu">c</span>(<span class="st">"10"</span>, <span class="st">"20"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(casos))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Este apêndice ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
-<p>Este apêndice reunirá as mensagens de erro e de aviso mais frequentes entre iniciantes, cada uma acompanhada de sua causa provável e da forma de correção, organizadas por etapa do trabalho (instalação de pacotes, importação, transformação, gráficos, renderização de documentos). Apresentará, também, estratégias de busca de ajuda: a leitura atenta da mensagem de erro, a consulta à documentação, a busca na internet com termos adequados, os fóruns da comunidade e a construção de um exemplo mínimo reprodutível com o pacote <code>reprex</code>.</p>
+<p>O resultado mostra o erro <code>invalid 'type' (character) of argument</code> e permite a quem lê perceber, sem precisar dos seus dados, que a coluna <code>casos</code> foi criada como texto. Se os dados do problema forem sensíveis, como microdados de saúde, eles nunca devem ser compartilhados. Nesses casos, cria-se um pequeno conjunto fictício com a mesma estrutura, ou usa-se a função <code>dput()</code> em algumas linhas já desidentificadas e alteradas.</p>
+</section>
+<section id="assistentes-de-inteligência-artificial" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="assistentes-de-inteligência-artificial">Assistentes de inteligência artificial</h2>
+<p>Ferramentas de inteligência artificial podem ajudar a interpretar mensagens de erro e a sugerir código. Elas podem, porém, produzir código com funções ou argumentos que não existem, ou que não fazem o que se pretende. Todo código sugerido deve ser lido, compreendido e testado antes de ser usado, e os resultados devem ser conferidos. Também aqui vale a regra de não compartilhar dados sensíveis.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -780,7 +953,7 @@ Em elaboração
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

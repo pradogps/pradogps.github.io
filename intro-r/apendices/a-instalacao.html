@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -322,8 +357,21 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#r" id="toc-r" class="nav-link active" data-scroll-target="#r">R</a></li>
+  <li><a href="#rstudio" id="toc-rstudio" class="nav-link" data-scroll-target="#rstudio">RStudio</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
+  <li><a href="#rtools-no-windows" id="toc-rtools-no-windows" class="nav-link" data-scroll-target="#rtools-no-windows">Rtools, no Windows</a></li>
+  <li><a href="#configuração-recomendada-do-rstudio" id="toc-configuração-recomendada-do-rstudio" class="nav-link" data-scroll-target="#configuração-recomendada-do-rstudio">Configuração recomendada do RStudio</a></li>
+  <li><a href="#pacotes-usados-no-livro" id="toc-pacotes-usados-no-livro" class="nav-link" data-scroll-target="#pacotes-usados-no-livro">Pacotes usados no livro</a></li>
+  <li><a href="#verificando-a-instalação" id="toc-verificando-a-instalação" class="nav-link" data-scroll-target="#verificando-a-instalação">Verificando a instalação</a></li>
+  <li><a href="#usando-o-r-sem-instalar-nada-posit-cloud" id="toc-usando-o-r-sem-instalar-nada-posit-cloud" class="nav-link" data-scroll-target="#usando-o-r-sem-instalar-nada-posit-cloud">Usando o R sem instalar nada: Posit Cloud</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -347,23 +395,66 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Este apêndice reúne as instruções para preparar o computador para acompanhar o livro. São necessários três programas, o R, o RStudio e o Quarto, além dos pacotes usados nos capítulos. Todos são gratuitos e estão disponíveis para Windows, macOS e Linux.</p>
+<section id="r" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="r">R</h2>
+<p>O R é distribuído pelo CRAN (<em>Comprehensive R Archive Network</em>), em <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>. Na página inicial, escolha o sistema operacional. No Windows, entre em <em>base</em> e baixe o instalador da versão mais recente. No macOS, baixe o arquivo <code>.pkg</code> correspondente ao processador do computador: os modelos com processadores Apple (M1 e posteriores) usam a versão <em>arm64</em>, e os modelos com processadores Intel usam a versão <em>x86_64</em>. Nas distribuições Linux, a instalação costuma ser feita pelo gerenciador de pacotes do sistema, seguindo as instruções da própria página do CRAN. Em todos os casos, as opções padrão do instalador são adequadas.</p>
+</section>
+<section id="rstudio" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="rstudio">RStudio</h2>
+<p>O RStudio Desktop é distribuído pela Posit em <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. Ele deve ser instalado depois do R, porque procura o R já instalado no computador. Ao abrir o RStudio pela primeira vez, ele deve mostrar no console a versão do R encontrada.</p>
+</section>
+<section id="quarto" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="quarto">Quarto</h2>
+<p>As versões recentes do RStudio já trazem o Quarto, de modo que, em geral, não é preciso instalá-lo à parte. Para conferir, digite no <strong>Terminal</strong> do RStudio (não no console) o comando <code>quarto --version</code>. Se o Quarto não estiver disponível, ou se for necessária uma versão mais nova, ele pode ser baixado em <a href="https://quarto.org/docs/get-started/" class="uri">https://quarto.org/docs/get-started/</a>.</p>
+</section>
+<section id="rtools-no-windows" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="rtools-no-windows">Rtools, no Windows</h2>
+<p>No Windows, os pacotes do CRAN são instalados em versão já compilada (binária) e não exigem nenhuma ferramenta adicional. O Rtools, disponível em <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a>, só é necessário para instalar pacotes a partir do código-fonte, como versões de desenvolvimento hospedadas no GitHub. Para acompanhar o livro, ele não é necessário. Se for instalado, a versão do Rtools deve corresponder à versão do R (por exemplo, Rtools 4.5 para o R 4.5).</p>
+</section>
+<section id="configuração-recomendada-do-rstudio" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="configuração-recomendada-do-rstudio">Configuração recomendada do RStudio</h2>
+<p>As configurações abaixo, apresentadas no <a href="../capitulos/01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a>, ficam no menu <em>Tools &gt; Global Options</em>. Em <em>General</em>, desmarque a opção <em>Restore .RData into workspace at startup</em> e defina <em>Save workspace to .RData on exit</em> como <em>Never</em>, para que cada sessão comece limpa e toda a análise dependa apenas dos scripts. Em <em>Code &gt; Saving</em>, defina a codificação padrão como UTF-8, para evitar problemas com acentos. Em <em>Code &gt; Editing</em>, marque <em>Use native pipe operator, |&gt;</em>, para que o atalho <em>Ctrl + Shift + M</em> insira o <em>pipe</em> nativo usado no livro.</p>
+</section>
+<section id="pacotes-usados-no-livro" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="pacotes-usados-no-livro">Pacotes usados no livro</h2>
+<p>O comando a seguir instala, de uma só vez, todos os pacotes do CRAN usados ao longo do livro. Ele precisa ser executado apenas uma vez, com conexão à internet, e pode levar alguns minutos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"tidyverse"</span>,    <span class="co"># readr, dplyr, tidyr, ggplot2, stringr, forcats, lubridate, purrr, tibble</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"readxl"</span>, <span class="st">"writexl"</span>, <span class="st">"haven"</span>,  <span class="co"># leitura e gravação de planilhas e outros formatos</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"here"</span>,         <span class="co"># caminhos relativos ao projeto</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"janitor"</span>,      <span class="co"># limpeza de nomes e tabelas de frequência</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"skimr"</span>,        <span class="co"># resumo exploratório</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"scales"</span>,       <span class="co"># formatação de eixos e rótulos</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"GGally"</span>,       <span class="co"># matriz de gráficos</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"gtsummary"</span>,    <span class="co"># tabelas descritivas e de modelos</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"flextable"</span>,    <span class="co"># exportação de tabelas para o Word</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"broom"</span>,        <span class="co"># resultados de testes e modelos em tabelas</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"epiR"</span>,         <span class="co"># medidas de associação em epidemiologia</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"medicaldata"</span>,  <span class="co"># bases de estudos médicos para ensino</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"microdatasus"</span>, <span class="co"># obtenção de microdados do DATASUS</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"healthbR"</span>,     <span class="co"># obtenção de dados de saúde do Brasil</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"reprex"</span>        <span class="co"># exemplos mínimos reprodutíveis</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-Em elaboração
+<p>Depois de instalados, os pacotes são carregados com <code>library()</code> no início de cada script ou documento, como vimos no <a href="../capitulos/01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a>. Os pacotes <code>knitr</code> e <code>rmarkdown</code>, usados pelo Quarto para executar o código R, são instalados automaticamente junto com o <code>gtsummary</code> e o <code>flextable</code>. Caso o RStudio peça para instalá-los ao renderizar um documento, basta aceitar.</p>
+</section>
+<section id="verificando-a-instalação" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="verificando-a-instalação">Verificando a instalação</h2>
+<p>A função <code>sessionInfo()</code> mostra a versão do R, o sistema operacional e os pacotes carregados na sessão. A versão de um pacote específico é obtida com <code>packageVersion()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este apêndice ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
-<p>Este apêndice reunirá as instruções de instalação do R (a partir do CRAN), do RStudio (a partir do sítio da Posit) e do Quarto, que acompanha as versões recentes do RStudio, para Windows, macOS e Linux. Incluirá uma nota sobre o Rtools no Windows, necessário apenas para instalar pacotes a partir do código-fonte, como versões de desenvolvimento hospedadas no GitHub (o <code>microdatasus</code>, usado para obter os dados, está disponível no CRAN em versão binária e não exige essa ferramenta); a configuração recomendada do RStudio (não salvar o espaço de trabalho, codificação UTF-8, <em>pipe</em> nativo); um único comando para instalar todos os pacotes usados no livro; e a verificação das versões instaladas com <code>sessionInfo()</code>. Será discutida, ainda, a alternativa de uso do Posit Cloud em computadores de laboratório nos quais não seja possível instalar programas.</p>
-<p>A lista de pacotes prevista nesta versão é: <code>tidyverse</code> (que inclui <code>readr</code>, <code>dplyr</code>, <code>tidyr</code>, <code>ggplot2</code>, <code>stringr</code>, <code>forcats</code>, <code>lubridate</code>, <code>purrr</code> e <code>tibble</code>), <code>readxl</code>, <code>haven</code>, <code>here</code>, <code>janitor</code>, <code>skimr</code>, <code>scales</code>, <code>GGally</code>, <code>gtsummary</code>, <code>flextable</code>, <code>broom</code>, <code>epiR</code> e, para a obtenção de dados, <code>microdatasus</code>. As versões mínimas de cada pacote serão fixadas quando o código dos capítulos for executado.</p>
+<p>O livro foi produzido com o R 4.5 e com as versões dos pacotes disponíveis no CRAN em novembro de 2026. Versões mais novas devem funcionar sem problemas. Se algum código não funcionar como esperado, a primeira providência é atualizar os pacotes, com <code>update.packages()</code> ou pelo botão <em>Update</em> da aba <em>Packages</em> do RStudio.</p>
+</section>
+<section id="usando-o-r-sem-instalar-nada-posit-cloud" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="usando-o-r-sem-instalar-nada-posit-cloud">Usando o R sem instalar nada: Posit Cloud</h2>
+<p>Em computadores de laboratório, nos quais não é possível instalar programas, ou em computadores com pouca capacidade, uma alternativa é o Posit Cloud (<a href="https://posit.cloud/" class="uri">https://posit.cloud/</a>), que oferece o RStudio no navegador, sem instalação. Basta criar uma conta, criar um novo projeto e instalar os pacotes como descrito acima. O plano gratuito tem limites de uso de memória e de horas mensais, suficientes para os exercícios do livro, mas pode ser insuficiente para bases muito grandes, como os microdados do SIM ou do SIH de estados populosos.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -781,7 +872,7 @@ Em elaboração
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

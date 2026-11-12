@@ -384,7 +384,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">7 de novembro de 2026</p>
+      <p class="date">11 de novembro de 2026</p>
     </div>
   </div>
   
@@ -399,22 +399,9 @@ div.csl-indent {
 
 <section id="apresentação" class="level1 unnumbered">
 <h1 class="unnumbered">Apresentação</h1><p><img src="capa.svg" title="Introdução ao Software R" class="quarto-cover-image nolightbox img-fluid" alt="Capa do livro Introdução ao Software R: guia básico para aplicações em Saúde Pública, de Gustavo Prado, 1ª edição."></p>
-<div class="callout callout-style-simple callout-note callout-titled" title="Livro em construção">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Livro em construção
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Esta é a primeira versão do livro, publicada de forma progressiva. Os capítulos já redigidos estão completos; os demais exibem, por enquanto, o planejamento do conteúdo (objetivos de aprendizagem, seções previstas, funções e pacotes, aplicações em Saúde Pública e leituras de referência) e serão substituídos pelo texto integral à medida que forem concluídos.</p>
-</div>
-</div>
 <section id="sobre-este-livro" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="sobre-este-livro">Sobre este livro</h2>
-<p>Este livro foi concebido como material de apoio à disciplina HEP0185 — Introdução ao R, oferecida pelo Departamento de Epidemiologia da Faculdade de Saúde Pública da Universidade de São Paulo a estudantes de graduação e de pós-graduação. A ementa da disciplina combina três frentes que costumam ser ensinadas separadamente: os fundamentos da linguagem R, a preparação e a exploração de dados e a aplicação de procedimentos estatísticos básicos a problemas de saúde. O livro procura articular essas frentes em uma sequência única, na qual cada capítulo se apoia no anterior e os mesmos conjuntos de dados reaparecem ao longo do percurso.</p>
+<p>Este livro foi concebido como material de apoio à disciplina Introdução ao R, oferecida pelo Departamento de Epidemiologia da Faculdade de Saúde Pública da Universidade de São Paulo a estudantes de graduação e de pós-graduação. A ementa da disciplina combina três frentes que costumam ser ensinadas separadamente: os fundamentos da linguagem R, a preparação e a exploração de dados e a aplicação de procedimentos estatísticos básicos a problemas de saúde. O livro procura articular essas frentes em uma sequência.</p>
 <p>A proposta é que o estudante termine a leitura capaz de conduzir, com autonomia, uma análise completa de dados em saúde: formular uma pergunta, obter e importar os dados, organizá-los, descrevê-los com tabelas e gráficos, aplicar os testes estatísticos adequados à pergunta e ao delineamento e comunicar os resultados em um relatório reprodutível. O livro não pretende substituir textos de estatística ou de epidemiologia; os conceitos dessas áreas são retomados apenas na medida necessária para que o uso do R seja feito com critério.</p>
 </section>
 <section id="a-quem-se-destina" class="level2 unnumbered">
@@ -433,11 +420,12 @@ Livro em construção
 </section>
 <section id="dados-utilizados" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="dados-utilizados">Dados utilizados</h2>
-<p>Sempre que possível, os exemplos utilizam dados reais e públicos dos sistemas de informação do Sistema Único de Saúde, como o Sistema de Informações sobre Nascidos Vivos (SINASC), o Sistema de Informações sobre Mortalidade (SIM) e o Sistema de Informação de Agravos de Notificação (SINAN), além de estimativas populacionais. Em alguns capítulos, sobretudo na parte de inferência, são usados dados simulados, construídos para ilustrar um conceito de forma controlada; nesses casos, o caráter fictício dos dados é sempre informado. A procedência, o processamento e o dicionário de cada base estão descritos no <a href="apendices/c-bases-do-livro.html" class="quarto-xref"><span>Apêndice C — Bases de dados utilizadas no livro</span></a>.</p>
+<p>Os exemplos usam, sempre que possível, dados reais e públicos. A base principal reúne os nascidos vivos de mães residentes em Rondônia em 2019, registrados no Sistema de Informações sobre Nascidos Vivos (SINASC). Ela acompanha o leitor da importação ao estudo integrador, o que permite concentrar a atenção nos novos conteúdos de cada capítulo. A ela se juntam as estimativas populacionais dos municípios de Rondônia, disponibilizadas pelo DATASUS, e a série diária de casos e óbitos de COVID-19 nos estados da região Norte. Nos capítulos de inferência, são usadas também bases de estudos médicos publicados, reunidas no pacote <code>medicaldata</code>, como um ensaio clínico e um estudo caso-controle. Os exemplos com dados fictícios, criados apenas para ilustrar o funcionamento de uma função, são sempre identificados como tais.</p>
+<p>Todas as bases estão na pasta <code>dados/</code> do projeto, e a procedência, o processamento e o dicionário de cada uma estão descritos no <a href="apendices/c-bases-do-livro.html" class="quarto-xref"><span>Apêndice C — Bases de dados utilizadas no livro</span></a>. Para trabalhar com outros estados, outros anos ou outros sistemas, como o Sistema de Informações sobre Mortalidade (SIM) e o Sistema de Informação de Agravos de Notificação (SINAN), o livro mostra como obter os microdados diretamente no R com os pacotes <code>microdatasus</code> e <code>healthbR</code>.</p>
 </section>
 <section id="software" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="software">Software</h2>
-<p>Os exemplos foram planejados para o R (versão 4.1 ou superior, necessária para o <em>pipe</em> nativo), o RStudio e o Quarto. As instruções de instalação e a lista de pacotes utilizados estão no <a href="apendices/a-instalacao.html" class="quarto-xref"><span>Apêndice A — Instalação e configuração do ambiente</span></a>.</p>
+<p>Os exemplos usam o R (versão 4.1 ou superior, necessária para o <em>pipe</em> nativo), o RStudio e o Quarto, e o livro foi produzido com o R 4.5. As instruções de instalação e o comando para instalar todos os pacotes utilizados estão no <a href="apendices/a-instalacao.html" class="quarto-xref"><span>Apêndice A — Instalação e configuração do ambiente</span></a>.</p>
 </section>
 <section id="referências-que-orientam-o-livro" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="referências-que-orientam-o-livro">Referências que orientam o livro</h2>
@@ -445,7 +433,7 @@ Livro em construção
 </section>
 <section id="licença" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="licença">Licença</h2>
-<p>A licença de uso deste livro será informada nesta seção. Qualquer que seja a escolha, ela será compatível com as licenças das obras consultadas, todas de uso não comercial.</p>
+<p>Este livro é distribuído sob a licença <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br">Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)</a>, a mesma adotada pelo <em>Manual de R para Epidemiologistas</em>. Isso significa que o material pode ser copiado, redistribuído e adaptado para fins não comerciais, desde que a autoria seja citada e que as adaptações sejam distribuídas sob a mesma licença.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
@@ -878,7 +866,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

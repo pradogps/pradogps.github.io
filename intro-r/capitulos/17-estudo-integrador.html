@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -350,10 +385,16 @@ div.csl-indent {
   <li><a href="#sec-pergunta" id="toc-sec-pergunta" class="nav-link active" data-scroll-target="#sec-pergunta"><span class="header-section-number">17.1</span> Formulando a pergunta e definindo os indicadores</a></li>
   <li><a href="#sec-preparacao-integrada" id="toc-sec-preparacao-integrada" class="nav-link" data-scroll-target="#sec-preparacao-integrada"><span class="header-section-number">17.2</span> Obtenção e preparação dos dados</a></li>
   <li><a href="#sec-exploracao-integrada" id="toc-sec-exploracao-integrada" class="nav-link" data-scroll-target="#sec-exploracao-integrada"><span class="header-section-number">17.3</span> Exploração e qualidade dos dados</a></li>
-  <li><a href="#sec-analise-integrada" id="toc-sec-analise-integrada" class="nav-link" data-scroll-target="#sec-analise-integrada"><span class="header-section-number">17.4</span> Análise descritiva e inferencial</a></li>
+  <li><a href="#sec-analise-integrada" id="toc-sec-analise-integrada" class="nav-link" data-scroll-target="#sec-analise-integrada"><span class="header-section-number">17.4</span> Análise descritiva e inferencial</a>
+  <ul class="collapse">
+  <li><a href="#prevalência-geral-e-por-município" id="toc-prevalência-geral-e-por-município" class="nav-link" data-scroll-target="#prevalência-geral-e-por-município">Prevalência geral e por município</a></li>
+  <li><a href="#características-das-mães-segundo-o-desfecho" id="toc-características-das-mães-segundo-o-desfecho" class="nav-link" data-scroll-target="#características-das-mães-segundo-o-desfecho">Características das mães segundo o desfecho</a></li>
+  <li><a href="#medidas-de-associação" id="toc-medidas-de-associação" class="nav-link" data-scroll-target="#medidas-de-associação">Medidas de associação</a></li>
+  </ul></li>
   <li><a href="#sec-comunicacao-integrada" id="toc-sec-comunicacao-integrada" class="nav-link" data-scroll-target="#sec-comunicacao-integrada"><span class="header-section-number">17.5</span> Comunicação dos resultados</a></li>
   <li><a href="#sec-roteiro-trabalho" id="toc-sec-roteiro-trabalho" class="nav-link" data-scroll-target="#sec-roteiro-trabalho"><span class="header-section-number">17.6</span> Roteiro para o trabalho final</a></li>
-  <li><a href="#sec-mais-17" id="toc-sec-mais-17" class="nav-link" data-scroll-target="#sec-mais-17"><span class="header-section-number">17.7</span> Para saber mais</a></li>
+  <li><a href="#sec-sintese-17" id="toc-sec-sintese-17" class="nav-link" data-scroll-target="#sec-sintese-17"><span class="header-section-number">17.7</span> Síntese</a></li>
+  <li><a href="#sec-mais-17" id="toc-sec-mais-17" class="nav-link" data-scroll-target="#sec-mais-17"><span class="header-section-number">17.8</span> Para saber mais</a></li>
   </ul>
 </nav>
     </div>
@@ -379,19 +420,6 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
 <p><strong>Encontro previsto:</strong> estudo autônomo, com orientação ao longo dos encontros 6 a 8 · <strong>Pré-requisitos:</strong> todos os capítulos anteriores · <strong>Pacotes:</strong> os utilizados ao longo do livro</p>
 </div>
@@ -408,32 +436,1106 @@ Objetivos de aprendizagem
 <p>Ao final deste capítulo, espera-se que o estudante seja capaz de conduzir, de forma integrada e reprodutível, todas as etapas de uma análise de dados secundários em saúde: formular uma pergunta e definir os indicadores correspondentes, obter e preparar os dados, explorá-los e avaliar sua qualidade, realizar as análises descritivas e inferenciais adequadas, comunicar os resultados em um relatório Quarto e reconhecer as limitações decorrentes da natureza dos dados.</p>
 </div>
 </div>
+<p>Ao longo do livro, cada capítulo tratou de uma etapa da análise de dados. Na prática, essas etapas se encadeiam em um único trabalho, que começa com uma pergunta e termina com um relatório. Este capítulo percorre esse caminho do início ao fim, com um exemplo completo feito com os nascidos vivos de Rondônia em 2019. Ele serve de modelo para o trabalho final da disciplina, cujo roteiro está na última seção.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtsummary)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(epiR)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_gtsummary_language</span>(<span class="at">language =</span> <span class="st">"pt"</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>, <span class="at">big.mark =</span> <span class="st">"."</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="sec-pergunta" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="sec-pergunta"><span class="header-section-number">17.1</span> Formulando a pergunta e definindo os indicadores</h2>
-<p>Apresenta uma pergunta de exemplo sobre baixo peso ao nascer e prematuridade na área de estudo, a definição operacional das variáveis e dos indicadores e a escolha das análises compatíveis com o delineamento transversal dos dados.</p>
+<p>Uma boa análise começa por uma pergunta clara, que diga o que se quer saber, sobre quem, onde e quando. Perguntas vagas, como “analisar os nascimentos em Rondônia”, levam a análises sem foco. Vamos trabalhar com a seguinte pergunta: <strong>qual foi a prevalência de baixo peso ao nascer entre os nascidos vivos de mães residentes em Rondônia em 2019, como ela variou entre os municípios e quais características maternas e da assistência pré-natal estiveram associadas a ela?</strong></p>
+<p>O passo seguinte é traduzir a pergunta em definições operacionais, isto é, dizer exatamente como cada conceito será medido com as variáveis disponíveis. A <a href="#tbl-definicoes" class="quarto-xref">Tabela&nbsp;<span>17.1</span></a> faz isso para o exemplo.</p>
+<div id="tbl-definicoes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-definicoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;17.1: Definições operacionais do estudo integrador.
+</figcaption>
+<div aria-describedby="tbl-definicoes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Conceito</th>
+<th style="text-align: left;">Definição operacional</th>
+<th style="text-align: left;">Variável do SINASC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Baixo peso ao nascer (desfecho)</td>
+<td style="text-align: left;">Peso inferior a 2.500 g</td>
+<td style="text-align: left;"><code>PESO</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Prevalência de baixo peso</td>
+<td style="text-align: left;">Nascidos vivos com baixo peso ÷ total de nascidos vivos com peso informado × 100</td>
+<td style="text-align: left;"><code>PESO</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Idade da mãe</td>
+<td style="text-align: left;">Menos de 20, 20 a 34, 35 anos ou mais</td>
+<td style="text-align: left;"><code>IDADEMAE</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Escolaridade da mãe</td>
+<td style="text-align: left;">Anos de estudo, em cinco categorias</td>
+<td style="text-align: left;"><code>ESCMAE</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pré-natal</td>
+<td style="text-align: left;">Menos de sete ou sete ou mais consultas</td>
+<td style="text-align: left;"><code>CONSULTAS</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tipo de gravidez</td>
+<td style="text-align: left;">Única ou múltipla</td>
+<td style="text-align: left;"><code>GRAVIDEZ</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Município</td>
+<td style="text-align: left;">Município de residência da mãe</td>
+<td style="text-align: left;"><code>CODMUNRES</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Também é preciso reconhecer o <strong>delineamento</strong>. Os dados do SINASC registram, no mesmo momento, o nascimento e as características da mãe e da gestação. Para a pergunta que fizemos, eles funcionam como um estudo transversal de base populacional, e a medida de associação adequada é a razão de prevalências, como vimos no <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>. Como os dados cobrem todos os nascimentos registrados, e não uma amostra, os intervalos de confiança devem ser lidos como uma medida da variabilidade aleatória do processo que gera os nascimentos, e não do erro de amostragem.</p>
 </section>
 <section id="sec-preparacao-integrada" class="level2" data-number="17.2">
 <h2 data-number="17.2" class="anchored" data-anchor-id="sec-preparacao-integrada"><span class="header-section-number">17.2</span> Obtenção e preparação dos dados</h2>
-<p>Reúne, em um único script ou documento, a obtenção, a importação e a preparação dos dados, retomando os capítulos da Parte II.</p>
+<p>Em um trabalho real, o primeiro passo seria obter os dados. Com o pacote <code>microdatasus</code> <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span>, o download e o pré-processamento dos nascidos vivos de Rondônia em 2019 seriam feitos com poucas linhas, como vimos no <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>. O código abaixo não é executado no livro, que usa o arquivo já incluído na pasta <code>dados/</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microdatasus)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sinasc_bruto <span class="ot">&lt;-</span> <span class="fu">fetch_datasus</span>(<span class="at">year_start =</span> <span class="dv">2019</span>, <span class="at">year_end =</span> <span class="dv">2019</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">uf =</span> <span class="st">"RO"</span>, <span class="at">information_system =</span> <span class="st">"SINASC"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sinasc <span class="ot">&lt;-</span> <span class="fu">process_sinasc</span>(sinasc_bruto)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv2</span>(sinasc, <span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"brutos"</span>, <span class="st">"sinasc_ro_2019.csv"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A preparação reúne, em um único script, todas as etapas das Partes II e III: importação, seleção de variáveis, tratamento de códigos de ignorado, criação de novas variáveis e ordenação das categorias. No livro, esse script é o <code>scripts/preparar-sinasc.R</code>, que vem sendo usado desde o <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a> e que, no <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>, passou a incluir as decisões da análise exploratória. Vamos executá-lo e acrescentar as variáveis específicas da pergunta.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>estudo <span class="ot">&lt;-</span> nascidos_analise <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">baixo_peso_cat =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(baixo_peso, <span class="st">"Sim"</span>, <span class="st">"Não"</span>), <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Sim"</span>, <span class="st">"Não"</span>)),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">pre_natal =</span> <span class="fu">factor</span>(<span class="fu">if_else</span>(consultas_cat <span class="sc">==</span> <span class="st">"7 ou mais"</span>, <span class="st">"7 ou mais"</span>, <span class="st">"Menos de 7"</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Menos de 7"</span>, <span class="st">"7 ou mais"</span>)),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">gravidez_cat =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      gravidez <span class="sc">==</span> <span class="st">"Única"</span> <span class="sc">~</span> <span class="st">"Única"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      gravidez <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Dupla"</span>, <span class="st">"Tríplice e mais"</span>) <span class="sc">~</span> <span class="st">"Múltipla"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">gravidez_cat =</span> <span class="fu">factor</span>(gravidez_cat, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Múltipla"</span>, <span class="st">"Única"</span>))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(estudo)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 27,028</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 25</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ codmunres        &lt;chr&gt; "110001", "110001", "110001", "110037", "110001", "11…</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ munresnome       &lt;chr&gt; "Alta Floresta D'Oeste", "Alta Floresta D'Oeste", "Al…</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ dtnasc           &lt;date&gt; 2019-02-19, 2019-02-21, 2019-02-25, 2019-03-20, 2019…</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ sexo             &lt;fct&gt; Masculino, Feminino, Feminino, Feminino, Feminino, Ma…</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ peso             &lt;dbl&gt; 3685, 3055, 3460, 2982, 3310, 2740, 3158, 3192, 3570,…</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ idademae         &lt;dbl&gt; 19, 29, 37, 30, 30, 33, 37, 27, 20, 30, 31, 21, 21, 1…</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ escmae           &lt;fct&gt; 8 a 11 anos, 8 a 11 anos, 8 a 11 anos, 12 anos ou mai…</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ racacor          &lt;fct&gt; Branca, Branca, Branca, Parda, Parda, Branca, Branca,…</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ gestacao         &lt;chr&gt; "37 a 41 semanas", "37 a 41 semanas", "37 a 41 semana…</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ semagestac       &lt;dbl&gt; 39, 38, 40, 38, 38, 38, 38, 39, 39, 39, 40, 38, 41, 3…</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ gravidez         &lt;chr&gt; "Única", "Única", "Única", "Única", "Única", "Única",…</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ parto            &lt;fct&gt; Cesáreo, Cesáreo, Cesáreo, Cesáreo, Cesáreo, Cesáreo,…</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ consultas        &lt;dbl&gt; 4, 4, 4, 3, 4, 4, 4, 4, 3, 4, 4, 3, 4, 3, 4, 3, 4, 3,…</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ apgar5           &lt;dbl&gt; 10, 9, 10, 10, 10, 10, 10, 10, 9, 10, 9, 10, 9, 9, 7,…</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ baixo_peso       &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ prematuro        &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mae_adolescente  &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE…</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ pre_natal_7mais  &lt;lgl&gt; TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALS…</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ faixa_idade_mae  &lt;fct&gt; Menos de 20, 20 a 34, 35 ou mais, 20 a 34, 20 a 34, 2…</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ consultas_cat    &lt;fct&gt; 7 ou mais, 7 ou mais, 7 ou mais, 4 a 6, 7 ou mais, 7 …</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ mes_nasc         &lt;fct&gt; fev, fev, fev, mar, mar, mar, abr, abr, fev, mar, mar…</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ ig_inconsistente &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ baixo_peso_cat   &lt;fct&gt; Não, Não, Não, Não, Não, Não, Não, Não, Não, Não, Não…</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ pre_natal        &lt;fct&gt; 7 ou mais, 7 ou mais, 7 ou mais, Menos de 7, 7 ou mai…</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ gravidez_cat     &lt;fct&gt; Única, Única, Única, Única, Única, Única, Única, Únic…</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Organizar o trabalho em um projeto do RStudio, com pastas separadas para dados brutos, dados processados, scripts e resultados, como vimos no <a href="01-r-rstudio.html" class="quarto-xref"><span>Capítulo 1</span></a>, e manter a preparação em um script à parte do relatório são práticas que facilitam a revisão e a reutilização do código.</p>
 </section>
 <section id="sec-exploracao-integrada" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="sec-exploracao-integrada"><span class="header-section-number">17.3</span> Exploração e qualidade dos dados</h2>
-<p>Aplica o protocolo do <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a> às variáveis da pergunta e registra as decisões tomadas.</p>
+<p>Antes das análises, aplicamos o protocolo do <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a> às variáveis da pergunta. O primeiro passo é a completude. Com <code>across()</code> e <code>everything()</code>, calculamos a proporção de valores ausentes de todas as variáveis de uma vez.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>estudo <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(peso, idademae, escmae, consultas, gravidez_cat, codmunres) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), \(x) <span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">is.na</span>(x)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"variavel"</span>, <span class="at">values_to =</span> <span class="st">"perc_ausente"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   variavel     perc_ausente</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;               &lt;dbl&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 peso                  0  </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 idademae              0  </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 escmae                1.2</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 consultas             0.2</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 gravidez_cat          0.3</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 codmunres             0</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O peso e o município estão completos, e as demais variáveis têm poucos valores ausentes, o que permite analisá-las com os registros disponíveis. Os valores extremos e a consistência do peso com a idade gestacional já foram avaliados no <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>. Um ponto adicional, importante para esta pergunta, é o tipo de gravidez.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>estudo <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gravidez_cat)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gravidez_cat) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nascimentos =</span> <span class="fu">n</span>(), <span class="at">perc_baixo_peso =</span> <span class="fu">mean</span>(baixo_peso) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   gravidez_cat nascimentos perc_baixo_peso</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;              &lt;int&gt;           &lt;dbl&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Múltipla             497           59.0 </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Única              26452            6.00</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A prevalência de baixo peso entre os gemelares é muitas vezes maior que entre os nascidos de gestação única. Como os gemelares formam um grupo com características muito próprias e são poucos, uma decisão comum é restringir a análise de fatores associados às gestações únicas, relatando separadamente a prevalência geral. É o que faremos, registrando a decisão.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>estudo_unicos <span class="ot">&lt;-</span> estudo <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(gravidez_cat <span class="sc">==</span> <span class="st">"Única"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tbl-decisoes-integrador" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-decisoes-integrador-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;17.2: Decisões tomadas na exploração do estudo integrador.
+</figcaption>
+<div aria-describedby="tbl-decisoes-integrador-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Verificação</th>
+<th style="text-align: left;">Achado</th>
+<th style="text-align: left;">Decisão</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Completude</td>
+<td style="text-align: left;">Peso e município completos; demais variáveis com poucos ausentes</td>
+<td style="text-align: left;">Analisar com os registros disponíveis e relatar a completude</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Peso e idade gestacional</td>
+<td style="text-align: left;">Poucos registros com idade gestacional incompatível com o peso (<a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>)</td>
+<td style="text-align: left;">Idade gestacional considerada ausente nesses registros</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tipo de gravidez</td>
+<td style="text-align: left;">Prevalência de baixo peso muito maior entre gemelares</td>
+<td style="text-align: left;">Restringir a análise de fatores associados às gestações únicas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Municípios pequenos</td>
+<td style="text-align: left;">Proporções instáveis em municípios com poucos nascimentos</td>
+<td style="text-align: left;">Apresentar os municípios com intervalos de confiança</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-analise-integrada" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="sec-analise-integrada"><span class="header-section-number">17.4</span> Análise descritiva e inferencial</h2>
-<p>Produz a tabela descritiva, os gráficos e as análises inferenciais, retomando as Partes III e IV.</p>
+<section id="prevalência-geral-e-por-município" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="prevalência-geral-e-por-município">Prevalência geral e por município</h3>
+<p>A prevalência geral de baixo peso, com todos os nascimentos, foi de 7,0%. Para olhar os municípios, vamos reaproveitar a função <code>proporcao_ic()</code>, escrita no <a href="16-programacao.html" class="quarto-xref"><span>Capítulo 16</span></a>, com uma modificação. Com poucos casos, o intervalo pela aproximação normal pode ter limite inferior negativo, o que não faz sentido para uma proporção. O intervalo de Wilson se comporta melhor nessas situações e fica sempre entre 0 e 1. Basta mudar o corpo da função, sem alterar a forma de usá-la, o que mostra uma das vantagens de organizar o código em funções.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>proporcao_ic <span class="ot">&lt;-</span> <span class="cf">function</span>(eventos, total, <span class="at">confianca =</span> <span class="fl">0.95</span>) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> eventos <span class="sc">/</span> total</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> confianca) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># intervalo de Wilson</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  centro <span class="ot">&lt;-</span> (p <span class="sc">+</span> z<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> total)) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> z<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> total)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  margem <span class="ot">&lt;-</span> z <span class="sc">*</span> <span class="fu">sqrt</span>(p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p) <span class="sc">/</span> total <span class="sc">+</span> z<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="dv">4</span> <span class="sc">*</span> total<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> z<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> total)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">proporcao =</span> p, <span class="at">inferior =</span> centro <span class="sc">-</span> margem, <span class="at">superior =</span> centro <span class="sc">+</span> margem)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>por_municipio <span class="ot">&lt;-</span> estudo <span class="sc">|&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(munresnome) <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nascimentos =</span> <span class="fu">n</span>(), <span class="at">casos =</span> <span class="fu">sum</span>(baixo_peso)) <span class="sc">|&gt;</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(nascimentos <span class="sc">&gt;=</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">proporcao_ic</span>(casos, nascimentos)) <span class="sc">|&gt;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(proporcao, inferior, superior), \(x) x <span class="sc">*</span> <span class="dv">100</span>))</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>por_municipio <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(proporcao)) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 6</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   munresnome         nascimentos casos proporcao inferior superior</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Cerejeiras                 237    25     10.5      7.25    15.1 </span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Colorado do Oeste          214    22     10.3      6.89    15.1 </span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Nova União                 104    10      9.62     5.31    16.8 </span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Presidente Médici          304    29      9.54     6.72    13.4 </span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Machadinho D'Oeste         500    45      9        6.79    11.8 </span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Vilhena                   1590   131      8.24     6.99     9.69</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Usar <code>proporcao_ic()</code> dentro de <code>mutate()</code> acrescenta à tabela as três colunas que a função devolve. Mantivemos os 37 municípios com pelo menos 100 nascimentos, já que, nos menores, as proporções são muito instáveis e os intervalos ficam largos demais para qualquer comparação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(por_municipio, <span class="fu">aes</span>(<span class="at">x =</span> proporcao, <span class="at">y =</span> <span class="fu">fct_reorder</span>(munresnome, proporcao))) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(estudo<span class="sc">$</span>baixo_peso) <span class="sc">*</span> <span class="dv">100</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> inferior, <span class="at">xmax =</span> superior), <span class="at">height =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> nascimentos), <span class="at">color =</span> <span class="st">"#ff6347"</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Prevalência de baixo peso ao nascer (%)"</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">size =</span> <span class="st">"Nascimentos"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-integrador-municipios" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de pontos com segmentos horizontais, um por município, ordenados pela prevalência de baixo peso. As prevalências variam de cerca de 3% a pouco mais de 10%, e os intervalos dos municípios menores são mais largos. A maioria dos intervalos cruza a linha tracejada da prevalência estadual, de cerca de 7%.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-integrador-municipios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="17-estudo-integrador_files/figure-html/fig-integrador-municipios-1.png" class="img-fluid figure-img" alt="Gráfico de pontos com segmentos horizontais, um por município, ordenados pela prevalência de baixo peso. As prevalências variam de cerca de 3% a pouco mais de 10%, e os intervalos dos municípios menores são mais largos. A maioria dos intervalos cruza a linha tracejada da prevalência estadual, de cerca de 7%." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrador-municipios-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.1: Prevalência de baixo peso ao nascer e intervalo de confiança de 95% nos municípios de Rondônia com pelo menos 100 nascidos vivos, 2019. A linha tracejada indica a prevalência estadual.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O gráfico mostra que a maior parte das diferenças entre os municípios é compatível com a variação aleatória, já que a maioria dos intervalos cruza a linha da prevalência estadual. Rankings de municípios feitos apenas com as proporções, sem considerar os intervalos, podem levar a conclusões equivocadas sobre quais municípios estão em pior situação.</p>
+</section>
+<section id="características-das-mães-segundo-o-desfecho" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="características-das-mães-segundo-o-desfecho">Características das mães segundo o desfecho</h3>
+<p>A tabela descritiva compara as características das mães dos recém-nascidos com e sem baixo peso, entre as gestações únicas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>estudo_unicos <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(baixo_peso_cat, faixa_idade_mae, escmae, pre_natal, parto) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> baixo_peso_cat,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">list</span>(faixa_idade_mae <span class="sc">~</span> <span class="st">"Idade da mãe"</span>, escmae <span class="sc">~</span> <span class="st">"Escolaridade da mãe"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                 pre_natal <span class="sc">~</span> <span class="st">"Consultas de pré-natal"</span>, parto <span class="sc">~</span> <span class="st">"Tipo de parto"</span>),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent =</span> <span class="st">"row"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_text =</span> <span class="st">"Sem informação"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_spanning_header</span>(<span class="fu">all_stat_cols</span>() <span class="sc">~</span> <span class="st">"**Baixo peso ao nascer**"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_p</span>(<span class="at">test =</span> <span class="fu">all_categorical</span>() <span class="sc">~</span> <span class="st">"chisq.test"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-integrador-descritiva" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-integrador-descritiva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;17.3: Características maternas e da assistência pré-natal segundo o baixo peso ao nascer, gestações únicas, Rondônia, 2019.
+</figcaption>
+<div aria-describedby="tbl-integrador-descritiva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div id="sgwpodzqzf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sgwpodzqzf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sgwpodzqzf thead, #sgwpodzqzf tbody, #sgwpodzqzf tfoot, #sgwpodzqzf tr, #sgwpodzqzf td, #sgwpodzqzf th {
+  border-style: none;
+}
+
+#sgwpodzqzf p {
+  margin: 0;
+  padding: 0;
+}
+
+#sgwpodzqzf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sgwpodzqzf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sgwpodzqzf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sgwpodzqzf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sgwpodzqzf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sgwpodzqzf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sgwpodzqzf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sgwpodzqzf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sgwpodzqzf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sgwpodzqzf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sgwpodzqzf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sgwpodzqzf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sgwpodzqzf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sgwpodzqzf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sgwpodzqzf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgwpodzqzf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sgwpodzqzf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sgwpodzqzf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sgwpodzqzf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgwpodzqzf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sgwpodzqzf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgwpodzqzf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sgwpodzqzf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgwpodzqzf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sgwpodzqzf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sgwpodzqzf .gt_left {
+  text-align: left;
+}
+
+#sgwpodzqzf .gt_center {
+  text-align: center;
+}
+
+#sgwpodzqzf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sgwpodzqzf .gt_font_normal {
+  font-weight: normal;
+}
+
+#sgwpodzqzf .gt_font_bold {
+  font-weight: bold;
+}
+
+#sgwpodzqzf .gt_font_italic {
+  font-style: italic;
+}
+
+#sgwpodzqzf .gt_super {
+  font-size: 65%;
+}
+
+#sgwpodzqzf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sgwpodzqzf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sgwpodzqzf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sgwpodzqzf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sgwpodzqzf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sgwpodzqzf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sgwpodzqzf .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#sgwpodzqzf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#sgwpodzqzf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="label" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Características</strong></th>
+<th colspan="2" id="level-1;-stat_1" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Baixo peso ao nascer</strong>
+</div></th>
+<th rowspan="2" id="p.value" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Valor-p</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="stat_1" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Sim</strong><br>
+N = 1.587<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+<th id="stat_2" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Não</strong><br>
+N = 24.865<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Idade da mãe</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0,001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Menos de 20</td>
+<td class="gt_row gt_center" headers="stat_1">346 (7,7%)</td>
+<td class="gt_row gt_center" headers="stat_2">4.164 (92%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;20 a 34</td>
+<td class="gt_row gt_center" headers="stat_1">1.020 (5,4%)</td>
+<td class="gt_row gt_center" headers="stat_2">17.864 (95%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;35 ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">221 (7,2%)</td>
+<td class="gt_row gt_center" headers="stat_2">2.837 (93%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">Escolaridade da mãe</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0,001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Nenhuma</td>
+<td class="gt_row gt_center" headers="stat_1">4 (10%)</td>
+<td class="gt_row gt_center" headers="stat_2">36 (90%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1 a 3 anos</td>
+<td class="gt_row gt_center" headers="stat_1">54 (11%)</td>
+<td class="gt_row gt_center" headers="stat_2">451 (89%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4 a 7 anos</td>
+<td class="gt_row gt_center" headers="stat_1">331 (7,1%)</td>
+<td class="gt_row gt_center" headers="stat_2">4.339 (93%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;8 a 11 anos</td>
+<td class="gt_row gt_center" headers="stat_1">838 (5,5%)</td>
+<td class="gt_row gt_center" headers="stat_2">14.480 (95%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;12 anos ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">332 (5,9%)</td>
+<td class="gt_row gt_center" headers="stat_2">5.282 (94%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">28</td>
+<td class="gt_row gt_center" headers="stat_2">277</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Consultas de pré-natal</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0,001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Menos de 7</td>
+<td class="gt_row gt_center" headers="stat_1">807 (9,9%)</td>
+<td class="gt_row gt_center" headers="stat_2">7.359 (90%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7 ou mais</td>
+<td class="gt_row gt_center" headers="stat_1">773 (4,2%)</td>
+<td class="gt_row gt_center" headers="stat_2">17.463 (96%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">7</td>
+<td class="gt_row gt_center" headers="stat_2">43</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">Tipo de parto</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0,001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Vaginal</td>
+<td class="gt_row gt_center" headers="stat_1">607 (6,9%)</td>
+<td class="gt_row gt_center" headers="stat_2">8.248 (93%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Cesáreo</td>
+<td class="gt_row gt_center" headers="stat_1">977 (5,6%)</td>
+<td class="gt_row gt_center" headers="stat_2">16.593 (94%)</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Sem informação</td>
+<td class="gt_row gt_center" headers="stat_1">3</td>
+<td class="gt_row gt_center" headers="stat_2">24</td>
+<td class="gt_row gt_center" headers="p.value"><br>
+</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_footnotes odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> n (%)</td>
+</tr>
+<tr class="gt_footnotes even">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Teste qui-quadrado de independência</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Com <code>percent = "row"</code>, os percentuais são calculados dentro de cada categoria da característica materna, de modo que a coluna “Sim” mostra diretamente a prevalência de baixo peso em cada categoria. A função <code>add_p()</code> escolhe o teste conforme o tipo e o tamanho das caselas; aqui, pedimos o teste qui-quadrado para todas as variáveis categóricas com o argumento <code>test</code>. Repare que o grupo de mães sem escolaridade é muito pequeno, o que torna instável a prevalência calculada para ele.</p>
+</section>
+<section id="medidas-de-associação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="medidas-de-associação">Medidas de associação</h3>
+<p>Por fim, estimamos as razões de prevalências para as principais exposições, comparando cada categoria com a de referência. Para isso, adaptamos a função do estudo de caso do <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>razao_prevalencias <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, exposicao, nivel_exposto, nivel_referencia) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  dados_tab <span class="ot">&lt;-</span> dados <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(.data[[exposicao]] <span class="sc">%in%</span> <span class="fu">c</span>(nivel_exposto, nivel_referencia)) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">exposto =</span> <span class="fu">factor</span>(.data[[exposicao]], <span class="at">levels =</span> <span class="fu">c</span>(nivel_exposto, nivel_referencia)))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  resultado <span class="ot">&lt;-</span> <span class="fu">epi.2by2</span>(<span class="fu">table</span>(dados_tab<span class="sc">$</span>exposto, dados_tab<span class="sc">$</span>baixo_peso_cat),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">method =</span> <span class="st">"cross.sectional"</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  resultado<span class="sc">$</span>massoc.summary <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transmute</span>(<span class="at">comparacao =</span> <span class="fu">paste</span>(nivel_exposto, <span class="st">"vs."</span>, nivel_referencia),</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">rp =</span> est, <span class="at">inferior =</span> lower, <span class="at">superior =</span> upper)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>associacoes <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">razao_prevalencias</span>(estudo_unicos, <span class="st">"faixa_idade_mae"</span>, <span class="st">"Menos de 20"</span>, <span class="st">"20 a 34"</span>),</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">razao_prevalencias</span>(estudo_unicos, <span class="st">"faixa_idade_mae"</span>, <span class="st">"35 ou mais"</span>, <span class="st">"20 a 34"</span>),</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">razao_prevalencias</span>(estudo_unicos, <span class="st">"escmae"</span>, <span class="st">"4 a 7 anos"</span>, <span class="st">"12 anos ou mais"</span>),</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">razao_prevalencias</span>(estudo_unicos, <span class="st">"escmae"</span>, <span class="st">"8 a 11 anos"</span>, <span class="st">"12 anos ou mais"</span>),</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">razao_prevalencias</span>(estudo_unicos, <span class="st">"pre_natal"</span>, <span class="st">"Menos de 7"</span>, <span class="st">"7 ou mais"</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>associacoes <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(rp, inferior, superior), \(x) <span class="fu">round</span>(x, <span class="dv">2</span>)))</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                        comparacao   rp inferior superior</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         Menos de 20 vs. 20 a 34 1.42     1.26     1.60</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2          35 ou mais vs. 20 a 34 1.34     1.16     1.54</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  4 a 7 anos vs. 12 anos ou mais 1.20     1.03     1.39</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 8 a 11 anos vs. 12 anos ou mais 0.93     0.82     1.05</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5        Menos de 7 vs. 7 ou mais 2.33     2.12     2.56</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(associacoes, <span class="fu">aes</span>(<span class="at">x =</span> rp, <span class="at">y =</span> <span class="fu">fct_rev</span>(<span class="fu">fct_inorder</span>(comparacao)))) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbarh</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> inferior, <span class="at">xmax =</span> superior), <span class="at">height =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"#b5401f"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Razão de prevalências (escala logarítmica)"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-integrador-rp" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de pontos com intervalos horizontais para cinco comparações, com escala logarítmica e linha vertical em 1. A comparação de menos de sete consultas com sete ou mais tem a maior razão de prevalências, acima de 2, e seu intervalo fica longe da linha. As demais ficam entre cerca de 0,9 e 1,5, e apenas a de 8 a 11 anos de estudo tem intervalo que cruza a linha de 1.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-integrador-rp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="17-estudo-integrador_files/figure-html/fig-integrador-rp-1.png" class="img-fluid figure-img" alt="Gráfico de pontos com intervalos horizontais para cinco comparações, com escala logarítmica e linha vertical em 1. A comparação de menos de sete consultas com sete ou mais tem a maior razão de prevalências, acima de 2, e seu intervalo fica longe da linha. As demais ficam entre cerca de 0,9 e 1,5, e apenas a de 8 a 11 anos de estudo tem intervalo que cruza a linha de 1." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-integrador-rp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;17.2: Razões de prevalências de baixo peso ao nascer e intervalos de confiança de 95%, gestações únicas, Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Entre as gestações únicas, a prevalência de baixo peso foi 1,42 vez maior entre os filhos de mães adolescentes e 1,34 vez maior entre os filhos de mães com 35 anos ou mais, em comparação com as mães de 20 a 34 anos. As mães com 4 a 7 anos de estudo tiveram prevalência um pouco maior que as com 12 anos ou mais, enquanto as com 8 a 11 anos não diferiram delas. A associação mais forte foi com o pré-natal: a prevalência de baixo peso foi 2,33 vezes maior entre os filhos de mães com menos de sete consultas. Como discutido no <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>, parte dessa associação pode refletir a menor duração das gestações que terminam em parto prematuro, e todas essas medidas são brutas.</p>
+<p>As razões de prevalências são apresentadas em escala logarítmica porque, nessa escala, uma razão de 2 e uma de 0,5 ficam à mesma distância de 1, o que respeita a natureza multiplicativa da medida.</p>
+</section>
 </section>
 <section id="sec-comunicacao-integrada" class="level2" data-number="17.5">
 <h2 data-number="17.5" class="anchored" data-anchor-id="sec-comunicacao-integrada"><span class="header-section-number">17.5</span> Comunicação dos resultados</h2>
-<p>Apresenta uma estrutura de relatório (introdução, métodos, resultados, discussão e limitações), com tabelas e figuras geradas pelo próprio documento e o registro das versões do R e dos pacotes. Menciona o pacote <code>renv</code> como recurso para fixar versões de pacotes em projetos de longo prazo.</p>
+<p>Os resultados de uma análise só cumprem seu papel quando são comunicados de forma clara. O relatório deve ser escrito em um documento Quarto, como vimos no <a href="04-quarto.html" class="quarto-xref"><span>Capítulo 4</span></a>, para que tabelas, gráficos e números do texto venham diretamente do código e sejam atualizados automaticamente se os dados mudarem. Uma estrutura habitual, inspirada nos artigos científicos, é a seguinte.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Baixo peso ao nascer em Rondônia, 2019"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Nome do estudante"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> pt-BR</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: preparo</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introdução</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>Por que a pergunta é relevante e qual é o objetivo.</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Métodos</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>Fonte dos dados, período, população, definições das variáveis</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>e dos indicadores, decisões da exploração e métodos estatísticos.</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultados</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>Tabelas e gráficos produzidos pelo código, com os números</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>do texto escritos com código inline.</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Discussão</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>O que os resultados significam, comparação com outros estudos</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>e limitações.</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="fu">## Informações da sessão</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Na redação dos resultados, os números devem vir do código, com a sintaxe inline vista no <a href="04-quarto.html" class="quarto-xref"><span>Capítulo 4</span></a>. Por exemplo, a frase “a prevalência de baixo peso foi de <code>r round(mean(estudo$baixo_peso) * 100, 1)</code>%” é atualizada sozinha se os dados mudarem. A seção de limitações é parte essencial de qualquer análise de dados secundários. No exemplo, ela mencionaria, entre outros pontos, a possibilidade de erros de registro, os valores ausentes, o caráter transversal dos dados, que não permite estabelecer a ordem temporal entre todas as exposições e o desfecho, e o fato de as associações estimadas serem brutas, sem ajuste para outras variáveis.</p>
+<p>A função <code>sessionInfo()</code>, no final do relatório, registra a versão do R e dos pacotes usados, o que ajuda a reproduzir a análise no futuro. Em projetos de longa duração, o pacote <code>renv</code> vai além e guarda as versões exatas de todos os pacotes do projeto, permitindo recriar o mesmo ambiente em outro computador ou anos depois.</p>
 </section>
 <section id="sec-roteiro-trabalho" class="level2" data-number="17.6">
 <h2 data-number="17.6" class="anchored" data-anchor-id="sec-roteiro-trabalho"><span class="header-section-number">17.6</span> Roteiro para o trabalho final</h2>
-<p>Traduz o percurso do capítulo em um roteiro e em uma lista de verificação para o trabalho final da disciplina, cujos critérios de avaliação serão definidos com os docentes responsáveis.</p>
+<p>O trabalho final da disciplina segue o percurso deste capítulo, aplicado a uma pergunta escolhida pelo estudante ou pelo grupo, com dados de um sistema de informação em saúde ou de uma das bases do pacote <code>medicaldata</code>. Os critérios de avaliação, os prazos e a forma de entrega são apresentados pelos docentes no início da disciplina. O roteiro a seguir ajuda a organizar o trabalho.</p>
+<p>O primeiro passo é escolher o tema e formular a pergunta, dizendo o que se quer saber, sobre quem, onde e quando. Em seguida, é preciso identificar a fonte dos dados, verificar se ela contém as variáveis necessárias e escrever as definições operacionais. Com os dados em mãos, o trabalho segue para a importação e a preparação, em um script organizado dentro de um projeto do RStudio, e para a exploração, com o registro das decisões. Só então vêm as análises descritivas e, quando fizer sentido, as inferenciais, escolhidas de acordo com o tipo das variáveis e o delineamento. O trabalho termina com o relatório em Quarto, que deve ser renderizado do início ao fim sem erros. A lista de verificação da <a href="#tbl-checklist" class="quarto-xref">Tabela&nbsp;<span>17.4</span></a> pode ser usada antes da entrega.</p>
+<div id="tbl-checklist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;17.4: Lista de verificação para o trabalho final.
+</figcaption>
+<div aria-describedby="tbl-checklist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Etapa</th>
+<th style="text-align: left;">Pergunta de verificação</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Pergunta</td>
+<td style="text-align: left;">A pergunta diz o que se quer saber, sobre quem, onde e quando?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dados</td>
+<td style="text-align: left;">A fonte, o período e a forma de obtenção estão descritos? Se os dados forem fictícios ou simulados, isso está dito?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Definições</td>
+<td style="text-align: left;">Cada variável e indicador tem uma definição operacional clara?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Projeto</td>
+<td style="text-align: left;">O trabalho está em um projeto do RStudio, com caminhos relativos e <code>here()</code>?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Preparação</td>
+<td style="text-align: left;">Todas as transformações estão no código, sem edições manuais nos dados?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Exploração</td>
+<td style="text-align: left;">A completude e os valores extremos foram verificados e as decisões, registradas?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Análise</td>
+<td style="text-align: left;">Os métodos são adequados ao tipo das variáveis e ao delineamento?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Resultados</td>
+<td style="text-align: left;">As estimativas vêm acompanhadas de intervalos de confiança, e não apenas de valores-p?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gráficos e tabelas</td>
+<td style="text-align: left;">Têm títulos, rótulos em português, unidades e fonte dos dados?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Interpretação</td>
+<td style="text-align: left;">A discussão distingue associação de causalidade e apresenta as limitações?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Reprodutibilidade</td>
+<td style="text-align: left;">O documento Quarto é renderizado do início ao fim sem erros em outro computador?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section>
-<section id="sec-mais-17" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="sec-mais-17"><span class="header-section-number">17.7</span> Para saber mais</h2>
+<section id="sec-sintese-17" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="sec-sintese-17"><span class="header-section-number">17.7</span> Síntese</h2>
+<p>Uma análise de dados em saúde percorre um caminho que vai da pergunta ao relatório. A pergunta precisa ser específica e traduzida em definições operacionais, e o delineamento dos dados orienta a escolha das medidas e dos métodos. A preparação deve ficar registrada em código, dentro de um projeto organizado, e a exploração deve avaliar a qualidade dos dados e documentar as decisões. As análises descritivas e inferenciais respondem à pergunta, sempre com estimativas e intervalos de confiança. O relatório em Quarto reúne texto, código e resultados em um único documento reprodutível, que inclui as limitações da análise e o registro das versões do software.</p>
+</section>
+<section id="sec-mais-17" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="sec-mais-17"><span class="header-section-number">17.8</span> Para saber mais</h2>
+<p>A introdução do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> apresenta o ciclo de trabalho da ciência de dados, da importação à comunicação, e o capítulo sobre Quarto aprofunda a produção de relatórios. O <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> traz capítulos sobre relatórios com R Markdown, cujos princípios valem para o Quarto, e sobre a organização de projetos e a produção de relatórios de rotina. Para o planejamento e a análise de estudos com amostras, o livro online <a href="https://amostragemcomr.github.io/livro/index.html">Amostragem com R</a> é uma leitura útil, e o portal <a href="https://causeweb.org/tshs/category/dataset/">Teaching of Statistics in the Health Sciences</a> reúne conjuntos de dados de estudos em saúde que podem inspirar temas para o trabalho final, vários deles disponíveis no pacote <code>medicaldata</code>.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -451,12 +1553,17 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">Introdução; 28. Quarto</td>
-<td style="text-align: left;">Fluxo de trabalho</td>
+<td style="text-align: left;">Fluxo de trabalho; Formatos e recursos do Quarto</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">40. Relatórios com R Markdown</td>
 <td style="text-align: left;">Estrutura do arquivo; Relatórios parametrizados</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">Capítulos de importação, transformação e visualização, como revisão</td>
 </tr>
 </tbody>
 </table>
@@ -465,6 +1572,12 @@ Objetivos de aprendizagem
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
 <div id="ref-batra2021epirhandbook" class="csl-entry" role="listitem">
 BATRA, N. et al. <strong><a href="https://doi.org/10.5281/zenodo.4752646">Manual de R para Epidemiologistas</a></strong>. [s.l.] Applied Epi, 2021.
+</div>
+<div id="ref-faria2024intror" class="csl-entry" role="listitem">
+FARIA, P. D. <strong><a href="https://pedropark99.github.io/Introducao_R/">Introdução à Linguagem R: seus fundamentos e sua prática</a></strong>. 5. ed. Belo Horizonte: [s.n.], 2024.
+</div>
+<div id="ref-saldanha2019microdatasus" class="csl-entry" role="listitem">
+SALDANHA, R. DE F.; BASTOS, R. R.; BARCELLOS, C. <a href="https://doi.org/10.1590/0102-311X00032419">Microdatasus: pacote para download e pré-processamento de microdados do Departamento de Informática do SUS (DATASUS)</a>. <strong>Cadernos de Saúde Pública</strong>, v. 35, n. 9, p. e00032419, 2019.
 </div>
 <div id="ref-wickham2023r4ds" class="csl-entry" role="listitem">
 WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4ds.hadley.nz/">R para Ciência de Dados</a></strong>. 2. ed. [s.l: s.n.].
@@ -888,7 +2001,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

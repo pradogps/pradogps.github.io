@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -350,15 +385,25 @@ div.csl-indent {
   <li><a href="#sec-por-que-visualizar" id="toc-sec-por-que-visualizar" class="nav-link active" data-scroll-target="#sec-por-que-visualizar"><span class="header-section-number">10.1</span> Por que visualizar dados</a></li>
   <li><a href="#sec-gramatica-graficos" id="toc-sec-gramatica-graficos" class="nav-link" data-scroll-target="#sec-gramatica-graficos"><span class="header-section-number">10.2</span> A gramática dos gráficos</a></li>
   <li><a href="#sec-distribuicao-uma" id="toc-sec-distribuicao-uma" class="nav-link" data-scroll-target="#sec-distribuicao-uma"><span class="header-section-number">10.3</span> Distribuição de uma variável</a></li>
-  <li><a href="#sec-relacoes" id="toc-sec-relacoes" class="nav-link" data-scroll-target="#sec-relacoes"><span class="header-section-number">10.4</span> Relações entre variáveis</a></li>
+  <li><a href="#sec-relacoes" id="toc-sec-relacoes" class="nav-link" data-scroll-target="#sec-relacoes"><span class="header-section-number">10.4</span> Relações entre variáveis</a>
+  <ul class="collapse">
+  <li><a href="#sec-num-cat" id="toc-sec-num-cat" class="nav-link" data-scroll-target="#sec-num-cat">Uma variável numérica e uma categórica</a></li>
+  <li><a href="#sec-num-num" id="toc-sec-num-num" class="nav-link" data-scroll-target="#sec-num-num">Duas variáveis numéricas</a></li>
+  <li><a href="#sec-cat-cat" id="toc-sec-cat-cat" class="nav-link" data-scroll-target="#sec-cat-cat">Duas variáveis categóricas</a></li>
+  </ul></li>
   <li><a href="#sec-curva-epidemica" id="toc-sec-curva-epidemica" class="nav-link" data-scroll-target="#sec-curva-epidemica"><span class="header-section-number">10.5</span> Séries temporais e curvas epidêmicas</a></li>
   <li><a href="#sec-facetas" id="toc-sec-facetas" class="nav-link" data-scroll-target="#sec-facetas"><span class="header-section-number">10.6</span> Facetas</a></li>
   <li><a href="#sec-escalas-temas" id="toc-sec-escalas-temas" class="nav-link" data-scroll-target="#sec-escalas-temas"><span class="header-section-number">10.7</span> Escalas, rótulos e temas</a></li>
   <li><a href="#sec-piramide" id="toc-sec-piramide" class="nav-link" data-scroll-target="#sec-piramide"><span class="header-section-number">10.8</span> Pirâmide etária</a></li>
   <li><a href="#sec-graficos-base" id="toc-sec-graficos-base" class="nav-link" data-scroll-target="#sec-graficos-base"><span class="header-section-number">10.9</span> Gráficos no R base</a></li>
   <li><a href="#sec-ggsave" id="toc-sec-ggsave" class="nav-link" data-scroll-target="#sec-ggsave"><span class="header-section-number">10.10</span> Salvando gráficos</a></li>
-  <li><a href="#sec-caso-10" id="toc-sec-caso-10" class="nav-link" data-scroll-target="#sec-caso-10"><span class="header-section-number">10.11</span> Estudo de caso: curva epidêmica de dengue e perfil etário dos casos</a></li>
-  <li><a href="#sec-ex-10" id="toc-sec-ex-10" class="nav-link" data-scroll-target="#sec-ex-10"><span class="header-section-number">10.12</span> Exercícios</a></li>
+  <li><a href="#sec-caso-10" id="toc-sec-caso-10" class="nav-link" data-scroll-target="#sec-caso-10"><span class="header-section-number">10.11</span> Estudo de caso: um painel sobre o baixo peso ao nascer</a></li>
+  <li><a href="#sec-ex-10" id="toc-sec-ex-10" class="nav-link" data-scroll-target="#sec-ex-10"><span class="header-section-number">10.12</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-10" id="toc-sec-sintese-10" class="nav-link" data-scroll-target="#sec-sintese-10"><span class="header-section-number">10.13</span> Síntese</a></li>
   <li><a href="#sec-mais-10" id="toc-sec-mais-10" class="nav-link" data-scroll-target="#sec-mais-10"><span class="header-section-number">10.14</span> Para saber mais</a></li>
   </ul>
@@ -386,21 +431,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 5 (seções centrais) e 6 (retomada) · <strong>Pré-requisitos:</strong> Parte II · <strong>Pacotes:</strong> <code>ggplot2</code>, <code>scales</code>, <code>GGally</code>; R base (<code>graphics</code>)</p>
+<p><strong>Encontro previsto:</strong> 5 (seções centrais) e 6 (retomada) · <strong>Pré-requisitos:</strong> Parte II · <strong>Pacotes:</strong> <code>ggplot2</code> (carregado com o <code>tidyverse</code>), <code>scales</code>, <code>GGally</code>, <code>here</code>; R base (<code>graphics</code>)</p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -412,60 +444,472 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar os componentes da gramática dos gráficos (dados, mapeamentos estéticos, geometrias, escalas, facetas, coordenadas e temas); construir gráficos de barras, histogramas, boxplots, gráficos de dispersão e de linhas; escolher o gráfico adequado ao tipo das variáveis e à pergunta; ajustar títulos, rótulos, escalas e cores para fins de comunicação, com atenção à acessibilidade; representar séries temporais, curvas epidêmicas e pirâmides etárias; salvar gráficos em arquivo; e produzir os gráficos equivalentes no R base, incluindo o diagrama circular e a matriz de dispersão previstos na ementa.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar os componentes da gramática dos gráficos (dados, mapeamentos estéticos, geometrias, escalas, facetas e temas); construir gráficos de barras, histogramas, boxplots, gráficos de dispersão e de linhas; escolher o gráfico adequado ao tipo das variáveis e à pergunta; ajustar títulos, rótulos, escalas e cores; representar séries temporais, curvas epidêmicas e pirâmides etárias; salvar gráficos em arquivo; e produzir os gráficos equivalentes no R base, incluindo o diagrama circular e a matriz de dispersão.</p>
 </div>
+</div>
+<p>Um bom gráfico mostra em segundos o que uma tabela levaria minutos para revelar. Mas um gráfico mal escolhido pode esconder o que importa ou sugerir conclusões que os dados não sustentam. Este capítulo apresenta o <code>ggplot2</code>, o pacote de gráficos do tidyverse, e discute como escolher e ajustar gráficos para explorar dados e para comunicar resultados. Usaremos as três bases já conhecidas: os nascidos vivos, a população e os casos de COVID-19 da Região Norte.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>populacao <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"populacao_ro_2019.csv"</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">cod_municipio =</span> <span class="fu">col_character</span>()))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"covid_norte_2020_2022.csv"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-por-que-visualizar" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="sec-por-que-visualizar"><span class="header-section-number">10.1</span> Por que visualizar dados</h2>
-<p>Distingue o uso exploratório, voltado a quem analisa, do uso para comunicação, voltado a quem lê. O quarteto de Anscombe, disponível no R como <code>anscombe</code>, ilustra como conjuntos com as mesmas medidas resumo podem ter distribuições muito diferentes.</p>
+<p>Gráficos servem a dois propósitos diferentes. Na <strong>exploração</strong>, quem analisa usa gráficos rápidos, sem muito acabamento, para conhecer os dados, encontrar erros e formular perguntas. Na <strong>comunicação</strong>, os gráficos são feitos para outras pessoas e precisam de títulos claros, rótulos legíveis e uma mensagem principal evidente. O <code>ggplot2</code> serve aos dois propósitos: o mesmo código que gera um gráfico exploratório pode ser refinado, camada por camada, até virar uma figura de relatório.</p>
+<p>Um exemplo clássico mostra por que não basta olhar os números resumo. O R traz, entre seus dados de exemplo, o quarteto de Anscombe: quatro pares de variáveis com praticamente a mesma média, a mesma variância e a mesma correlação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>anscombe_longo <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">conjunto =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">11</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>x2, anscombe<span class="sc">$</span>x3, anscombe<span class="sc">$</span>x4),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(anscombe<span class="sc">$</span>y1, anscombe<span class="sc">$</span>y2, anscombe<span class="sc">$</span>y3, anscombe<span class="sc">$</span>y4)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>anscombe_longo <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(conjunto) <span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_y =</span> <span class="fu">mean</span>(y), <span class="at">dp_y =</span> <span class="fu">sd</span>(y), <span class="at">correlacao =</span> <span class="fu">cor</span>(x, y))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 4</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   conjunto media_y  dp_y correlacao</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1        1    7.50  2.03      0.816</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2        2    7.50  2.03      0.816</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3        3    7.5   2.03      0.816</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4        4    7.50  2.03      0.817</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Pelas medidas resumo, os quatro conjuntos seriam idênticos. O gráfico conta outra história.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe_longo, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> conjunto)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-anscombe" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Quatro painéis de gráficos de dispersão. O primeiro mostra uma relação linear com dispersão; o segundo, uma curva; o terceiro, uma reta perfeita com um ponto discrepante; o quarto, pontos concentrados em um único valor de x com um ponto isolado à direita.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-anscombe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-anscombe-1.png" class="img-fluid figure-img" alt="Quatro painéis de gráficos de dispersão. O primeiro mostra uma relação linear com dispersão; o segundo, uma curva; o terceiro, uma reta perfeita com um ponto discrepante; o quarto, pontos concentrados em um único valor de x com um ponto isolado à direita." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anscombe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.1: Quarteto de Anscombe: quatro conjuntos com médias, variâncias e correlação praticamente iguais.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Só o primeiro conjunto tem a relação linear que as medidas sugerem. No segundo, a relação é curva; no terceiro, um único ponto discrepante altera tudo; no quarto, a correlação depende de um só ponto. A lição é simples: olhe sempre os dados antes de resumi-los.</p>
 </section>
 <section id="sec-gramatica-graficos" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="sec-gramatica-graficos"><span class="header-section-number">10.2</span> A gramática dos gráficos</h2>
-<p>Apresenta a estrutura <code>ggplot(dados, aes(...)) + geom_*()</code>, a construção do gráfico por camadas e a diferença entre mapear uma variável a um atributo estético e fixar esse atributo com um valor constante.</p>
+<p>O <code>ggplot2</code> se baseia na ideia de uma gramática dos gráficos. Todo gráfico é composto pelos mesmos elementos: os <strong>dados</strong>; os <strong>mapeamentos estéticos</strong>, que dizem qual variável vai para cada atributo visual (posição no eixo x, posição no eixo y, cor, tamanho, forma); e as <strong>geometrias</strong>, que dizem que tipo de marca será desenhada (pontos, barras, linhas). A esses elementos se somam escalas, facetas, coordenadas e temas.</p>
+<p>O código de um gráfico segue sempre o mesmo modelo. A função <code>ggplot()</code> recebe os dados e, dentro de <code>aes()</code>, os mapeamentos. Em seguida, acrescentamos camadas com o sinal <code>+</code>, a primeira delas sendo uma geometria, cujas funções começam com <code>geom_</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">x =</span> semagestac, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-primeiro-grafico" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão com a idade gestacional em semanas no eixo horizontal e o peso ao nascer em gramas no eixo vertical. Os pontos formam uma nuvem crescente, concentrada entre 37 e 41 semanas e entre 2.500 e 4.000 gramas.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-primeiro-grafico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-primeiro-grafico-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão com a idade gestacional em semanas no eixo horizontal e o peso ao nascer em gramas no eixo vertical. Os pontos formam uma nuvem crescente, concentrada entre 37 e 41 semanas e entre 2.500 e 4.000 gramas." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-primeiro-grafico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.2: Peso ao nascer segundo a idade gestacional, Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O R avisou que algumas linhas foram removidas: são os registros sem idade gestacional, que não podem ser posicionados no gráfico. Repare que o <code>+</code> substitui o <code>|&gt;</code> dentro do <code>ggplot2</code>, porque cada camada é acrescentada ao gráfico, e não aplicada aos dados.</p>
+<p>Há uma diferença importante entre <strong>mapear</strong> um atributo a uma variável e <strong>fixar</strong> um atributo em um valor. Quando a cor aparece dentro de <code>aes()</code>, ela representa uma variável, e o <code>ggplot2</code> cria uma legenda. Quando aparece fora, é apenas uma escolha estética para todos os elementos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cor mapeada a uma variável: cada tipo de parto com uma cor</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">x =</span> semagestac, <span class="at">y =</span> peso, <span class="at">color =</span> parto)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cor fixa: todos os pontos em azul, com transparência</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">x =</span> semagestac, <span class="at">y =</span> peso)) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-distribuicao-uma" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="sec-distribuicao-uma"><span class="header-section-number">10.3</span> Distribuição de uma variável</h2>
-<p>Mostra gráficos de barras para variáveis categóricas (<code>geom_bar()</code>, <code>geom_col()</code> para contagens já calculadas) e histogramas, densidades e boxplots para variáveis quantitativas (<code>geom_histogram()</code>, <code>geom_density()</code>, <code>geom_boxplot()</code>), discutindo a escolha da largura das classes do histograma.</p>
+<p>A escolha do gráfico depende do tipo da variável. Para variáveis <strong>categóricas</strong>, o gráfico de barras mostra quantas observações há em cada categoria. A função <code>geom_bar()</code> faz a contagem sozinha.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">x =</span> escmae)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-barras-escolaridade" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de barras com seis categorias de escolaridade da mãe. A categoria de 8 a 11 anos de estudo é a maior, com mais de 15 mil nascimentos, seguida de 12 anos ou mais e de 4 a 7 anos. As categorias Nenhuma e 1 a 3 anos são muito pequenas, e há uma barra para valores ausentes.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-barras-escolaridade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-barras-escolaridade-1.png" class="img-fluid figure-img" alt="Gráfico de barras com seis categorias de escolaridade da mãe. A categoria de 8 a 11 anos de estudo é a maior, com mais de 15 mil nascimentos, seguida de 12 anos ou mais e de 4 a 7 anos. As categorias Nenhuma e 1 a 3 anos são muito pequenas, e há uma barra para valores ausentes." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-barras-escolaridade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.3: Nascidos vivos segundo a escolaridade da mãe, Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Quando as contagens já foram calculadas, como acontece com tabelas agregadas, usamos <code>geom_col()</code>, informando a altura das barras no eixo y.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(escmae) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> escmae, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para variáveis <strong>numéricas</strong>, o histograma divide os valores em intervalos e mostra quantas observações caem em cada um. A largura dos intervalos (<code>binwidth</code>) muda bastante a aparência do gráfico e deve ser escolhida com cuidado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">x =</span> peso)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2500</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-histograma-peso" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Histograma do peso ao nascer com intervalos de 100 gramas. A distribuição tem formato de sino, com pico entre 3.000 e 3.500 gramas, cauda mais longa à esquerda, em direção aos pesos baixos, e uma linha vertical tracejada em 2.500 gramas.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-histograma-peso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-histograma-peso-1.png" class="img-fluid figure-img" alt="Histograma do peso ao nascer com intervalos de 100 gramas. A distribuição tem formato de sino, com pico entre 3.000 e 3.500 gramas, cauda mais longa à esquerda, em direção aos pesos baixos, e uma linha vertical tracejada em 2.500 gramas." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-histograma-peso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.4: Distribuição do peso ao nascer, Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A linha tracejada, acrescentada com <code>geom_vline()</code>, marca o ponto de corte do baixo peso. A distribuição é aproximadamente simétrica, com uma cauda mais longa à esquerda, formada pelos recém-nascidos prematuros e de baixo peso.</p>
+<p>O <strong>boxplot</strong> resume uma variável numérica em cinco números: a mediana (linha central), o primeiro e o terceiro quartis (limites da caixa) e os limites das hastes, que vão até o valor mais extremo situado a no máximo 1,5 vez a distância interquartil da caixa. Os pontos além das hastes são marcados individualmente. O boxplot é mais útil para comparar grupos, como na próxima seção.</p>
 </section>
 <section id="sec-relacoes" class="level2" data-number="10.4">
 <h2 data-number="10.4" class="anchored" data-anchor-id="sec-relacoes"><span class="header-section-number">10.4</span> Relações entre variáveis</h2>
-<p>Mostra gráficos de dispersão (<code>geom_point()</code>, <code>geom_jitter()</code>), boxplots por grupo, barras agrupadas e empilhadas (argumento <code>position</code>) e linhas de tendência (<code>geom_smooth()</code>), discutindo quando usar contagens absolutas ou proporções em barras empilhadas.</p>
+<section id="sec-num-cat" class="level3">
+<h3 class="anchored" data-anchor-id="sec-num-cat">Uma variável numérica e uma categórica</h3>
+<p>Para comparar a distribuição de uma variável numérica entre grupos, o boxplot é a escolha mais comum.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(gestacao)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">gestacao =</span> <span class="fu">fct_relevel</span>(gestacao, <span class="st">"22 a 27 semanas"</span>, <span class="st">"28 a 31 semanas"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"32 a 36 semanas"</span>, <span class="st">"37 a 41 semanas"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"42 semanas e mais"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gestacao, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-boxplot-gestacao" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Boxplots do peso ao nascer para seis faixas de idade gestacional. A mediana do peso cresce de cerca de 700 gramas no grupo de 22 a 27 semanas até cerca de 3.300 gramas nos grupos de 37 a 41 e de 42 semanas ou mais.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-gestacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-boxplot-gestacao-1.png" class="img-fluid figure-img" alt="Boxplots do peso ao nascer para seis faixas de idade gestacional. A mediana do peso cresce de cerca de 700 gramas no grupo de 22 a 27 semanas até cerca de 3.300 gramas nos grupos de 37 a 41 e de 42 semanas ou mais." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-gestacao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.5: Peso ao nascer segundo a idade gestacional em faixas, Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-num-num" class="level3">
+<h3 class="anchored" data-anchor-id="sec-num-num">Duas variáveis numéricas</h3>
+<p>Para duas variáveis numéricas, o gráfico de dispersão é a escolha natural. Com muitos pontos, como aqui, eles se sobrepõem. Duas soluções ajudam: deslocar os pontos aleatoriamente um pouco (<code>geom_jitter()</code>), útil quando uma das variáveis assume poucos valores, como as semanas de gestação, e usar transparência (<code>alpha</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">x =</span> semagestac, <span class="at">y =</span> peso)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>, <span class="at">width =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-dispersao-jitter" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de dispersão do peso ao nascer contra a idade gestacional, com pontos semitransparentes e uma curva de tendência que sobe de forma acentuada até cerca de 38 semanas e depois se estabiliza.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dispersao-jitter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-dispersao-jitter-1.png" class="img-fluid figure-img" alt="Gráfico de dispersão do peso ao nascer contra a idade gestacional, com pontos semitransparentes e uma curva de tendência que sobe de forma acentuada até cerca de 38 semanas e depois se estabiliza." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dispersao-jitter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.6: Peso ao nascer segundo a idade gestacional, com pontos deslocados e linha de tendência.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A função <code>geom_smooth()</code> acrescenta uma curva de tendência, que mostra que o peso cresce rapidamente com a idade gestacional até cerca de 38 semanas e depois se estabiliza.</p>
+</section>
+<section id="sec-cat-cat" class="level3">
+<h3 class="anchored" data-anchor-id="sec-cat-cat">Duas variáveis categóricas</h3>
+<p>Para duas variáveis categóricas, usamos barras agrupadas ou empilhadas, definidas pelo argumento <code>position</code>. Barras empilhadas com <code>position = "fill"</code> mostram proporções dentro de cada categoria, o que facilita comparar grupos de tamanhos diferentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(escmae), <span class="sc">!</span><span class="fu">is.na</span>(parto)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> escmae, <span class="at">fill =</span> parto)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-barras-parto-escolaridade" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de barras empilhadas de 0 a 100% para cinco níveis de escolaridade da mãe. A parte correspondente ao parto cesáreo cresce de cerca de metade, nas mães sem escolaridade, para mais de 80%, nas mães com 12 anos ou mais de estudo.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-barras-parto-escolaridade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-barras-parto-escolaridade-1.png" class="img-fluid figure-img" alt="Gráfico de barras empilhadas de 0 a 100% para cinco níveis de escolaridade da mãe. A parte correspondente ao parto cesáreo cresce de cerca de metade, nas mães sem escolaridade, para mais de 80%, nas mães com 12 anos ou mais de estudo." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-barras-parto-escolaridade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.7: Tipo de parto segundo a escolaridade da mãe, Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O gráfico mostra o que a tabela do <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a> já indicava: a proporção de partos cesáreos cresce com a escolaridade da mãe.</p>
+</section>
 </section>
 <section id="sec-curva-epidemica" class="level2" data-number="10.5">
 <h2 data-number="10.5" class="anchored" data-anchor-id="sec-curva-epidemica"><span class="header-section-number">10.5</span> Séries temporais e curvas epidêmicas</h2>
-<p>Mostra gráficos de linhas (<code>geom_line()</code>) e de colunas por semana epidemiológica, com escalas de datas (<code>scale_x_date()</code>), a partir da base preparada no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
+<p>Para dados que variam no tempo, o gráfico de linhas (<code>geom_line()</code>) é o mais adequado. Quando o eixo x é uma data, a função <code>scale_x_date()</code> controla os intervalos e o formato das marcas.</p>
+<p>Na vigilância epidemiológica, a <strong>curva epidêmica</strong> mostra o número de casos por unidade de tempo, em geral por semana epidemiológica, e costuma ser desenhada com colunas. Vamos construir a curva da COVID-19 em Rondônia, a partir da agregação semanal feita no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>covid_semanal <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">semana =</span> <span class="fu">floor_date</span>(data, <span class="at">unit =</span> <span class="st">"week"</span>, <span class="at">week_start =</span> <span class="dv">7</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(uf, semana) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">casos =</span> <span class="fu">sum</span>(casos_novos), <span class="at">obitos =</span> <span class="fu">sum</span>(obitos_novos), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>covid_semanal <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(uf <span class="sc">==</span> <span class="st">"RO"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> semana, <span class="at">y =</span> casos)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#b5401f"</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">"3 months"</span>, <span class="at">date_labels =</span> <span class="st">"%m/%Y"</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Semana epidemiológica (início)"</span>, <span class="at">y =</span> <span class="st">"Casos notificados"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-curva-epidemica-ro" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Curva epidêmica em colunas com os casos semanais de COVID-19 em Rondônia. Há uma primeira onda em meados de 2020, uma segunda no início de 2021, com cerca de 9 mil casos semanais, o maior pico no início de 2022, com mais de 17 mil casos em uma semana, e uma onda menor em meados de 2022.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-curva-epidemica-ro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-curva-epidemica-ro-1.png" class="img-fluid figure-img" alt="Curva epidêmica em colunas com os casos semanais de COVID-19 em Rondônia. Há uma primeira onda em meados de 2020, uma segunda no início de 2021, com cerca de 9 mil casos semanais, o maior pico no início de 2022, com mais de 17 mil casos em uma semana, e uma onda menor em meados de 2022." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curva-epidemica-ro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.8: Casos de COVID-19 por semana epidemiológica, Rondônia, 2020 a 2022.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A curva mostra várias ondas: a primeira em meados de 2020, a segunda no início de 2021, a maior delas, em número de casos, no início de 2022, e uma quarta, menor, em meados de 2022. A função <code>labs()</code> define os títulos dos eixos.</p>
 </section>
 <section id="sec-facetas" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="sec-facetas"><span class="header-section-number">10.6</span> Facetas</h2>
-<p>Apresenta <code>facet_wrap()</code> e <code>facet_grid()</code> para comparar subgrupos em painéis com escalas comuns, como a curva epidêmica por região de saúde.</p>
+<p>Para comparar a mesma relação em vários grupos, podemos dividir o gráfico em painéis com <code>facet_wrap()</code>. Cada painel mostra um subconjunto dos dados, com os mesmos eixos, o que facilita a comparação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>covid_semanal <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> semana, <span class="at">y =</span> obitos)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> uf, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Óbitos por semana"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-facetas-covid" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Sete painéis, um para cada estado da Região Norte, com a série semanal de óbitos por COVID-19 em linhas. A escala vertical varia entre os painéis. Amazonas mostra um pico muito alto no início de 2021; os demais estados mostram ondas em 2020 e no primeiro semestre de 2021.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-facetas-covid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-facetas-covid-1.png" class="img-fluid figure-img" alt="Sete painéis, um para cada estado da Região Norte, com a série semanal de óbitos por COVID-19 em linhas. A escala vertical varia entre os painéis. Amazonas mostra um pico muito alto no início de 2021; os demais estados mostram ondas em 2020 e no primeiro semestre de 2021." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-facetas-covid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.9: Óbitos por COVID-19 por semana epidemiológica nos estados da Região Norte, 2020 a 2022.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O argumento <code>scales = "free_y"</code> permite que cada painel tenha sua própria escala vertical. Isso facilita ver o formato da curva em cada estado, mas exige cuidado na leitura, porque a mesma altura representa números diferentes em cada painel. O Amazonas destaca-se pelo pico de óbitos no início de 2021, período do colapso do sistema de saúde em Manaus. A função <code>facet_grid()</code> organiza os painéis em linhas e colunas definidas por duas variáveis.</p>
 </section>
 <section id="sec-escalas-temas" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="sec-escalas-temas"><span class="header-section-number">10.7</span> Escalas, rótulos e temas</h2>
-<p>Apresenta <code>labs()</code>, as funções <code>scale_*()</code>, a formatação de números segundo as convenções brasileiras com o pacote <code>scales</code>, paletas adequadas a pessoas com daltonismo, os temas prontos (<code>theme_minimal()</code>, <code>theme_bw()</code>) e o ajuste fino com <code>theme()</code>.</p>
+<p>Um gráfico para comunicação precisa de títulos claros, eixos com unidades e números no formato do leitor. A função <code>labs()</code> define título, subtítulo, títulos dos eixos e da legenda e a fonte dos dados. As funções <code>scale_*()</code> controlam como cada mapeamento é desenhado, e o pacote <code>scales</code> oferece funções para formatar números nos eixos, inclusive com a vírgula decimal e o ponto de milhar usados no Brasil.</p>
+<p>As cores merecem atenção especial. Uma parcela relevante da população masculina, em torno de 8% entre homens de ascendência europeia, tem alguma forma de daltonismo, e combinações como vermelho e verde podem ficar indistinguíveis para eles. As paletas da família <em>viridis</em>, disponíveis em <code>scale_fill_viridis_d()</code> e <code>scale_color_viridis_d()</code>, foram desenhadas para serem distinguíveis por pessoas com daltonismo e também quando impressas em tons de cinza.</p>
+<p>Por fim, os temas controlam a aparência geral do gráfico (fundo, grades, fontes). O <code>ggplot2</code> traz vários temas prontos, como <code>theme_minimal()</code> e <code>theme_bw()</code>, e a função <code>theme()</code> ajusta detalhes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(escmae), <span class="sc">!</span><span class="fu">is.na</span>(parto)) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(escmae) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">prop_cesareo =</span> <span class="fu">mean</span>(parto <span class="sc">==</span> <span class="st">"Cesáreo"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> prop_cesareo, <span class="at">y =</span> escmae)) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#ff6347"</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="fl">0.1</span>, <span class="at">decimal.mark =</span> <span class="st">","</span>)(prop_cesareo)),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">decimal.mark =</span> <span class="st">","</span>),</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Cesarianas aumentam com a escolaridade materna"</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Proporção de partos cesáreos"</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Escolaridade da mãe"</span>,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: SINASC/Ministério da Saúde."</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-grafico-final" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de barras horizontais com a proporção de partos cesáreos para cinco níveis de escolaridade da mãe, crescendo de 47,5% (nenhuma escolaridade) a 81,7% (12 anos ou mais). Cada barra tem o percentual escrito ao lado.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-grafico-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-grafico-final-1.png" class="img-fluid figure-img" alt="Gráfico de barras horizontais com a proporção de partos cesáreos para cinco níveis de escolaridade da mãe, crescendo de 47,5% (nenhuma escolaridade) a 81,7% (12 anos ou mais). Cada barra tem o percentual escrito ao lado." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-grafico-final-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.10: Proporção de nascidos vivos por parto cesáreo segundo a escolaridade da mãe, Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Vale observar algumas escolhas desse gráfico. O título apresenta a mensagem principal, e não apenas o assunto. As barras horizontais deixam os rótulos das categorias legíveis. O eixo começa no zero, o que é obrigatório em gráficos de barras, porque o leitor compara os comprimentos. Os percentuais escritos ao lado das barras dispensam a consulta ao eixo. E a fonte dos dados aparece no rodapé.</p>
 </section>
 <section id="sec-piramide" class="level2" data-number="10.8">
 <h2 data-number="10.8" class="anchored" data-anchor-id="sec-piramide"><span class="header-section-number">10.8</span> Pirâmide etária</h2>
-<p>Mostra a construção de uma pirâmide etária com <code>geom_col()</code>, valores negativos para um dos sexos e inversão de eixos, a partir de estimativas populacionais por sexo e faixa etária.</p>
+<p>A pirâmide etária mostra a distribuição da população por sexo e faixa etária. No <code>ggplot2</code>, ela é um gráfico de colunas horizontais em que a população de um dos sexos recebe sinal negativo, para ficar do lado esquerdo do eixo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ordem_faixas <span class="ot">&lt;-</span> <span class="fu">unique</span>(populacao<span class="sc">$</span>faixa_etaria)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>populacao <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sexo, faixa_etaria) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">populacao =</span> <span class="fu">sum</span>(populacao), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">faixa_etaria =</span> <span class="fu">factor</span>(faixa_etaria, <span class="at">levels =</span> ordem_faixas),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">populacao_grafico =</span> <span class="fu">if_else</span>(sexo <span class="sc">==</span> <span class="st">"Masculino"</span>, <span class="sc">-</span>populacao, populacao)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> populacao_grafico, <span class="at">y =</span> faixa_etaria, <span class="at">fill =</span> sexo)) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> \(x) scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">"."</span>)(<span class="fu">abs</span>(x))) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Feminino =</span> <span class="st">"#ff6347"</span>, <span class="at">Masculino =</span> <span class="st">"#1f6f8b"</span>)) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"População"</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-piramide" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Pirâmide etária com barras horizontais para 17 faixas de idade, homens à esquerda e mulheres à direita. A base é larga até a faixa de 30 a 34 anos e se estreita progressivamente nas idades mais avançadas, com a população feminina um pouco maior nas faixas mais idosas.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-piramide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-piramide-1.png" class="img-fluid figure-img" alt="Pirâmide etária com barras horizontais para 17 faixas de idade, homens à esquerda e mulheres à direita. A base é larga até a faixa de 30 a 34 anos e se estreita progressivamente nas idades mais avançadas, com a população feminina um pouco maior nas faixas mais idosas." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-piramide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.11: Pirâmide etária da população residente em Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>O truque está na escala do eixo x, que mostra os valores absolutos (<code>abs()</code>), para que a população masculina não apareça com sinal negativo. A pirâmide de Rondônia tem base larga e topo estreito, típica de uma população ainda jovem, mas com sinais de envelhecimento, já que as faixas de 0 a 14 anos não são mais as maiores.</p>
 </section>
 <section id="sec-graficos-base" class="level2" data-number="10.9">
 <h2 data-number="10.9" class="anchored" data-anchor-id="sec-graficos-base"><span class="header-section-number">10.9</span> Gráficos no R base</h2>
-<p>Apresenta <code>barplot()</code>, <code>hist()</code>, <code>boxplot()</code>, <code>plot()</code>, <code>pie()</code> e <code>pairs()</code>, úteis para inspeções rápidas, e a matriz de dispersão com <code>GGally::ggpairs()</code>. Discute as limitações do diagrama circular para comparar categorias com proporções próximas e as situações em que ele pode ser aceitável.</p>
+<p>O R tem, desde sua origem, funções próprias para gráficos, reunidas no pacote <code>graphics</code>. Elas são mais simples de usar para gráficos rápidos de exploração, embora sejam menos flexíveis que o <code>ggplot2</code>. As principais são <code>hist()</code>, <code>boxplot()</code>, <code>barplot()</code>, <code>plot()</code>, <code>pie()</code> e <code>pairs()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(nascidos<span class="sc">$</span>peso, <span class="at">main =</span> <span class="st">"Peso ao nascer"</span>, <span class="at">xlab =</span> <span class="st">"Gramas"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(peso <span class="sc">~</span> parto, <span class="at">data =</span> nascidos, <span class="at">main =</span> <span class="st">"Peso por tipo de parto"</span>, <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">ylab =</span> <span class="st">"Gramas"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(nascidos<span class="sc">$</span>sexo), <span class="at">main =</span> <span class="st">"Nascimentos por sexo"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(nascidos<span class="sc">$</span>parto), <span class="at">main =</span> <span class="st">"Tipo de parto"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-base-r" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Quatro gráficos em grade dois por dois. Histograma do peso ao nascer; boxplots do peso por tipo de parto; gráfico de barras com nascimentos por sexo; diagrama circular com a proporção de partos vaginais e cesáreos.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-base-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-base-r-1.png" class="img-fluid figure-img" alt="Quatro gráficos em grade dois por dois. Histograma do peso ao nascer; boxplots do peso por tipo de parto; gráfico de barras com nascimentos por sexo; diagrama circular com a proporção de partos vaginais e cesáreos." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-base-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.12: Gráficos do R base: histograma, boxplot, barras e diagrama circular.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A função <code>par(mfrow = c(2, 2))</code> divide a área do gráfico em uma grade de duas linhas e duas colunas, e a última linha volta à configuração original.</p>
+<p>O <strong>diagrama circular</strong> (gráfico de pizza), feito com <code>pie()</code>, aparece com frequência em relatórios, e por isso vale uma discussão. Comparar ângulos e áreas é mais difícil para o olho humano do que comparar comprimentos. Com duas ou três categorias bem diferentes, como no exemplo, o gráfico funciona. Com muitas categorias, ou com proporções próximas, as fatias ficam difíceis de comparar, e um gráfico de barras costuma transmitir a mesma informação de forma mais precisa.</p>
+<p>A <strong>matriz de dispersão</strong> mostra os gráficos de dispersão de todos os pares de um conjunto de variáveis numéricas, e é uma ferramenta útil de exploração. No R base, ela é feita com <code>pairs()</code>; o pacote <code>GGally</code> oferece uma versão no estilo do <code>ggplot2</code>, com <code>ggpairs()</code>, que acrescenta as distribuições e as correlações.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2019</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(peso, semagestac, idademae) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(peso, semagestac, idademae) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  GGally<span class="sc">::</span><span class="fu">ggpairs</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-ggpairs" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Matriz de três por três gráficos. Na diagonal, as distribuições do peso, da idade gestacional e da idade da mãe. Abaixo da diagonal, os gráficos de dispersão de cada par. Acima, as correlações: cerca de 0,5 entre peso e idade gestacional e valores próximos de zero para a idade da mãe.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ggpairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-ggpairs-1.png" class="img-fluid figure-img" alt="Matriz de três por três gráficos. Na diagonal, as distribuições do peso, da idade gestacional e da idade da mãe. Abaixo da diagonal, os gráficos de dispersão de cada par. Acima, as correlações: cerca de 0,5 entre peso e idade gestacional e valores próximos de zero para a idade da mãe." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ggpairs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.13: Matriz de dispersão do peso ao nascer, da idade gestacional e da idade da mãe (amostra de mil nascimentos).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Usamos uma amostra aleatória de mil nascimentos, obtida com <code>slice_sample()</code>, para que o gráfico fique legível. A função <code>set.seed()</code> fixa o ponto de partida do sorteio, para que a mesma amostra seja obtida sempre que o código for executado.</p>
 </section>
 <section id="sec-ggsave" class="level2" data-number="10.10">
 <h2 data-number="10.10" class="anchored" data-anchor-id="sec-ggsave"><span class="header-section-number">10.10</span> Salvando gráficos</h2>
-<p>Apresenta <code>ggsave()</code>, com escolha de formato, dimensões e resolução adequadas a relatórios e a artigos.</p>
+<p>A função <code>ggsave()</code> grava o último gráfico criado, ou um gráfico guardado em um objeto, em um arquivo. O formato é definido pela extensão do nome do arquivo, e as dimensões, em polegadas ou centímetros, pelos argumentos <code>width</code>, <code>height</code> e <code>units</code>. Para relatórios e artigos, recomenda-se resolução de pelo menos 300 pontos por polegada (<code>dpi</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>grafico <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(nascidos, <span class="fu">aes</span>(<span class="at">x =</span> peso)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">100</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="fu">here</span>(<span class="st">"resultados"</span>, <span class="st">"figuras"</span>, <span class="st">"histograma_peso.png"</span>), <span class="at">plot =</span> grafico,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">16</span>, <span class="at">height =</span> <span class="dv">10</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em documentos Quarto, não é preciso salvar os gráficos: eles são gerados e inseridos automaticamente, como vimos no <a href="04-quarto.html" class="quarto-xref"><span>Capítulo 4</span></a>.</p>
 </section>
 <section id="sec-caso-10" class="level2" data-number="10.11">
-<h2 data-number="10.11" class="anchored" data-anchor-id="sec-caso-10"><span class="header-section-number">10.11</span> Estudo de caso: curva epidêmica de dengue e perfil etário dos casos</h2>
-<p>O estudante constrói a curva epidêmica semanal dos casos de dengue, compara-a entre regiões com facetas e produz uma pirâmide etária dos casos confirmados, ajustando rótulos, escalas e cores para um boletim.</p>
+<h2 data-number="10.11" class="anchored" data-anchor-id="sec-caso-10"><span class="header-section-number">10.11</span> Estudo de caso: um painel sobre o baixo peso ao nascer</h2>
+<p>Vamos construir um gráfico para um relatório sobre baixo peso ao nascer em Rondônia, mostrando a proporção de baixo peso nos 15 municípios com mais nascimentos, ordenados do maior para o menor valor, com uma linha de referência para o estado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>proporcao_estado <span class="ot">&lt;-</span> <span class="fu">mean</span>(nascidos<span class="sc">$</span>baixo_peso)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(munresnome) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nascidos_vivos =</span> <span class="fu">n</span>(), <span class="at">prop_baixo_peso =</span> <span class="fu">mean</span>(baixo_peso)) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(nascidos_vivos, <span class="at">n =</span> <span class="dv">15</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">munresnome =</span> <span class="fu">fct_reorder</span>(munresnome, prop_baixo_peso)) <span class="sc">|&gt;</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> prop_baixo_peso, <span class="at">y =</span> munresnome)) <span class="sc">+</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> proporcao_estado, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">color =</span> <span class="st">"grey50"</span>) <span class="sc">+</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> prop_baixo_peso, <span class="at">yend =</span> munresnome), <span class="at">color =</span> <span class="st">"grey80"</span>) <span class="sc">+</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> nascidos_vivos), <span class="at">color =</span> <span class="st">"#b5401f"</span>) <span class="sc">+</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">decimal.mark =</span> <span class="st">","</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Proporção de baixo peso ao nascer"</span>,</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="st">"Nascidos vivos"</span>,</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Linha tracejada: proporção do estado. Fonte: SINASC/Ministério da Saúde."</span></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-caso-baixo-peso" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de pontos horizontais com 15 municípios ordenados pela proporção de baixo peso ao nascer, que varia de cerca de 5% a 9%. Uma linha vertical tracejada marca a proporção do estado, de aproximadamente 7%.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-caso-baixo-peso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10-ggplot2_files/figure-html/fig-caso-baixo-peso-1.png" class="img-fluid figure-img" alt="Gráfico de pontos horizontais com 15 municípios ordenados pela proporção de baixo peso ao nascer, que varia de cerca de 5% a 9%. Uma linha vertical tracejada marca a proporção do estado, de aproximadamente 7%." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-caso-baixo-peso-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.14: Proporção de nascidos vivos com baixo peso nos 15 municípios com mais nascimentos, Rondônia, 2019.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Três recursos tornam o gráfico mais informativo. A função <code>fct_reorder()</code>, vista no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>, ordena os municípios pelo indicador, o que facilita a leitura. O tamanho dos pontos indica o número de nascidos vivos, lembrando ao leitor que os municípios menores têm estimativas menos estáveis. E a linha tracejada mostra a referência estadual, que permite ver rapidamente quais municípios estão acima ou abaixo da média do estado.</p>
 </section>
 <section id="sec-ex-10" class="level2" data-number="10.12">
 <h2 data-number="10.12" class="anchored" data-anchor-id="sec-ex-10"><span class="header-section-number">10.12</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem a reprodução e a modificação dos gráficos do capítulo. Os de aplicação envolvem gráficos do peso ao nascer segundo tipo de parto e da cobertura vacinal ao longo do tempo. O desafio propõe identificar e corrigir problemas de um gráfico fornecido (escala truncada, cores pouco distinguíveis, rótulos ausentes).</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Faça um histograma da idade da mãe, testando larguras de intervalo de 1, 2 e 5 anos. Qual delas representa melhor a distribuição?</p></li>
+<li><p>Construa um gráfico de barras com o número de nascimentos por mês de 2019, com os meses na ordem do calendário.</p></li>
+<li><p>Faça boxplots do peso ao nascer segundo a faixa de idade da mãe e descreva o que eles mostram.</p></li>
+<li><p>Refaça o gráfico de barras do tipo de parto segundo a escolaridade usando <code>position = "dodge"</code> em vez de <code>position = "fill"</code>. Que informação cada versão destaca?</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="5" type="1">
+<li><p>Construa a curva epidêmica semanal de casos de COVID-19 no Amazonas, com título, rótulos dos eixos com separador de milhar e a fonte dos dados.</p></li>
+<li><p>Compare, em um gráfico com facetas, a distribuição do peso ao nascer segundo o número de consultas de pré-natal.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="7" type="1">
+<li><p>Construa a pirâmide etária de Porto Velho e a de um município pequeno, como Pimenteiras do Oeste, lado a lado, usando proporções em vez de números absolutos. Por que as proporções são necessárias para comparar os dois municípios?</p></li>
+<li><p>Encontre na galeria de gráficos do R (<a href="https://r-graph-gallery.com/" class="uri">https://r-graph-gallery.com/</a>) um tipo de gráfico que não foi apresentado neste capítulo e que seja adequado a algum dado de saúde. Reproduza-o com a base de nascidos vivos ou com a de COVID-19 e explique quando ele é preferível às alternativas vistas aqui.</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-10" class="level2" data-number="10.13">
 <h2 data-number="10.13" class="anchored" data-anchor-id="sec-sintese-10"><span class="header-section-number">10.13</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>O <code>ggplot2</code> constrói gráficos em camadas: dados, mapeamentos estéticos definidos em <code>aes()</code> e geometrias (<code>geom_*()</code>), complementados por escalas, facetas, rótulos e temas. A escolha do gráfico depende das variáveis: barras para uma variável categórica, histograma e boxplot para uma numérica, boxplots por grupo para uma numérica e uma categórica, dispersão para duas numéricas, barras empilhadas ou agrupadas para duas categóricas e linhas ou colunas para séries temporais. Gráficos para comunicação precisam de títulos que transmitam a mensagem, eixos rotulados, números no formato do leitor, cores acessíveis e indicação da fonte. As funções do R base, como <code>hist()</code>, <code>boxplot()</code>, <code>pie()</code> e <code>pairs()</code>, continuam úteis para explorações rápidas.</p>
+<div id="tbl-sintese-10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;10.1: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -491,14 +935,14 @@ Objetivos de aprendizagem
 <td style="text-align: left;">Gráficos de barras</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>geom_histogram()</code>, <code>geom_density()</code>, <code>geom_boxplot()</code></td>
+<td style="text-align: left;"><code>geom_histogram()</code>, <code>geom_boxplot()</code></td>
 <td style="text-align: left;">ggplot2</td>
-<td style="text-align: left;">Distribuições de variáveis quantitativas</td>
+<td style="text-align: left;">Distribuições de variáveis numéricas</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>geom_point()</code>, <code>geom_jitter()</code>, <code>geom_smooth()</code></td>
 <td style="text-align: left;">ggplot2</td>
-<td style="text-align: left;">Relações entre variáveis</td>
+<td style="text-align: left;">Relações entre variáveis numéricas</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>geom_line()</code>, <code>scale_x_date()</code></td>
@@ -506,40 +950,54 @@ Objetivos de aprendizagem
 <td style="text-align: left;">Séries temporais</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><code>geom_vline()</code>, <code>geom_segment()</code>, <code>geom_text()</code></td>
+<td style="text-align: left;">ggplot2</td>
+<td style="text-align: left;">Linhas de referência, segmentos e textos</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><code>facet_wrap()</code>, <code>facet_grid()</code></td>
 <td style="text-align: left;">ggplot2</td>
 <td style="text-align: left;">Painéis por subgrupo</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>labs()</code>, <code>scale_*()</code>, <code>theme_*()</code>, <code>theme()</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>labs()</code>, <code>scale_*()</code>, <code>theme_minimal()</code>, <code>theme()</code></td>
 <td style="text-align: left;">ggplot2</td>
 <td style="text-align: left;">Rótulos, escalas e temas</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>label_number()</code>, <code>label_percent()</code></td>
 <td style="text-align: left;">scales</td>
-<td style="text-align: left;">Formatação de números nos eixos</td>
+<td style="text-align: left;">Formatar números nos eixos</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>ggsave()</code></td>
 <td style="text-align: left;">ggplot2</td>
 <td style="text-align: left;">Salvar gráficos</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;"><code>barplot()</code>, <code>hist()</code>, <code>boxplot()</code>, <code>pie()</code>, <code>pairs()</code>, <code>plot()</code></td>
+<tr class="odd">
+<td style="text-align: left;"><code>hist()</code>, <code>boxplot()</code>, <code>barplot()</code>, <code>pie()</code>, <code>pairs()</code>, <code>plot()</code></td>
 <td style="text-align: left;">graphics, base</td>
 <td style="text-align: left;">Gráficos do R base</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>ggpairs()</code></td>
 <td style="text-align: left;">GGally</td>
 <td style="text-align: left;">Matriz de dispersão</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;"><code>slice_sample()</code>, <code>set.seed()</code></td>
+<td style="text-align: left;">dplyr, base</td>
+<td style="text-align: left;">Amostra aleatória reprodutível</td>
+</tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-10" class="level2" data-number="10.14">
 <h2 data-number="10.14" class="anchored" data-anchor-id="sec-mais-10"><span class="header-section-number">10.14</span> Para saber mais</h2>
+<p>O capítulo 1 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> é uma introdução ao <code>ggplot2</code> muito bem construída, e os capítulos 9 e 11 aprofundam as camadas e a comunicação com gráficos. O <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> traz, além do básico do <code>ggplot2</code> (capítulos 30 e 31), capítulos específicos sobre curvas epidêmicas (32) e pirâmides etárias (33), com recursos que vão além dos apresentados aqui. Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> trata do <code>ggplot2</code> nos capítulos 8 e 9, com muitos detalhes sobre a personalização dos gráficos. O livro de receitas de <span class="citation" data-cites="chang2018cookbook">CHANG (<a href="../references.html#ref-chang2018cookbook" role="doc-biblioref">2018</a>)</span>, da bibliografia da disciplina, e a galeria de gráficos do R <span class="citation" data-cites="holtz_rgraphgallery">(<a href="../references.html#ref-holtz_rgraphgallery" role="doc-biblioref">HOLTZ, [s.d.]</a>)</span> são ótimas fontes de inspiração e de código pronto para adaptar.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -557,12 +1015,12 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">1. Visualização de dados; 9. Camadas; 11. Comunicação</td>
-<td style="text-align: left;">Visualizando distribuições; Visualizando relações; Mapeamento estético; Facetas; Rótulos; Escalas; Temas</td>
+<td style="text-align: left;">Visualizando distribuições; Visualizando relações; Facetas; Rótulos; Escalas; Temas</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">30. O básico do ggplot; 31. Dicas do ggplot; 32. Curvas epidêmicas; 33. Pirâmides demográficas e escalas Likert</td>
-<td style="text-align: left;">Mapeando dados ao gráfico; Facetas; Temas; Eixos de tempo; Epicurvas no ggplot2</td>
+<td style="text-align: left;">Mapeando dados ao gráfico; Facetas; Eixos de tempo</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
@@ -577,7 +1035,7 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;">R Graphics Cookbook <span class="citation" data-cites="chang2018cookbook">(<a href="../references.html#ref-chang2018cookbook" role="doc-biblioref">CHANG, 2018</a>)</span></td>
 <td style="text-align: left;">—</td>
-<td style="text-align: left;">Obra da bibliografia da disciplina, organizada como receitas por tipo de gráfico</td>
+<td style="text-align: left;">Receitas por tipo de gráfico</td>
 </tr>
 </tbody>
 </table>
@@ -595,6 +1053,9 @@ CHANG, W. <strong>R Graphics Cookbook: practical recipes for visualizing data</s
 </div>
 <div id="ref-faria2024intror" class="csl-entry" role="listitem">
 FARIA, P. D. <strong><a href="https://pedropark99.github.io/Introducao_R/">Introdução à Linguagem R: seus fundamentos e sua prática</a></strong>. 5. ed. Belo Horizonte: [s.n.], 2024.
+</div>
+<div id="ref-holtz_rgraphgallery" class="csl-entry" role="listitem">
+HOLTZ, Y. <strong>The <span>R</span> Graph Gallery</strong><a href="https://r-graph-gallery.com/" class="uri">https://r-graph-gallery.com/</a>, [s.d.]. Acesso em: 11 nov. 2026
 </div>
 <div id="ref-wickham2023r4ds" class="csl-entry" role="listitem">
 WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4ds.hadley.nz/">R para Ciência de Dados</a></strong>. 2. ed. [s.l: s.n.].
@@ -1018,7 +1479,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

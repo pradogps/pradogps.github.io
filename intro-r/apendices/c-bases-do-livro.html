@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 1em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -322,8 +342,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice</h2>
+   
+  <ul>
+  <li><a href="#nascidos-vivos-de-rondônia-2019" id="toc-nascidos-vivos-de-rondônia-2019" class="nav-link active" data-scroll-target="#nascidos-vivos-de-rondônia-2019">Nascidos vivos de Rondônia, 2019</a></li>
+  <li><a href="#estimativas-populacionais" id="toc-estimativas-populacionais" class="nav-link" data-scroll-target="#estimativas-populacionais">Estimativas populacionais</a></li>
+  <li><a href="#casos-e-óbitos-de-covid-19-na-região-norte" id="toc-casos-e-óbitos-de-covid-19-na-região-norte" class="nav-link" data-scroll-target="#casos-e-óbitos-de-covid-19-na-região-norte">Casos e óbitos de COVID-19 na região Norte</a></li>
+  <li><a href="#bases-do-pacote-medicaldata" id="toc-bases-do-pacote-medicaldata" class="nav-link" data-scroll-target="#bases-do-pacote-medicaldata">Bases do pacote <code>medicaldata</code></a></li>
+  <li><a href="#dados-fictícios" id="toc-dados-fictícios" class="nav-link" data-scroll-target="#dados-fictícios">Dados fictícios</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -347,20 +377,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>As bases ainda estão sendo construídas; a tabela abaixo descreve o que se prevê.</p>
-</div>
-</div>
-<p>O livro usará um pequeno conjunto de bases que reaparecem ao longo dos capítulos, de modo que o estudante se familiarize com elas e possa concentrar a atenção nos novos conteúdos. As bases reais serão extratos de dados públicos, preparados por scripts documentados e armazenados na pasta <code>dados/</code> do projeto, para que o livro possa ser renderizado sem depender da disponibilidade dos servidores do DATASUS. As bases fictícias serão geradas por simulação, com parâmetros conhecidos.</p>
+<p>O livro usa um pequeno conjunto de bases que reaparecem ao longo dos capítulos, para que o estudante se familiarize com elas e possa concentrar a atenção nos novos conteúdos. As bases de dados reais estão na pasta <code>dados/</code> do projeto, o que permite renderizar o livro sem depender da disponibilidade dos servidores do DATASUS. Todos os exemplos com dados fictícios estão indicados como tal no próprio texto.</p>
+<div id="tbl-bases" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;C.1: Bases de dados utilizadas no livro.
+</figcaption>
+<div aria-describedby="tbl-bases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
@@ -373,73 +396,200 @@ Em elaboração
 <tr class="header">
 <th style="text-align: left;">Base</th>
 <th style="text-align: left;">Natureza</th>
-<th style="text-align: left;">Fonte prevista</th>
+<th style="text-align: left;">Fonte</th>
 <th style="text-align: left;">Unidade de registro</th>
 <th style="text-align: left;">Capítulos</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>sinasc</code></td>
+<td style="text-align: left;"><code>sinasc_ro_2019.csv</code></td>
 <td style="text-align: left;">Real</td>
-<td style="text-align: left;">SINASC, via <code>microdatasus</code></td>
+<td style="text-align: left;">SINASC, Rondônia, 2019</td>
 <td style="text-align: left;">Nascido vivo</td>
-<td style="text-align: left;">1, 5 a 8, 11 a 15, 17</td>
+<td style="text-align: left;">5 a 17</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>sim</code></td>
+<td style="text-align: left;"><code>populacao_ro_2019.csv</code></td>
 <td style="text-align: left;">Real</td>
-<td style="text-align: left;">SIM, via <code>microdatasus</code></td>
-<td style="text-align: left;">Óbito</td>
-<td style="text-align: left;">6, 8, 9, 11</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>sinan_dengue</code></td>
-<td style="text-align: left;">Real</td>
-<td style="text-align: left;">SINAN (dengue), via <code>microdatasus</code> ou OpenDataSUS</td>
-<td style="text-align: left;">Notificação</td>
-<td style="text-align: left;">8 a 10, 12, 16</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>cobertura_vacinal</code></td>
-<td style="text-align: left;">Real</td>
-<td style="text-align: left;">Tabulações do Programa Nacional de Imunizações</td>
-<td style="text-align: left;">Município e ano</td>
-<td style="text-align: left;">8, 10</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><code>populacao</code></td>
-<td style="text-align: left;">Real</td>
-<td style="text-align: left;">Estimativas populacionais (IBGE/DATASUS)</td>
+<td style="text-align: left;">Estimativas populacionais do DATASUS</td>
 <td style="text-align: left;">Município, sexo e faixa etária</td>
-<td style="text-align: left;">8, 10</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>notificacoes_ficticias</code></td>
-<td style="text-align: left;">Fictícia</td>
-<td style="text-align: left;">Simulação</td>
-<td style="text-align: left;">Notificação</td>
-<td style="text-align: left;">3, 4</td>
+<td style="text-align: left;">5, 8, 10</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>coorte_ficticia</code>, <code>caso_controle_ficticio</code></td>
-<td style="text-align: left;">Fictícia</td>
-<td style="text-align: left;">Simulação</td>
-<td style="text-align: left;">Participante</td>
-<td style="text-align: left;">15</td>
+<td style="text-align: left;"><code>tabnet_populacao_ro_2019.csv</code></td>
+<td style="text-align: left;">Real, em formato de exportação do TabNet</td>
+<td style="text-align: left;">Estimativas populacionais do DATASUS</td>
+<td style="text-align: left;">Município</td>
+<td style="text-align: left;">5, 8</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>antes_depois_ficticio</code></td>
-<td style="text-align: left;">Fictícia</td>
-<td style="text-align: left;">Simulação</td>
+<td style="text-align: left;"><code>populacao_ro_2015_2024.xlsx</code></td>
+<td style="text-align: left;">Real, em planilha</td>
+<td style="text-align: left;">Estimativas populacionais do DATASUS</td>
+<td style="text-align: left;">Município e ano</td>
+<td style="text-align: left;">5, 8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>covid_norte_2020_2022.csv</code></td>
+<td style="text-align: left;">Real</td>
+<td style="text-align: left;">Casos e óbitos confirmados de COVID-19 <span class="citation" data-cites="cota2020covid">(<a href="../references.html#ref-cota2020covid" role="doc-biblioref">COTA, 2020</a>)</span></td>
+<td style="text-align: left;">Estado e dia</td>
+<td style="text-align: left;">9, 10, 12, 16</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bases do pacote <code>medicaldata</code></td>
+<td style="text-align: left;">Reais, de estudos publicados</td>
+<td style="text-align: left;"><span class="citation" data-cites="higgins2022medicaldata">HIGGINS (<a href="../references.html#ref-higgins2022medicaldata" role="doc-biblioref">2022</a>)</span></td>
 <td style="text-align: left;">Participante</td>
-<td style="text-align: left;">13</td>
+<td style="text-align: left;">12 a 15, 17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pequenos vetores e tabelas</td>
+<td style="text-align: left;">Fictícios</td>
+<td style="text-align: left;">Criados no próprio texto</td>
+<td style="text-align: left;">Variável</td>
+<td style="text-align: left;">2 a 4, 16</td>
 </tr>
 </tbody>
 </table>
-<p>A área geográfica e o ano de referência dos extratos reais (por exemplo, municípios de uma região de saúde do estado de São Paulo em um ano recente) serão definidos na próxima etapa, considerando o tamanho dos arquivos, a disponibilidade de dados consolidados e o interesse dos exemplos. Cada base terá, neste apêndice, seu dicionário de variáveis e a descrição do processamento aplicado.</p>
+</div>
+</figure>
+</div>
+<section id="nascidos-vivos-de-rondônia-2019" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="nascidos-vivos-de-rondônia-2019">Nascidos vivos de Rondônia, 2019</h2>
+<p>O arquivo <code>sinasc_ro_2019.csv</code> traz os 27.028 registros de nascidos vivos de mães residentes em Rondônia em 2019, com 18 variáveis selecionadas dos microdados do SINASC. A escolha de um estado com cerca de 27 mil nascimentos por ano resulta em um arquivo pequeno o suficiente para ser distribuído com o livro e grande o suficiente para que as análises façam sentido. O arquivo foi gerado a partir de uma cópia pública dos microdados já processados (com códigos convertidos em rótulos), disponível no repositório <a href="https://github.com/nicolibasilio/sinasc_RO_2019_Gr-ficos" class="uri">https://github.com/nicolibasilio/sinasc_RO_2019_Gr-ficos</a>. Para aproximá-lo do formato dos arquivos originais, a data de nascimento foi gravada no formato <code>ddmmaaaa</code>, o separador de colunas é o ponto e vírgula e a codificação é latin1. Os nomes das variáveis seguem os do SINASC.</p>
+<div id="tbl-dicionario-sinasc" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-dicionario-sinasc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;C.2: Variáveis do arquivo <code>sinasc_ro_2019.csv</code>.
+</figcaption>
+<div aria-describedby="tbl-dicionario-sinasc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variável</th>
+<th style="text-align: left;">Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>CODMUNRES</code></td>
+<td style="text-align: left;">Código do município de residência da mãe (seis dígitos)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>MUNRESNOME</code></td>
+<td style="text-align: left;">Nome do município de residência da mãe</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>DTNASC</code></td>
+<td style="text-align: left;">Data de nascimento (<code>ddmmaaaa</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>SEXO</code></td>
+<td style="text-align: left;">Sexo do recém-nascido</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>PESO</code></td>
+<td style="text-align: left;">Peso ao nascer, em gramas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>IDADEMAE</code></td>
+<td style="text-align: left;">Idade da mãe, em anos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ESCMAE</code></td>
+<td style="text-align: left;">Escolaridade da mãe, em anos de estudo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>ESTCIVMAE</code></td>
+<td style="text-align: left;">Situação conjugal da mãe</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>RACACOR</code></td>
+<td style="text-align: left;">Raça/cor do recém-nascido</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>GESTACAO</code></td>
+<td style="text-align: left;">Duração da gestação, em faixas de semanas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>SEMAGESTAC</code></td>
+<td style="text-align: left;">Duração da gestação, em semanas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>GRAVIDEZ</code></td>
+<td style="text-align: left;">Tipo de gravidez (única, dupla, tríplice e mais)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>PARTO</code></td>
+<td style="text-align: left;">Tipo de parto</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>CONSULTAS</code></td>
+<td style="text-align: left;">Número de consultas de pré-natal, em faixas (código de 1 a 4; 9 = ignorado)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>APGAR1</code>, <code>APGAR5</code></td>
+<td style="text-align: left;">Índice de Apgar no primeiro e no quinto minuto</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>QTDFILVIVO</code></td>
+<td style="text-align: left;">Número de filhos vivos anteriores</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>LOCNASC</code></td>
+<td style="text-align: left;">Local de ocorrência do nascimento</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>O script <code>scripts/preparar-sinasc.R</code> lê esse arquivo e cria as bases <code>nascidos</code> e <code>nascidos_analise</code>, usadas a partir do <a href="../capitulos/06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>. As etapas do script são explicadas nos capítulos 5, 6, 9 e 12. Para trabalhar com os dados oficiais mais recentes, ou com outros estados e anos, o script <code>scripts/obter-dados-datasus.R</code> baixa os microdados do SINASC, do SIM e do SINAN com o pacote <code>microdatasus</code> e os grava na pasta <code>dados/brutos/</code>. Ele precisa de conexão com os servidores do DATASUS e pode levar alguns minutos.</p>
+</section>
+<section id="estimativas-populacionais" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="estimativas-populacionais">Estimativas populacionais</h2>
+<p>Os três arquivos de população vêm das estimativas populacionais por município, sexo e idade para o período de 2000 a 2024, disponibilizadas pelo DATASUS. Os dados foram obtidos da cópia organizada no repositório do pacote <code>brpop</code> (<a href="https://github.com/rfsaldanha/brpop" class="uri">https://github.com/rfsaldanha/brpop</a>). O arquivo <code>populacao_ro_2019.csv</code> traz a população de 2019 por município, sexo e faixa etária quinquenal. O arquivo <code>tabnet_populacao_ro_2019.csv</code> reproduz o formato de uma tabela exportada do TabNet, com linhas de título e de notas, para o exercício de importação do <a href="../capitulos/05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>. A planilha <code>populacao_ro_2015_2024.xlsx</code> traz a população total de cada município de 2015 a 2024, em formato largo, com um ano por coluna, para os exercícios de reorganização do <a href="../capitulos/08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a>. Por terem sido produzidas com metodologia própria, essas estimativas podem diferir ligeiramente das estimativas anuais do IBGE para 2019, citadas em alguns exemplos do texto.</p>
+</section>
+<section id="casos-e-óbitos-de-covid-19-na-região-norte" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="casos-e-óbitos-de-covid-19-na-região-norte">Casos e óbitos de COVID-19 na região Norte</h2>
+<p>O arquivo <code>covid_norte_2020_2022.csv</code> traz o número diário de casos novos e de óbitos novos confirmados de COVID-19 nos sete estados da região Norte, de março de 2020 a dezembro de 2022, com as variáveis <code>data</code>, <code>uf</code>, <code>casos_novos</code> e <code>obitos_novos</code>. Os dados foram extraídos da base consolidada a partir dos boletins das secretarias estaduais de saúde e do Ministério da Saúde, descrita por <span class="citation" data-cites="cota2020covid">COTA (<a href="../references.html#ref-cota2020covid" role="doc-biblioref">2020</a>)</span> e disponível em <a href="https://github.com/wcota/covid19br" class="uri">https://github.com/wcota/covid19br</a>. Alguns valores diários são negativos, porque correspondem a correções de registros anteriores, o que é discutido no <a href="../capitulos/09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
+</section>
+<section id="bases-do-pacote-medicaldata" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="bases-do-pacote-medicaldata">Bases do pacote <code>medicaldata</code></h2>
+<p>O pacote <code>medicaldata</code> <span class="citation" data-cites="higgins2022medicaldata">(<a href="../references.html#ref-higgins2022medicaldata" role="doc-biblioref">HIGGINS, 2022</a>)</span> reúne conjuntos de dados de estudos médicos publicados, preparados para o ensino de estatística, e vários deles vieram do portal <a href="https://causeweb.org/tshs/category/dataset/">Teaching of Statistics in the Health Sciences</a>. Cada base tem documentação própria, acessível no R com <code>?nome_da_base</code>. O livro usa três delas: <code>opt</code>, de um ensaio clínico sobre o tratamento da doença periodontal na gestação <span class="citation" data-cites="michalowicz2006opt hyun2019opt">(<a href="../references.html#ref-hyun2019opt" role="doc-biblioref">HYUN; HODGES; BREARLEY, 2019</a>; <a href="../references.html#ref-michalowicz2006opt" role="doc-biblioref">MICHALOWICZ et al., 2006</a>)</span>, nos capítulos 13 e 14; <code>strep_tb</code>, do ensaio clínico da estreptomicina na tuberculose pulmonar <span class="citation" data-cites="mrc1948streptomycin">(<a href="../references.html#ref-mrc1948streptomycin" role="doc-biblioref">MEDICAL RESEARCH COUNCIL, 1948</a>)</span>, no <a href="../capitulos/15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>; e <code>esoph_ca</code>, de um estudo caso-controle sobre câncer de esôfago <span class="citation" data-cites="breslow1980casecontrol">(<a href="../references.html#ref-breslow1980casecontrol" role="doc-biblioref">BRESLOW; DAY, 1980</a>)</span>, também no <a href="../capitulos/15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>. As demais bases do pacote são boas opções para os exercícios e para o trabalho final.</p>
+</section>
+<section id="dados-fictícios" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="dados-fictícios">Dados fictícios</h2>
+<p>Nos capítulos iniciais, alguns exemplos usam pequenos vetores e tabelas criados no próprio texto, como listas de idades, notificações ou coberturas vacinais. Eles servem apenas para ilustrar o funcionamento das funções e estão identificados como fictícios no texto. Quando um exemplo combina valores reais, como estimativas populacionais, com valores inventados, isso também é informado.</p>
 
 
+<div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
+<div id="ref-breslow1980casecontrol" class="csl-entry" role="listitem">
+BRESLOW, N. E.; DAY, N. E. <strong>Statistical Methods in Cancer Research</strong>. Lyon: International Agency for Research on Cancer, 1980. v. 1: The Analysis of Case-Control Studies
+</div>
+<div id="ref-cota2020covid" class="csl-entry" role="listitem">
+COTA, W. <strong><a href="https://doi.org/10.1590/SciELOPreprints.362">Monitoring the number of <span>COVID-19</span> cases and deaths in <span>Brazil</span> at municipal and federative units level</a></strong>SciELO Preprints, 2020.
+</div>
+<div id="ref-higgins2022medicaldata" class="csl-entry" role="listitem">
+HIGGINS, P. <strong><a href="https://higgi13425.github.io/medicaldata/">medicaldata: Data Package for Medical Datasets</a></strong>. [s.l: s.n.].
+</div>
+<div id="ref-hyun2019opt" class="csl-entry" role="listitem">
+HYUN, M.; HODGES, J. S.; BREARLEY, A. M. <strong>Obstetrics and Periodontal Therapy Dataset</strong>TSHS Resources Portal, 2019. Disponível em: &lt;<a href="https://www.causeweb.org/tshs/obstetrics-and-periodontal-therapy/">https://www.causeweb.org/tshs/obstetrics-and-periodontal-therapy/</a>&gt;
+</div>
+<div id="ref-mrc1948streptomycin" class="csl-entry" role="listitem">
+MEDICAL RESEARCH COUNCIL. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2091872/">Streptomycin treatment of pulmonary tuberculosis</a>. <strong>British Medical Journal</strong>, v. 2, n. 4582, p. 769–782, 1948.
+</div>
+<div id="ref-michalowicz2006opt" class="csl-entry" role="listitem">
+MICHALOWICZ, B. S. et al. <a href="https://doi.org/10.1056/NEJMoa062249">Treatment of periodontal disease and the risk of preterm birth</a>. <strong>New England Journal of Medicine</strong>, v. 355, n. 18, p. 1885–1894, 2006.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -857,7 +1007,7 @@ Em elaboração
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -353,8 +388,13 @@ div.csl-indent {
   <li><a href="#sec-for" id="toc-sec-for" class="nav-link" data-scroll-target="#sec-for"><span class="header-section-number">16.4</span> Iteração com <code>for</code></a></li>
   <li><a href="#sec-purrr" id="toc-sec-purrr" class="nav-link" data-scroll-target="#sec-purrr"><span class="header-section-number">16.5</span> Programação funcional com <code>purrr</code></a></li>
   <li><a href="#sec-tidy-eval" id="toc-sec-tidy-eval" class="nav-link" data-scroll-target="#sec-tidy-eval"><span class="header-section-number">16.6</span> Funções que usam <code>dplyr</code> e <code>ggplot2</code></a></li>
-  <li><a href="#sec-caso-16" id="toc-sec-caso-16" class="nav-link" data-scroll-target="#sec-caso-16"><span class="header-section-number">16.7</span> Estudo de caso: automatizando um boletim por região</a></li>
-  <li><a href="#sec-ex-16" id="toc-sec-ex-16" class="nav-link" data-scroll-target="#sec-ex-16"><span class="header-section-number">16.8</span> Exercícios</a></li>
+  <li><a href="#sec-caso-16" id="toc-sec-caso-16" class="nav-link" data-scroll-target="#sec-caso-16"><span class="header-section-number">16.7</span> Estudo de caso: automatizando um boletim por estado</a></li>
+  <li><a href="#sec-ex-16" id="toc-sec-ex-16" class="nav-link" data-scroll-target="#sec-ex-16"><span class="header-section-number">16.8</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-16" id="toc-sec-sintese-16" class="nav-link" data-scroll-target="#sec-sintese-16"><span class="header-section-number">16.9</span> Síntese</a></li>
   <li><a href="#sec-mais-16" id="toc-sec-mais-16" class="nav-link" data-scroll-target="#sec-mais-16"><span class="header-section-number">16.10</span> Para saber mais</a></li>
   </ul>
@@ -382,21 +422,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 8 (apresentação) e estudo autônomo · <strong>Pré-requisitos:</strong> Partes I a III · <strong>Pacotes:</strong> R base, <code>purrr</code>, <code>dplyr</code></p>
+<p><strong>Encontro previsto:</strong> 8 (apresentação) e estudo autônomo · <strong>Pré-requisitos:</strong> Partes I a III · <strong>Pacotes:</strong> R base, <code>purrr</code>, <code>dplyr</code>, <code>ggplot2</code></p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -408,44 +435,340 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de reconhecer quando vale a pena transformar código repetido em uma função; escrever funções simples, com argumentos, valores padrão e verificação de entradas; controlar a execução com estruturas condicionais; repetir operações com laços <code>for</code> e com as funções de iteração do <code>purrr</code>; e aplicar essas ferramentas a tarefas recorrentes da análise de dados em saúde, como ler arquivos de vários anos ou produzir o mesmo gráfico para várias unidades.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de reconhecer quando vale a pena transformar código repetido em uma função; escrever funções simples, com argumentos, valores padrão e verificação de entradas; controlar a execução com estruturas condicionais; repetir operações com laços <code>for</code> e com as funções de iteração do <code>purrr</code>; e aplicar essas ferramentas a tarefas recorrentes da análise de dados em saúde, como ler vários arquivos de uma vez ou produzir o mesmo gráfico para várias unidades.</p>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"covid_norte_2020_2022.csv"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-por-que-programar" class="level2" data-number="16.1">
 <h2 data-number="16.1" class="anchored" data-anchor-id="sec-por-que-programar"><span class="header-section-number">16.1</span> Por que programar?</h2>
-<p>Discute a repetição de código como fonte de erros e apresenta a automação de tarefas recorrentes, como boletins semanais, como motivação. Retoma o fato de que o estudante já vem programando desde o <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a>, e que este capítulo apenas sistematiza estruturas que tornam o código mais geral.</p>
+<p>Quem chegou até aqui já vem programando desde o <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a>. Cada script com uma sequência de comandos é um programa. O que este capítulo acrescenta são estruturas que tornam o código mais geral, para que ele possa ser reaproveitado em situações parecidas sem precisar ser copiado e alterado à mão.</p>
+<p>Pense em um boletim epidemiológico semanal que mostra a curva de casos de cada um dos sete estados da região Norte. Uma forma de fazê-lo é escrever o código do gráfico para o Acre, copiá-lo, trocar “AC” por “AM”, e assim por diante. Funciona, mas tem problemas. Se for preciso mudar a cor do gráfico, a mudança terá de ser feita em sete lugares, e é fácil esquecer um deles. Se um erro for corrigido em uma cópia e não nas outras, os gráficos ficarão inconsistentes. Uma regra prática, sugerida no <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span>, é considerar escrever uma função sempre que um trecho de código tiver sido copiado e colado mais de duas vezes.</p>
 </section>
 <section id="sec-funcoes" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="sec-funcoes"><span class="header-section-number">16.2</span> Escrevendo funções</h2>
-<p>Apresenta a estrutura de uma função (<code>function()</code>, argumentos, corpo, valor de retorno), valores padrão, a verificação de argumentos com <code>stopifnot()</code> e <code>stop()</code> e a noção de ambiente local, com o exemplo de uma função que calcula um coeficiente de incidência com constante multiplicativa configurável.</p>
+<p>Uma função é criada com <code>function()</code>. Entre os parênteses ficam os <strong>argumentos</strong>, e entre as chaves fica o <strong>corpo</strong>, isto é, o código que será executado. O resultado da última expressão do corpo é o valor devolvido pela função. O objeto criado recebe um nome, como qualquer outro objeto do R.</p>
+<p>Como primeiro exemplo, vamos escrever uma função que calcula um coeficiente, como a incidência ou a mortalidade, a partir do número de casos e da população.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>coeficiente <span class="ot">&lt;-</span> <span class="cf">function</span>(casos, populacao, <span class="at">por =</span> <span class="dv">100000</span>) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  casos <span class="sc">/</span> populacao <span class="sc">*</span> por</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">coeficiente</span>(<span class="at">casos =</span> <span class="dv">150</span>, <span class="at">populacao =</span> <span class="dv">529544</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 28.32626</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">coeficiente</span>(<span class="at">casos =</span> <span class="dv">150</span>, <span class="at">populacao =</span> <span class="dv">529544</span>, <span class="at">por =</span> <span class="dv">1000</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.2832626</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O argumento <code>por</code> tem um <strong>valor padrão</strong>, 100 mil, usado quando ele não é informado. Os argumentos sem valor padrão, como <code>casos</code> e <code>populacao</code>, são obrigatórios. Como a função usa apenas operações vetorizadas, ela também funciona com vetores e, portanto, dentro de <code>mutate()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">municipio =</span> <span class="fu">c</span>(<span class="st">"Porto Velho"</span>, <span class="st">"Ji-Paraná"</span>, <span class="st">"Ariquemes"</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">obitos =</span> <span class="fu">c</span>(<span class="dv">2100</span>, <span class="dv">520</span>, <span class="dv">410</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">populacao =</span> <span class="fu">c</span>(<span class="dv">529544</span>, <span class="dv">128969</span>, <span class="dv">107863</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mortalidade =</span> <span class="fu">coeficiente</span>(obitos, populacao, <span class="at">por =</span> <span class="dv">1000</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   municipio   obitos populacao mortalidade</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Porto Velho   2100    529544        3.97</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ji-Paraná      520    128969        4.03</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Ariquemes      410    107863        3.80</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os números de óbitos desse exemplo são fictícios, e as populações são as estimativas do IBGE para 2019.</p>
+<p>Uma boa função verifica se recebeu entradas válidas e, quando não recebe, interrompe a execução com uma mensagem clara. A função <code>stopifnot()</code> interrompe se alguma das condições for falsa, e <code>stop()</code> interrompe com uma mensagem escrita por nós.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>coeficiente <span class="ot">&lt;-</span> <span class="cf">function</span>(casos, populacao, <span class="at">por =</span> <span class="dv">100000</span>) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(casos) <span class="sc">||</span> <span class="sc">!</span><span class="fu">is.numeric</span>(populacao)) {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Os argumentos `casos` e `populacao` devem ser numéricos."</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">all</span>(populacao <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  casos <span class="sc">/</span> populacao <span class="sc">*</span> por</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">coeficiente</span>(<span class="dv">150</span>, <span class="st">"529544"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `coeficiente()`:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! Os argumentos `casos` e `populacao` devem ser numéricos.</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">coeficiente</span>(<span class="dv">150</span>, <span class="dv">0</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `coeficiente()`:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ! all(populacao &gt; 0, na.rm = TRUE) is not TRUE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A opção <code>error: true</code> foi usada neste bloco apenas para que o livro mostre as mensagens de erro. Os objetos criados dentro de uma função existem apenas enquanto ela é executada, em um <strong>ambiente local</strong>, e não aparecem no painel <em>Environment</em>. Isso evita que uma função altere, sem querer, objetos da sessão.</p>
+<p>Uma função pode devolver mais de um valor, reunidos em um vetor, uma lista ou uma tabela. A função a seguir calcula uma proporção e seu intervalo de confiança de 95% pela aproximação normal, adequada quando o número de eventos não é muito pequeno.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>proporcao_ic <span class="ot">&lt;-</span> <span class="cf">function</span>(eventos, total, <span class="at">confianca =</span> <span class="fl">0.95</span>) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> eventos <span class="sc">/</span> total</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> (<span class="dv">1</span> <span class="sc">-</span> confianca) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  erro_padrao <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p) <span class="sc">/</span> total)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">proporcao =</span> p,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">inferior =</span> p <span class="sc">-</span> z <span class="sc">*</span> erro_padrao,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">superior =</span> p <span class="sc">+</span> z <span class="sc">*</span> erro_padrao</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">proporcao_ic</span>(<span class="at">eventos =</span> <span class="fu">sum</span>(nascidos_analise<span class="sc">$</span>baixo_peso), <span class="at">total =</span> <span class="fu">nrow</span>(nascidos_analise))</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   proporcao inferior superior</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    0.0698   0.0667   0.0728</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>qnorm()</code> devolve o quantil da distribuição normal, que é 1,96 para 95% de confiança. O resultado é uma tabela de uma linha, o que facilita juntar resultados de vários grupos, como veremos adiante.</p>
 </section>
 <section id="sec-condicionais" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="sec-condicionais"><span class="header-section-number">16.3</span> Execução condicional</h2>
-<p>Apresenta <code>if</code>, <code>else</code> e <code>else if</code> e os contrasta com <code>if_else()</code> e <code>case_when()</code>, que operam sobre vetores e já foram usados no <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>.</p>
+<p>A estrutura <code>if</code> executa um trecho de código apenas quando uma condição é verdadeira. Com <code>else</code>, define-se o que fazer quando ela é falsa, e com <code>else if</code>, encadeiam-se várias condições.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>classificar_cobertura <span class="ot">&lt;-</span> <span class="cf">function</span>(cobertura, <span class="at">meta =</span> <span class="dv">95</span>) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.na</span>(cobertura)) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"sem informação"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (cobertura <span class="sc">&gt;=</span> meta) {</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"meta atingida"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (cobertura <span class="sc">&gt;=</span> meta <span class="sc">-</span> <span class="dv">15</span>) {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"abaixo da meta"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"muito abaixo da meta"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">classificar_cobertura</span>(<span class="dv">97</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "meta atingida"</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">classificar_cobertura</span>(<span class="dv">72</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "muito abaixo da meta"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O <code>if</code> avalia <strong>uma única condição</strong> e espera receber um único valor <code>TRUE</code> ou <code>FALSE</code>. Se receber um vetor com vários valores, o R interrompe com um erro. Para classificar todos os elementos de um vetor ou de uma coluna, usamos as funções vetorizadas já vistas no <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>, <code>if_else()</code> e <code>case_when()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>coberturas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">97</span>, <span class="dv">72</span>, <span class="dv">88</span>, <span class="cn">NA</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">case_when</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(coberturas) <span class="sc">~</span> <span class="st">"sem informação"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  coberturas <span class="sc">&gt;=</span> <span class="dv">95</span> <span class="sc">~</span> <span class="st">"meta atingida"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  coberturas <span class="sc">&gt;=</span> <span class="dv">80</span> <span class="sc">~</span> <span class="st">"abaixo da meta"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">.default =</span> <span class="st">"muito abaixo da meta"</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "meta atingida"        "muito abaixo da meta" "abaixo da meta"      </span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [4] "sem informação"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em resumo, <code>if</code> controla o fluxo do programa (executar ou não um trecho de código), e <code>if_else()</code> e <code>case_when()</code> transformam vetores. Os valores de cobertura acima são fictícios, e a meta de 95% é usada apenas como exemplo.</p>
 </section>
 <section id="sec-for" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="sec-for"><span class="header-section-number">16.4</span> Iteração com <code>for</code></h2>
-<p>Apresenta o laço <code>for</code>, o uso de <code>seq_along()</code> e a pré-alocação do objeto de saída, e menciona <code>while</code> para situações em que o número de repetições não é conhecido de antemão. Discute a vetorização como alternativa mais simples em muitos casos.</p>
+<p>O laço <code>for</code> repete um trecho de código para cada elemento de um vetor. A cada repetição, a variável indicada antes de <code>in</code> assume o valor de um elemento.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (uf <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"AC"</span>, <span class="st">"AP"</span>, <span class="st">"RR"</span>)) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span> <span class="fu">filter</span>(uf <span class="sc">==</span> .env<span class="sc">$</span>uf) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">casos =</span> <span class="fu">sum</span>(casos_novos))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(uf, <span class="st">"teve"</span>, total<span class="sc">$</span>casos, <span class="st">"casos notificados entre 2020 e 2022"</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "AC teve 158669 casos notificados entre 2020 e 2022"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "AP teve 182516 casos notificados entre 2020 e 2022"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "RR teve 181245 casos notificados entre 2020 e 2022"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A expressão <code>.env$uf</code> indica ao <code>dplyr</code> que <code>uf</code> se refere ao objeto do ambiente, e não à coluna de mesmo nome da tabela. Sem ela, o filtro compararia a coluna com ela mesma, e todas as linhas seriam mantidas.</p>
+<p>Quando o laço produz resultados que precisam ser guardados, a boa prática é criar antes o objeto de saída, com o tamanho certo, e preenchê-lo a cada repetição. A função <code>seq_along()</code> gera os índices 1, 2, 3… de um vetor, e é mais segura que <code>1:length(x)</code>, que falha quando o vetor está vazio.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ufs <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(covid<span class="sc">$</span>uf))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>obitos <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fu">length</span>(ufs))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(ufs)) {</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  obitos[i] <span class="ot">&lt;-</span> <span class="fu">sum</span>(covid<span class="sc">$</span>obitos_novos[covid<span class="sc">$</span>uf <span class="sc">==</span> ufs[i]])</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">uf =</span> ufs, obitos)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 2</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   uf    obitos</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;  &lt;dbl&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 AC      2040</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 AM     14418</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 AP      2165</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 PA     18953</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 RO      7399</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 RR      2180</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 TO      4208</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Existe também o laço <code>while</code>, que repete enquanto uma condição for verdadeira e é útil quando não se sabe de antemão quantas repetições serão necessárias. Na análise de dados, ele é bem menos usado que o <code>for</code>.</p>
+<p>Muitas vezes, o laço nem é necessário. O mesmo resultado acima é obtido, de forma mais simples, com <code>group_by()</code> e <code>summarise()</code>, que já repetem a operação para cada grupo. Funções vetorizadas e verbos do <code>dplyr</code> devem ser a primeira escolha, e os laços ficam para tarefas que não se encaixam nesse modelo, como ler arquivos ou salvar gráficos.</p>
 </section>
 <section id="sec-purrr" class="level2" data-number="16.5">
 <h2 data-number="16.5" class="anchored" data-anchor-id="sec-purrr"><span class="header-section-number">16.5</span> Programação funcional com <code>purrr</code></h2>
-<p>Apresenta <code>map()</code> e suas variantes tipadas (<code>map_dbl()</code>, <code>map_chr()</code>), <code>walk()</code> para efeitos colaterais (como salvar arquivos) e <code>list_rbind()</code> para empilhar resultados, com o exemplo da leitura de arquivos anuais do SINASC.</p>
+<p>O pacote <code>purrr</code>, parte do tidyverse, oferece uma alternativa aos laços: funções que aplicam outra função a cada elemento de um vetor ou de uma lista. A principal é <code>map()</code>, que devolve sempre uma lista.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>), sqrt)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.162278</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4.472136</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.477226</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As variantes com sufixo indicam o tipo do resultado: <code>map_dbl()</code> devolve um vetor numérico, <code>map_chr()</code>, um vetor de textos, e <code>map_lgl()</code>, um vetor lógico. A função aplicada pode ser escrita no próprio <code>map()</code>, de forma abreviada, com a notação <code>\(x)</code>, que cria uma função anônima, sem nome.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(ufs, \(x) <span class="fu">sum</span>(covid<span class="sc">$</span>obitos_novos[covid<span class="sc">$</span>uf <span class="sc">==</span> x]))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  2040 14418  2165 18953  7399  2180  4208</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Um uso muito comum é a <strong>leitura de vários arquivos</strong>. Os dados dos sistemas de informação costumam vir em um arquivo por ano ou por estado, e é preciso ler todos e empilhá-los em uma única tabela. Para mostrar isso, vamos primeiro dividir a base de COVID-19 em um arquivo por estado, gravados em uma pasta temporária, simulando o que acontece quando baixamos os dados de cada estado separadamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pasta <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">"covid_por_uf"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(pasta, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>covid <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_split</span>(uf) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">walk</span>(\(dados) <span class="fu">write_csv</span>(dados, <span class="fu">file.path</span>(pasta, <span class="fu">paste0</span>(<span class="st">"covid_"</span>, dados<span class="sc">$</span>uf[<span class="dv">1</span>], <span class="st">".csv"</span>))))</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>arquivos <span class="ot">&lt;-</span> <span class="fu">list.files</span>(pasta, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.csv$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">basename</span>(arquivos)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "covid_AC.csv" "covid_AM.csv" "covid_AP.csv" "covid_PA.csv" "covid_RO.csv"</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "covid_RR.csv" "covid_TO.csv"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>group_split()</code> separa a tabela em uma lista com uma tabela por estado. A função <code>walk()</code> funciona como <code>map()</code>, mas é usada quando o que interessa é o efeito da função (gravar um arquivo, salvar um gráfico), e não o valor devolvido. Agora, vamos ler todos os arquivos e empilhá-los.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>covid_lido <span class="ot">&lt;-</span> arquivos <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(read_csv) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list_rbind</span>()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(covid_lido) <span class="sc">==</span> <span class="fu">nrow</span>(covid)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>list_rbind()</code> empilha as tabelas de uma lista, como <code>bind_rows()</code>. Para guardar o nome do arquivo de origem em uma coluna, o que é útil quando o ano ou o estado só aparece no nome do arquivo, basta nomear os elementos da lista e usar o argumento <code>names_to</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>arquivos <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_names</span>(basename) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(read_csv) <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list_rbind</span>(<span class="at">names_to =</span> <span class="st">"arquivo"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(arquivo)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 2</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   arquivo          n</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;int&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 covid_AC.csv  1020</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 covid_AM.csv  1024</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 covid_AP.csv  1017</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 covid_PA.csv  1019</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 covid_RO.csv  1017</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 covid_RR.csv  1016</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 covid_TO.csv  1019</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vale lembrar que a iteração sobre colunas já foi vista no <a href="07-agrupamento-indicadores.html" class="quarto-xref"><span>Capítulo 7</span></a>, com a função <code>across()</code>, que aplica a mesma operação a várias colunas de uma tabela.</p>
 </section>
 <section id="sec-tidy-eval" class="level2" data-number="16.6">
 <h2 data-number="16.6" class="anchored" data-anchor-id="sec-tidy-eval"><span class="header-section-number">16.6</span> Funções que usam <code>dplyr</code> e <code>ggplot2</code></h2>
-<p>Seção opcional. Mostra o uso de chaves duplas (<code>{ }</code>) para escrever funções que recebem nomes de colunas como argumentos.</p>
+<p>Quando escrevemos funções que recebem nomes de colunas e os usam dentro de verbos do <code>dplyr</code> ou do <code>ggplot2</code>, surge uma dificuldade: o R procura um objeto com aquele nome, e não uma coluna. A solução é envolver o argumento com <strong>chaves duplas</strong>, <code>{ }</code>, que indicam que ele deve ser tratado como nome de coluna.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>resumo_por <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, grupo, variavel) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>({{ grupo }})) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>({{ grupo }}) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">media =</span> <span class="fu">mean</span>({{ variavel }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">desvio_padrao =</span> <span class="fu">sd</span>({{ variavel }}, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">resumo_por</span>(nascidos_analise, faixa_idade_mae, peso)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 4</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   faixa_idade_mae     n media desvio_padrao</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt; &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Menos de 20      4558 3163.          536.</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20 a 34         19327 3262.          537.</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 35 ou mais       3143 3243.          593.</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="fu">resumo_por</span>(nascidos_analise, escmae, idademae)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   escmae              n media desvio_padrao</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt; &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma            40  31.6          8.62</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3 anos        516  28.4          7.38</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 7 anos       4760  24.6          6.81</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 8 a 11 anos     15633  25.2          6.05</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 12 anos ou mais  5767  29.5          5.37</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Quando o nome da coluna está guardado em um texto, como acontece em um laço, usa-se <code>.data[[nome]]</code>, como fizemos no estudo de caso do <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>. Esse tema é tratado em detalhe no capítulo 25 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span>.</p>
 </section>
 <section id="sec-caso-16" class="level2" data-number="16.7">
-<h2 data-number="16.7" class="anchored" data-anchor-id="sec-caso-16"><span class="header-section-number">16.7</span> Estudo de caso: automatizando um boletim por região</h2>
-<p>O estudante escreve uma função que produz a curva epidêmica de dengue de uma região e a aplica, com <code>walk()</code>, a todas as regiões da área de estudo, salvando um gráfico por região.</p>
+<h2 data-number="16.7" class="anchored" data-anchor-id="sec-caso-16"><span class="header-section-number">16.7</span> Estudo de caso: automatizando um boletim por estado</h2>
+<p>Vamos juntar as ferramentas do capítulo para produzir, de forma automática, a curva epidêmica semanal de casos de COVID-19 de cada estado da região Norte. O primeiro passo é escrever uma função que recebe a sigla de um estado e devolve o gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>curva_epidemica <span class="ot">&lt;-</span> <span class="cf">function</span>(sigla, <span class="at">dados =</span> covid) {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(uf <span class="sc">==</span> sigla) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">semana =</span> <span class="fu">floor_date</span>(data, <span class="st">"week"</span>, <span class="at">week_start =</span> <span class="dv">7</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(semana) <span class="sc">|&gt;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">casos =</span> <span class="fu">sum</span>(casos_novos)) <span class="sc">|&gt;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> semana, <span class="at">y =</span> casos)) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#ff6347"</span>) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">big.mark =</span> <span class="st">"."</span>)) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Casos novos de COVID-19 por semana,"</span>, sigla),</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Casos"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curva_epidemica</span>(<span class="st">"AC"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-curva-ac" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de colunas dos casos semanais de COVID-19 no Acre, de 2020 a 2022, com várias ondas; o maior pico ocorre no início de 2022.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-curva-ac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="16-programacao_files/figure-html/fig-curva-ac-1.png" class="img-fluid figure-img" alt="Gráfico de colunas dos casos semanais de COVID-19 no Acre, de 2020 a 2022, com várias ondas; o maior pico ocorre no início de 2022." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-curva-ac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;16.1: Gráfico produzido pela função <code>curva_epidemica()</code> para o Acre.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Com a função pronta, produzir os gráficos de todos os estados é uma única linha. Usamos <code>walk()</code> porque o objetivo é salvar os arquivos, e não guardar os gráficos. Em um projeto real, a pasta de destino seria <code>resultados/</code>, e não uma pasta temporária.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pasta_graficos <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">tempdir</span>(), <span class="st">"graficos"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(pasta_graficos, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">walk</span>(ufs, \(sigla) <span class="fu">ggsave</span>(</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filename =</span> <span class="fu">file.path</span>(pasta_graficos, <span class="fu">paste0</span>(<span class="st">"curva_"</span>, sigla, <span class="st">".png"</span>)),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot =</span> <span class="fu">curva_epidemica</span>(sigla),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">150</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">list.files</span>(pasta_graficos)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "curva_AC.png" "curva_AM.png" "curva_AP.png" "curva_PA.png" "curva_RO.png"</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] "curva_RR.png" "curva_TO.png"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Se amanhã for preciso mudar a cor, o título ou o período, a mudança é feita em um único lugar, a função, e todos os gráficos são refeitos de uma vez. Esse é o ganho da programação: menos repetição, menos erros e mais tempo para o que importa, que é a interpretação dos dados.</p>
 </section>
 <section id="sec-ex-16" class="level2" data-number="16.8">
 <h2 data-number="16.8" class="anchored" data-anchor-id="sec-ex-16"><span class="header-section-number">16.8</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem funções simples e laços sobre vetores. Os de aplicação envolvem uma função para calcular a proporção e seu intervalo de confiança. O desafio propõe generalizar a leitura de arquivos de vários anos e sistemas em uma única função documentada.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Escreva uma função <code>imc()</code> que recebe o peso, em quilogramas, e a altura, em metros, e devolve o índice de massa corporal. Acrescente uma verificação que interrompa a execução se a altura for maior que 3, sugerindo que ela pode ter sido informada em centímetros.</p></li>
+<li><p>Escreva uma função que receba uma idade em anos e devolva a faixa etária (“criança”, “adolescente”, “adulto” ou “idoso”) usando <code>if</code> e <code>else if</code>. Depois, reescreva-a com <code>case_when()</code> para que funcione com vetores.</p></li>
+<li><p>Use um laço <code>for</code> e depois <code>map_dbl()</code> para calcular a mediana do peso ao nascer em cada categoria de <code>consultas_cat</code>. Compare com o resultado de <code>group_by()</code> e <code>summarise()</code>.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="4" type="1">
+<li><p>Use a função <code>proporcao_ic()</code> com <code>group_by()</code> e <code>reframe()</code> (ou <code>summarise()</code>) para calcular a proporção de baixo peso ao nascer e seu intervalo de confiança em cada faixa etária da mãe.</p></li>
+<li><p>Adapte a função <code>curva_epidemica()</code> para receber também o tipo de contagem (casos ou óbitos) como argumento, usando as chaves duplas, e produza as curvas de óbitos de todos os estados.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="6" type="1">
+<li>Escreva uma função documentada, com comentários, que leia todos os arquivos <code>.csv</code> de uma pasta, guarde o nome do arquivo em uma coluna e devolva uma única tabela. Teste-a com os arquivos por estado criados no capítulo e, se tiver baixado arquivos de vários anos do SINASC com o <code>microdatasus</code>, com eles também.</li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-16" class="level2" data-number="16.9">
 <h2 data-number="16.9" class="anchored" data-anchor-id="sec-sintese-16"><span class="header-section-number">16.9</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>Funções evitam a repetição de código e, com ela, os erros que surgem ao copiar e alterar trechos à mão. Uma função tem argumentos, que podem ter valores padrão, e um corpo, cujo último valor é devolvido. Verificações com <code>stop()</code> e <code>stopifnot()</code> tornam as funções mais seguras. A estrutura <code>if</code> controla o fluxo do programa com base em uma única condição, enquanto <code>if_else()</code> e <code>case_when()</code> transformam vetores. O laço <code>for</code> repete operações, e o objeto de saída deve ser criado antes do laço. As funções do <code>purrr</code> aplicam uma função a cada elemento de um vetor ou lista, com <code>map()</code> e suas variantes quando interessa o resultado e <code>walk()</code> quando interessa o efeito, como salvar arquivos, e <code>list_rbind()</code> empilha os resultados. As chaves duplas permitem escrever funções que recebem nomes de colunas e os usam com <code>dplyr</code> e <code>ggplot2</code>.</p>
+<div id="tbl-sintese-16" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;16.1: Funções e estruturas apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-16-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -461,7 +784,7 @@ Objetivos de aprendizagem
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>function()</code>, <code>return()</code></td>
+<td style="text-align: left;"><code>function()</code></td>
 <td style="text-align: left;">base</td>
 <td style="text-align: left;">Definir funções</td>
 </tr>
@@ -486,25 +809,34 @@ Objetivos de aprendizagem
 <td style="text-align: left;">Iteração funcional</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>list_rbind()</code></td>
-<td style="text-align: left;">purrr</td>
+<td style="text-align: left;"><code>list_rbind()</code>, <code>set_names()</code></td>
+<td style="text-align: left;">purrr, rlang</td>
 <td style="text-align: left;">Empilhar resultados de uma iteração</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>across()</code></td>
+<td style="text-align: left;"><code>group_split()</code></td>
 <td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">Iteração sobre colunas</td>
+<td style="text-align: left;">Separar uma tabela em uma lista de tabelas</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>{ }</code></td>
+<td style="text-align: left;"><code>list.files()</code>, <code>file.path()</code>, <code>tempdir()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Trabalhar com arquivos e pastas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>{ }</code>, <code>.data[[ ]]</code>, <code>.env$</code></td>
 <td style="text-align: left;">rlang (via dplyr e ggplot2)</td>
-<td style="text-align: left;">Passar nomes de colunas a funções</td>
+<td style="text-align: left;">Usar nomes de colunas e objetos em funções</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-16" class="level2" data-number="16.10">
 <h2 data-number="16.10" class="anchored" data-anchor-id="sec-mais-16"><span class="header-section-number">16.10</span> Para saber mais</h2>
+<p>A parte do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> dedicada à programação traz capítulos sobre funções e iteração, com muitos exemplos de funções que usam <code>dplyr</code> e <code>ggplot2</code>, e um guia para as estruturas equivalentes do R base. O <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> dedica um capítulo a laços e listas e outro à escrita de funções. O livro de Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> trata, em capítulos próprios, do controle condicional, das funções, dos laços, da programação funcional com <code>purrr</code> e da depuração de erros.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -537,7 +869,7 @@ Objetivos de aprendizagem
 <tr class="even">
 <td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
 <td style="text-align: left;">4. R Functions</td>
-<td style="text-align: left;">—</td>
+<td style="text-align: left;">Argumentos e valores padrão</td>
 </tr>
 </tbody>
 </table>
@@ -975,7 +1307,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

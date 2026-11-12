@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -347,15 +382,23 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#sec-vetores" id="toc-sec-vetores" class="nav-link active" data-scroll-target="#sec-vetores"><span class="header-section-number">3.1</span> Vetores atômicos e tipos de dados</a></li>
+  <li><a href="#sec-vetores" id="toc-sec-vetores" class="nav-link active" data-scroll-target="#sec-vetores"><span class="header-section-number">3.1</span> Vetores e tipos de dados</a></li>
   <li><a href="#sec-coercao" id="toc-sec-coercao" class="nav-link" data-scroll-target="#sec-coercao"><span class="header-section-number">3.2</span> Coerção</a></li>
   <li><a href="#sec-valores-especiais" id="toc-sec-valores-especiais" class="nav-link" data-scroll-target="#sec-valores-especiais"><span class="header-section-number">3.3</span> Valores especiais</a></li>
   <li><a href="#sec-indexacao-vetores" id="toc-sec-indexacao-vetores" class="nav-link" data-scroll-target="#sec-indexacao-vetores"><span class="header-section-number">3.4</span> Selecionando elementos de vetores</a></li>
   <li><a href="#sec-fatores-intro" id="toc-sec-fatores-intro" class="nav-link" data-scroll-target="#sec-fatores-intro"><span class="header-section-number">3.5</span> Fatores: uma primeira aproximação</a></li>
   <li><a href="#sec-matrizes-listas" id="toc-sec-matrizes-listas" class="nav-link" data-scroll-target="#sec-matrizes-listas"><span class="header-section-number">3.6</span> Matrizes e listas</a></li>
-  <li><a href="#sec-data-frames" id="toc-sec-data-frames" class="nav-link" data-scroll-target="#sec-data-frames"><span class="header-section-number">3.7</span> <em>Data frames</em> e <em>tibbles</em></a></li>
+  <li><a href="#sec-data-frames" id="toc-sec-data-frames" class="nav-link" data-scroll-target="#sec-data-frames"><span class="header-section-number">3.7</span> <em>Data frames</em> e <em>tibbles</em></a>
+  <ul class="collapse">
+  <li><a href="#sec-tibbles" id="toc-sec-tibbles" class="nav-link" data-scroll-target="#sec-tibbles"><em>Tibbles</em></a></li>
+  </ul></li>
   <li><a href="#sec-caso-03" id="toc-sec-caso-03" class="nav-link" data-scroll-target="#sec-caso-03"><span class="header-section-number">3.8</span> Estudo de caso: estruturando um pequeno banco de notificações</a></li>
-  <li><a href="#sec-ex-03" id="toc-sec-ex-03" class="nav-link" data-scroll-target="#sec-ex-03"><span class="header-section-number">3.9</span> Exercícios</a></li>
+  <li><a href="#sec-ex-03" id="toc-sec-ex-03" class="nav-link" data-scroll-target="#sec-ex-03"><span class="header-section-number">3.9</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-03" id="toc-sec-sintese-03" class="nav-link" data-scroll-target="#sec-sintese-03"><span class="header-section-number">3.10</span> Síntese</a></li>
   <li><a href="#sec-mais-03" id="toc-sec-mais-03" class="nav-link" data-scroll-target="#sec-mais-03"><span class="header-section-number">3.11</span> Para saber mais</a></li>
   </ul>
@@ -383,21 +426,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 2 · <strong>Pré-requisitos:</strong> <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a> · <strong>Pacotes:</strong> R base, <code>tibble</code> e <code>dplyr</code> (apenas <code>glimpse()</code>)</p>
+<p><strong>Encontro previsto:</strong> 2 · <strong>Pré-requisitos:</strong> <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a> · <strong>Pacotes:</strong> R base, <code>tibble</code> e <code>dplyr</code> (apenas a função <code>glimpse()</code>)</p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -409,48 +439,448 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de distinguir as principais estruturas de dados do R (vetor, fator, matriz, lista e <em>data frame</em>) e os tipos de dados atômicos (numérico, inteiro, texto e lógico); identificar a classe e o tipo de um objeto; explicar a coerção entre tipos e suas consequências; reconhecer os valores especiais <code>NA</code>, <code>NaN</code>, <code>Inf</code> e <code>NULL</code>; selecionar elementos de vetores e de <em>data frames</em> por posição, por nome e por condição; e criar e inspecionar <em>data frames</em> e <em>tibbles</em>.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de distinguir as principais estruturas de dados do R (vetor, fator, matriz, lista e <em>data frame</em>) e os tipos de dados mais usados (numérico, inteiro, texto e lógico); descobrir a classe e o tipo de um objeto; explicar o que acontece quando o R converte um tipo em outro; reconhecer os valores especiais <code>NA</code>, <code>NaN</code>, <code>Inf</code> e <code>NULL</code>; selecionar elementos de vetores e de <em>data frames</em> por posição, por nome e por condição; e criar e inspecionar <em>data frames</em> e <em>tibbles</em>.</p>
 </div>
 </div>
+<p>Uma base de dados de saúde costuma ter cara de planilha. Cada linha é um registro, como um nascimento, um óbito ou uma notificação, e cada coluna é uma informação sobre esse registro, como a data, a idade ou o município de residência. Antes de trabalhar com bases desse tipo, precisamos entender como o R as representa por dentro. É disso que trata este capítulo. Começamos pelo vetor, a peça mais simples, e terminamos no <em>data frame</em>, que é justamente a “planilha” do R.</p>
 <section id="sec-vetores" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sec-vetores"><span class="header-section-number">3.1</span> Vetores atômicos e tipos de dados</h2>
-<p>Apresenta o vetor como estrutura elementar do R e os quatro tipos atômicos de uso corrente (<code>double</code>, <code>integer</code>, <code>character</code> e <code>logical</code>). Mostra como criar sequências (<code>:</code>, <code>seq()</code>, <code>rep()</code>), como as operações são aplicadas elemento a elemento (vetorização) e o que ocorre quando vetores de tamanhos diferentes são combinados (reciclagem). As funções <code>class()</code>, <code>typeof()</code> e <code>str()</code> são usadas para inspecionar os objetos.</p>
+<h2 data-number="3.1" class="anchored" data-anchor-id="sec-vetores"><span class="header-section-number">3.1</span> Vetores e tipos de dados</h2>
+<p>No capítulo anterior, criamos um vetor de pesos com a função <code>c()</code>. Um <strong>vetor</strong> é uma sequência de valores do mesmo tipo. Ele é a estrutura mais básica do R. Até um único número, como <code>5</code>, é na verdade um vetor de comprimento um.</p>
+<p>Os vetores podem guardar diferentes tipos de dados. No dia a dia, quatro tipos aparecem quase sempre.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>idades <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">31</span>, <span class="dv">17</span>, <span class="dv">40</span>)                       <span class="co"># numérico (double)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>filhos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>L, <span class="dv">2</span>L, <span class="dv">0</span>L, <span class="dv">3</span>L)                       <span class="co"># inteiro</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>municipios <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Porto Velho"</span>, <span class="st">"Ji-Paraná"</span>, <span class="st">"Ariquemes"</span>, <span class="st">"Cacoal"</span>)  <span class="co"># texto</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>prematuro <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)        <span class="co"># lógico</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O tipo <strong>numérico</strong> (chamado internamente de <em>double</em>) guarda números com ou sem casas decimais. O tipo <strong>inteiro</strong> guarda apenas números inteiros; a letra <code>L</code> depois do número indica que queremos um inteiro, mas na prática raramente precisamos disso. O tipo <strong>texto</strong> (<em>character</em>) guarda palavras ou frases, sempre entre aspas. O tipo <strong>lógico</strong> guarda apenas <code>TRUE</code> ou <code>FALSE</code>, como os resultados das comparações do capítulo anterior.</p>
+<p>Para descobrir o tipo de um objeto, usamos <code>typeof()</code>. A função <code>class()</code> informa a classe, que é a forma como o R vai tratar o objeto, e a função <code>str()</code> (de <em>structure</em>) mostra um resumo da estrutura.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(idades)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "double"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(filhos)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "integer"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(municipios)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "character"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(prematuro)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  logi [1:4] FALSE TRUE FALSE FALSE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Há atalhos para criar vetores com sequências e repetições. O operador <code>:</code> cria sequências de inteiros, a função <code>seq()</code> cria sequências com qualquer intervalo e a função <code>rep()</code> repete valores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">25</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]   0  25  50  75 100</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="st">"ignorado"</span>, <span class="at">times =</span> <span class="dv">3</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "ignorado" "ignorado" "ignorado"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Uma propriedade muito útil dos vetores é que as operações são aplicadas a todos os elementos de uma vez. Isso se chama <strong>vetorização</strong>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pesos_gramas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3200</span>, <span class="dv">2850</span>, <span class="dv">3540</span>, <span class="dv">2410</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pesos_gramas <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3.20 2.85 3.54 2.41</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com uma única linha convertemos os quatro pesos de gramas para quilogramas. Em outras linguagens, seria preciso escrever uma repetição explícita para fazer o mesmo.</p>
+<div class="callout callout-style-simple callout-warning callout-titled" title="Reciclagem">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Reciclagem
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quando combinamos dois vetores de tamanhos diferentes, o R repete o menor até completar o maior. Se o tamanho do maior não for múltiplo do menor, aparece um aviso. Esse comportamento, chamado de reciclagem, é útil quando um dos vetores tem um único valor (como em <code>pesos_gramas / 1000</code>), mas pode produzir resultados errados sem que se perceba quando os tamanhos não batem por engano.</p>
+</div>
+</div>
 </section>
 <section id="sec-coercao" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="sec-coercao"><span class="header-section-number">3.2</span> Coerção</h2>
-<p>Explica a hierarquia de coerção implícita (lógico, inteiro, numérico, texto) e a coerção explícita com as funções <code>as.*()</code>. Um exemplo central é a conversão de <code>"3,5"</code> em número, que resulta em <code>NA</code> por causa da vírgula decimal, problema frequente na importação de planilhas brasileiras e retomado no <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>.</p>
+<p>Um vetor só pode ter um tipo de dado. O que acontece, então, se misturarmos números e textos?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>misturado <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="st">"vinte"</span>, <span class="dv">30</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>misturado</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "10"    "vinte" "30"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(misturado)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "character"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O R converteu tudo em texto. Esse processo se chama <strong>coerção</strong>. Quando tipos diferentes são misturados, o R escolhe o tipo mais flexível, seguindo a ordem lógico, inteiro, numérico e texto. Um lógico pode virar número (<code>TRUE</code> vira 1), um número pode virar texto (<code>10</code> vira <code>"10"</code>), mas o contrário nem sempre é possível.</p>
+<p>Também podemos converter tipos de forma explícita, com as funções <code>as.numeric()</code>, <code>as.integer()</code>, <code>as.character()</code> e <code>as.logical()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="st">"3.5"</span>, <span class="st">"12"</span>, <span class="st">"7"</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  3.5 12.0  7.0</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "1" "2" "3"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora veja um caso que aparece com frequência em dados brasileiros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="st">"3,5"</span>, <span class="st">"12"</span>, <span class="st">"7"</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: NAs introduced by coercion</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA 12  7</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O primeiro valor virou <code>NA</code>, e o R emitiu um aviso. O motivo é a vírgula decimal. Para o R, <code>"3,5"</code> não é um número válido. Esse problema surge quando importamos planilhas preparadas com a configuração regional brasileira, e o <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a> mostra como evitá-lo já na leitura do arquivo. Por enquanto, o importante é perceber que uma coluna que deveria ser numérica pode chegar como texto, e que a conversão descuidada transforma valores em ausentes.</p>
 </section>
 <section id="sec-valores-especiais" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="sec-valores-especiais"><span class="header-section-number">3.3</span> Valores especiais</h2>
-<p>Diferencia <code>NA</code> (valor ausente), <code>NaN</code> (resultado indefinido), <code>Inf</code> (infinito) e <code>NULL</code> (ausência de objeto). Mostra como <code>NA</code> se propaga em cálculos, o uso de <code>is.na()</code> e do argumento <code>na.rm = TRUE</code>, e destaca que os códigos de “ignorado” dos sistemas de informação em saúde (como 9 ou 99) não são reconhecidos automaticamente como valores ausentes.</p>
+<p>O R tem quatro valores especiais que convém conhecer.</p>
+<p><code>NA</code> (<em>not available</em>) representa um valor ausente, ou seja, uma informação que existe mas não foi registrada, como a escolaridade de uma mãe que não foi preenchida na declaração de nascido vivo. <code>NaN</code> (<em>not a number</em>) é o resultado de uma operação matemática indefinida, como <code>0 / 0</code>. <code>Inf</code> representa o infinito, resultado, por exemplo, de <code>1 / 0</code>. <code>NULL</code> representa a ausência de um objeto, o que é diferente de um valor ausente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">0</span> <span class="sc">/</span> <span class="dv">0</span>, <span class="dv">1</span> <span class="sc">/</span> <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span> <span class="sc">/</span> <span class="dv">0</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  NaN  Inf -Inf</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">NULL</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="cn">NA</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O valor <code>NA</code> merece atenção especial, porque ele “contamina” os cálculos. Qualquer operação que envolva um <code>NA</code> resulta em <code>NA</code>, já que não sabemos o valor que está faltando.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>escolaridade_anos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">8</span>, <span class="dv">11</span>, <span class="cn">NA</span>, <span class="dv">15</span>, <span class="dv">4</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(escolaridade_anos)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(escolaridade_anos, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9.5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para descobrir onde estão os valores ausentes, usamos <code>is.na()</code>, que devolve <code>TRUE</code> para cada posição sem informação. Somando o resultado, contamos os ausentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(escolaridade_anos)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(escolaridade_anos))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Atenção a um detalhe que pega muita gente. Não se testa ausência com <code>escolaridade_anos == NA</code>, porque comparar qualquer coisa com um valor desconhecido também dá um valor desconhecido. O teste correto é sempre <code>is.na()</code>.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Saúde Pública em foco
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nos sistemas de informação do SUS, a falta de informação nem sempre aparece como <code>NA</code>. Muitas variáveis usam códigos próprios para “ignorado”, como 9 ou 99. Na variável de escolaridade da mãe do SINASC, por exemplo, o código 9 indica que a informação foi ignorada. Se esse código não for convertido em <code>NA</code> antes da análise, o R vai tratá-lo como um número de verdade, e uma média de anos de estudo, por exemplo, ficará distorcida. A consulta ao dicionário de dados de cada sistema é, por isso, indispensável. O tratamento desses códigos é feito no <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>.</p>
+</div>
+</div>
 </section>
 <section id="sec-indexacao-vetores" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="sec-indexacao-vetores"><span class="header-section-number">3.4</span> Selecionando elementos de vetores</h2>
-<p>Apresenta a indexação com colchetes por posição, por exclusão (índices negativos), por nome e por vetores lógicos, além da função <code>which()</code>. A seleção por condição é apresentada como base conceitual para a função <code>filter()</code> do <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>.</p>
+<p>Muitas vezes queremos apenas parte de um vetor. Para isso usamos colchetes, <code>[ ]</code>, depois do nome do objeto. Há três formas principais de indicar o que queremos.</p>
+<p>A primeira é pela <strong>posição</strong>. Os elementos de um vetor são numerados a partir de 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>municipios[<span class="dv">2</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Ji-Paraná"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>municipios[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Porto Velho" "Ariquemes"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>municipios[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Ji-Paraná" "Ariquemes" "Cacoal"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O número negativo exclui a posição indicada. Assim, <code>municipios[-1]</code> devolve todos os municípios exceto o primeiro.</p>
+<p>A segunda é pelo <strong>nome</strong>. Os elementos de um vetor podem ter nomes, o que facilita a leitura.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>populacao <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">porto_velho =</span> <span class="dv">529544</span>, <span class="at">ji_parana =</span> <span class="dv">128969</span>, <span class="at">ariquemes =</span> <span class="dv">107863</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>populacao[<span class="st">"ji_parana"</span>]</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ji_parana </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    128969</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os números acima são as estimativas populacionais do IBGE para 2019. A terceira forma, e a mais importante para a análise de dados, é a seleção por <strong>condição</strong>. Colocamos dentro dos colchetes um vetor lógico, e o R devolve apenas os elementos correspondentes a <code>TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>idades</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 23 31 17 40</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>idades[idades <span class="sc">&lt;</span> <span class="dv">20</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 17</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>which()</code> informa as posições em que a condição é verdadeira, o que pode ser útil para localizar registros.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(idades <span class="sc">&lt;</span> <span class="dv">20</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A seleção por condição é a ideia por trás da filtragem de bases de dados, que faremos de forma mais confortável com a função <code>filter()</code> no <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>.</p>
 </section>
 <section id="sec-fatores-intro" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="sec-fatores-intro"><span class="header-section-number">3.5</span> Fatores: uma primeira aproximação</h2>
-<p>Introduz o fator como estrutura para variáveis categóricas, com níveis e rótulos (<code>factor()</code>, <code>levels()</code>), e o fator ordenado para variáveis ordinais, como a escolaridade materna. Mostra a conversão de variáveis codificadas (por exemplo, sexo registrado como 1 e 2) em categorias rotuladas e a contagem de categorias com <code>table()</code>. O tratamento completo de fatores está no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
+<p>Variáveis categóricas, como sexo, raça/cor ou tipo de parto, são muito comuns em saúde. Elas poderiam ser guardadas como texto, mas o R tem uma estrutura própria para elas, o <strong>fator</strong>. Um fator guarda os valores e também a lista de categorias possíveis, chamadas de <strong>níveis</strong> (<em>levels</em>).</p>
+<p>Nos sistemas de informação, as categorias costumam ser registradas como códigos. No SINASC, o tipo de parto é registrado como 1 (vaginal), 2 (cesáreo) ou 9 (ignorado). A função <code>factor()</code> transforma esses códigos em categorias com rótulos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>parto_codigo <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">2</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>parto <span class="ot">&lt;-</span> <span class="fu">factor</span>(parto_codigo,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">9</span>),</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Vaginal"</span>, <span class="st">"Cesáreo"</span>, <span class="st">"Ignorado"</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>parto</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Vaginal  Cesáreo  Cesáreo  Vaginal  Ignorado Cesáreo </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: Vaginal Cesáreo Ignorado</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(parto)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Vaginal"  "Cesáreo"  "Ignorado"</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(parto)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; parto</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Vaginal  Cesáreo Ignorado </span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        2        3        1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O argumento <code>levels</code> informa os códigos possíveis, e <code>labels</code> informa os rótulos correspondentes, na mesma ordem. A função <code>table()</code> conta quantas vezes cada categoria aparece. Repare que a ordem dos níveis é a ordem em que eles foram informados, e não a ordem alfabética. Isso importa porque determina a ordem das categorias em tabelas e gráficos.</p>
+<p>Algumas variáveis categóricas têm uma ordem natural, como a escolaridade ou a classificação de gravidade. Para elas, existe o <strong>fator ordenado</strong>, criado com o argumento <code>ordered = TRUE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>escolaridade <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Médio"</span>, <span class="st">"Fundamental"</span>, <span class="st">"Superior"</span>, <span class="st">"Médio"</span>),</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Fundamental"</span>, <span class="st">"Médio"</span>, <span class="st">"Superior"</span>),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>escolaridade</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Médio       Fundamental Superior    Médio      </span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: Fundamental &lt; Médio &lt; Superior</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>escolaridade <span class="sc">&lt;</span> <span class="st">"Superior"</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE FALSE  TRUE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os fatores serão tratados com mais detalhe no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>, com as ferramentas do pacote <code>forcats</code>.</p>
 </section>
 <section id="sec-matrizes-listas" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="sec-matrizes-listas"><span class="header-section-number">3.6</span> Matrizes e listas</h2>
-<p>Apresenta brevemente as matrizes (<code>matrix()</code>, <code>dim()</code>) e as listas (<code>list()</code>, <code>[[ ]]</code>, <code>$</code>). As listas são justificadas pelo uso posterior: os resultados de testes estatísticos, como o de <code>t.test()</code>, são listas cujos componentes podem ser extraídos individualmente.</p>
+<p>Duas outras estruturas aparecem com menos frequência neste livro, mas convém conhecê-las.</p>
+<p>A <strong>matriz</strong> é um vetor organizado em linhas e colunas, com todos os elementos do mesmo tipo. Ela aparece, por exemplo, na tabela 2 × 2 das medidas de associação do <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tabela <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">70</span>, <span class="dv">15</span>, <span class="dv">85</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>tabela</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      [,1] [,2]</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,]   30   70</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [2,]   15   85</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(tabela)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A <strong>lista</strong> é uma estrutura que pode guardar objetos de tipos e tamanhos diferentes, inclusive outras listas. Os elementos de uma lista são acessados com dois colchetes, <code>[[ ]]</code>, ou com o cifrão, <code>$</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>paciente <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">nome =</span> <span class="st">"Paciente A"</span>, <span class="at">idade =</span> <span class="dv">34</span>, <span class="at">exames =</span> <span class="fu">c</span>(<span class="fl">5.4</span>, <span class="fl">6.1</span>, <span class="fl">5.8</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>paciente<span class="sc">$</span>idade</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 34</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>paciente[[<span class="st">"exames"</span>]]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.4 6.1 5.8</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As listas parecem pouco úteis no começo, mas são muito comuns nos bastidores. O resultado de um teste estatístico, como o teste t do <a href="13-comparacao-medias.html" class="quarto-xref"><span>Capítulo 13</span></a>, é uma lista com vários componentes (estatística, valor-p, intervalo de confiança), que podem ser extraídos um a um com <code>$</code>.</p>
 </section>
 <section id="sec-data-frames" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="sec-data-frames"><span class="header-section-number">3.7</span> <em>Data frames</em> e <em>tibbles</em></h2>
-<p>Define o <em>data frame</em> como uma lista de vetores de mesmo comprimento, em que cada coluna é uma variável e cada linha uma observação. Mostra sua criação (<code>data.frame()</code>, <code>tibble::tibble()</code>), a seleção de colunas com <code>$</code> e de linhas e colunas com <code>[linha, coluna]</code>, e as funções de inspeção (<code>head()</code>, <code>nrow()</code>, <code>ncol()</code>, <code>names()</code>, <code>str()</code>, <code>summary()</code>, <code>dplyr::glimpse()</code>). Compara <em>data frames</em> e <em>tibbles</em> quanto à impressão no console e ao comportamento na seleção de colunas.</p>
+<p>Chegamos à estrutura mais importante para a análise de dados. Um <strong><em>data frame</em></strong> é uma tabela em que cada coluna é um vetor e todas as colunas têm o mesmo comprimento. Cada coluna pode ter um tipo diferente, o que permite guardar, lado a lado, números, textos, datas e categorias. É exatamente o formato das bases de dados de saúde.</p>
+<p>Podemos criar um <em>data frame</em> a partir de vetores com a função <code>data.frame()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>nascimentos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">peso =</span> <span class="fu">c</span>(<span class="dv">3200</span>, <span class="dv">2350</span>, <span class="dv">3540</span>, <span class="cn">NA</span>, <span class="dv">2980</span>),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">semanas =</span> <span class="fu">c</span>(<span class="dv">39</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">41</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">parto =</span> <span class="fu">c</span>(<span class="st">"Vaginal"</span>, <span class="st">"Cesáreo"</span>, <span class="st">"Cesáreo"</span>, <span class="st">"Vaginal"</span>, <span class="st">"Cesáreo"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>nascimentos</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   id peso semanas   parto</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  1 3200      39 Vaginal</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2 2350      35 Cesáreo</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  3 3540      40 Cesáreo</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  4   NA      38 Vaginal</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  5 2980      41 Cesáreo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Esses cinco registros são fictícios. Para acessar uma coluna inteira, usamos o cifrão. O resultado é um vetor, com o qual podemos fazer qualquer operação já vista.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nascimentos<span class="sc">$</span>peso</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3200 2350 3540   NA 2980</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(nascimentos<span class="sc">$</span>peso, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3017.5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para selecionar linhas e colunas ao mesmo tempo, usamos colchetes com duas posições separadas por vírgula, no formato <code>[linhas, colunas]</code>. Deixar uma das posições vazia significa “todas”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nascimentos[<span class="dv">2</span>, ]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   id peso semanas   parto</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2 2350      35 Cesáreo</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>nascimentos[, <span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"peso"</span>)]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   id peso</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  1 3200</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2 2350</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  3 3540</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  4   NA</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  5 2980</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>nascimentos[nascimentos<span class="sc">$</span>semanas <span class="sc">&lt;</span> <span class="dv">37</span>, ]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   id peso semanas   parto</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  2 2350      35 Cesáreo</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A última linha seleciona os nascimentos prematuros, isto é, com menos de 37 semanas de gestação. É a mesma ideia da seleção por condição, agora aplicada às linhas de uma tabela.</p>
+<p>Várias funções ajudam a conhecer um <em>data frame</em>. As principais estão na <a href="#tbl-inspecao" class="quarto-xref">Tabela&nbsp;<span>3.1</span></a>.</p>
+<div id="tbl-inspecao" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-inspecao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.1: Funções para inspecionar um <em>data frame</em>.
+</figcaption>
+<div aria-describedby="tbl-inspecao-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Função</th>
+<th style="text-align: left;">O que mostra</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>head()</code>, <code>tail()</code></td>
+<td style="text-align: left;">As primeiras ou as últimas linhas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>nrow()</code>, <code>ncol()</code>, <code>dim()</code></td>
+<td style="text-align: left;">Número de linhas, de colunas ou ambos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>names()</code></td>
+<td style="text-align: left;">Nomes das colunas</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>str()</code></td>
+<td style="text-align: left;">Estrutura, com o tipo de cada coluna</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>summary()</code></td>
+<td style="text-align: left;">Resumo de cada coluna</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>dplyr::glimpse()</code></td>
+<td style="text-align: left;">Visão compacta das colunas e de seus tipos</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(nascimentos)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5 4</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nascimentos)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        id         peso         semanas        parto          </span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Min.   :1   Min.   :2350   Min.   :35.0   Length:5          </span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1st Qu.:2   1st Qu.:2822   1st Qu.:38.0   Class :character  </span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Median :3   Median :3090   Median :39.0   Mode  :character  </span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Mean   :3   Mean   :3018   Mean   :38.6                     </span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3rd Qu.:4   3rd Qu.:3285   3rd Qu.:40.0                     </span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Max.   :5   Max.   :3540   Max.   :41.0                     </span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              NA's   :1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>summary()</code> mostra, para cada coluna numérica, o mínimo, os quartis, a média, o máximo e o número de valores ausentes. Para colunas de texto, mostra apenas o tamanho e o tipo.</p>
+<section id="sec-tibbles" class="level3">
+<h3 class="anchored" data-anchor-id="sec-tibbles"><em>Tibbles</em></h3>
+<p>O tidyverse, que usaremos a partir do <a href="05-importacao.html" class="quarto-xref"><span>Capítulo 5</span></a>, trabalha com uma versão moderna do <em>data frame</em>, chamada <strong><em>tibble</em></strong>. Uma <em>tibble</em> é um <em>data frame</em> com algumas melhorias. Ela mostra no console apenas as primeiras linhas e as colunas que cabem na tela, informa o tipo de cada coluna e é mais rigorosa em algumas operações, o que evita erros silenciosos. Criamos uma <em>tibble</em> com a função <code>tibble()</code> do pacote de mesmo nome.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>nascimentos_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">peso =</span> <span class="fu">c</span>(<span class="dv">3200</span>, <span class="dv">2350</span>, <span class="dv">3540</span>, <span class="cn">NA</span>, <span class="dv">2980</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">semanas =</span> <span class="fu">c</span>(<span class="dv">39</span>, <span class="dv">35</span>, <span class="dv">40</span>, <span class="dv">38</span>, <span class="dv">41</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>nascimentos_tbl</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 3</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      id  peso semanas</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     1  3200      39</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2  2350      35</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     3  3540      40</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     4    NA      38</span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     5  2980      41</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Repare na linha <code>&lt;int&gt;</code>, <code>&lt;dbl&gt;</code> abaixo dos nomes das colunas. Ela informa que <code>id</code> é um vetor de inteiros e que <code>peso</code> e <code>semanas</code> são numéricos. Para todos os efeitos práticos deste livro, <em>data frames</em> e <em>tibbles</em> podem ser usados da mesma forma, e as funções do tidyverse devolvem sempre <em>tibbles</em>.</p>
+<p>A função <code>glimpse()</code>, do pacote <code>dplyr</code>, é uma alternativa ao <code>str()</code> que se tornou muito popular por apresentar as colunas na vertical, o que funciona bem com bases que têm dezenas de variáveis, como as do DATASUS.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(nascimentos_tbl)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rows: 5</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Columns: 3</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ id      &lt;int&gt; 1, 2, 3, 4, 5</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ peso    &lt;dbl&gt; 3200, 2350, 3540, NA, 2980</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $ semanas &lt;dbl&gt; 39, 35, 40, 38, 41</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="sec-caso-03" class="level2" data-number="3.8">
 <h2 data-number="3.8" class="anchored" data-anchor-id="sec-caso-03"><span class="header-section-number">3.8</span> Estudo de caso: estruturando um pequeno banco de notificações</h2>
-<p>Com dados fictícios, o estudante constrói uma <em>tibble</em> com dez notificações de um agravo, contendo identificador, data de notificação (ainda como texto), idade, sexo codificado e classificação final. Em seguida, converte o sexo em fator rotulado, identifica valores ausentes, calcula a idade média e seleciona apenas os casos confirmados.</p>
+<p>Vamos aplicar os conceitos do capítulo a um pequeno banco de notificações de dengue. Os dez registros abaixo são fictícios, mas seguem a lógica dos dados do SINAN. O sexo está codificado como no sistema (<code>M</code>, <code>F</code> e <code>I</code> para ignorado), a idade está em anos e a classificação final usa os códigos 10 (dengue), 5 (descartado) e 8 (inconclusivo).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>notificacoes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data_notificacao =</span> <span class="fu">c</span>(<span class="st">"2024-03-04"</span>, <span class="st">"2024-03-05"</span>, <span class="st">"2024-03-05"</span>, <span class="st">"2024-03-07"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"2024-03-08"</span>, <span class="st">"2024-03-11"</span>, <span class="st">"2024-03-12"</span>, <span class="st">"2024-03-12"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"2024-03-14"</span>, <span class="st">"2024-03-15"</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">idade =</span> <span class="fu">c</span>(<span class="dv">34</span>, <span class="dv">8</span>, <span class="dv">51</span>, <span class="cn">NA</span>, <span class="dv">27</span>, <span class="dv">72</span>, <span class="dv">19</span>, <span class="dv">45</span>, <span class="dv">3</span>, <span class="dv">60</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sexo =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"I"</span>, <span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"M"</span>, <span class="st">"F"</span>),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">classificacao =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">5</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>notificacoes</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 10 × 5</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       id data_notificacao idade sexo  classificacao</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1     1 2024-03-04          34 F                10</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2     2 2024-03-05           8 M                10</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3     3 2024-03-05          51 F                 5</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4     4 2024-03-07          NA F                10</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5     5 2024-03-08          27 M                 8</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6     6 2024-03-11          72 I                10</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7     7 2024-03-12          19 F                 5</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8     8 2024-03-12          45 M                10</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9     9 2024-03-14           3 M                10</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    10 2024-03-15          60 F                 5</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Repare que a data foi guardada como texto (<code>&lt;chr&gt;</code>). O R ainda não sabe que se trata de datas. A conversão para o tipo apropriado, que permite calcular intervalos e semanas epidemiológicas, é feita no <a href="09-textos-fatores-datas.html" class="quarto-xref"><span>Capítulo 9</span></a>.</p>
+<p>O primeiro passo é transformar os códigos de sexo e de classificação em fatores com rótulos legíveis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>notificacoes<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">factor</span>(notificacoes<span class="sc">$</span>sexo,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"F"</span>, <span class="st">"M"</span>, <span class="st">"I"</span>),</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Feminino"</span>, <span class="st">"Masculino"</span>, <span class="st">"Ignorado"</span>))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>notificacoes<span class="sc">$</span>classificacao <span class="ot">&lt;-</span> <span class="fu">factor</span>(notificacoes<span class="sc">$</span>classificacao,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">8</span>),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Dengue"</span>, <span class="st">"Descartado"</span>, <span class="st">"Inconclusivo"</span>))</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(notificacoes<span class="sc">$</span>classificacao)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       Dengue   Descartado Inconclusivo </span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;            6            3            1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em seguida, verificamos se há valores ausentes na idade e calculamos a idade média dos notificados, ignorando o registro sem informação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(notificacoes<span class="sc">$</span>idade))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(notificacoes<span class="sc">$</span>idade, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 35.44444</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Por fim, selecionamos apenas os casos confirmados de dengue e guardamos o resultado em um novo objeto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>confirmados <span class="ot">&lt;-</span> notificacoes[notificacoes<span class="sc">$</span>classificacao <span class="sc">==</span> <span class="st">"Dengue"</span>, ]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(confirmados)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(confirmados<span class="sc">$</span>idade, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 32.4</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dos dez notificados, seis tiveram a dengue confirmada. A idade média entre os confirmados é diferente da idade média de todos os notificados, o que mostra a importância de definir com clareza qual população está sendo descrita. Nos próximos capítulos, faremos esse mesmo tipo de operação de forma mais simples e legível com as funções do tidyverse.</p>
 </section>
 <section id="sec-ex-03" class="level2" data-number="3.9">
 <h2 data-number="3.9" class="anchored" data-anchor-id="sec-ex-03"><span class="header-section-number">3.9</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem a criação de vetores de diferentes tipos e a previsão do resultado de coerções. Os de aplicação envolvem a seleção de elementos por condição em um <em>data frame</em> de óbitos fictícios. O desafio propõe explicar por que a média de uma coluna importada como texto não pode ser calculada e como corrigir o problema.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Antes de executar, tente prever o tipo de cada vetor a seguir. Depois, confirme com <code>typeof()</code>. <code>c(1, 2, 3)</code>, <code>c(1, "2", 3)</code>, <code>c(TRUE, FALSE, 1)</code>, <code>c(TRUE, "FALSE")</code>.</p></li>
+<li><p>Crie um vetor com as idades 12, 25, 37, 44, 15, 68 e 19. Selecione, usando colchetes, as idades entre 15 e 49 anos (faixa etária considerada em idade fértil nos indicadores de saúde da mulher).</p></li>
+<li><p>Usando o <em>data frame</em> <code>nascimentos</code> do texto, calcule a média de semanas de gestação e selecione as linhas com parto cesáreo.</p></li>
+<li><p>Crie um fator com os códigos de raça/cor <code>1, 4, 4, 2, 9, 1, 4</code>, sabendo que, no SINASC, 1 é branca, 2 é preta, 3 é amarela, 4 é parda e 5 é indígena, e considerando o código 9 como ignorado. Inclua todos os níveis, mesmo os que não aparecem, e use <code>table()</code> para contar as categorias.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="5" type="1">
+<li><p>Crie uma <em>tibble</em> fictícia com oito óbitos, contendo as colunas <code>idade</code> (em anos), <code>sexo</code> e <code>causa</code> (com valores como “Doenças do aparelho circulatório”, “Neoplasias” e “Causas externas”). Calcule a idade média dos óbitos por causas externas e compare com a idade média geral.</p></li>
+<li><p>Uma planilha de cobertura vacinal chegou com os valores <code>"95,2"</code>, <code>"88,7"</code>, <code>"101,3"</code> e <code>"79,0"</code>, como texto. Converta esses valores para número sem que nenhum se transforme em <code>NA</code>. (Dica: a função <code>sub(",", ".", x)</code> troca a primeira vírgula de cada texto por um ponto.)</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="7" type="1">
+<li><p>Execute <code>mean(c(8, 11, 99, 15, 99))</code>, imaginando que o código 99 representa “ignorado”. Explique por que o resultado é enganoso e reescreva o cálculo de modo que os códigos de ignorado sejam tratados como ausentes. Discuta que tipo de viés pode surgir se a proporção de ignorados for muito diferente entre os municípios comparados.</p></li>
+<li><p>A função <code>str()</code> aplicada ao resultado de <code>t.test(c(3200, 2850, 3540, 2410, 3100), mu = 3000)</code> mostra que o resultado é uma lista. Explore essa lista e extraia, com <code>$</code>, o valor-p e o intervalo de confiança. Não é preciso entender o teste agora; o objetivo é praticar a navegação em listas.</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-03" class="level2" data-number="3.10">
 <h2 data-number="3.10" class="anchored" data-anchor-id="sec-sintese-03"><span class="header-section-number">3.10</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>Os dados no R são organizados em estruturas. O vetor é a mais simples, com valores de um único tipo, que pode ser numérico, inteiro, texto ou lógico. Quando tipos diferentes são misturados, o R os converte para o tipo mais flexível, processo chamado de coerção, que exige atenção com vírgulas decimais e códigos numéricos. O valor <code>NA</code> representa informação ausente e deve ser testado com <code>is.na()</code>; nos sistemas de informação do SUS, a ausência muitas vezes vem disfarçada de código, como 9 ou 99. Os elementos de um vetor podem ser selecionados por posição, por nome ou por condição. Fatores representam variáveis categóricas com níveis definidos. Matrizes e listas aparecem em situações específicas, como tabelas de contingência e resultados de testes. O <em>data frame</em>, e sua versão moderna, a <em>tibble</em>, é a estrutura que representa uma base de dados, com uma coluna para cada variável e uma linha para cada registro.</p>
+<div id="tbl-sintese-03" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;3.2: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -471,55 +901,64 @@ Objetivos de aprendizagem
 <td style="text-align: left;">Criar vetores e sequências</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>class()</code>, <code>typeof()</code>, <code>str()</code></td>
-<td style="text-align: left;">base, utils</td>
-<td style="text-align: left;">Inspecionar classe, tipo e estrutura</td>
+<td style="text-align: left;"><code>typeof()</code>, <code>class()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Descobrir tipo e classe</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>as.numeric()</code>, <code>as.integer()</code>, <code>as.character()</code>, <code>as.logical()</code></td>
-<td style="text-align: left;">base</td>
-<td style="text-align: left;">Coerção explícita</td>
+<td style="text-align: left;"><code>str()</code></td>
+<td style="text-align: left;">utils</td>
+<td style="text-align: left;">Ver a estrutura de um objeto</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><code>as.numeric()</code>, <code>as.integer()</code>, <code>as.character()</code>, <code>as.logical()</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Converter tipos</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><code>is.na()</code></td>
 <td style="text-align: left;">base</td>
 <td style="text-align: left;">Identificar valores ausentes</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>which()</code></td>
 <td style="text-align: left;">base</td>
-<td style="text-align: left;">Posições que satisfazem uma condição</td>
+<td style="text-align: left;">Encontrar posições que atendem a uma condição</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>factor()</code>, <code>levels()</code>, <code>table()</code></td>
 <td style="text-align: left;">base</td>
 <td style="text-align: left;">Criar fatores e contar categorias</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>matrix()</code>, <code>dim()</code>, <code>list()</code></td>
 <td style="text-align: left;">base</td>
 <td style="text-align: left;">Matrizes e listas</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>data.frame()</code>, <code>tibble()</code></td>
 <td style="text-align: left;">base, tibble</td>
 <td style="text-align: left;">Criar tabelas de dados</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>head()</code>, <code>nrow()</code>, <code>ncol()</code>, <code>names()</code>, <code>summary()</code></td>
+<tr class="even">
+<td style="text-align: left;"><code>head()</code>, <code>tail()</code>, <code>nrow()</code>, <code>ncol()</code>, <code>names()</code>, <code>summary()</code></td>
 <td style="text-align: left;">base, utils</td>
 <td style="text-align: left;">Inspecionar <em>data frames</em></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;"><code>glimpse()</code></td>
 <td style="text-align: left;">dplyr</td>
 <td style="text-align: left;">Visão compacta de colunas e tipos</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-03" class="level2" data-number="3.11">
 <h2 data-number="3.11" class="anchored" data-anchor-id="sec-mais-03"><span class="header-section-number">3.11</span> Para saber mais</h2>
+<p>O capítulo 2 de Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> é provavelmente o texto mais completo em português sobre estruturas e tipos de dados no R, incluindo coerção, valores especiais e as várias formas de seleção. O capítulo 27 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> apresenta as formas de seleção do R base para quem já conhece o tidyverse, e o capítulo 16 trata dos fatores. Bougioukas <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span> dedica os capítulos 6 a 9 a objetos, vetores, matrizes, listas e <em>data frames</em>.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -535,19 +974,19 @@ Objetivos de aprendizagem
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
+<td style="text-align: left;">2. Fundamentos da Linguagem R</td>
+<td style="text-align: left;">Estruturas de dados; Tipos de dados; Coerção no R; <em>Subsetting</em>; Valores especiais do R</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">16. Fatores; 27. Um guia para o R base</td>
 <td style="text-align: left;">O básico sobre fatores; Selecionando múltiplos elementos com <code>[</code>; Selecionando um único elemento com <code>$</code> e <code>[[</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">3. Introdução ao R</td>
 <td style="text-align: left;">Objetos; Principais operadores e funções</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
-<td style="text-align: left;">2. Fundamentos da Linguagem R</td>
-<td style="text-align: left;">Estruturas de dados; Tipos de dados; Coerção no R; <em>Subsetting</em>; Valores especiais do R</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
@@ -990,7 +1429,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

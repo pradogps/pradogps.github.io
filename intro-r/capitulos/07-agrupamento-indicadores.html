@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -90,6 +125,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -353,8 +417,13 @@ div.csl-indent {
   <li><a href="#sec-across" id="toc-sec-across" class="nav-link" data-scroll-target="#sec-across"><span class="header-section-number">7.4</span> Aplicando funções a várias colunas</a></li>
   <li><a href="#sec-indicadores" id="toc-sec-indicadores" class="nav-link" data-scroll-target="#sec-indicadores"><span class="header-section-number">7.5</span> Indicadores de saúde: proporções, razões e coeficientes</a></li>
   <li><a href="#sec-pequenos-numeros" id="toc-sec-pequenos-numeros" class="nav-link" data-scroll-target="#sec-pequenos-numeros"><span class="header-section-number">7.6</span> Pequenos números e estabilidade dos indicadores</a></li>
-  <li><a href="#sec-caso-07" id="toc-sec-caso-07" class="nav-link" data-scroll-target="#sec-caso-07"><span class="header-section-number">7.7</span> Estudo de caso: indicadores de nascidos vivos por município</a></li>
-  <li><a href="#sec-ex-07" id="toc-sec-ex-07" class="nav-link" data-scroll-target="#sec-ex-07"><span class="header-section-number">7.8</span> Exercícios</a></li>
+  <li><a href="#sec-caso-07" id="toc-sec-caso-07" class="nav-link" data-scroll-target="#sec-caso-07"><span class="header-section-number">7.7</span> Estudo de caso: o pré-natal e o baixo peso nos municípios de Rondônia</a></li>
+  <li><a href="#sec-ex-07" id="toc-sec-ex-07" class="nav-link" data-scroll-target="#sec-ex-07"><span class="header-section-number">7.8</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-07" id="toc-sec-sintese-07" class="nav-link" data-scroll-target="#sec-sintese-07"><span class="header-section-number">7.9</span> Síntese</a></li>
   <li><a href="#sec-mais-07" id="toc-sec-mais-07" class="nav-link" data-scroll-target="#sec-mais-07"><span class="header-section-number">7.10</span> Para saber mais</a></li>
   </ul>
@@ -382,21 +451,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 4 · <strong>Pré-requisitos:</strong> <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a> · <strong>Pacotes:</strong> <code>dplyr</code></p>
+<p><strong>Encontro previsto:</strong> 4 · <strong>Pré-requisitos:</strong> <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a> · <strong>Pacotes:</strong> <code>dplyr</code> (carregado com o <code>tidyverse</code>), <code>here</code></p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -408,32 +464,296 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de resumir uma tabela em medidas de interesse com <code>summarise()</code>; realizar operações por grupos; contar registros e calcular proporções dentro de grupos; aplicar a mesma operação a várias colunas; construir indicadores de saúde com numerador, denominador e constante multiplicativa explícitos; distinguir proporção, razão e coeficiente; e reconhecer a instabilidade de indicadores calculados com pequenos números.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de resumir uma tabela em medidas de interesse; repetir esses resumos para cada grupo de registros; contar registros e calcular proporções dentro de grupos; aplicar a mesma operação a várias colunas de uma vez; construir indicadores de saúde com numerador, denominador e constante explícitos; e reconhecer a instabilidade de indicadores calculados em populações pequenas.</p>
 </div>
 </div>
+<p>No capítulo anterior, comparamos a proporção de baixo peso entre filhos de mães adolescentes e de mães mais velhas filtrando cada grupo separadamente. Funcionou, mas imagine fazer o mesmo para os 52 municípios de Rondônia. Seriam 52 filtros. Este capítulo apresenta a solução do <code>dplyr</code> para esse tipo de tarefa: agrupar os registros e calcular os resumos para todos os grupos de uma só vez. Com isso, chegamos a uma das atividades mais frequentes em saúde pública, o cálculo de indicadores por município, por região ou por características da população.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O script <code>preparar-sinasc.R</code>, apresentado no <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>, cria a base <code>nascidos</code>, com os nascimentos de mães residentes em Rondônia em 2019 e as variáveis derivadas, como <code>baixo_peso</code>, <code>prematuro</code> e <code>faixa_idade_mae</code>.</p>
 <section id="sec-summarise" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="sec-summarise"><span class="header-section-number">7.1</span> Sumarizando dados</h2>
-<p>Apresenta <code>summarise()</code> com funções resumo já conhecidas (<code>mean()</code>, <code>median()</code>, <code>sd()</code>, <code>n()</code>) e o tratamento de valores ausentes com <code>na.rm = TRUE</code>.</p>
+<p>A função <code>summarise()</code> reduz uma tabela a uma única linha, com as medidas que pedirmos. Cada medida é escrita no formato <code>nome = função(coluna)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">nascimentos =</span> <span class="fu">n</span>(),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_medio =</span> <span class="fu">mean</span>(peso),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">peso_mediano =</span> <span class="fu">median</span>(peso),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">desvio_padrao =</span> <span class="fu">sd</span>(peso)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 4</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   nascimentos peso_medio peso_mediano desvio_padrao</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         &lt;int&gt;      &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1       27028      3243.         3270          545.</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>n()</code>, que só funciona dentro de verbos do <code>dplyr</code>, conta o número de linhas. As demais funções já são conhecidas do <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a>. Como o peso não tem valores ausentes, não foi preciso usar <code>na.rm = TRUE</code>. Com a idade gestacional, que tem ausentes, seria necessário.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">semanas_media =</span> <span class="fu">mean</span>(semagestac, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sem_informacao =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(semagestac))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   semanas_media sem_informacao</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           &lt;dbl&gt;          &lt;int&gt;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          38.6           1238</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Variáveis lógicas também podem ser resumidas. Como vimos, a média de uma variável lógica é a proporção de <code>TRUE</code>. Multiplicando por 100, temos o percentual.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_baixo_peso =</span> <span class="fu">mean</span>(baixo_peso) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_prematuro =</span> <span class="fu">mean</span>(prematuro, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 2</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   perc_baixo_peso perc_prematuro</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             &lt;dbl&gt;          &lt;dbl&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1            6.98           9.72</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-group-by" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="sec-group-by"><span class="header-section-number">7.2</span> Operações por grupos</h2>
-<p>Apresenta <code>group_by()</code> combinado com <code>summarise()</code>, o argumento <code>.by</code> como alternativa sem agrupamento persistente, o uso de <code>mutate()</code> em dados agrupados para calcular valores relativos ao grupo e a necessidade de <code>ungroup()</code> ao final.</p>
+<p>A força do <code>summarise()</code> aparece quando ele é combinado com <code>group_by()</code>. A função <code>group_by()</code> divide a tabela em grupos, de acordo com os valores de uma ou mais colunas, e as operações seguintes passam a ser feitas dentro de cada grupo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(faixa_idade_mae) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nascimentos =</span> <span class="fu">n</span>(),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_baixo_peso =</span> <span class="fu">mean</span>(baixo_peso) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 3</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   faixa_idade_mae nascimentos perc_baixo_peso</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;                 &lt;int&gt;           &lt;dbl&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Menos de 20            4558            8.45</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20 a 34               19327            6.37</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 35 ou mais             3143            8.56</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com três linhas de código, temos a proporção de baixo peso para cada faixa etária da mãe. O padrão é conhecido em epidemiologia: a proporção é maior nos extremos da idade reprodutiva, entre as mães adolescentes e entre as mães com 35 anos ou mais.</p>
+<p>É possível agrupar por mais de uma variável. O resultado terá uma linha para cada combinação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(faixa_idade_mae, parto) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nascimentos =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   faixa_idade_mae parto   nascimentos</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;fct&gt;         &lt;int&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Menos de 20     Vaginal        2192</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Menos de 20     Cesáreo        2359</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Menos de 20     &lt;NA&gt;              7</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 20 a 34         Vaginal        6062</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 20 a 34         Cesáreo       13234</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 20 a 34         &lt;NA&gt;             31</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 35 ou mais      Vaginal         689</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 35 ou mais      Cesáreo        2443</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9 35 ou mais      &lt;NA&gt;             11</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O argumento <code>.groups = "drop"</code> desfaz o agrupamento ao final. Quando ele não é informado, o <code>dplyr</code> mantém parte do agrupamento e avisa no console. Uma alternativa mais recente e mais simples é o argumento <code>.by</code>, que agrupa apenas para aquela operação, sem deixar nenhum agrupamento residual.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">nascimentos =</span> <span class="fu">n</span>(), <span class="at">.by =</span> <span class="fu">c</span>(faixa_idade_mae, parto))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 9 × 3</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   faixa_idade_mae parto   nascimentos</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;fct&gt;         &lt;int&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Menos de 20     Cesáreo        2359</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20 a 34         Cesáreo       13234</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 35 ou mais      Cesáreo        2443</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Menos de 20     Vaginal        2192</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 20 a 34         Vaginal        6062</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 35 ou mais      Vaginal         689</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 Menos de 20     &lt;NA&gt;              7</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 20 a 34         &lt;NA&gt;             31</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9 35 ou mais      &lt;NA&gt;             11</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os dois caminhos produzem o mesmo resultado; a diferença é apenas a ordem das linhas. Neste livro, usaremos principalmente o <code>group_by()</code> com <code>.groups = "drop"</code> ou seguido de <code>ungroup()</code>, por ser a forma mais encontrada nos materiais de referência.</p>
+<p>O agrupamento também funciona com <code>mutate()</code>. Nesse caso, a tabela mantém todas as linhas, mas os cálculos são feitos dentro de cada grupo. É assim que se calcula, por exemplo, a diferença entre o peso de cada recém-nascido e o peso médio do seu município.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(munresnome) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">peso_medio_municipio =</span> <span class="fu">mean</span>(peso)) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(munresnome, peso, peso_medio_municipio) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">4</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 3</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   munresnome               peso peso_medio_municipio</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                   &lt;dbl&gt;                &lt;dbl&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Alta Floresta D'Oeste    3685                3241.</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Alta Floresta D'Oeste    3055                3241.</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Alta Floresta D'Oeste    3460                3241.</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Alto Alegre dos Parecis  2982                3261.</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-contagens" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="sec-contagens"><span class="header-section-number">7.3</span> Contagens e proporções</h2>
-<p>Apresenta <code>count()</code>, <code>add_count()</code> e <code>n_distinct()</code> e o cálculo de proporções e percentuais dentro de grupos, discutindo a escolha do denominador (total geral ou total do grupo) e sua influência na interpretação.</p>
+<p>Contar registros por categoria é tão comum que o <code>dplyr</code> tem um atalho para isso. A função <code>count()</code> equivale a <code>group_by()</code> seguido de <code>summarise(n = n())</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(escmae)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   escmae              n</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma            40</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3 anos        516</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 7 anos       4760</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 8 a 11 anos     15633</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 12 anos ou mais  5767</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 &lt;NA&gt;              312</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para transformar contagens em proporções, basta dividir cada contagem pelo total, dentro de um <code>mutate()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(escmae) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentual =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   escmae              n percentual</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt;      &lt;dbl&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma            40      0.148</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3 anos        516      1.91 </span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 7 anos       4760     17.6  </span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 8 a 11 anos     15633     57.8  </span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 12 anos ou mais  5767     21.3  </span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 &lt;NA&gt;              312      1.15</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Repare que o denominador incluiu os registros sem informação (<code>NA</code>). Se quisermos o percentual apenas entre os registros com escolaridade conhecida, precisamos excluí-los antes, com <code>filter(!is.na(escmae))</code>. As duas escolhas são legítimas, mas respondem a perguntas diferentes, e o denominador usado deve sempre ser informado.</p>
+<p>Quando contamos por duas variáveis, a escolha do denominador fica ainda mais importante. Queremos o percentual de partos cesáreos <strong>dentro</strong> de cada faixa de escolaridade? Então o total deve ser calculado dentro de cada faixa, com <code>group_by()</code> antes do <code>mutate()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(escmae), <span class="sc">!</span><span class="fu">is.na</span>(parto)) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(escmae, parto) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(escmae) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentual =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(parto <span class="sc">==</span> <span class="st">"Cesáreo"</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   escmae          parto       n percentual</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;fct&gt;   &lt;int&gt;      &lt;dbl&gt;</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma         Cesáreo    19       47.5</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3 anos      Cesáreo   273       53.0</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 7 anos      Cesáreo  2606       54.8</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 8 a 11 anos     Cesáreo 10208       65.4</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 12 anos ou mais Cesáreo  4698       81.7</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A proporção de partos cesáreos cresce de forma marcante com a escolaridade da mãe. Esse é um achado consistente na literatura brasileira e mostra como uma tabela simples, feita com poucas linhas de código, já revela desigualdades importantes.</p>
+<p>A função <code>n_distinct()</code> conta valores distintos, e é útil para saber, por exemplo, em quantos municípios ocorreu algum nascimento de mãe adolescente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(mae_adolescente) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">municipios =</span> <span class="fu">n_distinct</span>(codmunres))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 1</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   municipios</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;int&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1         52</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-across" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="sec-across"><span class="header-section-number">7.4</span> Aplicando funções a várias colunas</h2>
-<p>Apresenta <code>across()</code> com seleções de colunas (<code>where(is.numeric)</code>) e com uma ou várias funções, evitando a repetição de código.</p>
+<p>Às vezes queremos aplicar a mesma função a várias colunas. Em vez de repetir o código, usamos <code>across()</code>, que recebe uma seleção de colunas e uma função.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">c</span>(peso, idademae, semagestac), \(x) <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 × 3</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    peso idademae semagestac</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 3243.     26.1       38.6</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A notação <code>\(x) mean(x, na.rm = TRUE)</code> cria uma pequena função anônima, que diz o que fazer com cada coluna (representada por <code>x</code>). Ela será explicada com calma no <a href="16-programacao.html" class="quarto-xref"><span>Capítulo 16</span></a>; por enquanto, basta saber que é a forma de passar argumentos adicionais, como <code>na.rm</code>, para a função aplicada. Também é possível aplicar várias funções de uma vez, informando uma lista, e selecionar as colunas com as funções auxiliares do <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(parto) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">c</span>(peso, idademae),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">media =</span> mean, <span class="at">mediana =</span> median)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 5</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   parto   peso_media peso_mediana idademae_media idademae_mediana</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;        &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Vaginal      3189.         3230           24.4               23</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Cesáreo      3270.         3295           26.9               27</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 &lt;NA&gt;         3057.         3105           27.5               26</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O resultado tem uma coluna para cada combinação de variável e função, com nomes formados automaticamente, como <code>peso_media</code> e <code>idademae_mediana</code>.</p>
 </section>
 <section id="sec-indicadores" class="level2" data-number="7.5">
 <h2 data-number="7.5" class="anchored" data-anchor-id="sec-indicadores"><span class="header-section-number">7.5</span> Indicadores de saúde: proporções, razões e coeficientes</h2>
-<p>Apresenta a estrutura de um indicador (numerador, denominador, local, período e constante multiplicativa) com base nas definições da Ripsa <span class="citation" data-cites="opas2008indicadores">(<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE, 2008</a>)</span> e calcula, a partir de microdados, a proporção de nascidos vivos com baixo peso, a proporção de nascidos vivos de mães com sete ou mais consultas de pré-natal e a proporção de partos cesáreos. A taxa de mortalidade infantil, que exige combinar SIM e SINASC, é calculada no <a href="08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a>.</p>
+<p>No <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a>, calculamos indicadores a partir de contagens digitadas à mão. Agora vamos calculá-los a partir dos microdados. Todo indicador tem os mesmos componentes: um <strong>numerador</strong> (os eventos de interesse), um <strong>denominador</strong> (a população de referência), uma <strong>constante</strong> multiplicativa, um <strong>local</strong> e um <strong>período</strong>. Escrever esses componentes antes de programar evita muitos erros.</p>
+<p>A publicação da Ripsa sobre indicadores básicos de saúde <span class="citation" data-cites="opas2008indicadores">(<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE, 2008</a>)</span> traz as definições oficiais usadas no Brasil. Três indicadores podem ser calculados diretamente com os dados do SINASC.</p>
+<p>A <strong>proporção de nascidos vivos com baixo peso ao nascer</strong> tem como numerador os nascidos vivos com menos de 2.500 g e como denominador o total de nascidos vivos, multiplicado por 100.</p>
+<p>A <strong>proporção de nascidos vivos de mães com sete ou mais consultas de pré-natal</strong> tem como numerador os nascidos vivos cujas mães fizeram sete ou mais consultas e como denominador o total de nascidos vivos, multiplicado por 100.</p>
+<p>A <strong>proporção de partos cesáreos</strong> tem como numerador os nascidos vivos por parto cesáreo e como denominador o total de nascidos vivos, multiplicado por 100.</p>
+<p>Com o <code>dplyr</code>, os três são calculados para cada município de uma vez. Para deixar explícitos numeradores e denominadores, calculamos primeiro as contagens e depois os indicadores.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>indicadores_municipio <span class="ot">&lt;-</span> nascidos <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(codmunres, munresnome) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nascidos_vivos =</span> <span class="fu">n</span>(),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_baixo_peso =</span> <span class="fu">sum</span>(baixo_peso),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_pre_natal_7mais =</span> <span class="fu">sum</span>(pre_natal_7mais, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_cesareo =</span> <span class="fu">sum</span>(parto <span class="sc">==</span> <span class="st">"Cesáreo"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_baixo_peso =</span> n_baixo_peso <span class="sc">/</span> nascidos_vivos <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_pre_natal_7mais =</span> n_pre_natal_7mais <span class="sc">/</span> nascidos_vivos <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_cesareo =</span> n_cesareo <span class="sc">/</span> nascidos_vivos <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>indicadores_municipio <span class="sc">|&gt;</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(munresnome, nascidos_vivos, perc_baixo_peso, perc_pre_natal_7mais, perc_cesareo) <span class="sc">|&gt;</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(nascidos_vivos)) <span class="sc">|&gt;</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">8</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 × 5</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   munresnome    nascidos_vivos perc_baixo_peso perc_pre_natal_7mais perc_cesareo</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                  &lt;int&gt;           &lt;dbl&gt;                &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Porto Velho             8437            8.14                 54.6         55.7</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Ji-Paraná               2182            6.46                 79.4         63.4</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Ariquemes               1729            5.38                 73.4         68.0</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Vilhena                 1590            8.24                 80.4         75.4</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Cacoal                  1374            5.53                 77.7         81.0</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Rolim de Mou…            927            6.36                 75.4         90.1</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 Jaru                     881            5.68                 85.6         70.7</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 Guajará-Mirim            781            5.76                 38.2         38.8</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dois detalhes merecem atenção. O primeiro é o uso de <code>sum()</code> sobre uma condição, que conta os casos em que ela é verdadeira. O segundo é o tratamento dos ausentes. Ao usar <code>na.rm = TRUE</code> no numerador, mas manter todos os nascidos vivos no denominador, seguimos a convenção de que registros com informação ignorada não são contados como casos, o que tende a subestimar levemente o indicador. A alternativa seria excluir os ignorados do denominador. O importante é saber qual escolha foi feita e relatá-la.</p>
+<p>Indicadores que dependem de uma população vinda de outra fonte, como a taxa de natalidade (nascidos vivos por mil habitantes), exigem combinar duas tabelas. Isso será feito no <a href="08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a>.</p>
 </section>
 <section id="sec-pequenos-numeros" class="level2" data-number="7.6">
 <h2 data-number="7.6" class="anchored" data-anchor-id="sec-pequenos-numeros"><span class="header-section-number">7.6</span> Pequenos números e estabilidade dos indicadores</h2>
-<p>Discute, com exemplos de municípios de pequeno porte, a variabilidade de indicadores calculados com poucos eventos e estratégias simples para lidar com ela, como a agregação de vários anos. Métodos de suavização e de padronização ficam fora do escopo, com indicação de leitura.</p>
+<p>Vamos ordenar os municípios pela proporção de baixo peso.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>indicadores_municipio <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(munresnome, nascidos_vivos, n_baixo_peso, perc_baixo_peso) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(perc_baixo_peso)) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 5 × 4</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   munresnome            nascidos_vivos n_baixo_peso perc_baixo_peso</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                          &lt;int&gt;        &lt;int&gt;           &lt;dbl&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Rio Crespo                        50            7            14  </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Parecis                           44            6            13.6</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Primavera de Rondônia             43            5            11.6</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Cerejeiras                       237           25            10.5</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Colorado do Oeste                214           22            10.3</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os municípios no topo da lista costumam ter poucos nascimentos. Em um município com 60 nascidos vivos, cada recém-nascido com baixo peso a mais ou a menos muda o indicador em quase dois pontos percentuais. Ou seja, parte da variação observada entre municípios pequenos é puramente aleatória. Uma forma simples de visualizar isso é comparar a variabilidade do indicador entre municípios pequenos e grandes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>indicadores_municipio <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">porte =</span> <span class="fu">if_else</span>(nascidos_vivos <span class="sc">&lt;</span> <span class="dv">300</span>, <span class="st">"Menos de 300 nascidos vivos"</span>, <span class="st">"300 ou mais"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(porte) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">municipios =</span> <span class="fu">n</span>(),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">minimo =</span> <span class="fu">min</span>(perc_baixo_peso),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">maximo =</span> <span class="fu">max</span>(perc_baixo_peso),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">desvio_padrao =</span> <span class="fu">sd</span>(perc_baixo_peso)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 5</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   porte                       municipios minimo maximo desvio_padrao</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                            &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;         &lt;dbl&gt;</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 300 ou mais                         19   4.82   9.54          1.40</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Menos de 300 nascidos vivos         34   0     14             3.29</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os municípios menores apresentam indicadores muito mais dispersos. Isso não significa que a situação de saúde neles seja necessariamente mais extrema, mas sim que a estimativa é menos estável. Na prática, algumas estratégias ajudam a lidar com o problema: agregar vários anos de dados, agrupar municípios em regiões de saúde, apresentar o número absoluto de eventos ao lado do indicador e, quando for o caso, usar intervalos de confiança. Os municípios com código <code>110000</code> (residência ignorada) também devem ser tratados à parte, pois não correspondem a uma população definida.</p>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Para aprofundar">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -444,21 +764,90 @@ Para aprofundar
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A padronização de taxas por idade é tratada no capítulo 21 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span>.</p>
+<p>Comparar indicadores entre populações com estruturas etárias diferentes exige técnicas de padronização, que não são tratadas neste livro. O capítulo 21 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> mostra como fazer a padronização direta e indireta de taxas no R.</p>
 </div>
 </div>
 </section>
 <section id="sec-caso-07" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="sec-caso-07"><span class="header-section-number">7.7</span> Estudo de caso: indicadores de nascidos vivos por município</h2>
-<p>O estudante calcula, para os municípios da área de estudo, o número de nascidos vivos, a proporção de baixo peso, a proporção de prematuridade e a proporção de pré-natal com sete ou mais consultas, ordena os municípios segundo cada indicador e identifica aqueles em que o número de nascidos vivos é pequeno demais para uma comparação estável.</p>
+<h2 data-number="7.7" class="anchored" data-anchor-id="sec-caso-07"><span class="header-section-number">7.7</span> Estudo de caso: o pré-natal e o baixo peso nos municípios de Rondônia</h2>
+<p>Vamos usar o que foi aprendido para responder a uma pergunta de interesse para a gestão. Os municípios com maior cobertura de pré-natal adequado têm menor proporção de baixo peso ao nascer?</p>
+<p>O primeiro passo é restringir a análise aos municípios com número suficiente de nascimentos e excluir a residência ignorada. Vamos adotar o critério de pelo menos 300 nascidos vivos no ano.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>municipios_maiores <span class="ot">&lt;-</span> indicadores_municipio <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(codmunres <span class="sc">!=</span> <span class="st">"110000"</span>, nascidos_vivos <span class="sc">&gt;=</span> <span class="dv">300</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(municipios_maiores)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 19</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em seguida, dividimos esses municípios em dois grupos, conforme a proporção de mães com sete ou mais consultas esteja acima ou abaixo da mediana dos municípios, e comparamos a proporção de baixo peso. Para que os municípios maiores tenham o peso correto no resultado, somamos numeradores e denominadores, em vez de tirar a média dos percentuais.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>municipios_maiores <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">pre_natal =</span> <span class="fu">if_else</span>(perc_pre_natal_7mais <span class="sc">&gt;=</span> <span class="fu">median</span>(perc_pre_natal_7mais),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Cobertura maior"</span>, <span class="st">"Cobertura menor"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(pre_natal) <span class="sc">|&gt;</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">municipios =</span> <span class="fu">n</span>(),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">nascidos_vivos =</span> <span class="fu">sum</span>(nascidos_vivos),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">perc_baixo_peso =</span> <span class="fu">sum</span>(n_baixo_peso) <span class="sc">/</span> <span class="fu">sum</span>(nascidos_vivos) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 4</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   pre_natal       municipios nascidos_vivos perc_baixo_peso</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                &lt;int&gt;          &lt;int&gt;           &lt;dbl&gt;</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Cobertura maior         10           8817            6.49</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Cobertura menor          9          13960            7.41</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O resultado deve ser lido com cuidado. Uma diferença entre grupos de municípios não demonstra que o pré-natal reduz o baixo peso para cada mulher, porque os municípios diferem em muitos outros aspectos, como renda, acesso a serviços e perfil das mães. Esse tipo de comparação entre médias de grupos é chamado de análise ecológica, e seus limites serão discutidos no <a href="14-correlacao-regressao.html" class="quarto-xref"><span>Capítulo 14</span></a>. Ainda assim, é um ponto de partida útil para orientar perguntas e investigações mais detalhadas.</p>
+<div class="callout callout-style-simple callout-note callout-titled" title="Saúde Pública em foco">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Saúde Pública em foco
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ao combinar indicadores de vários municípios em um único valor, a forma correta é somar numeradores e denominadores e só depois calcular a proporção. Tirar a média simples dos percentuais municipais daria o mesmo peso a um município com 50 nascimentos e a outro com 8.000, o que distorce o resultado. Esse erro é comum em relatórios e passa despercebido com facilidade.</p>
+</div>
+</div>
 </section>
 <section id="sec-ex-07" class="level2" data-number="7.8">
 <h2 data-number="7.8" class="anchored" data-anchor-id="sec-ex-07"><span class="header-section-number">7.8</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem resumos simples e por grupos. Os de aplicação envolvem o cálculo de indicadores segundo características maternas (faixa etária e escolaridade). O desafio propõe calcular, com <code>across()</code>, a proporção de registros com informação ignorada em todas as variáveis da base, antecipando a discussão sobre completude do <a href="12-aed-protocolo.html" class="quarto-xref"><span>Capítulo 12</span></a>.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Calcule o peso médio e o peso mediano dos recém-nascidos segundo o sexo.</p></li>
+<li><p>Calcule, para cada faixa de escolaridade da mãe, o número de nascimentos e a idade média da mãe.</p></li>
+<li><p>Use <code>count()</code> para obter o número de nascimentos por mês e identifique o mês com mais nascimentos em 2019.</p></li>
+<li><p>Calcule a proporção de prematuridade por tipo de parto, informando no resultado quantos registros foram excluídos por falta de informação sobre a idade gestacional.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="5" type="1">
+<li><p>Calcule, para cada município, a proporção de nascidos vivos de mães adolescentes. Quais os cinco municípios com maior proporção, considerando apenas aqueles com pelo menos 300 nascidos vivos?</p></li>
+<li><p>Usando <code>across()</code>, calcule a média e o desvio-padrão do peso, da idade da mãe e da idade gestacional para cada categoria de raça/cor da mãe. Discuta o tratamento dos registros sem informação de raça/cor.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="7" type="1">
+<li><p>Para a proporção de baixo peso em Rondônia, compare o resultado obtido somando numeradores e denominadores com a média simples das proporções municipais. Explique a diferença e em que situações cada cálculo seria adequado.</p></li>
+<li><p>Calcule, para cada município, a proporção de partos cesáreos e o intervalo de confiança de 95% dessa proporção, usando a aproximação normal <span class="math inline">\(p \pm 1{,}96\sqrt{p(1-p)/n}\)</span>. Construa uma tabela ordenada e comente como a largura do intervalo varia com o número de nascidos vivos.</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-07" class="level2" data-number="7.9">
 <h2 data-number="7.9" class="anchored" data-anchor-id="sec-sintese-07"><span class="header-section-number">7.9</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>A função <code>summarise()</code> reduz uma tabela a medidas resumo, e a combinação com <code>group_by()</code> (ou com o argumento <code>.by</code>) repete esses resumos para cada grupo. O agrupamento também funciona com <code>mutate()</code>, mantendo todas as linhas. A função <code>count()</code> é um atalho para contar registros por categoria, e as proporções são obtidas dividindo cada contagem pelo total adequado, cuja escolha define a pergunta que está sendo respondida. A função <code>across()</code> aplica uma ou mais funções a várias colunas. Indicadores de saúde têm numerador, denominador, constante, local e período, e devem ser calculados com esses componentes explícitos. Em populações pequenas, os indicadores são instáveis, e estratégias como agregar anos ou regiões e apresentar os números absolutos ajudam a interpretá-los.</p>
+<div id="tbl-sintese-07" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;7.1: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-07-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -476,12 +865,12 @@ Para aprofundar
 <tr class="odd">
 <td style="text-align: left;"><code>summarise()</code></td>
 <td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">Resumir uma tabela</td>
+<td style="text-align: left;">Resumir uma tabela em medidas</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>group_by()</code>, <code>ungroup()</code>, <code>.by</code></td>
 <td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">Operações por grupos</td>
+<td style="text-align: left;">Fazer operações por grupos</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>n()</code>, <code>n_distinct()</code></td>
@@ -489,9 +878,9 @@ Para aprofundar
 <td style="text-align: left;">Contar linhas e valores distintos</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>count()</code>, <code>add_count()</code></td>
+<td style="text-align: left;"><code>count()</code></td>
 <td style="text-align: left;">dplyr</td>
-<td style="text-align: left;">Contagens por categoria</td>
+<td style="text-align: left;">Contar registros por categoria</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><code>across()</code></td>
@@ -499,15 +888,24 @@ Para aprofundar
 <td style="text-align: left;">Aplicar funções a várias colunas</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>mean()</code>, <code>median()</code>, <code>sd()</code>, <code>quantile()</code></td>
+<td style="text-align: left;"><code>\(x)</code></td>
+<td style="text-align: left;">base</td>
+<td style="text-align: left;">Criar uma função anônima</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>mean()</code>, <code>median()</code>, <code>sd()</code>, <code>min()</code>, <code>max()</code>, <code>sum()</code></td>
 <td style="text-align: left;">base, stats</td>
 <td style="text-align: left;">Medidas resumo</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-07" class="level2" data-number="7.10">
 <h2 data-number="7.10" class="anchored" data-anchor-id="sec-mais-07"><span class="header-section-number">7.10</span> Para saber mais</h2>
+<p>O capítulo 3 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> apresenta os grupos e contém um estudo de caso sobre o efeito do tamanho da amostra nos agregados, muito próximo da discussão sobre pequenos números feita aqui. O capítulo 13 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> trata do agrupamento com exemplos de vigilância, e o capítulo 21 mostra a padronização de taxas. O capítulo 5 de Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> apresenta <code>group_by()</code>, <code>summarise()</code> e <code>across()</code> em português. A publicação da Ripsa <span class="citation" data-cites="opas2008indicadores">(<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE, 2008</a>)</span> é a referência para as definições dos indicadores de saúde usados no Brasil.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -525,22 +923,22 @@ Para aprofundar
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">3. Transformação de dados; 13. Números</td>
-<td style="text-align: left;">Grupos; Estudo de caso: agregados e tamanho de amostra; Contagens; Sumarização numérica</td>
+<td style="text-align: left;">Grupos; Estudo de caso: agregados e tamanho de amostra; Contagens</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">13. Agrupando dados; 21. Normalização de taxas</td>
-<td style="text-align: left;">Agrupando os dados; Resumir os dados; Contagens; Agrupando por data</td>
+<td style="text-align: left;">Resumir os dados; Contagens; Agrupando por data</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
 <td style="text-align: left;">5. Transformando dados com <code>dplyr</code></td>
-<td style="text-align: left;">Agrupando dados com <code>group_by()</code> e gerando estatísticas sumárias com <code>summarise()</code>; Distribuindo cálculos com a função <code>across()</code></td>
+<td style="text-align: left;">Agrupando dados com <code>group_by()</code> e gerando estatísticas sumárias com <code>summarise()</code>; <code>across()</code></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Practical Statistics in Medicine with R <span class="citation" data-cites="bougioukas2025medstats">(<a href="../references.html#ref-bougioukas2025medstats" role="doc-biblioref">BOUGIOUKAS, 2025</a>)</span></td>
 <td style="text-align: left;">15. Descriptive Statistics</td>
-<td style="text-align: left;">Summary Statistics by Group</td>
+<td style="text-align: left;">Summary statistics by group</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Indicadores básicos para a saúde no Brasil <span class="citation" data-cites="opas2008indicadores">(<a href="../references.html#ref-opas2008indicadores" role="doc-biblioref">ORGANIZAÇÃO PAN-AMERICANA DA SAÚDE, 2008</a>)</span></td>
@@ -986,7 +1384,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

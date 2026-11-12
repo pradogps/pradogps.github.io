@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -347,13 +382,35 @@ div.csl-indent {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#sec-stringr" id="toc-sec-stringr" class="nav-link active" data-scroll-target="#sec-stringr"><span class="header-section-number">9.1</span> Manipulação de textos com <code>stringr</code></a></li>
+  <li><a href="#sec-stringr" id="toc-sec-stringr" class="nav-link active" data-scroll-target="#sec-stringr"><span class="header-section-number">9.1</span> Manipulação de textos com <code>stringr</code></a>
+  <ul class="collapse">
+  <li><a href="#sec-padronizar" id="toc-sec-padronizar" class="nav-link" data-scroll-target="#sec-padronizar">Padronizando textos</a></li>
+  <li><a href="#sec-detectar" id="toc-sec-detectar" class="nav-link" data-scroll-target="#sec-detectar">Detectando, substituindo e extraindo</a></li>
+  <li><a href="#sec-regex" id="toc-sec-regex" class="nav-link" data-scroll-target="#sec-regex">Um pouco de expressões regulares</a></li>
+  <li><a href="#sec-cid10" id="toc-sec-cid10" class="nav-link" data-scroll-target="#sec-cid10">Uma aplicação: os capítulos da CID-10</a></li>
+  </ul></li>
   <li><a href="#sec-forcats" id="toc-sec-forcats" class="nav-link" data-scroll-target="#sec-forcats"><span class="header-section-number">9.2</span> Variáveis categóricas com <code>forcats</code></a></li>
-  <li><a href="#sec-lubridate" id="toc-sec-lubridate" class="nav-link" data-scroll-target="#sec-lubridate"><span class="header-section-number">9.3</span> Datas com <code>lubridate</code></a></li>
-  <li><a href="#sec-valores-ausentes" id="toc-sec-valores-ausentes" class="nav-link" data-scroll-target="#sec-valores-ausentes"><span class="header-section-number">9.4</span> Valores ausentes</a></li>
+  <li><a href="#sec-lubridate" id="toc-sec-lubridate" class="nav-link" data-scroll-target="#sec-lubridate"><span class="header-section-number">9.3</span> Datas com <code>lubridate</code></a>
+  <ul class="collapse">
+  <li><a href="#sec-converter-datas" id="toc-sec-converter-datas" class="nav-link" data-scroll-target="#sec-converter-datas">Convertendo textos em datas</a></li>
+  <li><a href="#sec-componentes-data" id="toc-sec-componentes-data" class="nav-link" data-scroll-target="#sec-componentes-data">Extraindo componentes</a></li>
+  <li><a href="#sec-intervalos" id="toc-sec-intervalos" class="nav-link" data-scroll-target="#sec-intervalos">Intervalos de tempo</a></li>
+  <li><a href="#sec-semana-epi" id="toc-sec-semana-epi" class="nav-link" data-scroll-target="#sec-semana-epi">Semanas epidemiológicas</a></li>
+  </ul></li>
+  <li><a href="#sec-valores-ausentes" id="toc-sec-valores-ausentes" class="nav-link" data-scroll-target="#sec-valores-ausentes"><span class="header-section-number">9.4</span> Valores ausentes</a>
+  <ul class="collapse">
+  <li><a href="#sec-ausencias" id="toc-sec-ausencias" class="nav-link" data-scroll-target="#sec-ausencias">Ausências explícitas e implícitas</a></li>
+  <li><a href="#sec-funcoes-na" id="toc-sec-funcoes-na" class="nav-link" data-scroll-target="#sec-funcoes-na">Funções para lidar com ausentes</a></li>
+  <li><a href="#sec-completude" id="toc-sec-completude" class="nav-link" data-scroll-target="#sec-completude">Completude como indicador de qualidade</a></li>
+  </ul></li>
   <li><a href="#sec-campos-compostos" id="toc-sec-campos-compostos" class="nav-link" data-scroll-target="#sec-campos-compostos"><span class="header-section-number">9.5</span> Campos compostos nos sistemas de informação</a></li>
-  <li><a href="#sec-caso-09" id="toc-sec-caso-09" class="nav-link" data-scroll-target="#sec-caso-09"><span class="header-section-number">9.6</span> Estudo de caso: preparando notificações de dengue para análise temporal</a></li>
-  <li><a href="#sec-ex-09" id="toc-sec-ex-09" class="nav-link" data-scroll-target="#sec-ex-09"><span class="header-section-number">9.7</span> Exercícios</a></li>
+  <li><a href="#sec-caso-09" id="toc-sec-caso-09" class="nav-link" data-scroll-target="#sec-caso-09"><span class="header-section-number">9.6</span> Estudo de caso: a COVID-19 nos estados da Região Norte</a></li>
+  <li><a href="#sec-ex-09" id="toc-sec-ex-09" class="nav-link" data-scroll-target="#sec-ex-09"><span class="header-section-number">9.7</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-09" id="toc-sec-sintese-09" class="nav-link" data-scroll-target="#sec-sintese-09"><span class="header-section-number">9.8</span> Síntese</a></li>
   <li><a href="#sec-mais-09" id="toc-sec-mais-09" class="nav-link" data-scroll-target="#sec-mais-09"><span class="header-section-number">9.9</span> Para saber mais</a></li>
   </ul>
@@ -381,21 +438,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 5 · <strong>Pré-requisitos:</strong> <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a> e <a href="08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a> · <strong>Pacotes:</strong> <code>stringr</code>, <code>forcats</code>, <code>lubridate</code>, <code>tidyr</code></p>
+<p><strong>Encontro previsto:</strong> 5 · <strong>Pré-requisitos:</strong> <a href="06-transformacao.html" class="quarto-xref"><span>Capítulo 6</span></a> e <a href="08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a> · <strong>Pacotes:</strong> <code>stringr</code>, <code>forcats</code>, <code>lubridate</code> e <code>tidyr</code> (carregados com o <code>tidyverse</code>), <code>here</code></p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -407,53 +451,546 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de padronizar e extrair informações de variáveis de texto, como nomes de municípios e códigos da CID-10; recodificar, reordenar e agrupar categorias de variáveis categóricas; converter textos em datas, extrair componentes de datas, calcular intervalos de tempo e obter a semana epidemiológica; decodificar campos compostos dos sistemas de informação, como a idade; e diagnosticar e tratar valores ausentes, distinguindo ausências explícitas e implícitas.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de padronizar textos e extrair partes deles, como códigos da CID-10; recodificar, reordenar e agrupar categorias; converter textos em datas, extrair componentes de datas, calcular intervalos de tempo e obter a semana epidemiológica; decodificar campos compostos dos sistemas de informação, como a idade do SIM; e diagnosticar e tratar valores ausentes, distinguindo ausências explícitas e implícitas.</p>
 </div>
+</div>
+<p>Nos capítulos anteriores, trabalhamos sobretudo com números. Mas as bases de saúde estão cheias de outros tipos de informação: nomes de municípios escritos de formas diferentes, códigos de doenças, categorias que precisam ser reagrupadas, datas em formatos variados e, claro, informações ausentes. Este capítulo apresenta quatro pacotes do tidyverse feitos para lidar com cada uma dessas situações. Todos têm nomes de funções padronizados, o que ajuda a lembrar deles: as funções do <code>stringr</code> começam com <code>str_</code>, as do <code>forcats</code> começam com <code>fct_</code>, e as do <code>lubridate</code> têm nomes que descrevem o formato da data, como <code>dmy()</code>.</p>
+<p>Usaremos duas bases. A primeira é a de nascidos vivos de Rondônia em 2019. A segunda traz o número diário de casos e óbitos por COVID-19 notificados nos estados da Região Norte entre 2020 e 2022, compilado a partir dos boletins das secretarias estaduais de saúde e do Ministério da Saúde <span class="citation" data-cites="cota2020covid">(<a href="../references.html#ref-cota2020covid" role="doc-biblioref">COTA, 2020</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts"</span>, <span class="st">"preparar-sinasc.R"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>covid <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"dados"</span>, <span class="st">"covid_norte_2020_2022.csv"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>covid</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7,132 × 4</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    data       uf    casos_novos obitos_novos</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;date&gt;     &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 2020-03-17 AC              3            0</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 2020-03-18 AC              0            0</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 2020-03-19 AC              1            0</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 2020-03-20 AC              3            0</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 2020-03-21 AC              4            0</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 2020-03-22 AC              0            0</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 2020-03-23 AC              6            0</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 2020-03-24 AC              4            0</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 2020-03-25 AC              2            0</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 2020-03-26 AC              1            0</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 7,122 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="sec-stringr" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="sec-stringr"><span class="header-section-number">9.1</span> Manipulação de textos com <code>stringr</code></h2>
-<p>Apresenta as funções de uso mais frequente para padronização (<code>str_to_upper()</code>, <code>str_to_title()</code>, <code>str_trim()</code>, <code>str_squish()</code>), detecção e substituição (<code>str_detect()</code>, <code>str_replace_all()</code>), extração por posição (<code>str_sub()</code>), contagem de caracteres (<code>str_length()</code>) e preenchimento (<code>str_pad()</code>). Introduz um conjunto mínimo de expressões regulares e aplica as funções a nomes de municípios com grafias variadas e à extração da categoria de três caracteres da CID-10 a partir da causa básica de óbito.</p>
+<section id="sec-padronizar" class="level3">
+<h3 class="anchored" data-anchor-id="sec-padronizar">Padronizando textos</h3>
+<p>Um mesmo município pode aparecer escrito de várias formas em bases diferentes, ou mesmo em uma única base preenchida à mão: com e sem acento, em maiúsculas ou minúsculas, com espaços sobrando. Antes de comparar ou agrupar textos, é preciso padronizá-los. As funções <code>str_to_upper()</code>, <code>str_to_lower()</code> e <code>str_to_title()</code> mudam a caixa das letras, e <code>str_squish()</code> remove espaços no início e no fim e reduz espaços repetidos a um só.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nomes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"  porto velho"</span>, <span class="st">"PORTO VELHO "</span>, <span class="st">"Porto  Velho"</span>, <span class="st">"Ji-Paraná"</span>, <span class="st">"JI-PARANA"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_squish</span>(<span class="fu">str_to_upper</span>(nomes))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "PORTO VELHO" "PORTO VELHO" "PORTO VELHO" "JI-PARANÁ"   "JI-PARANA"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os três primeiros nomes viraram o mesmo texto. Os dois últimos ainda diferem pelo acento. Para removê-lo, usamos a função <code>stri_trans_general()</code> do pacote <code>stringi</code>, que é instalado junto com o <code>stringr</code> e converte caracteres acentuados em seus equivalentes sem acento.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nomes_padronizados <span class="ot">&lt;-</span> nomes <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_to_upper</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_squish</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  stringi<span class="sc">::</span><span class="fu">stri_trans_general</span>(<span class="st">"Latin-ASCII"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>nomes_padronizados</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "PORTO VELHO" "PORTO VELHO" "PORTO VELHO" "JI-PARANA"   "JI-PARANA"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(nomes_padronizados)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "PORTO VELHO" "JI-PARANA"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora há apenas dois municípios, como deveria ser. Essa sequência de padronização é útil sempre que precisamos comparar textos vindos de fontes diferentes. Ainda assim, como vimos no <a href="08-tidy-joins.html" class="quarto-xref"><span>Capítulo 8</span></a>, o ideal é usar códigos, e não nomes, para combinar tabelas.</p>
+</section>
+<section id="sec-detectar" class="level3">
+<h3 class="anchored" data-anchor-id="sec-detectar">Detectando, substituindo e extraindo</h3>
+<p>A função <code>str_detect()</code> verifica se um texto contém um padrão e devolve <code>TRUE</code> ou <code>FALSE</code>. Ela combina muito bem com <code>filter()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(munresnome) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(munresnome, <span class="st">"Oeste"</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 12 × 1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    munresnome              </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                   </span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Alta Floresta D'Oeste   </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Novo Horizonte do Oeste </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 São Felipe D'Oeste      </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Itapuã do Oeste         </span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Machadinho D'Oeste      </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Colorado do Oeste       </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Ouro Preto do Oeste     </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Santa Luzia D'Oeste     </span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Espigão D'Oeste         </span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Nova Brasilândia D'Oeste</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 Alvorada D'Oeste        </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 Pimenteiras do Oeste</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>str_replace_all()</code> substitui todas as ocorrências de um padrão por outro texto, e <code>str_length()</code> conta o número de caracteres. A função <code>str_sub()</code>, que já usamos no capítulo anterior, extrai parte de um texto a partir das posições inicial e final. Já <code>str_pad()</code> faz o contrário de remover zeros: completa um texto até um certo tamanho, o que é útil para recuperar zeros à esquerda perdidos em códigos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(<span class="st">"Alta Floresta D'Oeste"</span>, <span class="st">"D'Oeste"</span>, <span class="st">"do Oeste"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Alta Floresta do Oeste"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="st">"Porto Velho"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(<span class="st">"1100205"</span>, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">6</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "110020"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str_pad</span>(<span class="st">"5"</span>, <span class="at">width =</span> <span class="dv">2</span>, <span class="at">pad =</span> <span class="st">"0"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "05"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="sec-regex" class="level3">
+<h3 class="anchored" data-anchor-id="sec-regex">Um pouco de expressões regulares</h3>
+<p>Os padrões usados pelas funções do <code>stringr</code> são, na verdade, <strong>expressões regulares</strong>, uma pequena linguagem para descrever textos. Não é preciso dominá-la, mas alguns símbolos resolvem a maior parte das situações. O acento circunflexo (<code>^</code>) indica o início do texto, e o cifrão (<code>$</code>), o fim. Colchetes indicam um conjunto de caracteres possíveis, como <code>[A-Z]</code> (qualquer letra maiúscula). O símbolo <code>\\d</code> representa qualquer algarismo, e um número entre chaves indica quantas vezes o elemento anterior se repete.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>codigos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"110020"</span>, <span class="st">"1100205"</span>, <span class="st">"11002"</span>, <span class="st">"ABC123"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(codigos, <span class="st">"^</span><span class="sc">\\</span><span class="st">d{6}$"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE FALSE FALSE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O padrão <code>^\\d{6}$</code> significa “do início ao fim, exatamente seis algarismos”. Apenas o primeiro código o atende. Esse tipo de verificação ajuda a encontrar códigos de município digitados de forma errada.</p>
+</section>
+<section id="sec-cid10" class="level3">
+<h3 class="anchored" data-anchor-id="sec-cid10">Uma aplicação: os capítulos da CID-10</h3>
+<p>As causas de óbito e de internação são registradas com códigos da Classificação Internacional de Doenças (CID-10). Cada código começa com uma letra seguida de dois algarismos, que formam a categoria (como <code>J18</code>, pneumonia por microrganismo não especificado), e pode ter um quarto caractere, que detalha a subcategoria (como <code>J18.9</code>). Nos arquivos do DATASUS, o ponto costuma ser omitido, e o código aparece como <code>J189</code>. O vetor abaixo traz alguns códigos reais da CID-10, apenas para ilustrar.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>causas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"I219"</span>, <span class="st">"J189"</span>, <span class="st">"P073"</span>, <span class="st">"A90"</span>, <span class="st">"C509"</span>, <span class="st">"I10"</span>, <span class="st">"X599"</span>, <span class="st">"J45"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para agrupar as causas, usamos a categoria de três caracteres ou a letra inicial, que indica, em geral, o capítulo da classificação.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">causa =</span> causas) <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">categoria =</span> <span class="fu">str_sub</span>(causa, <span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">letra =</span> <span class="fu">str_sub</span>(causa, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">capitulo =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      letra <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>) <span class="sc">~</span> <span class="st">"I. Doenças infecciosas e parasitárias"</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      letra <span class="sc">==</span> <span class="st">"C"</span> <span class="sc">~</span> <span class="st">"II. Neoplasias"</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      letra <span class="sc">==</span> <span class="st">"I"</span> <span class="sc">~</span> <span class="st">"IX. Doenças do aparelho circulatório"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      letra <span class="sc">==</span> <span class="st">"J"</span> <span class="sc">~</span> <span class="st">"X. Doenças do aparelho respiratório"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      letra <span class="sc">==</span> <span class="st">"P"</span> <span class="sc">~</span> <span class="st">"XVI. Afecções do período perinatal"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>      letra <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"V"</span>, <span class="st">"W"</span>, <span class="st">"X"</span>, <span class="st">"Y"</span>) <span class="sc">~</span> <span class="st">"XX. Causas externas"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="st">"Outros capítulos"</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 8 × 4</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   causa categoria letra capitulo                             </span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                                </span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 I219  I21       I     IX. Doenças do aparelho circulatório </span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 J189  J18       J     X. Doenças do aparelho respiratório  </span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 P073  P07       P     XVI. Afecções do período perinatal   </span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 A90   A90       A     I. Doenças infecciosas e parasitárias</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 C509  C50       C     II. Neoplasias                       </span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 I10   I10       I     IX. Doenças do aparelho circulatório </span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 X599  X59       X     XX. Causas externas                  </span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8 J45   J45       J     X. Doenças do aparelho respiratório</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A regra pela letra inicial funciona para a maior parte dos capítulos, mas tem exceções. A letra D, por exemplo, é compartilhada entre as neoplasias benignas (capítulo II) e as doenças do sangue (capítulo III), e a letra H, entre as doenças do olho e as do ouvido. Para agrupamentos oficiais, como as listas de mortalidade usadas pelo Ministério da Saúde, é preciso usar os intervalos completos de códigos.</p>
+</section>
 </section>
 <section id="sec-forcats" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="sec-forcats"><span class="header-section-number">9.2</span> Variáveis categóricas com <code>forcats</code></h2>
-<p>Retoma os fatores do <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a> e apresenta <code>fct_recode()</code>, <code>fct_relevel()</code>, <code>fct_infreq()</code>, <code>fct_reorder()</code>, <code>fct_collapse()</code>, <code>fct_lump_n()</code> e <code>fct_na_value_to_level()</code>. Destaca a importância de definir a categoria de referência, que será retomada nas medidas de associação do <a href="15-contingencia-associacao.html" class="quarto-xref"><span>Capítulo 15</span></a>, e a ordem das categorias em tabelas e gráficos.</p>
+<p>No <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a>, vimos que fatores guardam categorias e a ordem entre elas. O pacote <code>forcats</code> facilita as tarefas mais comuns com fatores. Vamos usá-lo com as variáveis da base <code>nascidos</code>.</p>
+<p>A função <code>fct_infreq()</code> ordena as categorias da mais frequente para a menos frequente, o que é útil em tabelas e gráficos de barras.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">racacor =</span> <span class="fu">fct_infreq</span>(racacor)) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(racacor)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   racacor      n</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;    &lt;int&gt;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Parda    19594</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Branca    5386</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Preta      867</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Indígena   418</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Amarela    116</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 &lt;NA&gt;       647</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>fct_relevel()</code> move uma ou mais categorias para o início, definindo qual será a <strong>categoria de referência</strong>. Isso será importante nos capítulos de inferência, em que as comparações são feitas sempre em relação à primeira categoria.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(nascidos<span class="sc">$</span>parto)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Vaginal" "Cesáreo"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(<span class="fu">fct_relevel</span>(nascidos<span class="sc">$</span>parto, <span class="st">"Cesáreo"</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Cesáreo" "Vaginal"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>fct_recode()</code> muda os rótulos de algumas categorias, no formato <code>novo = "antigo"</code>, e <code>fct_collapse()</code> agrupa várias categorias em uma.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">escolaridade =</span> <span class="fu">fct_collapse</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      escmae,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Até 7 anos"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Nenhuma"</span>, <span class="st">"1 a 3 anos"</span>, <span class="st">"4 a 7 anos"</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"8 a 11 anos"</span> <span class="ot">=</span> <span class="st">"8 a 11 anos"</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      <span class="st">"12 anos ou mais"</span> <span class="ot">=</span> <span class="st">"12 anos ou mais"</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(escolaridade)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 2</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   escolaridade        n</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt;</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Até 7 anos       5316</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 8 a 11 anos     15633</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 12 anos ou mais  5767</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 &lt;NA&gt;              312</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Quando há muitas categorias, as menos frequentes podem ser reunidas em “Outros” com <code>fct_lump_n()</code>, que mantém apenas as <code>n</code> mais frequentes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">municipio =</span> <span class="fu">fct_lump_n</span>(munresnome, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">other_level =</span> <span class="st">"Outros municípios"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(municipio, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   municipio             n</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;             &lt;int&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Outros municípios 11716</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Porto Velho        8437</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Ji-Paraná          2182</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Ariquemes          1729</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Vilhena            1590</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Cacoal             1374</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>fct_reorder()</code> ordena as categorias segundo os valores de outra variável, como a mediana do peso em cada município. Ela é muito usada em gráficos, como veremos no <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a>. Por fim, <code>fct_na_value_to_level()</code> transforma os valores ausentes em uma categoria explícita, o que permite mostrá-los em tabelas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">escmae =</span> <span class="fu">fct_na_value_to_level</span>(escmae, <span class="at">level =</span> <span class="st">"Ignorado"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(escmae)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   escmae              n</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;           &lt;int&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Nenhuma            40</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 1 a 3 anos        516</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 4 a 7 anos       4760</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 8 a 11 anos     15633</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 12 anos ou mais  5767</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Ignorado          312</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="sec-lubridate" class="level2" data-number="9.3">
 <h2 data-number="9.3" class="anchored" data-anchor-id="sec-lubridate"><span class="header-section-number">9.3</span> Datas com <code>lubridate</code></h2>
-<p>Apresenta a classe <code>Date</code> e a conversão de textos em datas (<code>dmy()</code>, <code>ymd()</code>), com atenção ao formato <code>ddmmaaaa</code> usado em vários arquivos do DATASUS. Mostra a extração de componentes (<code>year()</code>, <code>month()</code>, <code>wday()</code>), o cálculo de intervalos (<code>interval()</code>, <code>time_length()</code>), como a idade em anos completos ou o tempo entre o início dos sintomas e a notificação, e a obtenção da semana e do ano epidemiológicos (<code>epiweek()</code>, <code>epiyear()</code>).</p>
-<div class="callout callout-style-simple callout-warning callout-titled" title="A verificar na redação">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="sec-converter-datas" class="level3">
+<h3 class="anchored" data-anchor-id="sec-converter-datas">Convertendo textos em datas</h3>
+<p>Datas são guardadas no R em uma classe própria, <code>Date</code>, que permite fazer contas, como calcular intervalos, e extrair componentes, como o mês. No arquivo do SINASC, a data de nascimento vem como texto no formato <code>ddmmaaaa</code>, sem separadores. O pacote <code>lubridate</code> tem funções cujo nome indica a ordem dos componentes: <code>dmy()</code> para dia, mês e ano, <code>ymd()</code> para ano, mês e dia, e assim por diante. Essas funções reconhecem automaticamente vários separadores, ou a ausência deles.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"19022019"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2019-02-19"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dmy</span>(<span class="st">"19/02/2019"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2019-02-19"</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2019-02-19"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2019-02-19"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-title-container flex-fill">
-A verificar na redação
+<p>As três linhas produzem a mesma data, exibida no formato padrão internacional (ano, mês, dia). Foi a função <code>dmy()</code> que o script <code>preparar-sinasc.R</code> usou para converter a coluna <code>dtnasc</code>, que agora é do tipo data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(nascidos<span class="sc">$</span>dtnasc)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "Date"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(nascidos<span class="sc">$</span>dtnasc)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2019-01-01" "2019-12-31"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>A base de COVID-19 já foi lida com a coluna <code>data</code> no formato correto, porque o <code>readr</code> reconhece automaticamente datas no padrão <code>aaaa-mm-dd</code>.</p>
+</section>
+<section id="sec-componentes-data" class="level3">
+<h3 class="anchored" data-anchor-id="sec-componentes-data">Extraindo componentes</h3>
+<p>As funções <code>year()</code>, <code>month()</code>, <code>day()</code> e <code>wday()</code> extraem o ano, o mês, o dia e o dia da semana de uma data. O dia da semana é devolvido como número, com o domingo sendo o dia 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dia_semana =</span> <span class="fu">wday</span>(dtnasc)) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dia_semana) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dia =</span> <span class="fu">c</span>(<span class="st">"dom"</span>, <span class="st">"seg"</span>, <span class="st">"ter"</span>, <span class="st">"qua"</span>, <span class="st">"qui"</span>, <span class="st">"sex"</span>, <span class="st">"sáb"</span>))</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 3</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   dia_semana     n dia  </span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1          1  2922 dom  </span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2          2  4493 seg  </span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3          3  4024 ter  </span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4          4  4413 qua  </span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5          5  4138 qui  </span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6          6  3855 sex  </span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7          7  3183 sáb</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Conferir a correspondência entre a definição de semana epidemiológica implementada em <code>lubridate::epiweek()</code> e o calendário epidemiológico adotado pelo Ministério da Saúde, documentando eventuais diferenças nos anos de transição.</p>
+<p>Os nascimentos são menos frequentes aos sábados e, sobretudo, aos domingos. Como os partos espontâneos se distribuem de forma aproximadamente uniforme ao longo da semana, essa diferença costuma ser atribuída aos partos agendados, principalmente às cesarianas eletivas, que raramente são marcadas para o fim de semana.</p>
+</section>
+<section id="sec-intervalos" class="level3">
+<h3 class="anchored" data-anchor-id="sec-intervalos">Intervalos de tempo</h3>
+<p>Datas podem ser subtraídas, e o resultado é a diferença em dias. Para expressar a diferença em outras unidades, como semanas ou anos completos, usamos <code>interval()</code> e <code>time_length()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>primeiro_caso <span class="ot">&lt;-</span> <span class="fu">min</span>(covid<span class="sc">$</span>data[covid<span class="sc">$</span>uf <span class="sc">==</span> <span class="st">"RO"</span> <span class="sc">&amp;</span> covid<span class="sc">$</span>casos_novos <span class="sc">&gt;</span> <span class="dv">0</span>])</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>primeiro_caso</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "2020-03-20"</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">"2022-12-31"</span>) <span class="sc">-</span> primeiro_caso</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Time difference of 1016 days</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">time_length</span>(<span class="fu">interval</span>(primeiro_caso, <span class="fu">ymd</span>(<span class="st">"2022-12-31"</span>)), <span class="at">unit =</span> <span class="st">"year"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.783562</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>O mesmo raciocínio serve para calcular a idade de uma pessoa a partir da data de nascimento e de uma data de referência, ou o tempo entre o início dos sintomas e a notificação de um caso, um indicador importante da oportunidade da vigilância.</p>
+</section>
+<section id="sec-semana-epi" class="level3">
+<h3 class="anchored" data-anchor-id="sec-semana-epi">Semanas epidemiológicas</h3>
+<p>A vigilância epidemiológica organiza os dados por <strong>semana epidemiológica</strong>, que vai de domingo a sábado. A primeira semana do ano é aquela que termina no primeiro sábado de janeiro com pelo menos quatro dias no ano novo, de modo que um ano pode ter 52 ou 53 semanas e algumas datas do fim de dezembro pertencem à semana 1 do ano seguinte. As funções <code>epiweek()</code> e <code>epiyear()</code>, do <code>lubridate</code>, calculam a semana e o ano epidemiológicos segundo essa regra, a mesma usada no calendário epidemiológico brasileiro.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>datas <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">c</span>(<span class="st">"2023-12-30"</span>, <span class="st">"2023-12-31"</span>, <span class="st">"2024-01-06"</span>, <span class="st">"2024-01-07"</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">data =</span> datas, <span class="at">semana =</span> <span class="fu">epiweek</span>(datas), <span class="at">ano_epi =</span> <span class="fu">epiyear</span>(datas))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 4 × 3</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   data       semana ano_epi</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;      &lt;dbl&gt;   &lt;dbl&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 2023-12-30     52    2023</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2023-12-31      1    2024</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 2024-01-06      1    2024</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 2024-01-07      2    2024</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>O dia 31 de dezembro de 2023, um domingo, já pertence à semana 1 de 2024. Por isso, é importante usar <code>epiyear()</code>, e não <code>year()</code>, ao agrupar por semana epidemiológica. Vamos agregar os casos diários de COVID-19 em Rondônia por semana.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>covid_semanal_ro <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(uf <span class="sc">==</span> <span class="st">"RO"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ano_epi =</span> <span class="fu">epiyear</span>(data), <span class="at">semana_epi =</span> <span class="fu">epiweek</span>(data)) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ano_epi, semana_epi) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">inicio_semana =</span> <span class="fu">min</span>(data),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">casos =</span> <span class="fu">sum</span>(casos_novos),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">obitos =</span> <span class="fu">sum</span>(obitos_novos),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>covid_semanal_ro</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 146 × 5</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    ano_epi semana_epi inicio_semana casos obitos</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;        &lt;dbl&gt;  &lt;dbl&gt;</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1    2020         12 2020-03-20        3      0</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2    2020         13 2020-03-22        3      0</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3    2020         14 2020-03-29        5      1</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4    2020         15 2020-04-05       23      1</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5    2020         16 2020-04-12       94      2</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6    2020         17 2020-04-19      200      3</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7    2020         18 2020-04-26      326     16</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8    2020         19 2020-05-03      609     18</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9    2020         20 2020-05-10      656     28</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10    2020         21 2020-05-17     1190     46</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 136 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>floor_date()</code> oferece um caminho alternativo, arredondando cada data para o início da semana. Com <code>week_start = 7</code>, a semana começa no domingo, como no calendário epidemiológico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>covid <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">semana =</span> <span class="fu">floor_date</span>(data, <span class="at">unit =</span> <span class="st">"week"</span>, <span class="at">week_start =</span> <span class="dv">7</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="sec-valores-ausentes" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="sec-valores-ausentes"><span class="header-section-number">9.4</span> Valores ausentes</h2>
-<p>Distingue ausências explícitas (<code>NA</code>) e implícitas (combinações que deveriam existir e não aparecem na tabela, como semanas sem casos) e apresenta <code>is.na()</code>, <code>drop_na()</code>, <code>replace_na()</code>, <code>na_if()</code> e <code>complete()</code>. Introduz a completude como dimensão da qualidade dos dados dos sistemas de informação e alerta para os riscos de excluir registros incompletos sem avaliar o padrão das ausências. Métodos de imputação ficam fora do escopo.</p>
+<section id="sec-ausencias" class="level3">
+<h3 class="anchored" data-anchor-id="sec-ausencias">Ausências explícitas e implícitas</h3>
+<p>Um valor pode faltar de duas maneiras. A ausência <strong>explícita</strong> é o <code>NA</code> que vemos na tabela, como a escolaridade não informada de uma mãe. A ausência <strong>implícita</strong> é uma linha que deveria existir e não existe. Em uma tabela de nascimentos por município e mês, por exemplo, um município pequeno pode não ter nenhum nascimento em algum mês, e então essa combinação simplesmente não aparece na contagem.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nascimentos_mes <span class="ot">&lt;-</span> nascidos <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(munresnome, mes_nasc)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>nascimentos_mes <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(munresnome <span class="sc">==</span> <span class="st">"Castanheiras"</span>)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 11 × 3</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    munresnome   mes_nasc     n</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;        &lt;fct&gt;    &lt;int&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Castanheiras jan          2</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Castanheiras fev          1</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Castanheiras mar          4</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Castanheiras mai          5</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Castanheiras jun          5</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Castanheiras jul          4</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Castanheiras ago          1</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Castanheiras set          4</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Castanheiras out          3</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Castanheiras nov          2</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 Castanheiras dez          1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Castanheiras, com 32 nascimentos no ano, aparece em apenas 11 meses. Se calculássemos a média mensal de nascimentos desse município com esta tabela, ela estaria superestimada, porque os meses sem nascimento ficariam de fora. A função <code>complete()</code>, do <code>tidyr</code>, cria as combinações ausentes, e o argumento <code>fill</code> diz com que valor preenchê-las.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>nascimentos_mes <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(munresnome, mes_nasc, <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">n =</span> <span class="dv">0</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(munresnome <span class="sc">==</span> <span class="st">"Castanheiras"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 12 × 3</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    munresnome   mes_nasc     n</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;        &lt;fct&gt;    &lt;int&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Castanheiras jan          2</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Castanheiras fev          1</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Castanheiras mar          4</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Castanheiras abr          0</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Castanheiras mai          5</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Castanheiras jun          5</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Castanheiras jul          4</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Castanheiras ago          1</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Castanheiras set          4</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Castanheiras out          3</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 Castanheiras nov          2</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 Castanheiras dez          1</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Agora todos os doze meses aparecem, com zero no mês sem nascimentos. Esse cuidado é essencial em séries temporais de vigilância, em que semanas sem casos precisam aparecer como zero, e não desaparecer da série.</p>
+</section>
+<section id="sec-funcoes-na" class="level3">
+<h3 class="anchored" data-anchor-id="sec-funcoes-na">Funções para lidar com ausentes</h3>
+<p>Além de <code>is.na()</code> e <code>na_if()</code>, já vistas, três funções do <code>tidyr</code> são muito úteis. A função <code>drop_na()</code> remove as linhas com ausentes nas colunas indicadas. A função <code>replace_na()</code> substitui os ausentes por um valor. E a função <code>fill()</code> preenche os ausentes com o valor anterior ou seguinte, o que é útil em tabelas em que um valor só é escrito na primeira linha de cada grupo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(semagestac) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 25790</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Remover registros com informação ausente é a solução mais simples, mas não é neutra. Se os registros sem informação forem diferentes dos demais (por exemplo, se a idade gestacional faltar mais em municípios com pior assistência), a análise feita só com os registros completos pode ficar enviesada. Métodos para lidar com esse problema, como a imputação múltipla, estão fora do escopo deste livro, mas o capítulo 20 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> oferece uma introdução.</p>
+</section>
+<section id="sec-completude" class="level3">
+<h3 class="anchored" data-anchor-id="sec-completude">Completude como indicador de qualidade</h3>
+<p>A proporção de campos preenchidos, chamada de <strong>completude</strong>, é uma das dimensões usadas para avaliar a qualidade dos dados dos sistemas de informação. Com o que já sabemos, é simples calcular a completude de todas as variáveis de uma vez.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>nascidos <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), \(x) <span class="fu">mean</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)) <span class="sc">*</span> <span class="dv">100</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">"variavel"</span>, <span class="at">values_to =</span> <span class="st">"completude"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(completude)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 21 × 2</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    variavel        completude</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                &lt;dbl&gt;</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 semagestac            95.4</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 prematuro             95.4</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 gestacao              95.4</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 racacor               97.6</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 escmae                98.8</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 apgar5                99.6</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 gravidez              99.7</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 consultas             99.8</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 pre_natal_7mais       99.8</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 consultas_cat         99.8</span></span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 11 more rows</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>everything()</code> seleciona todas as colunas. O resultado mostra que a idade gestacional em semanas e a raça/cor são as variáveis menos preenchidas, embora todas tenham completude acima de 95%.</p>
+</section>
 </section>
 <section id="sec-campos-compostos" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="sec-campos-compostos"><span class="header-section-number">9.5</span> Campos compostos nos sistemas de informação</h2>
-<p>Mostra como decodificar campos que combinam unidade e quantidade, como a idade registrada no SIM e no SINAN, usando <code>str_sub()</code> e <code>case_when()</code>, e compara o resultado com o pré-processamento oferecido pelo pacote <code>microdatasus</code> <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span>.</p>
+<p>Alguns campos dos sistemas de informação guardam mais de uma informação em um único código. O exemplo mais conhecido é a idade no SIM. Ela é registrada com três algarismos: o primeiro indica a unidade de medida (0 para minutos, 1 para horas, 2 para dias, 3 para meses, 4 para anos e 5 para idades de 100 anos ou mais) e os dois seguintes indicam a quantidade. Assim, <code>405</code> significa 5 anos, <code>310</code> significa 10 meses, <code>215</code> significa 15 dias e <code>502</code> significa 102 anos. O SINAN usa uma lógica parecida, com quatro algarismos.</p>
+<p>Vamos decodificar alguns valores, fictícios, mas escritos no formato do SIM.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>obitos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">idade_codigo =</span> <span class="fu">c</span>(<span class="st">"405"</span>, <span class="st">"310"</span>, <span class="st">"215"</span>, <span class="st">"102"</span>, <span class="st">"478"</span>, <span class="st">"502"</span>, <span class="st">"999"</span>))</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>obitos <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">unidade =</span> <span class="fu">str_sub</span>(idade_codigo, <span class="dv">1</span>, <span class="dv">1</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">quantidade =</span> <span class="fu">as.numeric</span>(<span class="fu">str_sub</span>(idade_codigo, <span class="dv">2</span>, <span class="dv">3</span>)),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">idade_anos =</span> <span class="fu">case_when</span>(</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      unidade <span class="sc">==</span> <span class="st">"4"</span> <span class="sc">~</span> quantidade,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      unidade <span class="sc">==</span> <span class="st">"5"</span> <span class="sc">~</span> quantidade <span class="sc">+</span> <span class="dv">100</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      unidade <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>) <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">.default =</span> <span class="cn">NA</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">menor_1_ano =</span> unidade <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 5</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   idade_codigo unidade quantidade idade_anos menor_1_ano</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;      </span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 405          4                5          5 FALSE      </span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 310          3               10          0 TRUE       </span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 215          2               15          0 TRUE       </span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 102          1                2          0 TRUE       </span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 478          4               78         78 FALSE      </span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 502          5                2        102 FALSE      </span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 999          9               99         NA FALSE</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Os óbitos com unidade em minutos, horas, dias ou meses são todos de menores de um ano, o que permite identificar os óbitos infantis. O código <code>999</code>, usado para idade ignorada, resultou em <code>NA</code>. Na prática, o pré-processamento feito pela função <code>process_sim()</code> do <code>microdatasus</code> já realiza essa decodificação, criando as colunas <code>IDADEminutos</code>, <code>IDADEhoras</code>, <code>IDADEdias</code>, <code>IDADEmeses</code> e <code>IDADEanos</code> <span class="citation" data-cites="saldanha2019microdatasus">(<a href="../references.html#ref-saldanha2019microdatasus" role="doc-biblioref">SALDANHA; BASTOS; BARCELLOS, 2019</a>)</span>. Saber como o campo foi construído, porém, ajuda a conferir o resultado e a trabalhar com dados que não passaram por esse pré-processamento.</p>
 </section>
 <section id="sec-caso-09" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="sec-caso-09"><span class="header-section-number">9.6</span> Estudo de caso: preparando notificações de dengue para análise temporal</h2>
-<p>A partir de um extrato do SINAN, o estudante converte as datas de notificação e de início dos sintomas, calcula a semana epidemiológica, decodifica a idade e cria faixas etárias, recodifica a classificação final e avalia a completude das variáveis-chave. A base resultante é usada para construir a curva epidêmica no <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a>.</p>
+<h2 data-number="9.6" class="anchored" data-anchor-id="sec-caso-09"><span class="header-section-number">9.6</span> Estudo de caso: a COVID-19 nos estados da Região Norte</h2>
+<p>Vamos usar as ferramentas do capítulo para preparar a série de casos de COVID-19 dos estados da Região Norte, que será usada para construir curvas epidêmicas no próximo capítulo.</p>
+<p>O primeiro passo é conferir os dados. Séries de vigilância costumam ter correções: quando um caso é reclassificado, o número de casos novos de um dia pode ficar negativo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>covid <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(casos_novos <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">|</span> obitos_novos <span class="sc">&lt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(uf)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   uf        n</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt; &lt;int&gt;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 AC        1</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 AM        2</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 PA        2</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 RO       19</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 RR        2</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 TO        2</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Há poucos registros negativos, mas eles existem. Como representam correções do total acumulado, não devem ser simplesmente apagados; ao somar os casos por semana, eles compensam registros anteriores. Vamos agregar os dados por estado e semana epidemiológica, transformar a sigla do estado em um fator com o nome por extenso e garantir que todas as semanas apareçam para todos os estados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>covid_semanal <span class="ot">&lt;-</span> covid <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">ano_epi =</span> <span class="fu">epiyear</span>(data),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">semana_epi =</span> <span class="fu">epiweek</span>(data),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">estado =</span> <span class="fu">fct_recode</span>(uf,</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Acre"</span> <span class="ot">=</span> <span class="st">"AC"</span>, <span class="st">"Amapá"</span> <span class="ot">=</span> <span class="st">"AP"</span>, <span class="st">"Amazonas"</span> <span class="ot">=</span> <span class="st">"AM"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Pará"</span> <span class="ot">=</span> <span class="st">"PA"</span>, <span class="st">"Rondônia"</span> <span class="ot">=</span> <span class="st">"RO"</span>, <span class="st">"Roraima"</span> <span class="ot">=</span> <span class="st">"RR"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Tocantins"</span> <span class="ot">=</span> <span class="st">"TO"</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(estado, ano_epi, semana_epi) <span class="sc">|&gt;</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">inicio_semana =</span> <span class="fu">min</span>(data),</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">casos =</span> <span class="fu">sum</span>(casos_novos),</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">obitos =</span> <span class="fu">sum</span>(obitos_novos),</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">complete</span>(estado, <span class="fu">nesting</span>(ano_epi, semana_epi),</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="fu">list</span>(<span class="at">casos =</span> <span class="dv">0</span>, <span class="at">obitos =</span> <span class="dv">0</span>))</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>covid_semanal <span class="sc">|&gt;</span></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(estado)</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 2</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   estado        n</span></span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;     &lt;int&gt;</span></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Acre        147</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Amazonas    147</span></span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Amapá       147</span></span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Pará        147</span></span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Rondônia    147</span></span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Roraima     147</span></span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 Tocantins   147</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A função <code>nesting()</code>, dentro de <code>complete()</code>, garante que apenas as combinações de ano e semana que existem nos dados sejam usadas, evitando criar, por exemplo, uma semana 53 em anos que só têm 52. Todos os estados ficaram com o mesmo número de semanas. Por fim, identificamos a semana de maior número de casos em cada estado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>covid_semanal <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(estado) <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(casos, <span class="at">n =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(estado, ano_epi, semana_epi, inicio_semana, casos)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 7 × 5</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   estado [7]</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   estado    ano_epi semana_epi inicio_semana casos</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;date&gt;        &lt;dbl&gt;</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Acre         2022          5 2022-01-30     8045</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 Amazonas     2022          3 2022-01-16    42082</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 Amapá        2022          4 2022-01-23    15042</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 Pará         2022          7 2022-02-13    20201</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 Rondônia     2022          5 2022-01-30    17521</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6 Roraima      2020         26 2020-06-21     6221</span></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7 Tocantins    2022          4 2022-01-23    13393</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Em quase todos os estados, a semana com mais casos ocorreu no início de 2022, durante a circulação da variante Ômicron, quando a transmissão foi muito alta, mas a proporção de casos graves foi menor que nas ondas anteriores. O próximo capítulo mostra como transformar essas séries em gráficos.</p>
 </section>
 <section id="sec-ex-09" class="level2" data-number="9.7">
 <h2 data-number="9.7" class="anchored" data-anchor-id="sec-ex-09"><span class="header-section-number">9.7</span> Exercícios</h2>
-<p>Os exercícios de fixação tratam de operações isoladas com textos, fatores e datas. Os de aplicação envolvem o agrupamento das causas básicas de óbito infantil em capítulos da CID-10. O desafio propõe completar uma série semanal de casos com as semanas sem notificação, de modo que elas apareçam com contagem zero.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Padronize o vetor <code>c("São Francisco do Guaporé", "SAO FRANCISCO DO GUAPORE", " são francisco do guaporé ")</code> de modo que os três textos fiquem iguais.</p></li>
+<li><p>Conte quantos municípios de Rondônia têm a palavra “Oeste” no nome e quantos têm nomes compostos por mais de uma palavra (dica: um nome composto tem pelo menos um espaço).</p></li>
+<li><p>Calcule, para cada mês de 2019, o número de nascimentos em Rondônia e identifique o mês com menos nascimentos.</p></li>
+<li><p>Determine a semana e o ano epidemiológicos das datas 1º de janeiro de 2022, 1º de janeiro de 2023 e 31 de dezembro de 2022.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="5" type="1">
+<li><p>Usando <code>fct_collapse()</code>, agrupe a raça/cor da mãe em “Branca”, “Preta ou parda”, “Indígena” e “Amarela”, e calcule a proporção de baixo peso em cada grupo.</p></li>
+<li><p>Agregue a base de COVID-19 por estado e mês (use <code>floor_date()</code> com <code>unit = "month"</code>) e identifique, para cada estado, o mês com maior número de óbitos.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="7" type="1">
+<li><p>Decodifique as idades no formato do SIM <code>c("000", "105", "203", "311", "419", "460", "501", "999")</code> e classifique os óbitos em neonatal precoce (0 a 6 dias), neonatal tardio (7 a 27 dias), pós-neonatal (28 dias a menos de 1 ano) e não infantil. Considere que idades em minutos e horas correspondem ao primeiro dia de vida.</p></li>
+<li><p>Calcule a completude das variáveis da base <code>nascidos</code> para cada município e identifique os cinco municípios com menor completude da idade gestacional. Discuta como isso pode afetar a comparação da proporção de prematuridade entre os municípios.</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-09" class="level2" data-number="9.8">
 <h2 data-number="9.8" class="anchored" data-anchor-id="sec-sintese-09"><span class="header-section-number">9.8</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>O pacote <code>stringr</code> padroniza textos (<code>str_to_upper()</code>, <code>str_squish()</code>), detecta e substitui padrões (<code>str_detect()</code>, <code>str_replace_all()</code>) e extrai partes de textos (<code>str_sub()</code>), com apoio de expressões regulares simples. O pacote <code>forcats</code> reordena categorias (<code>fct_infreq()</code>, <code>fct_relevel()</code>, <code>fct_reorder()</code>), muda rótulos (<code>fct_recode()</code>), agrupa categorias (<code>fct_collapse()</code>, <code>fct_lump_n()</code>) e torna os ausentes visíveis (<code>fct_na_value_to_level()</code>). O pacote <code>lubridate</code> converte textos em datas (<code>dmy()</code>, <code>ymd()</code>), extrai componentes (<code>month()</code>, <code>wday()</code>), calcula intervalos e obtém a semana e o ano epidemiológicos (<code>epiweek()</code>, <code>epiyear()</code>). Os valores ausentes podem ser explícitos ou implícitos; os implícitos são recuperados com <code>complete()</code>. A completude das variáveis é um indicador simples de qualidade dos dados. Campos compostos, como a idade do SIM, são decodificados combinando <code>str_sub()</code> e <code>case_when()</code>.</p>
+<div id="tbl-sintese-09" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-09-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;9.1: Funções apresentadas no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-09-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -469,29 +1006,39 @@ A verificar na redação
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>str_to_upper()</code>, <code>str_to_title()</code>, <code>str_trim()</code>, <code>str_squish()</code></td>
+<td style="text-align: left;"><code>str_to_upper()</code>, <code>str_to_lower()</code>, <code>str_to_title()</code>, <code>str_squish()</code></td>
 <td style="text-align: left;">stringr</td>
 <td style="text-align: left;">Padronizar textos</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"><code>stri_trans_general()</code></td>
+<td style="text-align: left;">stringi</td>
+<td style="text-align: left;">Remover acentos</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><code>str_detect()</code>, <code>str_replace_all()</code></td>
 <td style="text-align: left;">stringr</td>
 <td style="text-align: left;">Detectar e substituir padrões</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>str_sub()</code>, <code>str_length()</code>, <code>str_pad()</code></td>
 <td style="text-align: left;">stringr</td>
-<td style="text-align: left;">Extrair, medir e preencher textos</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><code>fct_recode()</code>, <code>fct_relevel()</code>, <code>fct_infreq()</code>, <code>fct_reorder()</code></td>
-<td style="text-align: left;">forcats</td>
-<td style="text-align: left;">Recodificar e reordenar categorias</td>
+<td style="text-align: left;">Extrair, medir e completar textos</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>fct_collapse()</code>, <code>fct_lump_n()</code>, <code>fct_na_value_to_level()</code></td>
+<td style="text-align: left;"><code>fct_infreq()</code>, <code>fct_relevel()</code>, <code>fct_reorder()</code></td>
 <td style="text-align: left;">forcats</td>
-<td style="text-align: left;">Agrupar categorias e tratar <code>NA</code> como categoria</td>
+<td style="text-align: left;">Reordenar categorias</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fct_recode()</code>, <code>fct_collapse()</code>, <code>fct_lump_n()</code></td>
+<td style="text-align: left;">forcats</td>
+<td style="text-align: left;">Renomear e agrupar categorias</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>fct_na_value_to_level()</code></td>
+<td style="text-align: left;">forcats</td>
+<td style="text-align: left;">Tornar os ausentes uma categoria</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><code>dmy()</code>, <code>ymd()</code></td>
@@ -499,7 +1046,7 @@ A verificar na redação
 <td style="text-align: left;">Converter textos em datas</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>year()</code>, <code>month()</code>, <code>wday()</code></td>
+<td style="text-align: left;"><code>year()</code>, <code>month()</code>, <code>day()</code>, <code>wday()</code></td>
 <td style="text-align: left;">lubridate</td>
 <td style="text-align: left;">Extrair componentes de datas</td>
 </tr>
@@ -509,20 +1056,34 @@ A verificar na redação
 <td style="text-align: left;">Calcular intervalos de tempo</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>epiweek()</code>, <code>epiyear()</code></td>
+<td style="text-align: left;"><code>epiweek()</code>, <code>epiyear()</code>, <code>floor_date()</code></td>
 <td style="text-align: left;">lubridate</td>
-<td style="text-align: left;">Semana e ano epidemiológicos</td>
+<td style="text-align: left;">Semanas epidemiológicas e arredondamento de datas</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>drop_na()</code>, <code>replace_na()</code>, <code>complete()</code></td>
+<td style="text-align: left;"><code>complete()</code>, <code>nesting()</code></td>
 <td style="text-align: left;">tidyr</td>
-<td style="text-align: left;">Tratar valores ausentes explícitos e implícitos</td>
+<td style="text-align: left;">Recuperar combinações ausentes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>drop_na()</code>, <code>replace_na()</code>, <code>fill()</code></td>
+<td style="text-align: left;">tidyr</td>
+<td style="text-align: left;">Tratar valores ausentes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>everything()</code></td>
+<td style="text-align: left;">tidyselect</td>
+<td style="text-align: left;">Selecionar todas as colunas</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-09" class="level2" data-number="9.9">
 <h2 data-number="9.9" class="anchored" data-anchor-id="sec-mais-09"><span class="header-section-number">9.9</span> Para saber mais</h2>
+<p>O <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> dedica um capítulo a cada um dos temas tratados aqui: textos (capítulo 14), expressões regulares (15), fatores (16), datas (17) e valores faltantes (18). O <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> trata de datas no capítulo 9, com uma seção específica sobre semanas epidemiológicas, de textos no capítulo 10, de fatores no capítulo 11 e de valores ausentes no capítulo 20. Faria <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span> apresenta o <code>stringr</code>, o <code>forcats</code> e o <code>lubridate</code> nos capítulos 10, 11 e 12.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -540,12 +1101,12 @@ A verificar na redação
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">14. Strings; 15. Expressões regulares; 16. Fatores; 17. Datas e horários; 18. Valores faltantes</td>
-<td style="text-align: left;">Extraindo dados de strings; Modificando a ordem de um fator; Modificando os níveis do fator; Criando datas/horários; Intervalos de tempo; Valores faltantes implícitos</td>
+<td style="text-align: left;">Modificando a ordem de um fator; Criando datas/horários; Intervalos de tempo; Valores faltantes implícitos</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
 <td style="text-align: left;">9. Trabalhando com datas; 10. Caracteres e strings; 11. Fatores; 20. Campos em branco/faltantes</td>
-<td style="text-align: left;">Datas bagunçadas; Semanas epidemiológicas; Limpe e padronize; Combine os níveis; Avalie os campos em branco</td>
+<td style="text-align: left;">Semanas epidemiológicas; Limpe e padronize; Combine os níveis; Avalie os campos em branco</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Introdução à Linguagem R <span class="citation" data-cites="faria2024intror">(<a href="../references.html#ref-faria2024intror" role="doc-biblioref">FARIA, 2024</a>)</span></td>
@@ -559,6 +1120,9 @@ A verificar na redação
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
 <div id="ref-batra2021epirhandbook" class="csl-entry" role="listitem">
 BATRA, N. et al. <strong><a href="https://doi.org/10.5281/zenodo.4752646">Manual de R para Epidemiologistas</a></strong>. [s.l.] Applied Epi, 2021.
+</div>
+<div id="ref-cota2020covid" class="csl-entry" role="listitem">
+COTA, W. <strong><a href="https://doi.org/10.1590/SciELOPreprints.362">Monitoring the number of <span>COVID-19</span> cases and deaths in <span>Brazil</span> at municipal and federative units level</a></strong>SciELO Preprints, 2020.
 </div>
 <div id="ref-faria2024intror" class="csl-entry" role="listitem">
 FARIA, P. D. <strong><a href="https://pedropark99.github.io/Introducao_R/">Introdução à Linguagem R: seus fundamentos e sua prática</a></strong>. 5. ed. Belo Horizonte: [s.n.], 2024.
@@ -988,7 +1552,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

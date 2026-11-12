@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -90,6 +125,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -355,7 +419,12 @@ div.csl-indent {
   <li><a href="#sec-renderizacao" id="toc-sec-renderizacao" class="nav-link" data-scroll-target="#sec-renderizacao"><span class="header-section-number">4.6</span> Renderização e formatos de saída</a></li>
   <li><a href="#sec-inline" id="toc-sec-inline" class="nav-link" data-scroll-target="#sec-inline"><span class="header-section-number">4.7</span> Código <em>inline</em> e apresentação de números</a></li>
   <li><a href="#sec-caso-04" id="toc-sec-caso-04" class="nav-link" data-scroll-target="#sec-caso-04"><span class="header-section-number">4.8</span> Estudo de caso: um primeiro boletim de indicadores</a></li>
-  <li><a href="#sec-ex-04" id="toc-sec-ex-04" class="nav-link" data-scroll-target="#sec-ex-04"><span class="header-section-number">4.9</span> Exercícios</a></li>
+  <li><a href="#sec-ex-04" id="toc-sec-ex-04" class="nav-link" data-scroll-target="#sec-ex-04"><span class="header-section-number">4.9</span> Exercícios</a>
+  <ul class="collapse">
+  <li><a href="#fixação" id="toc-fixação" class="nav-link" data-scroll-target="#fixação">Fixação</a></li>
+  <li><a href="#aplicação" id="toc-aplicação" class="nav-link" data-scroll-target="#aplicação">Aplicação</a></li>
+  <li><a href="#desafio" id="toc-desafio" class="nav-link" data-scroll-target="#desafio">Desafio</a></li>
+  </ul></li>
   <li><a href="#sec-sintese-04" id="toc-sec-sintese-04" class="nav-link" data-scroll-target="#sec-sintese-04"><span class="header-section-number">4.10</span> Síntese</a></li>
   <li><a href="#sec-mais-04" id="toc-sec-mais-04" class="nav-link" data-scroll-target="#sec-mais-04"><span class="header-section-number">4.11</span> Para saber mais</a></li>
   </ul>
@@ -383,21 +452,8 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note callout-titled" title="Em elaboração">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Em elaboração
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este capítulo ainda está sendo redigido. Abaixo, o planejamento de seu conteúdo.</p>
-</div>
-</div>
 <div class="ficha-capitulo">
-<p><strong>Encontro previsto:</strong> 2 · <strong>Pré-requisitos:</strong> <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a> · <strong>Pacotes:</strong> <code>knitr</code> (o Quarto acompanha as versões recentes do RStudio)</p>
+<p><strong>Encontro previsto:</strong> 2 · <strong>Pré-requisitos:</strong> <a href="03-estruturas-dados.html" class="quarto-xref"><span>Capítulo 3</span></a> · <strong>Pacotes:</strong> <code>knitr</code>, <code>tibble</code> e <code>ggplot2</code> (apenas para ilustrar um gráfico)</p>
 </div>
 <div class="callout callout-style-simple callout-tip callout-titled" title="Objetivos de aprendizagem">
 <div class="callout-header d-flex align-content-center">
@@ -409,48 +465,383 @@ Objetivos de aprendizagem
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar o que se entende por análise reprodutível e por que ela importa em pesquisa e em vigilância; identificar os componentes de um documento Quarto (cabeçalho YAML, texto em Markdown e blocos de código); formatar texto com a sintaxe Markdown; configurar blocos de código por meio de opções; renderizar documentos em HTML e Word; inserir resultados de cálculos no texto com código <em>inline</em>; e reconhecer a continuidade entre Quarto e R Markdown.</p>
+<p>Ao final deste capítulo, espera-se que o estudante seja capaz de explicar o que é uma análise reprodutível e por que ela importa na pesquisa e nos serviços de saúde; reconhecer as partes de um documento Quarto (cabeçalho YAML, texto em Markdown e blocos de código); formatar texto com Markdown; controlar o comportamento dos blocos de código por meio de opções; gerar documentos em HTML e em Word; inserir resultados de cálculos no meio do texto; e perceber a continuidade entre o Quarto e o R Markdown.</p>
 </div>
 </div>
+<p>Até aqui, escrevemos código em scripts e vimos os resultados no console. Mas o produto final de uma análise quase nunca é um script. É um relatório, um boletim, um artigo ou uma apresentação, com texto explicando o que foi feito, tabelas, gráficos e conclusões. Este capítulo mostra como produzir esses documentos de modo que o texto e os resultados nasçam juntos, a partir do mesmo arquivo. A ferramenta usada é o Quarto, o mesmo sistema com que este livro foi escrito.</p>
 <section id="sec-por-que-reprodutivel" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-por-que-reprodutivel"><span class="header-section-number">4.1</span> Por que relatórios reprodutíveis?</h2>
-<p>Discute os problemas de copiar e colar resultados entre programas (erros de transcrição, dificuldade de atualização, falta de rastreabilidade) e apresenta a ideia de reunir texto, código e resultados em um único documento. O exemplo motivador é o boletim epidemiológico que precisa ser atualizado a cada semana com novos dados.</p>
+<p>Pense no fluxo de trabalho mais comum. A análise é feita em um programa, os resultados são copiados para uma planilha, os gráficos são exportados como imagem e tudo é colado em um editor de texto. Funciona, mas tem três problemas. O primeiro é o erro de transcrição: em algum momento, um número é copiado errado. O segundo é a atualização: se os dados mudarem, todo o processo precisa ser refeito à mão. O terceiro é a rastreabilidade: meses depois, ninguém sabe ao certo de onde saiu cada número do relatório.</p>
+<p>Um documento reprodutível resolve os três problemas de uma vez. Nele, o texto e o código convivem no mesmo arquivo. Quando o documento é gerado, o código é executado e os resultados (números, tabelas e gráficos) são inseridos automaticamente nos lugares certos. Se os dados mudarem, basta gerar o documento de novo. E qualquer pessoa pode ver exatamente como cada resultado foi obtido.</p>
+<p>O exemplo clássico em saúde pública é o boletim epidemiológico. Uma equipe que publica toda semana a situação da dengue no município pode escrever o boletim uma única vez, como documento Quarto, e a cada semana apenas trocar o arquivo de dados e gerar a nova edição. Os números do texto, as tabelas e a curva epidêmica se atualizam sozinhos.</p>
 </section>
 <section id="sec-rmarkdown-quarto" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="sec-rmarkdown-quarto"><span class="header-section-number">4.2</span> Do R Markdown ao Quarto</h2>
-<p>A ementa da disciplina menciona o R Markdown. A seção explica que o Quarto é o sistema de publicação que sucedeu o R Markdown, mantendo o mesmo mecanismo de execução de código em R (<code>knitr</code>) e quase toda a sintaxe; arquivos <code>.Rmd</code> continuam funcionando e podem ser convertidos com poucas alterações. O próprio livro é escrito em Quarto.</p>
+<p>Quem já teve contato com o R talvez conheça o R Markdown, arquivos com extensão <code>.Rmd</code> que fazem exatamente o que descrevemos acima. O Quarto é o sucessor do R Markdown, desenvolvido pela mesma equipe da Posit. Ele usa o mesmo mecanismo para executar o código em R (o pacote <code>knitr</code>) e quase toda a mesma sintaxe, mas funciona também com outras linguagens, como Python e Julia, e reúne em um só sistema a produção de relatórios, apresentações, sites e livros.</p>
+<p>Na prática, quem aprende Quarto aprende também R Markdown, e vice-versa. Arquivos <code>.Rmd</code> continuam funcionando normalmente no RStudio, e a conversão de um formato para o outro exige poucas mudanças. Neste livro usamos o Quarto, e os arquivos têm a extensão <code>.qmd</code>. O Quarto já vem instalado nas versões recentes do RStudio.</p>
 </section>
 <section id="sec-anatomia-qmd" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="sec-anatomia-qmd"><span class="header-section-number">4.3</span> Anatomia de um documento Quarto</h2>
-<p>Apresenta os três componentes de um arquivo <code>.qmd</code>: o cabeçalho YAML (título, autoria, data e formato de saída), o texto em Markdown e os blocos de código. Compara o editor visual e o editor de código-fonte do RStudio.</p>
+<p>Para criar um documento, use o menu <em>File &gt; New File &gt; Quarto Document</em>. O RStudio abre uma janela em que se pode informar o título e o autor e escolher o formato de saída. Ao confirmar, aparece um arquivo de exemplo com três tipos de conteúdo, que estão em todo documento Quarto.</p>
+<p>O primeiro é o <strong>cabeçalho YAML</strong>, delimitado por duas linhas com três hífens. Ele contém as informações gerais do documento, como título, autor, data e formato de saída.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Boletim de nascidos vivos"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Equipe de Vigilância"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O segundo é o <strong>texto</strong>, escrito em Markdown, uma linguagem de formatação muito simples, que será vista na próxima seção.</p>
+<p>O terceiro são os <strong>blocos de código</strong> (<em>code chunks</em>), delimitados por três crases. A primeira linha do bloco indica, entre chaves, a linguagem do código.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pesos <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3200</span>, <span class="dv">2850</span>, <span class="dv">3540</span>, <span class="dv">2410</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pesos)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Quando o documento é gerado, o R executa o código do bloco e o resultado aparece logo abaixo dele.</p>
+<p>O RStudio oferece duas formas de editar um documento Quarto. O <strong>editor visual</strong> mostra o texto já formatado, de forma parecida com um editor de texto comum, e tem botões para inserir títulos, listas, tabelas e imagens. O <strong>editor de código-fonte</strong> (<em>Source</em>) mostra o texto puro, com os símbolos de formatação. A troca entre os dois é feita pelos botões <em>Source</em> e <em>Visual</em>, no canto superior esquerdo do editor. Para quem está começando, o editor visual é mais confortável; com o tempo, muita gente passa a preferir o de código-fonte.</p>
 </section>
 <section id="sec-markdown" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="sec-markdown"><span class="header-section-number">4.4</span> Markdown essencial</h2>
-<p>Cobre títulos, ênfase, listas, <em>links</em>, imagens, tabelas simples, notas de rodapé e equações em notação LaTeX, usando como exemplo a fórmula da taxa de mortalidade infantil.</p>
+<p>O Markdown usa símbolos simples para indicar a formatação. Os mais usados estão na <a href="#tbl-markdown" class="quarto-xref">Tabela&nbsp;<span>4.1</span></a>.</p>
+<div id="tbl-markdown" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-markdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.1: Elementos básicos de Markdown.
+</figcaption>
+<div aria-describedby="tbl-markdown-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Você escreve</th>
+<th style="text-align: left;">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code># Título</code></td>
+<td style="text-align: left;">Título de primeiro nível</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>## Subtítulo</code></td>
+<td style="text-align: left;">Título de segundo nível</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*itálico*</code></td>
+<td style="text-align: left;"><em>itálico</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>**negrito**</code></td>
+<td style="text-align: left;"><strong>negrito</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>`codigo`</code></td>
+<td style="text-align: left;"><code>codigo</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>- item</code></td>
+<td style="text-align: left;">Item de lista com marcador</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>1. item</code></td>
+<td style="text-align: left;">Item de lista numerada</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>[texto](https://www.saude.gov.br)</code></td>
+<td style="text-align: left;">Link</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>![Legenda](figura.png)</code></td>
+<td style="text-align: left;">Imagem</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Parágrafos são separados por uma linha em branco. Tabelas simples podem ser escritas com barras verticais e hífens, como a tabela acima, mas o mais comum é gerá-las a partir dos dados, como veremos adiante.</p>
+<p>O Markdown também aceita equações escritas na notação do LaTeX, entre cifrões. Uma equação em destaque fica entre dois cifrões duplos. Veja como a fórmula da taxa de mortalidade infantil é escrita e como ela aparece no documento.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>\text{TMI} = \frac{\text{óbitos de menores de 1 ano}}{\text{nascidos vivos}} \times 1000</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>$$</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="math display">\[
+\text{TMI} = \frac{\text{óbitos de menores de 1 ano}}{\text{nascidos vivos}} \times 1000
+\]</span></p>
 </section>
 <section id="sec-chunks" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="sec-chunks"><span class="header-section-number">4.5</span> Blocos de código e suas opções</h2>
-<p>Apresenta a sintaxe dos blocos de código e as opções mais usadas (<code>label</code>, <code>echo</code>, <code>eval</code>, <code>include</code>, <code>warning</code>, <code>message</code>, <code>fig-cap</code>, <code>fig-width</code>). Destaca um ponto que costuma causar dificuldade: a renderização ocorre em uma sessão nova do R, de modo que objetos criados apenas no console não estão disponíveis no documento.</p>
+<p>Cada bloco de código pode receber opções que controlam o que é executado e o que aparece no documento final. As opções são escritas no início do bloco, em linhas que começam com <code>#|</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: media-pesos</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pesos)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nesse exemplo, o bloco recebeu um nome (<code>label</code>) e a opção <code>echo: false</code>, que esconde o código e mostra apenas o resultado. Isso é útil em relatórios para gestores, que se interessam pelos números e não pelo código. As opções mais usadas estão na <a href="#tbl-opcoes-chunk" class="quarto-xref">Tabela&nbsp;<span>4.2</span></a>.</p>
+<div id="tbl-opcoes-chunk" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-opcoes-chunk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.2: Opções frequentes dos blocos de código.
+</figcaption>
+<div aria-describedby="tbl-opcoes-chunk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Opção</th>
+<th style="text-align: left;">O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>label</code></td>
+<td style="text-align: left;">Dá um nome ao bloco, útil para encontrar erros e referenciar figuras</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>echo</code></td>
+<td style="text-align: left;">Mostra (<code>true</code>) ou esconde (<code>false</code>) o código</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>eval</code></td>
+<td style="text-align: left;">Executa (<code>true</code>) ou não (<code>false</code>) o código</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>include</code></td>
+<td style="text-align: left;">Se <code>false</code>, executa o código mas não mostra nem o código nem o resultado</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>warning</code>, <code>message</code></td>
+<td style="text-align: left;">Mostram ou escondem avisos e mensagens</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>fig-cap</code></td>
+<td style="text-align: left;">Define a legenda de uma figura</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>fig-width</code>, <code>fig-height</code></td>
+<td style="text-align: left;">Definem as dimensões de uma figura, em polegadas</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Um uso comum de <code>include: false</code> é o primeiro bloco do documento, em que carregamos os pacotes e importamos os dados. Esse código precisa ser executado, mas não interessa a quem lê o relatório.</p>
+<p>Opções que valem para o documento inteiro podem ser colocadas no cabeçalho YAML, dentro de <code>execute</code>. O cabeçalho abaixo, por exemplo, esconde o código e os avisos em todos os blocos.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Boletim de nascidos vivos"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-warning callout-titled" title="O documento é gerado em uma sessão nova">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+O documento é gerado em uma sessão nova
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este é o erro mais comum de quem começa a usar o Quarto. Quando o documento é renderizado, o R abre uma sessão nova e vazia e executa os blocos de cima para baixo. Objetos que você criou no console, mas que não foram criados em nenhum bloco do documento, simplesmente não existem para ele. Se a renderização falhar com a mensagem “objeto não encontrado”, verifique se o objeto foi criado em algum bloco anterior. Tudo o que o documento usa precisa estar dentro dele, inclusive o <code>library()</code> dos pacotes.</p>
+</div>
+</div>
 </section>
 <section id="sec-renderizacao" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="sec-renderizacao"><span class="header-section-number">4.6</span> Renderização e formatos de saída</h2>
-<p>Mostra a renderização para HTML e para Word, a partir do botão <em>Render</em> do RStudio, e menciona que a saída em PDF exige uma distribuição LaTeX. Discute quando cada formato é mais adequado (relatório para leitura em tela, documento para revisão por colegas).</p>
+<p>Gerar o documento final a partir do arquivo <code>.qmd</code> se chama <strong>renderizar</strong>. No RStudio, basta clicar no botão <em>Render</em> (ou usar o atalho <em>Ctrl + Shift + K</em>, <em>Cmd + Shift + K</em> no macOS). O Quarto executa os blocos de código, junta os resultados ao texto e cria o arquivo de saída na mesma pasta do documento.</p>
+<p>O formato de saída é definido no cabeçalho, pelo campo <code>format</code>. Os mais usados são <code>html</code>, que gera uma página para leitura no navegador, e <code>docx</code>, que gera um arquivo do Word. É possível pedir os dois ao mesmo tempo.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Boletim de nascidos vivos"</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html: default</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">  docx: default</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>O formato HTML é o mais flexível, permite gráficos interativos e é ótimo para leitura na tela. O formato Word é útil quando o documento será revisado por pessoas que preferem fazer comentários e correções nesse programa. Também é possível gerar PDF (<code>format: pdf</code>), mas isso exige uma instalação do LaTeX. A forma mais simples de obtê-la é executar <code>quarto install tinytex</code> no terminal do RStudio.</p>
 </section>
 <section id="sec-inline" class="level2" data-number="4.7">
 <h2 data-number="4.7" class="anchored" data-anchor-id="sec-inline"><span class="header-section-number">4.7</span> Código <em>inline</em> e apresentação de números</h2>
-<p>Ensina a inserir resultados no texto com código <em>inline</em> e a formatar números segundo as convenções brasileiras (vírgula decimal e ponto como separador de milhar) com <code>format()</code> e <code>round()</code>.</p>
+<p>Além dos blocos, o Quarto permite colocar pequenos trechos de código no meio de uma frase. Esse recurso, chamado de código <em>inline</em>, é escrito entre crases, começando pela letra <code>r</code> seguida de um espaço. Quando o documento é renderizado, o código é substituído pelo seu resultado. Suponha que, em um bloco anterior, tenhamos criado o objeto <code>taxa</code>. No texto do documento, escrevemos assim.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>A taxa de mortalidade infantil foi de <span class="in">`r round(taxa, 1)`</span> óbitos por mil nascidos vivos.</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>E, no documento renderizado, a frase aparece com o número no lugar do código. Se os dados mudarem, o número muda junto, sem risco de esquecer de atualizar o texto.</p>
+<p>Ao apresentar números em português, convém usar vírgula como separador decimal e ponto como separador de milhar. A função <code>format()</code> faz essa conversão com os argumentos <code>decimal.mark</code> e <code>big.mark</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>populacao <span class="ot">&lt;-</span> <span class="dv">1815278</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>taxa <span class="ot">&lt;-</span> <span class="fl">12.3456</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(populacao, <span class="at">big.mark =</span> <span class="st">"."</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "1.815.278"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">round</span>(taxa, <span class="dv">1</span>), <span class="at">decimal.mark =</span> <span class="st">","</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "12,3"</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>O resultado de <code>format()</code> é um texto, adequado para ser colocado em frases e tabelas, mas não para novos cálculos. Por isso, o formato deve ser aplicado apenas no momento de apresentar o número.</p>
 </section>
 <section id="sec-caso-04" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="sec-caso-04"><span class="header-section-number">4.8</span> Estudo de caso: um primeiro boletim de indicadores</h2>
-<p>O estudante produz um boletim curto, com dados fictícios de um município, contendo um parágrafo com valores calculados por código <em>inline</em>, uma tabela simples gerada com <code>knitr::kable()</code> e um gráfico. O código do gráfico é fornecido pronto e só será explicado no <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a>; o objetivo aqui é que o estudante veja, logo no início do curso, o percurso completo dos dados ao documento.</p>
+<p>Vamos montar, do começo ao fim, um pequeno boletim mensal de notificações de dengue de um município hipotético. Os números são fictícios. O objetivo é ver todas as peças do Quarto funcionando juntas.</p>
+<p>Crie um novo documento Quarto na pasta <code>relatorios/</code> do seu projeto, com o nome <code>boletim-dengue.qmd</code>, e substitua o conteúdo de exemplo pelo texto abaixo.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Boletim de dengue"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Município hipotético, janeiro a junho"</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Vigilância Epidemiológica"</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>notificacoes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Fev"</span>, <span class="st">"Mar"</span>, <span class="st">"Abr"</span>, <span class="st">"Mai"</span>, <span class="st">"Jun"</span>),</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Fev"</span>, <span class="st">"Mar"</span>, <span class="st">"Abr"</span>, <span class="st">"Mai"</span>, <span class="st">"Jun"</span>)),</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">casos =</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">112</span>, <span class="dv">235</span>, <span class="dv">198</span>, <span class="dv">87</span>, <span class="dv">31</span>)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">sum</span>(notificacoes<span class="sc">$</span>casos)</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>mes_pico <span class="ot">&lt;-</span> notificacoes<span class="sc">$</span>mes[<span class="fu">which.max</span>(notificacoes<span class="sc">$</span>casos)]</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Situação no período</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>Entre janeiro e junho foram notificados <span class="in">`r total`</span> casos de dengue.</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>O maior número de notificações ocorreu em <span class="in">`r mes_pico`</span>.</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Casos notificados de dengue por mês."</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(notificacoes, <span class="fu">aes</span>(<span class="at">x =</span> mes, <span class="at">y =</span> casos)) <span class="sc">+</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#ff6347"</span>) <span class="sc">+</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Casos notificados"</span>)</span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(notificacoes, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Mês"</span>, <span class="st">"Casos"</span>))</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Vamos executar aqui o mesmo código para ver o resultado. Primeiro, o bloco que cria os dados e calcula os valores usados no texto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>notificacoes <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">mes =</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Fev"</span>, <span class="st">"Mar"</span>, <span class="st">"Abr"</span>, <span class="st">"Mai"</span>, <span class="st">"Jun"</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Jan"</span>, <span class="st">"Fev"</span>, <span class="st">"Mar"</span>, <span class="st">"Abr"</span>, <span class="st">"Mai"</span>, <span class="st">"Jun"</span>)),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">casos =</span> <span class="fu">c</span>(<span class="dv">48</span>, <span class="dv">112</span>, <span class="dv">235</span>, <span class="dv">198</span>, <span class="dv">87</span>, <span class="dv">31</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">sum</span>(notificacoes<span class="sc">$</span>casos)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>mes_pico <span class="ot">&lt;-</span> notificacoes<span class="sc">$</span>mes[<span class="fu">which.max</span>(notificacoes<span class="sc">$</span>casos)]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>No boletim, a frase “Entre janeiro e junho foram notificados 711 casos de dengue. O maior número de notificações ocorreu em Mar.” é montada automaticamente a partir desses objetos. A função <code>which.max()</code> devolve a posição do maior valor, e com ela encontramos o mês do pico.</p>
+<p>Em seguida, o gráfico de colunas e a tabela.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(notificacoes, <span class="fu">aes</span>(<span class="at">x =</span> mes, <span class="at">y =</span> casos)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"#ff6347"</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">"Casos notificados"</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-boletim-dengue" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Gráfico de colunas com os casos notificados de dengue de janeiro a junho. As notificações sobem de 48 em janeiro até o pico de 235 em março e caem até 31 em junho.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boletim-dengue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04-quarto_files/figure-html/fig-boletim-dengue-1.png" class="img-fluid figure-img" alt="Gráfico de colunas com os casos notificados de dengue de janeiro a junho. As notificações sobem de 48 em janeiro até o pico de 235 em março e caem até 31 em junho." width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boletim-dengue-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.1: Casos notificados de dengue por mês em um município hipotético (dados fictícios).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(notificacoes, <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Mês"</span>, <span class="st">"Casos"</span>))</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Mês</th>
+<th style="text-align: right;">Casos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Jan</td>
+<td style="text-align: right;">48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fev</td>
+<td style="text-align: right;">112</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mar</td>
+<td style="text-align: right;">235</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Abr</td>
+<td style="text-align: right;">198</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mai</td>
+<td style="text-align: right;">87</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jun</td>
+<td style="text-align: right;">31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Não se preocupe, por enquanto, com os detalhes do código do gráfico. A lógica do <code>ggplot2</code> será explicada com calma no <a href="10-ggplot2.html" class="quarto-xref"><span>Capítulo 10</span></a>. O importante aqui é perceber o fluxo. Os dados são criados uma única vez, e o texto, o gráfico e a tabela são todos gerados a partir deles. Experimente trocar o número de casos de março por 300 e renderizar de novo. O total, o mês de pico, a figura e a tabela vão se atualizar sozinhos.</p>
+<div class="callout callout-style-simple callout-tip callout-titled" title="Use o Quarto para os exercícios">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Use o Quarto para os exercícios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A partir deste capítulo, a recomendação é resolver os exercícios do livro em documentos Quarto, um por capítulo, guardados na pasta <code>relatorios/</code> do projeto. Assim, o enunciado, o código e as respostas ficam juntos, e o documento renderizado pode ser entregue diretamente.</p>
+</div>
+</div>
 </section>
 <section id="sec-ex-04" class="level2" data-number="4.9">
 <h2 data-number="4.9" class="anchored" data-anchor-id="sec-ex-04"><span class="header-section-number">4.9</span> Exercícios</h2>
-<p>Os exercícios de fixação pedem a criação e a renderização de um documento com título, seções e um bloco de código. Os de aplicação propõem converter o script do estudo de caso do <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a> em um documento Quarto. O desafio solicita um documento que gere saídas em HTML e Word a partir do mesmo arquivo, com uma tabela e uma equação.</p>
+<section id="fixação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fixação">Fixação</h3>
+<ol type="1">
+<li><p>Crie um documento Quarto com o título “Meu primeiro documento”, um título de seção, um parágrafo com uma palavra em negrito e outra em itálico, uma lista numerada com três itens e um bloco de código que calcule a média de cinco números. Renderize em HTML.</p></li>
+<li><p>No documento do exercício anterior, acrescente a opção <code>echo: false</code> ao bloco de código e renderize de novo. O que mudou? Depois, troque por <code>eval: false</code> e compare.</p></li>
+<li><p>Escreva, em Markdown, a fórmula do coeficiente de incidência (casos novos divididos pela população, multiplicados por cem mil) como equação em destaque.</p></li>
+</ol>
+</section>
+<section id="aplicação" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="aplicação">Aplicação</h3>
+<ol start="4" type="1">
+<li><p>Transforme o estudo de caso do <a href="02-objetos-funcoes.html" class="quarto-xref"><span>Capítulo 2</span></a> em um documento Quarto. Os indicadores (taxa de mortalidade infantil, proporção de baixo peso e incidência de dengue) devem ser calculados em um bloco com <code>include: false</code> e apresentados no texto por meio de código <em>inline</em>, com uma casa decimal e vírgula como separador decimal.</p></li>
+<li><p>Altere o cabeçalho do boletim do estudo de caso para gerar, ao mesmo tempo, um arquivo HTML e um arquivo Word. Abra o arquivo Word e verifique como a tabela e o gráfico foram inseridos.</p></li>
+</ol>
+</section>
+<section id="desafio" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="desafio">Desafio</h3>
+<ol start="6" type="1">
+<li><p>Renderize o boletim do estudo de caso, apague do bloco inicial a linha que cria o objeto <code>total</code> e tente renderizar de novo. Leia a mensagem de erro e explique, com suas palavras, por que o documento não é gerado mesmo que o objeto ainda exista no painel <em>Environment</em> do RStudio.</p></li>
+<li><p>Pesquise na documentação do Quarto (<a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a>) como incluir referências cruzadas a figuras, de modo que o texto diga “como mostra a Figura 1” e o número seja atualizado automaticamente. Aplique o recurso ao boletim.</p></li>
+</ol>
+</section>
 </section>
 <section id="sec-sintese-04" class="level2" data-number="4.10">
 <h2 data-number="4.10" class="anchored" data-anchor-id="sec-sintese-04"><span class="header-section-number">4.10</span> Síntese</h2>
-<p>[Texto a redigir.] Quadro-resumo previsto:</p>
+<p>Um documento Quarto reúne, em um único arquivo, o texto, o código e os resultados de uma análise. Ele tem três partes: o cabeçalho YAML, com as informações gerais e o formato de saída; o texto, formatado em Markdown; e os blocos de código, cujas opções controlam o que é executado e mostrado. Ao renderizar, o código é executado em uma sessão nova do R, e os resultados são inseridos no documento final, que pode ser HTML, Word ou PDF. O código <em>inline</em> coloca resultados no meio das frases, e a função <code>format()</code> ajusta a apresentação dos números ao padrão brasileiro. O Quarto é o sucessor do R Markdown, e o que se aprende em um vale para o outro.</p>
+<div id="tbl-sintese-04" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sintese-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabela&nbsp;4.3: Elementos e funções apresentados no capítulo.
+</figcaption>
+<div aria-describedby="tbl-sintese-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -468,43 +859,57 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;"><code>title</code>, <code>author</code>, <code>date</code>, <code>format</code></td>
 <td style="text-align: left;">Cabeçalho YAML</td>
-<td style="text-align: left;">Metadados e formato de saída</td>
+<td style="text-align: left;">Informações gerais e formato de saída</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>#| label</code>, <code>#| echo</code>, <code>#| eval</code></td>
-<td style="text-align: left;">Blocos de código</td>
-<td style="text-align: left;">Identificar o bloco e controlar exibição e execução</td>
+<td style="text-align: left;"><code>execute</code></td>
+<td style="text-align: left;">Cabeçalho YAML</td>
+<td style="text-align: left;">Opções de execução válidas para todo o documento</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>#| warning</code>, <code>#| message</code></td>
+<td style="text-align: left;"><code>#| label</code>, <code>#| echo</code>, <code>#| eval</code>, <code>#| include</code></td>
 <td style="text-align: left;">Blocos de código</td>
-<td style="text-align: left;">Suprimir avisos e mensagens na saída</td>
+<td style="text-align: left;">Nome do bloco e controle de exibição e execução</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>#| fig-cap</code>, <code>#| fig-width</code></td>
+<td style="text-align: left;"><code>#| warning</code>, <code>#| message</code></td>
+<td style="text-align: left;">Blocos de código</td>
+<td style="text-align: left;">Mostrar ou esconder avisos e mensagens</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>#| fig-cap</code>, <code>#| fig-width</code>, <code>#| fig-height</code></td>
 <td style="text-align: left;">Blocos de código</td>
 <td style="text-align: left;">Legenda e dimensões de figuras</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;"><code>`r `</code></td>
-<td style="text-align: left;">Texto</td>
-<td style="text-align: left;">Código <em>inline</em></td>
-</tr>
 <tr class="even">
+<td style="text-align: left;">Código <em>inline</em></td>
+<td style="text-align: left;">Texto</td>
+<td style="text-align: left;">Inserir resultados no meio das frases</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;"><code>knitr::kable()</code></td>
 <td style="text-align: left;">Blocos de código</td>
-<td style="text-align: left;">Tabelas simples</td>
+<td style="text-align: left;">Gerar tabelas simples</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><code>format()</code>, <code>round()</code></td>
 <td style="text-align: left;">Blocos de código e <em>inline</em></td>
-<td style="text-align: left;">Formatação de números</td>
+<td style="text-align: left;">Formatar números</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>which.max()</code></td>
+<td style="text-align: left;">Blocos de código</td>
+<td style="text-align: left;">Encontrar a posição do maior valor</td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 </section>
 <section id="sec-mais-04" class="level2" data-number="4.11">
 <h2 data-number="4.11" class="anchored" data-anchor-id="sec-mais-04"><span class="header-section-number">4.11</span> Para saber mais</h2>
+<p>O capítulo 28 do <em>R para Ciência de Dados</em> <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span> é uma excelente introdução ao Quarto, com seções sobre o editor visual, os blocos de código, figuras, tabelas e o cabeçalho YAML; o capítulo 29 apresenta os demais formatos de saída, como apresentações e sites. O capítulo 40 do <em>Manual de R para Epidemiologistas</em> <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span> trata do R Markdown com exemplos voltados à vigilância, incluindo relatórios parametrizados, que geram uma versão do mesmo relatório para cada município ou região. A documentação oficial do Quarto, em <a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a>, é a referência mais completa e atualizada.</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -522,7 +927,7 @@ Objetivos de aprendizagem
 <tr class="odd">
 <td style="text-align: left;">R para Ciência de Dados <span class="citation" data-cites="wickham2023r4ds">(<a href="../references.html#ref-wickham2023r4ds" role="doc-biblioref">WICKHAM; ÇETINKAYA-RUNDEL; GROLEMUND, 2023</a>)</span></td>
 <td style="text-align: left;">28. Quarto; 29. Formatos para Quarto</td>
-<td style="text-align: left;">Básico de Quarto; Editor visual; Blocos de código; Figuras; Tabelas; Cabeçalho YAML; Documentos</td>
+<td style="text-align: left;">Básico de Quarto; Editor visual; Blocos de código; Figuras; Tabelas; Cabeçalho YAML</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Manual de R para Epidemiologistas <span class="citation" data-cites="batra2021epirhandbook">(<a href="../references.html#ref-batra2021epirhandbook" role="doc-biblioref">BATRA et al., 2021</a>)</span></td>
@@ -531,7 +936,6 @@ Objetivos de aprendizagem
 </tr>
 </tbody>
 </table>
-<p>A documentação oficial do Quarto (<a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a>) será indicada como referência permanente.</p>
 
 
 <div id="refs" class="references csl-bib-body" data-entry-spacing="1" role="list" style="display: none">
@@ -960,7 +1364,7 @@ WICKHAM, H.; ÇETINKAYA-RUNDEL, M.; GROLEMUND, G. <strong><a href="https://pt.r4
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição) foi escrito por Gustavo Prado.</p>
+<p>Introdução ao software R: Guia básico para aplicações em saúde pública (1ª edição)</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
